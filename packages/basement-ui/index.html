@@ -14,6 +14,18 @@
       --color-light-gray: #DDDDDD;
       --color-white:      #FFFFFF;
 
+      --color-red-dark:    #8B0000;
+      --color-red:         #EE3333;
+      --color-red-light:   #FFE8E8;
+
+      --color-green-dark:  #1A5C28;
+      --color-green:       #33BB55;
+      --color-green-light: #E0F8E8;
+
+      --color-blue-dark:  #1A2E6E;
+      --color-blue:       #3366EE;
+      --color-blue-light: #E0EAFF;
+
       --font-base-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-base-weight: 600;
 
@@ -50,8 +62,11 @@
 
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 
     /* ── Base ── */
+    html, body { height: 100%; }
+
     body {
       background-color: var(--color-white);
       color: var(--color-black);
@@ -60,46 +75,75 @@
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
       -webkit-font-smoothing: antialiased;
+      display: flex;
     }
 
-    /* ── Layout ── */
-    .page {
-      max-width: 67.5rem;
-      margin: 0 auto;
-      padding: var(--spacing-xl) var(--spacing-l);
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 10rem;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      flex-shrink: 0;
+      border-right: 1px solid var(--color-light-gray);
+      display: flex;
+      flex-direction: column;
+      padding: var(--spacing-m) var(--spacing-s);
     }
 
-    /* ── Page Header ── */
-    .page-header {
-      margin-bottom: var(--spacing-l);
-    }
-
-    .page-title {
-      font-size: var(--font-size-2xl);
-      line-height: var(--line-height-2xl);
+    .sidebar-title {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
       letter-spacing: -0.03em;
       color: var(--color-black);
     }
 
-    .page-byline {
+    .sidebar-byline {
       margin-top: var(--spacing-xs);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
       color: var(--color-gray);
     }
 
-    /* ── Section ── */
-    .section {
-      margin-bottom: var(--spacing-l);
+    .sidebar-nav {
+      margin-top: var(--spacing-m);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
     }
 
-    .section-label {
+    .nav-item {
+      all: unset;
       display: block;
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
       color: var(--color-gray);
-      padding-bottom: var(--spacing-s);
-      border-bottom: 1px solid var(--color-light-gray);
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav-item.is-active { color: var(--color-black); }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--spacing-m) var(--spacing-l);
+      max-width: 61.5rem;
+    }
+
+    /* ── Section ── */
+    .section { display: none; }
+    .section.is-active { display: block; }
+
+    .section-label {
+      display: block;
+      font-size: var(--font-size-l);
+      line-height: var(--line-height-l);
+      letter-spacing: -0.02em;
+      color: var(--color-black);
       margin-bottom: var(--spacing-m);
     }
 
@@ -117,6 +161,33 @@
       color: var(--color-gray);
     }
 
+    /* ── Subsections ── */
+    .border-group + .border-group { margin-top: var(--spacing-l); }
+
+    .subsection-label {
+      font-size: var(--font-size-m);
+      line-height: var(--line-height-m);
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+      padding-bottom: var(--spacing-s);
+      border-bottom: 1px solid var(--color-light-gray);
+      margin-bottom: var(--spacing-s);
+    }
+
+    .subsection-label:has(+ .sample-box) {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* ── Sample box ── */
+    .sample-box {
+      border: 1px solid var(--color-light-gray);
+      border-radius: var(--border-radius-s);
+      padding: var(--spacing-m);
+    }
+
+    .sample-box > *:last-child { border-bottom: none; }
+
     /* ── Colors ── */
     .color-row {
       display: grid;
@@ -126,30 +197,130 @@
 
     .swatch-face {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 1;
       border-radius: var(--border-radius-s);
     }
 
-    .swatch-face--black      { background: var(--color-black); }
-    .swatch-face--dark-gray  { background: var(--color-dark-gray); }
-    .swatch-face--gray       { background: var(--color-gray); }
-    .swatch-face--light-gray { background: var(--color-light-gray); }
-    .swatch-face--white      { background: var(--color-white); border: 1px solid var(--color-light-gray); }
+    .swatch-face--black        { background: var(--color-black); }
+    .swatch-face--dark-gray    { background: var(--color-dark-gray); }
+    .swatch-face--gray         { background: var(--color-gray); }
+    .swatch-face--light-gray   { background: var(--color-light-gray); }
+    .swatch-face--white        { background: var(--color-white);        border: 1px solid var(--color-light-gray); }
+    .swatch-face--red-dark     { background: var(--color-red-dark); }
+    .swatch-face--red          { background: var(--color-red); }
+    .swatch-face--red-light    { background: var(--color-red-light);    border: 1px solid var(--color-light-gray); }
+    .swatch-face--green-dark   { background: var(--color-green-dark); }
+    .swatch-face--green        { background: var(--color-green); }
+    .swatch-face--green-light  { background: var(--color-green-light);  border: 1px solid var(--color-light-gray); }
+    .swatch-face--blue-dark    { background: var(--color-blue-dark); }
+    .swatch-face--blue         { background: var(--color-blue); }
+    .swatch-face--blue-light   { background: var(--color-blue-light);   border: 1px solid var(--color-light-gray); }
 
-    /* ── Fonts ── */
-    .font-entry {
-      padding: var(--spacing-m) 0;
+    /* ── Palette hue groups ── */
+    .palette-hue-group + .palette-hue-group { margin-top: var(--spacing-s); }
+
+    .palette-hue-label {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--color-black);
+      margin-bottom: var(--spacing-xs);
     }
 
-    .font-entry + .font-entry {
-      border-top: 1px solid var(--color-light-gray);
+    /* ── Scheme ── */
+    .scheme-table-header {
+      display: grid;
+      grid-template-columns: 1fr 10rem 10rem;
+      padding-bottom: var(--spacing-xs);
+      border-bottom: 1px solid var(--color-light-gray);
+      margin-bottom: var(--spacing-s);
     }
 
+    .scheme-theme-label {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--color-gray);
+    }
+
+    .scheme-group + .scheme-group { margin-top: var(--spacing-m); }
+
+    .scheme-group-label {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--color-gray);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    .scheme-row {
+      border-bottom: 1px solid var(--color-light-gray);
+      padding: var(--spacing-xs) 0;
+    }
+
+    .scheme-row-header {
+      display: grid;
+      grid-template-columns: 1fr 10rem 10rem;
+      align-items: center;
+    }
+
+    .scheme-role-label {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--color-dark-gray);
+    }
+
+    .scheme-btn {
+      all: unset;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      cursor: pointer;
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--color-gray);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .scheme-swatch {
+      display: inline-block;
+      width: var(--size-xs);
+      height: var(--size-xs);
+      border-radius: var(--border-radius-s);
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+
+    .scheme-picker {
+      display: none;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      padding-top: var(--spacing-xs);
+    }
+
+    .scheme-picker.is-open { display: flex; }
+
+    .picker-chip {
+      all: unset;
+      display: inline-block;
+      width: var(--size-xs);
+      height: var(--size-xs);
+      border-radius: var(--border-radius-s);
+      border: 1px solid transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .picker-chip:hover {
+      outline: 2px solid var(--color-dark-gray);
+      outline-offset: 1px;
+    }
+
+    /* ── Typeface ── */
     .font-meta {
       display: flex;
       align-items: baseline;
       gap: var(--spacing-s);
-      margin-bottom: var(--spacing-s);
+      margin-top: var(--spacing-s);
     }
 
     .font-token {
@@ -180,21 +351,21 @@
     }
 
     /* ── Font size scale ── */
-    .font-size-scale {
-      border-top: 1px solid var(--color-light-gray);
-    }
-
     .font-size-entry {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: var(--spacing-xs) 0;
       border-bottom: 1px solid var(--color-light-gray);
     }
 
-    .font-size-sample {
-      color: var(--color-black);
-    }
+    .font-size-entry--xs  { padding: var(--spacing-xs) 0; }
+    .font-size-entry--s   { padding: var(--spacing-xs) 0; }
+    .font-size-entry--m   { padding: var(--spacing-s)  0; }
+    .font-size-entry--l   { padding: var(--spacing-s)  0; }
+    .font-size-entry--xl  { padding: var(--spacing-m)  0; }
+    .font-size-entry--2xl { padding: var(--spacing-m)  0; }
+
+    .font-size-sample { color: var(--color-gray); }
 
     .font-size-sample--xs  { font-size: var(--font-size-xs);  line-height: var(--line-height-xs); }
     .font-size-sample--s   { font-size: var(--font-size-s);   line-height: var(--line-height-s); }
@@ -211,16 +382,89 @@
       margin-left: var(--spacing-m);
     }
 
-    /* ── Subsections ── */
-    .border-group + .border-group {
-      margin-top: var(--spacing-m);
+    /* ── Type scale rows ── */
+    .type-row {
+      padding: var(--spacing-s) 0;
+      border-bottom: 1px solid var(--color-light-gray);
     }
 
-    .subsection-label {
+    .type-row-meta {
+      margin-top: var(--spacing-xs);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
       color: var(--color-gray);
-      margin-bottom: var(--spacing-s);
+    }
+
+    /* ── Headings ── */
+    .type-h1 {
+      font-size: var(--font-size-2xl);
+      line-height: var(--line-height-2xl);
+      letter-spacing: -0.03em;
+      color: var(--color-black);
+    }
+
+    .type-h2 {
+      font-size: var(--font-size-l);
+      line-height: var(--line-height-l);
+      letter-spacing: -0.02em;
+      color: var(--color-black);
+    }
+
+    .type-h3 {
+      font-size: var(--font-size-m);
+      line-height: var(--line-height-m);
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+    }
+
+    .type-h4 {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--color-black);
+    }
+
+    /* ── Body types ── */
+    .type-paragraph {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--color-dark-gray);
+      max-width: 40rem;
+    }
+
+    .type-caption {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--color-gray);
+    }
+
+    .type-quote {
+      border-left: 2px solid var(--color-light-gray);
+      padding-left: var(--spacing-s);
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--color-dark-gray);
+      max-width: 40rem;
+    }
+
+    /* ── Links ── */
+    .link-sample {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--color-dark-gray);
+      max-width: 40rem;
+    }
+
+    .link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 1px;
+    }
+
+    .link-props {
+      display: flex;
+      gap: var(--spacing-m);
+      margin-top: var(--spacing-s);
     }
 
     /* ── Borders ── */
@@ -253,14 +497,8 @@
       border-radius: var(--border-radius-s);
     }
 
-    .color-ctx--light {
-      background: var(--color-white);
-      border: 1px solid var(--color-light-gray);
-    }
-
-    .color-ctx--dark {
-      background: var(--color-black);
-    }
+    .color-ctx--light { background: var(--color-white); border: 1px solid var(--color-light-gray); }
+    .color-ctx--dark  { background: var(--color-black); }
 
     .color-ctx-inner {
       height: var(--size-m);
@@ -277,21 +515,11 @@
       border-radius: var(--border-radius-s);
     }
 
-    .divider {
-      border: none;
-      border-top: 1px solid var(--color-light-gray);
-    }
+    .divider { border: none; border-top: 1px solid var(--color-light-gray); }
 
     /* ── Spacing ── */
-    .spacing-row {
-      display: flex;
-      align-items: flex-end;
-      gap: var(--spacing-s);
-    }
-
-    .spacing-item {
-      flex: 1;
-    }
+    .spacing-row { display: flex; align-items: flex-end; gap: var(--spacing-s); }
+    .spacing-item { flex: 1; }
 
     .spacing-bar {
       width: 100%;
@@ -306,15 +534,8 @@
     .spacing-bar--xl { height: var(--spacing-xl); }
 
     /* ── Sizes ── */
-    .sizes-row {
-      display: flex;
-      align-items: flex-end;
-      gap: var(--spacing-s);
-    }
-
-    .size-item {
-      min-width: var(--size-s);
-    }
+    .sizes-row { display: flex; align-items: flex-end; gap: var(--spacing-s); }
+    .size-item { min-width: var(--size-s); }
 
     .size-block {
       border: 1px solid var(--color-light-gray);
@@ -330,95 +551,347 @@
   </style>
 </head>
 <body>
-  <div class="page">
 
-    <header class="page-header">
-      <h1 class="page-title">Basement UI</h1>
-      <p class="page-byline">Design System · Gwenzhir</p>
-    </header>
+  <aside class="sidebar">
+    <h1 class="sidebar-title">Basement UI</h1>
+    <div class="sidebar-byline">@gwenzhir</div>
+    <nav class="sidebar-nav">
+      <button class="nav-item is-active" data-section="colors">Colors</button>
+      <button class="nav-item" data-section="typography">Typography</button>
+      <button class="nav-item" data-section="borders">Borders</button>
+      <button class="nav-item" data-section="spacing">Spacing</button>
+      <button class="nav-item" data-section="sizes">Sizes</button>
+    </nav>
+  </aside>
 
-    <section class="section">
-      <span class="section-label">Colors</span>
-      <div class="color-row">
-        <div>
-          <div class="swatch-face swatch-face--black"></div>
-          <div class="token-name">Black</div>
-          <div class="token-value">#111111</div>
+  <main class="content">
+
+    <!-- ── Colors ── -->
+    <section class="section is-active" id="colors">
+      <h2 class="section-label">Colors</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Palette</h3>
+
+        <div class="palette-hue-group">
+          <h4 class="palette-hue-label">Grayscale</h4>
+          <div class="color-row">
+            <div>
+              <div class="swatch-face swatch-face--black"></div>
+              <div class="token-name">Black</div>
+              <div class="token-value">#111111</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--dark-gray"></div>
+              <div class="token-name">Dark Gray</div>
+              <div class="token-value">#666666</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--gray"></div>
+              <div class="token-name">Gray</div>
+              <div class="token-value">#999999</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--light-gray"></div>
+              <div class="token-name">Light Gray</div>
+              <div class="token-value">#DDDDDD</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--white"></div>
+              <div class="token-name">White</div>
+              <div class="token-value">#FFFFFF</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="swatch-face swatch-face--dark-gray"></div>
-          <div class="token-name">Dark Gray</div>
-          <div class="token-value">#666666</div>
+
+        <div class="palette-hue-group">
+          <h4 class="palette-hue-label">Red</h4>
+          <div class="color-row">
+            <div>
+              <div class="swatch-face swatch-face--red-dark"></div>
+              <div class="token-name">Red Dark</div>
+              <div class="token-value">#8B0000</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--red"></div>
+              <div class="token-name">Red</div>
+              <div class="token-value">#EE3333</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--red-light"></div>
+              <div class="token-name">Red Light</div>
+              <div class="token-value">#FFE8E8</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="swatch-face swatch-face--gray"></div>
-          <div class="token-name">Gray</div>
-          <div class="token-value">#999999</div>
+
+        <div class="palette-hue-group">
+          <h4 class="palette-hue-label">Green</h4>
+          <div class="color-row">
+            <div>
+              <div class="swatch-face swatch-face--green-dark"></div>
+              <div class="token-name">Green Dark</div>
+              <div class="token-value">#1A5C28</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--green"></div>
+              <div class="token-name">Green</div>
+              <div class="token-value">#33BB55</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--green-light"></div>
+              <div class="token-name">Green Light</div>
+              <div class="token-value">#E0F8E8</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="swatch-face swatch-face--light-gray"></div>
-          <div class="token-name">Light Gray</div>
-          <div class="token-value">#DDDDDD</div>
+
+        <div class="palette-hue-group">
+          <h4 class="palette-hue-label">Blue</h4>
+          <div class="color-row">
+            <div>
+              <div class="swatch-face swatch-face--blue-dark"></div>
+              <div class="token-name">Blue Dark</div>
+              <div class="token-value">#1A2E6E</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--blue"></div>
+              <div class="token-name">Blue</div>
+              <div class="token-value">#3366EE</div>
+            </div>
+            <div>
+              <div class="swatch-face swatch-face--blue-light"></div>
+              <div class="token-name">Blue Light</div>
+              <div class="token-value">#E0EAFF</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="swatch-face swatch-face--white"></div>
-          <div class="token-name">White</div>
-          <div class="token-value">#FFFFFF</div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Scheme</h3>
+
+        <div class="scheme-table-header">
+          <span></span>
+          <span class="scheme-theme-label">Light</span>
+          <span class="scheme-theme-label">Dark</span>
         </div>
+
+        <div class="scheme-group">
+          <div class="scheme-group-label">Background</div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Primary</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">White</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-color-name">Black</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Secondary</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">Light Gray</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#666666;"></span>
+                <span class="scheme-color-name">Dark Gray</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+        </div>
+
+        <div class="scheme-group">
+          <div class="scheme-group-label">Text</div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Primary</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-color-name">Black</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">White</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Secondary</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#999999;"></span>
+                <span class="scheme-color-name">Gray</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">Light Gray</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+        </div>
+
+        <div class="scheme-group">
+          <div class="scheme-group-label">Border</div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Resting</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">Light Gray</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#666666;"></span>
+                <span class="scheme-color-name">Dark Gray</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Highlighted</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-color-name">Black</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-color-name">White</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section class="section">
-      <span class="section-label">Fonts</span>
+    <!-- ── Typography ── -->
+    <section class="section" id="typography">
+      <h2 class="section-label">Typography</h2>
 
       <div class="border-group">
-        <div class="subsection-label">Typeface</div>
-        <div class="font-entry">
-          <div class="font-meta">
-            <span class="font-token">Base Text</span>
-            <span class="font-detail">Pretendard · 600</span>
-          </div>
+        <h3 class="subsection-label">Typeface</h3>
+        <div class="sample-box">
           <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
           <p class="font-body-sample">Basement UI는 Gwenzhir 프로젝트 전반에 걸쳐 사용되는 공유 디자인 언어입니다. Colors, typography, and spacing — 이 세 가지 토큰이 모든 화면에서 반복적으로 쌓이며 일관된 경험을 만든다.</p>
+        </div>
+        <div class="font-meta">
+          <span class="font-token">Base Text</span>
+          <span class="font-detail">Pretendard · 600</span>
         </div>
       </div>
 
       <div class="border-group">
-        <div class="subsection-label">Size</div>
-        <div class="font-size-scale">
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--xs">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="sample-box">
+          <div class="font-size-entry font-size-entry--xs">
+            <span class="font-size-sample font-size-sample--xs">Metadata · Labels · Captions</span>
             <span class="font-size-meta">XS · 0.75rem / 1.25rem</span>
           </div>
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--s">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+          <div class="font-size-entry font-size-entry--s">
+            <span class="font-size-sample font-size-sample--s">Body copy reads at this size in most contexts.</span>
             <span class="font-size-meta">S · 1rem / 1.5rem</span>
           </div>
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--m">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+          <div class="font-size-entry font-size-entry--m">
+            <span class="font-size-sample font-size-sample--m">A section begins here.</span>
             <span class="font-size-meta">M · 1.5rem / 2rem</span>
           </div>
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--l">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+          <div class="font-size-entry font-size-entry--l">
+            <span class="font-size-sample font-size-sample--l">화면 위의 것들</span>
             <span class="font-size-meta">L · 2.25rem / 2.75rem</span>
           </div>
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--xl">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+          <div class="font-size-entry font-size-entry--xl">
+            <span class="font-size-sample font-size-sample--xl">Everything compounds.</span>
             <span class="font-size-meta">XL · 3rem / 3.5rem</span>
           </div>
-          <div class="font-size-entry">
-            <span class="font-size-sample font-size-sample--2xl">화면 위의 것들은 쌓인다.<br>Everything on screen compounds.</span>
+          <div class="font-size-entry font-size-entry--2xl">
+            <span class="font-size-sample font-size-sample--2xl">Design.</span>
             <span class="font-size-meta">2XL · 4rem / 4.5rem</span>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="section">
-      <span class="section-label">Borders</span>
 
       <div class="border-group">
-        <div class="subsection-label">Radius</div>
+        <h3 class="subsection-label">Headings</h3>
+        <div class="sample-box">
+          <div class="type-row">
+            <div class="type-h1">Design Systems</div>
+            <div class="type-row-meta">H1 · 4rem / 4.5rem · −0.03em</div>
+          </div>
+          <div class="type-row">
+            <div class="type-h2">Color and Typography</div>
+            <div class="type-row-meta">H2 · 2.25rem / 2.75rem · −0.02em</div>
+          </div>
+          <div class="type-row">
+            <div class="type-h3">Token Reference</div>
+            <div class="type-row-meta">H3 · 1.5rem / 2rem · −0.01em</div>
+          </div>
+          <div class="type-row">
+            <div class="type-h4">Base Text</div>
+            <div class="type-row-meta">H4 · 1rem / 1.5rem</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Body</h3>
+        <div class="sample-box">
+          <div class="type-row">
+            <p class="type-paragraph">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
+            <div class="type-row-meta">Paragraph · S · Dark Gray</div>
+          </div>
+          <div class="type-row">
+            <blockquote class="type-quote">Good design systems are invisible until you don't have one.</blockquote>
+            <div class="type-row-meta">Quote · S · Dark Gray · Left border</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Caption</h3>
+        <div class="sample-box">
+          <div class="type-row">
+            <span class="type-caption">Last updated June 2026 · Gwenzhir</span>
+            <div class="type-row-meta">Caption · XS · Gray</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Links</h3>
+        <div class="sample-box">
+          <p class="link-sample">A design system provides <a class="link" href="#">shared foundations</a> for every surface that builds on it.</p>
+        </div>
+        <div class="link-props">
+          <div>
+            <div class="token-name">Text underline offset</div>
+            <div class="token-value">0.2em</div>
+          </div>
+          <div>
+            <div class="token-name">Text decoration thickness</div>
+            <div class="token-value">1px</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Borders ── -->
+    <section class="section" id="borders">
+      <h2 class="section-label">Borders</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Radius</h3>
         <div class="border-radius-row">
           <div>
             <div class="radius-box radius-box--s"></div>
@@ -439,7 +912,7 @@
       </div>
 
       <div class="border-group">
-        <div class="subsection-label">Color</div>
+        <h3 class="subsection-label">Color</h3>
         <div class="border-color-row">
           <div>
             <div class="color-ctx color-ctx--light">
@@ -457,15 +930,16 @@
       </div>
 
       <div class="border-group">
-        <div class="subsection-label">Divider</div>
+        <h3 class="subsection-label">Divider</h3>
         <div class="divider-demo">
           <hr class="divider">
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <span class="section-label">Spacing</span>
+    <!-- ── Spacing ── -->
+    <section class="section" id="spacing">
+      <h2 class="section-label">Spacing</h2>
       <div class="spacing-row">
         <div class="spacing-item">
           <div class="spacing-bar spacing-bar--xs"></div>
@@ -495,8 +969,9 @@
       </div>
     </section>
 
-    <section class="section">
-      <span class="section-label">Sizes</span>
+    <!-- ── Sizes ── -->
+    <section class="section" id="sizes">
+      <h2 class="section-label">Sizes</h2>
       <div class="sizes-row">
         <div class="size-item">
           <div class="size-block size-block--xs"></div>
@@ -526,6 +1001,88 @@
       </div>
     </section>
 
-  </div>
+  </main>
+
+  <script>
+    // ── Section nav ──
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.section');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('is-active'));
+        sections.forEach(s => s.classList.remove('is-active'));
+        item.classList.add('is-active');
+        document.getElementById(item.dataset.section).classList.add('is-active');
+      });
+    });
+
+    // ── Scheme picker ──
+    const palette = [
+      { name: 'Black',        color: '#111111', light: false },
+      { name: 'Dark Gray',    color: '#666666', light: false },
+      { name: 'Gray',         color: '#999999', light: false },
+      { name: 'Light Gray',   color: '#DDDDDD', light: true  },
+      { name: 'White',        color: '#FFFFFF', light: true  },
+      { name: 'Red Dark',     color: '#8B0000', light: false },
+      { name: 'Red',          color: '#EE3333', light: false },
+      { name: 'Red Light',    color: '#FFE8E8', light: true  },
+      { name: 'Green Dark',   color: '#1A5C28', light: false },
+      { name: 'Green',        color: '#33BB55', light: false },
+      { name: 'Green Light',  color: '#E0F8E8', light: true  },
+      { name: 'Blue Dark',    color: '#1A2E6E', light: false },
+      { name: 'Blue',         color: '#3366EE', light: false },
+      { name: 'Blue Light',   color: '#E0EAFF', light: true  },
+    ];
+
+    document.querySelectorAll('.scheme-picker').forEach(picker => {
+      palette.forEach(({ name, color, light }) => {
+        const chip = document.createElement('button');
+        chip.className = 'picker-chip';
+        chip.title = name;
+        chip.dataset.color = color;
+        chip.dataset.name = name;
+        chip.dataset.light = light ? '1' : '';
+        chip.style.background = color;
+        if (light) chip.style.borderColor = '#DDDDDD';
+        picker.appendChild(chip);
+      });
+    });
+
+    let activeBtn = null;
+
+    document.querySelectorAll('.scheme-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const row = btn.closest('.scheme-row');
+        const picker = row.querySelector('.scheme-picker');
+        const isOpen = picker.classList.contains('is-open') && activeBtn === btn;
+        document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
+        if (!isOpen) {
+          activeBtn = btn;
+          picker.classList.add('is-open');
+        } else {
+          activeBtn = null;
+        }
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (e.target.matches('.picker-chip') && activeBtn) {
+        const chip = e.target;
+        const swatch = activeBtn.querySelector('.scheme-swatch');
+        const nameSpan = activeBtn.querySelector('.scheme-color-name');
+        swatch.style.background = chip.dataset.color;
+        swatch.style.borderColor = chip.dataset.light ? '#DDDDDD' : 'transparent';
+        nameSpan.textContent = chip.dataset.name;
+        chip.closest('.scheme-picker').classList.remove('is-open');
+        activeBtn = null;
+        return;
+      }
+      document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
+      activeBtn = null;
+    });
+  </script>
+
 </body>
 </html>
