@@ -27,13 +27,19 @@ New tools go in `apps/`. New shared libraries go in `packages/`.
 
 A project-agnostic component library and design system for use in internal tools, admin interfaces, and other Gwenzhir projects.
 
-**Scope:**
-- Design tokens: color palette, typography scale, spacing, and other base variables
-- UI components: buttons, inputs, layout primitives, etc.
-- No opinions about routing, data fetching, or backend concerns
+The live token reference is at `packages/basement-ui/index.html`. It documents and demonstrates the full token set using only the tokens it defines.
+
+**Current token set:**
+- **Colors** — 5 grayscale steps: Black `#111111`, Dark Gray `#666666`, Gray `#999999`, Light Gray `#DDDDDD`, White `#FFFFFF`
+- **Typography** — Base Text: Pretendard 600. Six sizes XS–2XL (0.75–4rem). Line height = font-size + 0.5rem throughout.
+- **Border radius** — S `0.25rem` (default), M `0.5rem`, L `1rem`
+- **Spacing** — XS–XL: 0.5 / 1 / 2 / 4 / 8rem (2× steps)
+- **Sizes** — XS–XL: 1 / 2 / 4 / 8 / 16rem (2× steps)
 
 **Design principles:**
 - Tokens are the source of truth — components reference tokens, not raw values
+- All values in rem
+- No all-caps or non-standard letter-spacing in UI text
 - Components should be composable and unstyled-first where possible
 - Minimal external dependencies
 
