@@ -533,7 +533,7 @@
     .icon-face--l .ph { font-size: 1.25rem; }
 
     .icon-group + .icon-group {
-      margin-top: var(--spacing-s);
+      margin-top: var(--spacing-m);
     }
 
     .icon-group {
@@ -666,6 +666,8 @@
       grid-column: 1 / -1;
       display: grid;
       grid-template-columns: subgrid;
+      grid-template-rows: auto auto;
+      align-items: stretch;
       row-gap: var(--spacing-s);
     }
 
@@ -674,6 +676,27 @@
       display: grid;
       grid-template-columns: subgrid;
       row-gap: var(--spacing-xs);
+      min-width: 0;
+    }
+
+    /* Items in the same row share equal sample-box height via subgrid row tracks. */
+    .type-sample-list > .type-sample-item {
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      row-gap: var(--spacing-xs);
+    }
+
+    .type-sample-list > .type-sample-item > .sample-box {
+      grid-row: 1;
+      align-self: stretch;
+      height: 100%;
+      min-height: 0;
+      box-sizing: border-box;
+    }
+
+    .type-sample-list > .type-sample-item > .sample-meta {
+      grid-row: 2;
+      margin-top: 0;
     }
 
     .sample-meta {
@@ -869,6 +892,7 @@
     .section--component .sample-box {
       display: block;
       padding-inline: var(--chart-inset);
+      padding-block: var(--spacing-s);
       min-width: 0;
     }
 
@@ -885,6 +909,67 @@
       max-width: 20rem;
     }
 
+    .variant-row {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--spacing-m);
+    }
+
+    #button .type-sample-list--types .variant-row {
+      flex-direction: row;
+    }
+
+    @media (min-width: 60rem) {
+      #button .type-sample-list--types .variant-row {
+        flex-direction: column;
+      }
+    }
+
+    :is(#button, #form, #tag, #avatar) .type-sample-item {
+      grid-column: 1 / -1;
+      min-width: 0;
+    }
+
+    @media (min-width: 60rem) {
+      :is(#button, #form, #tag, #avatar) .type-sample-item {
+        grid-column: span 2;
+      }
+    }
+
+    :is(#button, #tag, #avatar) .type-sample-list--sizes .sample-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding-block: var(--spacing-m);
+    }
+
+    @media (min-width: 60rem) {
+      :is(#button, #tag, #avatar) .type-sample-list--sizes .sample-box {
+        aspect-ratio: 2 / 1;
+        padding-block: 0;
+      }
+    }
+
+    #form .type-sample-list--compact .sample-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding-block: var(--spacing-m);
+    }
+
+    #form .type-sample-list--compact .component-stack {
+      width: auto;
+    }
+
+    #form .type-sample-list--fields .component-stack {
+      max-width: none;
+      width: 100%;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -898,45 +983,64 @@
       cursor: pointer;
       -webkit-font-smoothing: antialiased;
       white-space: nowrap;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
 
     .btn--s {
       font-size: var(--font-size-2xs);
       line-height: var(--line-height-2xs);
-      padding: 0.25rem 0.5rem;
+      padding: 0.125rem 0.375rem;
     }
 
     .btn--m {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      padding: var(--spacing-xs) var(--spacing-s);
+      padding: 0.25rem 0.625rem;
     }
 
     .btn--l {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      padding: 0.5rem 1.25rem;
+      padding: 0.25rem 0.875rem;
     }
 
-    .btn--primary {
+    .btn--accent {
       background: var(--theme-fg);
       color: var(--theme-bg);
     }
 
-    .btn--secondary {
+    .btn--accent:hover:not(:disabled) {
+      background: var(--color-dark-gray);
+    }
+
+    html.is-dark .btn--accent:hover:not(:disabled) {
+      background: var(--color-light-gray);
+      color: var(--color-black);
+    }
+
+    .btn--default {
       background: var(--theme-surface);
       border-color: var(--theme-border);
     }
 
-    .btn--outline {
-      border-color: var(--theme-border);
+    .btn--default:hover:not(:disabled) {
+      background: var(--color-light-gray);
+      border-color: var(--color-gray);
+    }
+
+    html.is-dark .btn--default:hover:not(:disabled) {
+      background: var(--color-dark-gray);
+      border-color: var(--color-gray);
     }
 
     .btn--ghost { background: transparent; }
 
-    .btn--destructive {
-      background: var(--color-red);
-      color: var(--color-white);
+    .btn--ghost:hover:not(:disabled) {
+      background: var(--theme-surface);
+    }
+
+    html.is-dark .btn--ghost:hover:not(:disabled) {
+      background: var(--color-dark-gray);
     }
 
     .btn:disabled {
@@ -1115,6 +1219,28 @@
       flex-direction: column;
       align-items: flex-start;
       gap: var(--spacing-xs);
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      gap: var(--spacing-xs);
+    }
+
+    .dropdown-trigger .ph {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .dropdown-caret--up {
+      display: none;
+    }
+
+    .dropdown-demo.is-open .dropdown-caret--down {
+      display: none;
+    }
+
+    .dropdown-demo.is-open .dropdown-caret--up {
+      display: inline;
     }
 
     .dropdown-menu {
@@ -1123,9 +1249,13 @@
       background: var(--theme-bg);
       border: 1px solid var(--theme-border);
       border-radius: var(--border-radius-s);
-      display: flex;
+      display: none;
       flex-direction: column;
       gap: 0.125rem;
+    }
+
+    .dropdown-demo.is-open .dropdown-menu {
+      display: flex;
     }
 
     .dropdown-item {
@@ -2159,7 +2289,7 @@
       <h2 class="section-label">Icons</h2>
 
       <div class="border-group">
-        <h3 class="subsection-label">Icons</h3>
+        <h3 class="subsection-label">Sizes</h3>
         <p class="subsection-note"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a></p>
         <div class="col-row col-row--icon-sizes">
           <div>
@@ -2181,30 +2311,118 @@
       </div>
 
       <div class="border-group">
-        <h3 class="subsection-label">Common</h3>
+        <h3 class="subsection-label">Icons</h3>
 
         <div class="icon-group">
           <h4 class="icon-group-label">Navigation</h4>
           <div class="col-row col-row--icons">
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-house" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-house" aria-hidden="true"></i></div>
               <div class="token-name">House</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-house-simple" aria-hidden="true"></i></div>
+              <div class="token-name">House Simple</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
               <div class="token-name">Magnifying Glass</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-list" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-list" aria-hidden="true"></i></div>
               <div class="token-name">List</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-caret-down" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sidebar" aria-hidden="true"></i></div>
+              <div class="token-name">Sidebar</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-squares-four" aria-hidden="true"></i></div>
+              <div class="token-name">Squares Four</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-rows" aria-hidden="true"></i></div>
+              <div class="token-name">Rows</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-columns" aria-hidden="true"></i></div>
+              <div class="token-name">Columns</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-globe" aria-hidden="true"></i></div>
+              <div class="token-name">Globe</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-compass" aria-hidden="true"></i></div>
+              <div class="token-name">Compass</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-map-pin" aria-hidden="true"></i></div>
+              <div class="token-name">Map Pin</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-caret-down" aria-hidden="true"></i></div>
               <div class="token-name">Caret Down</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-dots-three" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-caret-up" aria-hidden="true"></i></div>
+              <div class="token-name">Caret Up</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-caret-left" aria-hidden="true"></i></div>
+              <div class="token-name">Caret Left</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-caret-right" aria-hidden="true"></i></div>
+              <div class="token-name">Caret Right</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-left" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Left</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Right</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-up" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Up</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-down" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Down</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-dots-three" aria-hidden="true"></i></div>
               <div class="token-name">Dots Three</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-dots-three-vertical" aria-hidden="true"></i></div>
+              <div class="token-name">Dots Three Vertical</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-bend-up-left" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Bend Up Left</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-u-up-left" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow U Up Left</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-square-out" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Square Out</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sign-in" aria-hidden="true"></i></div>
+              <div class="token-name">Sign In</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sign-out" aria-hidden="true"></i></div>
+              <div class="token-name">Sign Out</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-link" aria-hidden="true"></i></div>
+              <div class="token-name">Link</div>
             </div>
           </div>
         </div>
@@ -2213,117 +2431,340 @@
           <h4 class="icon-group-label">Actions</h4>
           <div class="col-row col-row--icons">
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-plus" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-plus" aria-hidden="true"></i></div>
               <div class="token-name">Plus</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-x" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-minus" aria-hidden="true"></i></div>
+              <div class="token-name">Minus</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-x" aria-hidden="true"></i></div>
               <div class="token-name">X</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-check" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-check" aria-hidden="true"></i></div>
               <div class="token-name">Check</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-pencil-simple" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-check-circle" aria-hidden="true"></i></div>
+              <div class="token-name">Check Circle</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-x-circle" aria-hidden="true"></i></div>
+              <div class="token-name">X Circle</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-pencil-simple" aria-hidden="true"></i></div>
               <div class="token-name">Pencil Simple</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-trash" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-trash" aria-hidden="true"></i></div>
               <div class="token-name">Trash</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-arrow-left" aria-hidden="true"></i></div>
-              <div class="token-name">Arrow Left</div>
-            </div>
-            <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
-              <div class="token-name">Arrow Right</div>
-            </div>
-            <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-copy" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-copy" aria-hidden="true"></i></div>
               <div class="token-name">Copy</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-download" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-scissors" aria-hidden="true"></i></div>
+              <div class="token-name">Scissors</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-download" aria-hidden="true"></i></div>
               <div class="token-name">Download</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-upload" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-upload" aria-hidden="true"></i></div>
               <div class="token-name">Upload</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-share" aria-hidden="true"></i></div>
+              <div class="token-name">Share</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i></div>
+              <div class="token-name">Arrows Clockwise</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Counter Clockwise</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-funnel" aria-hidden="true"></i></div>
+              <div class="token-name">Funnel</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sort-ascending" aria-hidden="true"></i></div>
+              <div class="token-name">Sort Ascending</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sort-descending" aria-hidden="true"></i></div>
+              <div class="token-name">Sort Descending</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-paperclip" aria-hidden="true"></i></div>
+              <div class="token-name">Paperclip</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-push-pin" aria-hidden="true"></i></div>
+              <div class="token-name">Push Pin</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></div>
+              <div class="token-name">Bookmark Simple</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-star" aria-hidden="true"></i></div>
+              <div class="token-name">Star</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-heart" aria-hidden="true"></i></div>
+              <div class="token-name">Heart</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-archive" aria-hidden="true"></i></div>
+              <div class="token-name">Archive</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-tag" aria-hidden="true"></i></div>
+              <div class="token-name">Tag</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-package" aria-hidden="true"></i></div>
+              <div class="token-name">Package</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-database" aria-hidden="true"></i></div>
+              <div class="token-name">Database</div>
             </div>
           </div>
         </div>
 
         <div class="icon-group">
-          <h4 class="icon-group-label">Account</h4>
+          <h4 class="icon-group-label">Account & settings</h4>
           <div class="col-row col-row--icons">
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-user" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-user" aria-hidden="true"></i></div>
               <div class="token-name">User</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-gear" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-user-circle" aria-hidden="true"></i></div>
+              <div class="token-name">User Circle</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-users" aria-hidden="true"></i></div>
+              <div class="token-name">Users</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-user-plus" aria-hidden="true"></i></div>
+              <div class="token-name">User Plus</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-user-minus" aria-hidden="true"></i></div>
+              <div class="token-name">User Minus</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-gear" aria-hidden="true"></i></div>
               <div class="token-name">Gear</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-bell" aria-hidden="true"></i></div>
-              <div class="token-name">Bell</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-gear-six" aria-hidden="true"></i></div>
+              <div class="token-name">Gear Six</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-sign-out" aria-hidden="true"></i></div>
-              <div class="token-name">Sign Out</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sliders" aria-hidden="true"></i></div>
+              <div class="token-name">Sliders</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-lock" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></div>
+              <div class="token-name">Sliders Horizontal</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-lock" aria-hidden="true"></i></div>
               <div class="token-name">Lock</div>
             </div>
-          </div>
-        </div>
-
-        <div class="icon-group">
-          <h4 class="icon-group-label">Content</h4>
-          <div class="col-row col-row--icons">
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-folder" aria-hidden="true"></i></div>
-              <div class="token-name">Folder</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-lock-open" aria-hidden="true"></i></div>
+              <div class="token-name">Lock Open</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-file" aria-hidden="true"></i></div>
-              <div class="token-name">File</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-key" aria-hidden="true"></i></div>
+              <div class="token-name">Key</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-link" aria-hidden="true"></i></div>
-              <div class="token-name">Link</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-shield" aria-hidden="true"></i></div>
+              <div class="token-name">Shield</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-eye" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
+              <div class="token-name">Shield Check</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-eye" aria-hidden="true"></i></div>
               <div class="token-name">Eye</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-calendar" aria-hidden="true"></i></div>
-              <div class="token-name">Calendar</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-eye-slash" aria-hidden="true"></i></div>
+              <div class="token-name">Eye Slash</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-sun" aria-hidden="true"></i></div>
+              <div class="token-name">Sun</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-moon" aria-hidden="true"></i></div>
+              <div class="token-name">Moon</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-desktop" aria-hidden="true"></i></div>
+              <div class="token-name">Desktop</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-device-mobile" aria-hidden="true"></i></div>
+              <div class="token-name">Device Mobile</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-device-tablet" aria-hidden="true"></i></div>
+              <div class="token-name">Device Tablet</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-wifi-high" aria-hidden="true"></i></div>
+              <div class="token-name">Wifi High</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-power" aria-hidden="true"></i></div>
+              <div class="token-name">Power</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-plug" aria-hidden="true"></i></div>
+              <div class="token-name">Plug</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-info" aria-hidden="true"></i></div>
+              <div class="token-name">Info</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-question" aria-hidden="true"></i></div>
+              <div class="token-name">Question</div>
             </div>
           </div>
         </div>
 
         <div class="icon-group">
-          <h4 class="icon-group-label">Feedback</h4>
+          <h4 class="icon-group-label">Content & communication</h4>
           <div class="col-row col-row--icons">
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-info" aria-hidden="true"></i></div>
-              <div class="token-name">Info</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-folder" aria-hidden="true"></i></div>
+              <div class="token-name">Folder</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-warning" aria-hidden="true"></i></div>
+              <div class="icon-face icon-face--l"><i class="ph ph-folder-open" aria-hidden="true"></i></div>
+              <div class="token-name">Folder Open</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-file" aria-hidden="true"></i></div>
+              <div class="token-name">File</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-file-text" aria-hidden="true"></i></div>
+              <div class="token-name">File Text</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-file-pdf" aria-hidden="true"></i></div>
+              <div class="token-name">File PDF</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-image" aria-hidden="true"></i></div>
+              <div class="token-name">Image</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-images" aria-hidden="true"></i></div>
+              <div class="token-name">Images</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-video-camera" aria-hidden="true"></i></div>
+              <div class="token-name">Video Camera</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-camera" aria-hidden="true"></i></div>
+              <div class="token-name">Camera</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-microphone" aria-hidden="true"></i></div>
+              <div class="token-name">Microphone</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-envelope" aria-hidden="true"></i></div>
+              <div class="token-name">Envelope</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-envelope-simple" aria-hidden="true"></i></div>
+              <div class="token-name">Envelope Simple</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-chat-circle" aria-hidden="true"></i></div>
+              <div class="token-name">Chat Circle</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-chat-text" aria-hidden="true"></i></div>
+              <div class="token-name">Chat Text</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-chat-dots" aria-hidden="true"></i></div>
+              <div class="token-name">Chat Dots</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-phone" aria-hidden="true"></i></div>
+              <div class="token-name">Phone</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-bell" aria-hidden="true"></i></div>
+              <div class="token-name">Bell</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-bell-simple" aria-hidden="true"></i></div>
+              <div class="token-name">Bell Simple</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-calendar" aria-hidden="true"></i></div>
+              <div class="token-name">Calendar</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-clock" aria-hidden="true"></i></div>
+              <div class="token-name">Clock</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-warning" aria-hidden="true"></i></div>
               <div class="token-name">Warning</div>
             </div>
             <div>
-              <div class="icon-face icon-face--m"><i class="ph ph-envelope" aria-hidden="true"></i></div>
-              <div class="token-name">Envelope</div>
+              <div class="icon-face icon-face--l"><i class="ph ph-warning-circle" aria-hidden="true"></i></div>
+              <div class="token-name">Warning Circle</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-seal-check" aria-hidden="true"></i></div>
+              <div class="token-name">Seal Check</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-credit-card" aria-hidden="true"></i></div>
+              <div class="token-name">Credit Card</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-shopping-cart" aria-hidden="true"></i></div>
+              <div class="token-name">Shopping Cart</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-call-bell" aria-hidden="true"></i></div>
+              <div class="token-name">Call Bell</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--l"><i class="ph ph-megaphone" aria-hidden="true"></i></div>
+              <div class="token-name">Megaphone</div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -2332,65 +2773,39 @@
       <h2 class="section-label">Button</h2>
 
       <div class="border-group">
-        <div class="type-sample-list">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--types">
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--m btn--primary">Primary</button>
+              <div class="variant-row">
+                <button type="button" class="btn btn--m btn--default">Default</button>
+                <button type="button" class="btn btn--m btn--default" disabled>Default</button>
+              </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Primary</span>
-              <span class="sample-meta-detail">Filled</span>
-              <span class="sample-meta-detail">Primary action</span>
+              <span class="sample-meta-label">Default</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--m btn--secondary">Secondary</button>
+              <div class="variant-row">
+                <button type="button" class="btn btn--m btn--accent">Accent</button>
+                <button type="button" class="btn btn--m btn--accent" disabled>Accent</button>
+              </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Secondary</span>
-              <span class="sample-meta-detail">Surface fill</span>
-              <span class="sample-meta-detail">Border</span>
+              <span class="sample-meta-label">Accent</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--m btn--outline">Outline</button>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Outline</span>
-              <span class="sample-meta-detail">Transparent</span>
-              <span class="sample-meta-detail">Border</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <button type="button" class="btn btn--m btn--ghost">Ghost</button>
+              <div class="variant-row">
+                <button type="button" class="btn btn--m btn--ghost">Ghost</button>
+                <button type="button" class="btn btn--m btn--ghost" disabled>Ghost</button>
+              </div>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Ghost</span>
-              <span class="sample-meta-detail">Transparent</span>
-              <span class="sample-meta-detail">No border</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <button type="button" class="btn btn--m btn--destructive">Destructive</button>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Destructive</span>
-              <span class="sample-meta-detail">Red fill</span>
-              <span class="sample-meta-detail">Destructive action</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <button type="button" class="btn btn--m btn--primary" disabled>Disabled</button>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Disabled</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
             </div>
           </div>
         </div>
@@ -2398,32 +2813,29 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Sizes</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--s btn--primary">Primary</button>
+              <button type="button" class="btn btn--s btn--default">Small</button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">S</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--m btn--primary">Primary</button>
+              <button type="button" class="btn btn--m btn--default">Medium</button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">M</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
-              <button type="button" class="btn btn--l btn--primary">Primary</button>
+              <button type="button" class="btn btn--l btn--default">Large</button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">L</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
             </div>
           </div>
         </div>
@@ -2436,15 +2848,13 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Input</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
             <div class="sample-box">
               <input class="input" type="text" placeholder="Email">
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Single-line</span>
-              <span class="sample-meta-detail">Text field</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2456,9 +2866,7 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">With label</span>
-              <span class="sample-meta-detail">Label</span>
-              <span class="sample-meta-detail">Hint text</span>
+              <span class="sample-meta-label">With label</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2467,8 +2875,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Disabled</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
             </div>
           </div>
         </div>
@@ -2476,14 +2882,13 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Label</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
             <div class="sample-box">
               <label class="field-label" for="form-username">Username</label>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Field label</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2494,9 +2899,7 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">With control</span>
-              <span class="sample-meta-detail">Label</span>
-              <span class="sample-meta-detail">Input</span>
+              <span class="sample-meta-label">With control</span>
             </div>
           </div>
         </div>
@@ -2504,15 +2907,13 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Textarea</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
             <div class="sample-box">
               <textarea class="textarea" placeholder="Write a short description."></textarea>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Multi-line</span>
-              <span class="sample-meta-detail">Text field</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2523,9 +2924,7 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">With label</span>
-              <span class="sample-meta-detail">Label</span>
-              <span class="sample-meta-detail">Textarea</span>
+              <span class="sample-meta-label">With label</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2534,8 +2933,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Disabled</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
             </div>
           </div>
         </div>
@@ -2543,7 +2940,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Checkbox</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
             <div class="sample-box">
               <label class="control-row">
@@ -2553,8 +2950,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Checked</span>
-              <span class="sample-meta-detail">With label</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2565,9 +2960,7 @@
               </label>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">Disabled unchecked</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
+              <span class="sample-meta-label">Disabled unchecked</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2578,9 +2971,7 @@
               </label>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">Disabled checked</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
+              <span class="sample-meta-label">Disabled checked</span>
             </div>
           </div>
         </div>
@@ -2588,7 +2979,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Radio</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="component-stack">
@@ -2608,8 +2999,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Group</span>
-              <span class="sample-meta-detail">Single selection</span>
-              <span class="sample-meta-detail">Shared name</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2621,8 +3010,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Disabled</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
             </div>
           </div>
         </div>
@@ -2630,7 +3017,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Switch</h3>
-        <div class="type-sample-list">
+        <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
             <div class="sample-box">
               <label class="control-row">
@@ -2640,8 +3027,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">On</span>
-              <span class="sample-meta-detail">With label</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2652,9 +3037,7 @@
               </label>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">Disabled off</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
+              <span class="sample-meta-label">Disabled off</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2665,9 +3048,7 @@
               </label>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">Disabled on</span>
-              <span class="sample-meta-detail">Reduced opacity</span>
-              <span class="sample-meta-detail">Non-interactive</span>
+              <span class="sample-meta-label">Disabled on</span>
             </div>
           </div>
         </div>
@@ -2679,14 +3060,14 @@
       <h2 class="section-label">Tag</h2>
 
       <div class="border-group">
-        <div class="type-sample-list">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
             <div class="sample-box">
               <span class="tag tag--s">Design</span>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">S</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2695,7 +3076,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">M</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2704,7 +3084,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">L</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
             </div>
           </div>
         </div>
@@ -2716,15 +3095,14 @@
       <h2 class="section-label">Avatar</h2>
 
       <div class="border-group">
-        <div class="type-sample-list">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
             <div class="sample-box">
               <span class="avatar"><span class="avatar-fallback">GZ</span></span>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">1rem</span>
-              <span class="sample-meta-detail">Initials fallback</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2733,8 +3111,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Large</span>
-              <span class="sample-meta-detail">1.5rem</span>
-              <span class="sample-meta-detail">Initials fallback</span>
             </div>
           </div>
         </div>
@@ -2750,8 +3126,12 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="dropdown-demo">
-                <button type="button" class="btn btn--m btn--outline">Open menu</button>
-                <div class="dropdown-menu" role="menu">
+                <button type="button" class="btn btn--m btn--default dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                  Open menu
+                  <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                  <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu" role="menu" hidden>
                   <button type="button" class="dropdown-item is-active" role="menuitem">Profile</button>
                   <button type="button" class="dropdown-item" role="menuitem">Settings</button>
                   <button type="button" class="dropdown-item" role="menuitem">Billing</button>
@@ -2767,8 +3147,12 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="dropdown-demo">
-                <button type="button" class="btn btn--m btn--outline">Account</button>
-                <div class="dropdown-menu" role="menu">
+                <button type="button" class="btn btn--m btn--default dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                  Account
+                  <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                  <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu" role="menu" hidden>
                   <button type="button" class="dropdown-item" role="menuitem">View profile</button>
                   <button type="button" class="dropdown-item" role="menuitem">Preferences</button>
                   <div class="dropdown-divider" role="separator"></div>
@@ -2955,6 +3339,43 @@
       }
       document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
       activeBtn = null;
+      if (!e.target.closest('.dropdown-demo')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // ── Dropdown ──
+    function closeAllDropdowns() {
+      document.querySelectorAll('.dropdown-demo.is-open').forEach(demo => {
+        demo.classList.remove('is-open');
+        const trigger = demo.querySelector('.dropdown-trigger');
+        const menu = demo.querySelector('.dropdown-menu');
+        trigger.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+      });
+    }
+
+    document.querySelectorAll('.dropdown-demo').forEach(demo => {
+      const trigger = demo.querySelector('.dropdown-trigger');
+      const menu = demo.querySelector('.dropdown-menu');
+
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = demo.classList.contains('is-open');
+        closeAllDropdowns();
+        if (!isOpen) {
+          demo.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          menu.hidden = false;
+        }
+      });
+
+      menu.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          menu.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('is-active'));
+          item.classList.add('is-active');
+        });
+      });
     });
 
     // ── Column overlay ──

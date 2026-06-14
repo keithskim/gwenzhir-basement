@@ -33,23 +33,29 @@ The live token reference is at `packages/basement-ui/index.html`. It documents a
 - **Colors** — 5 grayscale steps (Black `#111111` → White `#FFFFFF`) + 3 hues × 3 shades each: Red (`#7A1000` / `#EF3D28` / `#FFEBE6`), Green (`#133D22` / `#33BB55` / `#E0F8E8`), Blue (`#0F1848` / `#3366EE` / `#E0EAFF`)
 - **Typography** — Base Text: Pretendard 600. Six sizes XS–2XL (0.75–4rem). Line height = font-size + 0.5rem throughout.
 - **Measure** — Border radius S `0.25rem` (default), M `0.5rem`, L `1rem`; spacing XS–XL: 0.5 / 1 / 2 / 4 / 8rem (2× steps); sizes XS–XL: 1 / 2 / 4 / 8 / 16rem (2× steps)
-- **Layout** — Viewports Narrow (&lt; 30rem), Medium (≥ 30rem), Wide (≥ 60rem), Extra wide (≥ 90rem); maximum viewport 120rem (layout caps and left-aligns beyond that); page column count 3 / 5 / 7 / 9; sidebar spans 1 / 2 / 2 / 2; content fills 2 / 3 / 5 / 7; 1rem gap between all columns
+- **Layout** — Viewports Narrow (&lt; 30rem), Medium (≥ 30rem), Wide (≥ 60rem), Extra wide (≥ 90rem); maximum viewport 120rem (layout caps and left-aligns beyond that); page column count 7 / 9 / 11 / 13; sidebar spans 2 / 2 / 2 / 2; content fills 5 / 7 / 9 / 11; 1rem gap between all columns
+- **Icons** — [Phosphor Icons](https://phosphoricons.com/) regular weight (MIT), vendored at `packages/basement-ui/vendor/phosphor/regular/`; sizes S / M / L at 0.75 / 1 / 1.25rem (default M); sized with `font-size`
 
 **Reference page sections:**
+- **Foundation** — Colors, Typography, Measure, Layout, Icons
+- **Components** — Button (Default, Accent, Ghost + disabled state; S / M / L), Form (Input, Label, Textarea, Checkbox, Radio, Switch), Tag, Avatar, Dropdown, Alert
 - **Colors > Palette** — grayscale row + hue rows (Red, Green, Blue) each with Dark / Mid / Light swatches
 - **Colors > Scheme** — assigns Light and Dark theme colors to 6 roles grouped by Background, Text, Border (h4 headings); roles are clickable to swap color from the full palette
 - **Typography** — Typeface, Sizes, Headings (H1–H4), Body (paragraph, blockquote), Caption, Links
 - **Measure** — Radius, Divider, Spacing (rising bars), Sizes (bottom-aligned squares)
 - **Layout** — Columns (one row per viewport in a shared sample box), Viewport (GANTT-style swimlanes on a proportional scale)
+- **Icons > Sizes** — S / M / L gear samples with Phosphor attribution; **Icons > Icons** — grouped catalog (~100 icons: Navigation, Actions, Account & settings, Content & communication)
 
 **Design principles:**
 - Tokens are the source of truth — components reference tokens, not raw values
 - All values in rem
 - No all-caps or non-standard letter-spacing in UI text
 - Subsection headings omit a bottom border when immediately followed by a full-width bordered box
+- In a sample list, items shown side by side in the same row must share equal sample-box height (subgrid row tracks); meta labels sit in a second row with `--spacing-xs` gap below each box
+- Component sample lists snap to the column grid: full width below 60rem, 2-column cells at wide and above; compact demos (Button sizes, Tag, Avatar, Form controls) center content in sample boxes with a 2:1 aspect ratio at wide viewports
 - The token reference page uses a page-wide layout column grid; sidebar and main content occupy fixed column spans; a dev overlay (on by default) shows columns as translucent red bands, toggled with a Show columns checkbox in the sidebar
 - Components should be composable and unstyled-first where possible
-- Minimal external dependencies
+- Icon set is the only current external dependency; Phosphor regular weight is vendored so the reference page works without a build step
 
 ---
 
