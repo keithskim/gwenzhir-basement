@@ -5,30 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basement UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
   <style>
     /* ── Tokens ── */
     :root {
       --color-black:      #111111;
-      --color-dark-gray:  #666666;
+      --color-dark-gray:  #333333;
       --color-gray:       #999999;
       --color-light-gray: #DDDDDD;
       --color-white:      #FFFFFF;
 
-      --color-red-dark:    #8B0000;
-      --color-red:         #EE3333;
-      --color-red-light:   #FFE8E8;
+      --color-red-dark:    #7A1000;
+      --color-red:         #EF3D28;
+      --color-red-light:   #FFEBE6;
 
-      --color-green-dark:  #1A5C28;
+      --color-green-dark:  #133D22;
       --color-green:       #33BB55;
       --color-green-light: #E0F8E8;
 
-      --color-blue-dark:  #1A2E6E;
+      --color-blue-dark:  #0F1848;
       --color-blue:       #3366EE;
       --color-blue-light: #E0EAFF;
+
+      --theme-bg: var(--color-white);
+      --theme-fg: var(--color-black);
+      --theme-fg-secondary: var(--color-gray);
+      --theme-fg-body: var(--color-dark-gray);
+      --theme-border: var(--color-light-gray);
+      --theme-surface: var(--color-white);
+      --theme-accent: var(--color-black);
 
       --font-base-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-base-weight: 600;
 
+      --font-size-2xs: 0.5rem;
       --font-size-xs:  0.75rem;
       --font-size-s:   1rem;
       --font-size-m:   1.5rem;
@@ -36,6 +46,7 @@
       --font-size-xl:  3rem;
       --font-size-2xl: 4rem;
 
+      --line-height-2xs: 1rem;
       --line-height-xs:  1.25rem;
       --line-height-s:   1.5rem;
       --line-height-m:   2rem;
@@ -58,6 +69,68 @@
       --size-m:  4rem;
       --size-l:  8rem;
       --size-xl: 16rem;
+
+      --chart-inset: var(--spacing-m);
+
+      --viewport-medium-min: 30rem;
+      --viewport-wide-min: 60rem;
+      --viewport-extra-wide-min: 90rem;
+      --viewport-max: 120rem;
+      --viewport-narrow-max: calc(var(--viewport-medium-min) - 0.0625rem);
+
+      --columns-narrow: 7;
+      --columns-medium: 9;
+      --columns-wide: 11;
+      --columns-extra-wide: 13;
+      --columns: var(--columns-narrow);
+      --column-gap: var(--spacing-s);
+
+      --sidebar-columns-narrow: 2;
+      --sidebar-columns-medium: 2;
+      --sidebar-columns-wide: 2;
+      --sidebar-columns-extra-wide: 2;
+      --sidebar-columns: var(--sidebar-columns-narrow);
+
+      --content-columns-narrow: 5;
+      --content-columns-medium: 7;
+      --content-columns-wide: 9;
+      --content-columns-extra-wide: 11;
+      --content-columns: var(--content-columns-narrow);
+    }
+
+    @media (min-width: 30rem) {
+      :root {
+        --columns: var(--columns-medium);
+        --sidebar-columns: var(--sidebar-columns-medium);
+        --content-columns: var(--content-columns-medium);
+      }
+    }
+
+    @media (min-width: 60rem) {
+      :root {
+        --columns: var(--columns-wide);
+        --sidebar-columns: var(--sidebar-columns-wide);
+        --content-columns: var(--content-columns-wide);
+      }
+    }
+
+    @media (min-width: 90rem) {
+      :root {
+        --columns: var(--columns-extra-wide);
+        --sidebar-columns: var(--sidebar-columns-extra-wide);
+        --content-columns: var(--content-columns-extra-wide);
+      }
+    }
+
+    html.is-dark {
+      color-scheme: dark;
+      --theme-bg: var(--color-black);
+      --theme-fg: var(--color-white);
+      --theme-fg-secondary: var(--color-gray);
+      --theme-fg-body: var(--color-light-gray);
+      --theme-border: var(--color-dark-gray);
+      --theme-surface: #1A1A1A;
+      --theme-accent: var(--color-white);
     }
 
     /* ── Reset ── */
@@ -68,48 +141,109 @@
     html, body { height: 100%; }
 
     body {
-      background-color: var(--color-white);
-      color: var(--color-black);
+      background-color: var(--theme-bg);
+      color: var(--theme-fg);
       font-family: var(--font-base-family);
       font-weight: var(--font-base-weight);
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
       -webkit-font-smoothing: antialiased;
-      display: flex;
+      min-height: 100%;
+      word-break: keep-all;
+      line-break: strict;
+    }
+
+    /* ── Page grid ── */
+    .page {
+      display: grid;
+      grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+      gap: var(--column-gap);
+      padding: var(--spacing-m) var(--column-gap);
+      min-height: 100vh;
+      max-width: var(--viewport-max);
+      width: 100%;
+      margin-left: 0;
+      margin-right: auto;
+      position: relative;
+      box-sizing: border-box;
+      align-items: start;
+    }
+
+    .column-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+      grid-template-rows: 1fr;
+      gap: var(--column-gap);
+      padding: var(--spacing-m) var(--column-gap);
+      pointer-events: none;
+      z-index: 1;
+      box-sizing: border-box;
+    }
+
+    .column-overlay.is-hidden { visibility: hidden; }
+
+    .column-overlay-cell {
+      background: color-mix(in srgb, var(--color-red) 15%, transparent);
+      border-radius: var(--border-radius-s);
     }
 
     /* ── Sidebar ── */
     .sidebar {
-      width: 10rem;
-      height: 100vh;
-      position: sticky;
-      top: 0;
-      flex-shrink: 0;
-      border-right: 1px solid var(--color-light-gray);
+      grid-column: 1 / span var(--sidebar-columns);
+      position: fixed;
+      top: var(--spacing-m);
+      left: var(--column-gap);
+      width: calc(
+        (
+          (min(100vw, var(--viewport-max)) - 2 * var(--column-gap) - (var(--columns) - 1) * var(--column-gap))
+          / var(--columns)
+          * var(--sidebar-columns)
+        )
+        + (var(--sidebar-columns) - 1) * var(--column-gap)
+      );
+      height: calc(100vh - var(--spacing-m) * 2);
       display: flex;
       flex-direction: column;
-      padding: var(--spacing-m) var(--spacing-s);
+      z-index: 2;
     }
 
     .sidebar-title {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
       letter-spacing: -0.03em;
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     .sidebar-byline {
       margin-top: var(--spacing-xs);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
     }
 
     .sidebar-nav {
       margin-top: var(--spacing-m);
       display: flex;
       flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
       gap: var(--spacing-xs);
+    }
+
+    .nav-group + .nav-group {
+      margin-top: var(--spacing-m);
+    }
+
+    .nav-group-label {
+      font-size: var(--font-size-2xs);
+      line-height: var(--line-height-2xs);
+      color: var(--theme-fg-secondary);
     }
 
     .nav-item {
@@ -119,31 +253,70 @@
       font-weight: var(--font-base-weight);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
       cursor: pointer;
       -webkit-font-smoothing: antialiased;
     }
 
-    .nav-item.is-active { color: var(--color-black); }
+    .nav-item.is-active { color: var(--theme-fg); }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: var(--spacing-m);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .dev-toggle {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-secondary);
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .dev-toggle input {
+      margin: 0;
+      accent-color: var(--theme-accent);
+    }
 
     /* ── Content ── */
     .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: var(--spacing-m) var(--spacing-l);
-      max-width: 61.5rem;
+      grid-column: calc(var(--sidebar-columns) + 1) / -1;
+      position: relative;
+      z-index: 0;
+      min-width: 0;
+      overflow-x: clip;
     }
 
-    /* ── Section ── */
-    .section { display: none; }
-    .section.is-active { display: block; }
+    .content > .section {
+      display: none;
+    }
+
+    .content > .section.is-active {
+      display: grid;
+      grid-template-columns: repeat(var(--content-columns), minmax(0, 1fr));
+      gap: var(--column-gap);
+      min-width: 0;
+    }
+
+    .section-label,
+    .border-group {
+      grid-column: 1 / -1;
+    }
 
     .section-label {
       display: block;
       font-size: var(--font-size-l);
       line-height: var(--line-height-l);
       letter-spacing: -0.02em;
-      color: var(--color-black);
+      color: var(--theme-fg);
       margin-bottom: var(--spacing-m);
     }
 
@@ -151,70 +324,182 @@
     .token-name {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-black);
+      color: var(--theme-fg);
       margin-top: var(--spacing-xs);
     }
 
     .token-value {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
     }
 
     /* ── Subsections ── */
     .border-group + .border-group { margin-top: var(--spacing-l); }
 
+    .border-group {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+    }
+
     .subsection-label {
       font-size: var(--font-size-m);
       line-height: var(--line-height-m);
       letter-spacing: -0.01em;
-      color: var(--color-black);
+      color: var(--theme-fg);
       padding-bottom: var(--spacing-s);
-      border-bottom: 1px solid var(--color-light-gray);
+      border-bottom: 1px solid var(--theme-border);
       margin-bottom: var(--spacing-s);
     }
 
-    .subsection-label:has(+ .sample-box) {
+    .subsection-label:has(+ .sample-box),
+    .subsection-label:has(+ .type-sample-list),
+    .subsection-label:has(+ .type-sample-item),
+    .subsection-label:has(+ .divider-demo) {
       border-bottom: none;
       padding-bottom: 0;
     }
 
-    /* ── Sample box ── */
-    .sample-box {
-      border: 1px solid var(--color-light-gray);
-      border-radius: var(--border-radius-s);
-      padding: var(--spacing-m);
+    .subsection-label,
+    .palette-hue-group,
+    .icon-group,
+    .scheme-group,
+    .divider-demo,
+    .subsection-note {
+      grid-column: 1 / -1;
     }
 
-    .sample-box > *:last-child { border-bottom: none; }
+    .subsection-note {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-secondary);
+      margin-top: calc(-1 * var(--spacing-xs));
+      margin-bottom: var(--spacing-s);
+    }
+
+    /* ── Column-snapped rows ── */
+    .col-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--spacing-s);
+    }
+
+    .col-row--5 > * { grid-column: span 1; min-width: 0; }
+
+    #icons .col-row--icons > *,
+    #icons .col-row--icon-sizes > * {
+      grid-column: span 2;
+      min-width: 0;
+    }
+
+    @media (min-width: 60rem) {
+      #icons .col-row--icons > *,
+      #icons .col-row--icon-sizes > * {
+        grid-column: span 1;
+      }
+    }
+
+    .col-row--fill-2 > * { grid-column: span 1; min-width: 0; }
+
+    @media (min-width: 30rem) {
+      .col-row--fill-2 > * { grid-column: span 2; }
+    }
+
+    @media (min-width: 60rem) {
+      .col-row--fill-2 > * { grid-column: span 3; }
+    }
+
+    @media (min-width: 90rem) {
+      .col-row--fill-2 > * { grid-column: span 4; }
+    }
+
+    .col-row--equal > * {
+      grid-column: span 1;
+      min-width: 0;
+    }
+
+    .col-row--fill-4 > * { grid-column: span 1; min-width: 0; }
+
+    @media (min-width: 60rem) {
+      .col-row--fill-4 > :nth-child(1) { grid-column: span 2; }
+      .col-row--fill-4 > :nth-child(2) { grid-column: span 2; }
+      .col-row--fill-4 > :nth-child(3) { grid-column: span 1; }
+      .col-row--fill-4 > :nth-child(4) { grid-column: span 1; }
+    }
+
+    @media (min-width: 90rem) {
+      .col-row--fill-4 > * { grid-column: span 2; }
+    }
+
+    /* ── Sample box ── */
+    .sample-box {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      border: 1px solid var(--theme-border);
+      border-radius: var(--border-radius-s);
+      padding-block: var(--spacing-m);
+      overflow: hidden;
+    }
+
+    #typography .border-group,
+    #typography .type-sample-list,
+    #typography .type-sample-item,
+    #typography .sample-meta {
+      min-width: 0;
+    }
+
+    #typography .sample-box {
+      padding-inline: var(--chart-inset);
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    #typography .sample-box > * {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    #typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-caption, .type-quote, .link-sample) {
+      grid-column: 1 / -1;
+    }
 
     /* ── Colors ── */
-    .color-row {
+    .palette-hue-group {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: var(--spacing-s);
+      grid-template-columns: subgrid;
+    }
+
+    .palette-hue-label {
+      grid-column: 1 / -1;
     }
 
     .swatch-face {
       width: 100%;
       aspect-ratio: 4 / 1;
       border-radius: var(--border-radius-s);
+      border: 1px solid transparent;
     }
+
+    html:not(.is-dark) .swatch-face--white { border-color: var(--theme-border); }
+    html.is-dark .swatch-face--black { border-color: var(--theme-border); }
 
     .swatch-face--black        { background: var(--color-black); }
     .swatch-face--dark-gray    { background: var(--color-dark-gray); }
     .swatch-face--gray         { background: var(--color-gray); }
     .swatch-face--light-gray   { background: var(--color-light-gray); }
-    .swatch-face--white        { background: var(--color-white);        border: 1px solid var(--color-light-gray); }
+    .swatch-face--white        { background: var(--color-white); }
     .swatch-face--red-dark     { background: var(--color-red-dark); }
     .swatch-face--red          { background: var(--color-red); }
-    .swatch-face--red-light    { background: var(--color-red-light);    border: 1px solid var(--color-light-gray); }
+    .swatch-face--red-light    { background: var(--color-red-light); }
     .swatch-face--green-dark   { background: var(--color-green-dark); }
     .swatch-face--green        { background: var(--color-green); }
-    .swatch-face--green-light  { background: var(--color-green-light);  border: 1px solid var(--color-light-gray); }
+    .swatch-face--green-light  { background: var(--color-green-light); }
     .swatch-face--blue-dark    { background: var(--color-blue-dark); }
     .swatch-face--blue         { background: var(--color-blue); }
-    .swatch-face--blue-light   { background: var(--color-blue-light);   border: 1px solid var(--color-light-gray); }
+    .swatch-face--blue-light   { background: var(--color-blue-light); }
 
     /* ── Palette hue groups ── */
     .palette-hue-group + .palette-hue-group { margin-top: var(--spacing-s); }
@@ -222,49 +507,106 @@
     .palette-hue-label {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-black);
+      color: var(--theme-fg);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* ── Icons ── */
+    .icon-face {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      border-radius: var(--border-radius-s);
+      border: 1px solid var(--theme-border);
+      background: var(--theme-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--theme-fg);
+    }
+
+    .icon-face .ph {
+      line-height: 1;
+    }
+
+    .icon-face--s .ph { font-size: 0.75rem; }
+    .icon-face--m .ph { font-size: 1rem; }
+    .icon-face--l .ph { font-size: 1.25rem; }
+
+    .icon-group + .icon-group {
+      margin-top: var(--spacing-s);
+    }
+
+    .icon-group {
+      display: grid;
+      grid-template-columns: subgrid;
+    }
+
+    .icon-group-label {
+      grid-column: 1 / -1;
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      color: var(--theme-fg);
       margin-bottom: var(--spacing-xs);
     }
 
     /* ── Scheme ── */
-    .scheme-table-header {
+    .scheme-group {
       display: grid;
-      grid-template-columns: 1fr 10rem 10rem;
+      grid-template-columns: subgrid;
+    }
+
+    .scheme-group-header,
+    .scheme-row-header {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      align-items: center;
+    }
+
+    .scheme-group-header {
       padding-bottom: var(--spacing-xs);
-      border-bottom: 1px solid var(--color-light-gray);
+      border-bottom: 1px solid var(--theme-border);
       margin-bottom: var(--spacing-s);
+    }
+
+    .scheme-group-label {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-secondary);
+      grid-column: 1 / span calc(var(--content-columns) - 2);
+    }
+
+    .scheme-group-header:not(:has(.scheme-theme-label)) .scheme-group-label {
+      grid-column: 1 / -1;
     }
 
     .scheme-theme-label {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
+      grid-column: span 1;
     }
 
     .scheme-group + .scheme-group { margin-top: var(--spacing-m); }
 
-    .scheme-group-label {
-      font-size: var(--font-size-xs);
-      line-height: var(--line-height-xs);
-      color: var(--color-gray);
-      padding-bottom: var(--spacing-xs);
-    }
-
     .scheme-row {
-      border-bottom: 1px solid var(--color-light-gray);
-      padding: var(--spacing-xs) 0;
-    }
-
-    .scheme-row-header {
       display: grid;
-      grid-template-columns: 1fr 10rem 10rem;
-      align-items: center;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      border-bottom: 1px solid var(--theme-border);
+      padding: var(--spacing-xs) 0;
     }
 
     .scheme-role-label {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-dark-gray);
+      color: var(--theme-fg-body);
+      grid-column: 1 / span calc(var(--content-columns) - 2);
+    }
+
+    .scheme-btn[data-slot="light"],
+    .scheme-btn[data-slot="dark"] {
+      grid-column: span 1;
     }
 
     .scheme-btn {
@@ -277,7 +619,7 @@
       font-weight: var(--font-base-weight);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -292,12 +634,16 @@
 
     .scheme-picker {
       display: none;
-      flex-wrap: wrap;
-      gap: var(--spacing-xs);
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
       padding-top: var(--spacing-xs);
     }
 
-    .scheme-picker.is-open { display: flex; }
+    .scheme-picker.is-open { display: grid; }
+
+    .scheme-picker .picker-chip {
+      grid-column: span 1;
+    }
 
     .picker-chip {
       all: unset;
@@ -316,57 +662,99 @@
     }
 
     /* ── Typeface ── */
-    .font-meta {
-      display: flex;
+    .type-sample-list {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--spacing-s);
+    }
+
+    .type-sample-item {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--spacing-xs);
+    }
+
+    .sample-meta {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
       align-items: baseline;
-      gap: var(--spacing-s);
-      margin-top: var(--spacing-s);
-    }
-
-    .font-token {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-black);
     }
 
-    .font-detail {
-      font-size: var(--font-size-xs);
-      line-height: var(--line-height-xs);
-      color: var(--color-gray);
+    .sample-meta-label {
+      grid-column: span 1;
+      color: var(--theme-fg);
+    }
+
+    .sample-meta-label--wide {
+      grid-column: span 2;
+    }
+
+    .sample-meta-label--2col {
+      grid-column: span 2;
+    }
+
+    .sample-meta-detail {
+      grid-column: span 1;
+      color: var(--theme-fg-secondary);
+    }
+
+    .sample-meta-detail--wide {
+      grid-column: span 2;
+    }
+
+    .sample-meta-detail--2col {
+      grid-column: span 2;
+    }
+
+    @media (min-width: 30rem) {
+      .sample-meta-label--wide,
+      .sample-meta-detail--wide {
+        grid-column: span 1;
+      }
+    }
+
+    .link-props {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--spacing-xs);
     }
 
     .font-display {
+      grid-column: 1 / -1;
       font-size: var(--font-size-xl);
       line-height: var(--line-height-xl);
       letter-spacing: -0.02em;
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     .font-body-sample {
       margin-top: var(--spacing-s);
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-dark-gray);
-      max-width: 40rem;
+      color: var(--theme-fg-body);
+      grid-column: span var(--content-columns);
+    }
+
+    @media (min-width: 60rem) {
+      .font-body-sample { grid-column: span calc(var(--content-columns) - 1); }
+    }
+
+    @media (min-width: 90rem) {
+      .font-body-sample { grid-column: span calc(var(--content-columns) - 2); }
     }
 
     /* ── Font size scale ── */
-    .font-size-entry {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--color-light-gray);
+    .font-size-sample {
+      color: var(--theme-fg-secondary);
     }
 
-    .font-size-entry--xs  { padding: var(--spacing-xs) 0; }
-    .font-size-entry--s   { padding: var(--spacing-xs) 0; }
-    .font-size-entry--m   { padding: var(--spacing-s)  0; }
-    .font-size-entry--l   { padding: var(--spacing-s)  0; }
-    .font-size-entry--xl  { padding: var(--spacing-m)  0; }
-    .font-size-entry--2xl { padding: var(--spacing-m)  0; }
-
-    .font-size-sample { color: var(--color-gray); }
-
+    .font-size-sample--2xs { font-size: var(--font-size-2xs); line-height: var(--line-height-2xs); }
     .font-size-sample--xs  { font-size: var(--font-size-xs);  line-height: var(--line-height-xs); }
     .font-size-sample--s   { font-size: var(--font-size-s);   line-height: var(--line-height-s); }
     .font-size-sample--m   { font-size: var(--font-size-m);   line-height: var(--line-height-m); }
@@ -374,84 +762,72 @@
     .font-size-sample--xl  { font-size: var(--font-size-xl);  line-height: var(--line-height-xl); }
     .font-size-sample--2xl { font-size: var(--font-size-2xl); line-height: var(--line-height-2xl); }
 
-    .font-size-meta {
-      font-size: var(--font-size-xs);
-      line-height: var(--line-height-xs);
-      color: var(--color-gray);
-      white-space: nowrap;
-      margin-left: var(--spacing-m);
+    #typography .type-sample-item > .sample-box {
+      grid-column: 1 / -1;
     }
 
-    /* ── Type scale rows ── */
-    .type-row {
-      padding: var(--spacing-s) 0;
-      border-bottom: 1px solid var(--color-light-gray);
-    }
-
-    .type-row-meta {
-      margin-top: var(--spacing-xs);
-      font-size: var(--font-size-xs);
-      line-height: var(--line-height-xs);
-      color: var(--color-gray);
-    }
+    #typography .sample-box--size-2xs { padding-block: var(--spacing-xs); }
+    #typography .sample-box--size-xs  { padding-block: var(--spacing-xs); }
+    #typography .sample-box--size-s   { padding-block: var(--spacing-xs); }
+    #typography .sample-box--size-m   { padding-block: var(--spacing-s); }
+    #typography .sample-box--size-l   { padding-block: var(--spacing-s); }
+    #typography .sample-box--size-xl  { padding-block: var(--spacing-m); }
+    #typography .sample-box--size-2xl { padding-block: var(--spacing-m); }
 
     /* ── Headings ── */
     .type-h1 {
       font-size: var(--font-size-2xl);
       line-height: var(--line-height-2xl);
       letter-spacing: -0.03em;
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     .type-h2 {
       font-size: var(--font-size-l);
       line-height: var(--line-height-l);
       letter-spacing: -0.02em;
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     .type-h3 {
       font-size: var(--font-size-m);
       line-height: var(--line-height-m);
       letter-spacing: -0.01em;
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     .type-h4 {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-black);
+      color: var(--theme-fg);
     }
 
     /* ── Body types ── */
     .type-paragraph {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-dark-gray);
-      max-width: 40rem;
+      color: var(--theme-fg-body);
     }
 
     .type-caption {
       font-size: var(--font-size-xs);
       line-height: var(--line-height-xs);
-      color: var(--color-gray);
+      color: var(--theme-fg-secondary);
     }
 
     .type-quote {
-      border-left: 2px solid var(--color-light-gray);
+      border-left: 2px solid var(--theme-border);
       padding-left: var(--spacing-s);
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-dark-gray);
-      max-width: 40rem;
+      color: var(--theme-fg-body);
     }
 
     /* ── Links ── */
     .link-sample {
       font-size: var(--font-size-s);
       line-height: var(--line-height-s);
-      color: var(--color-dark-gray);
-      max-width: 40rem;
+      color: var(--theme-fg-body);
     }
 
     .link {
@@ -461,69 +837,357 @@
       text-decoration-thickness: 1px;
     }
 
-    .link-props {
-      display: flex;
-      gap: var(--spacing-m);
-      margin-top: var(--spacing-s);
-    }
-
-    /* ── Borders ── */
-    .border-radius-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-s);
-    }
-
+    /* ── Measure ── */
     .radius-box {
       width: 100%;
       height: var(--size-m);
-      border: 1px solid var(--color-light-gray);
-      background: var(--color-white);
+      border: 1px solid var(--theme-border);
+      background: var(--theme-surface);
     }
 
     .radius-box--s { border-radius: var(--border-radius-s); }
     .radius-box--m { border-radius: var(--border-radius-m); }
     .radius-box--l { border-radius: var(--border-radius-l); }
 
-    .border-color-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-s);
-    }
-
-    .color-ctx {
-      width: 100%;
-      padding: var(--spacing-s);
-      border-radius: var(--border-radius-s);
-    }
-
-    .color-ctx--light { background: var(--color-white); border: 1px solid var(--color-light-gray); }
-    .color-ctx--dark  { background: var(--color-black); }
-
-    .color-ctx-inner {
-      height: var(--size-m);
-      border-radius: var(--border-radius-s);
-      border: 1px solid;
-    }
-
-    .color-ctx--light .color-ctx-inner { border-color: var(--color-light-gray); }
-    .color-ctx--dark  .color-ctx-inner { border-color: var(--color-dark-gray); }
-
     .divider-demo {
-      padding: var(--spacing-m);
-      border: 1px solid var(--color-light-gray);
+      display: grid;
+      grid-template-columns: subgrid;
+      padding-block: var(--spacing-m);
+      padding-inline: var(--chart-inset);
+      border: 1px solid var(--theme-border);
       border-radius: var(--border-radius-s);
+      overflow: hidden;
     }
 
-    .divider { border: none; border-top: 1px solid var(--color-light-gray); }
+    .divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1px solid var(--theme-border);
+    }
+
+    /* ── Components ── */
+    .section--component .sample-box {
+      display: block;
+      padding-inline: var(--chart-inset);
+      min-width: 0;
+    }
+
+    .section--component .type-sample-list,
+    .section--component .type-sample-item,
+    .section--component .sample-meta {
+      min-width: 0;
+    }
+
+    .component-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-s);
+      max-width: 20rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
+      border-radius: var(--border-radius-s);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--theme-fg);
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+      white-space: nowrap;
+    }
+
+    .btn--s {
+      font-size: var(--font-size-2xs);
+      line-height: var(--line-height-2xs);
+      padding: 0.25rem 0.5rem;
+    }
+
+    .btn--m {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      padding: var(--spacing-xs) var(--spacing-s);
+    }
+
+    .btn--l {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      padding: 0.5rem 1.25rem;
+    }
+
+    .btn--primary {
+      background: var(--theme-fg);
+      color: var(--theme-bg);
+    }
+
+    .btn--secondary {
+      background: var(--theme-surface);
+      border-color: var(--theme-border);
+    }
+
+    .btn--outline {
+      border-color: var(--theme-border);
+    }
+
+    .btn--ghost { background: transparent; }
+
+    .btn--destructive {
+      background: var(--color-red);
+      color: var(--color-white);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .field-label {
+      display: block;
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg);
+    }
+
+    .field-hint {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-secondary);
+    }
+
+    .input,
+    .textarea {
+      display: block;
+      width: 100%;
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg);
+      background: var(--theme-bg);
+      border: 1px solid var(--theme-border);
+      border-radius: var(--border-radius-s);
+      padding: var(--spacing-xs);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .textarea {
+      min-height: 5rem;
+      resize: vertical;
+    }
+
+    .input:disabled,
+    .textarea:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .input::placeholder,
+    .textarea::placeholder {
+      color: var(--theme-fg-secondary);
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-body);
+      cursor: pointer;
+    }
+
+    .checkbox,
+    .radio {
+      width: var(--size-xs);
+      height: var(--size-xs);
+      margin: 0;
+      accent-color: var(--theme-fg);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox:disabled,
+    .radio:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .switch {
+      appearance: none;
+      width: calc(var(--size-xs) * 1.75);
+      height: var(--size-xs);
+      margin: 0;
+      background: var(--theme-border);
+      border: none;
+      border-radius: var(--size-xs);
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: background 0.15s ease;
+    }
+
+    .switch::after {
+      content: '';
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      width: calc(var(--size-xs) - 0.25rem);
+      height: calc(var(--size-xs) - 0.25rem);
+      background: var(--theme-bg);
+      border-radius: 50%;
+      transition: transform 0.15s ease;
+    }
+
+    .switch:checked {
+      background: var(--theme-fg);
+    }
+
+    .switch:checked::after {
+      transform: translateX(calc(var(--size-xs) * 0.75));
+    }
+
+    .switch:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--border-radius-s);
+      border: 1px solid var(--theme-border);
+      color: var(--theme-fg);
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .tag--s {
+      font-size: var(--font-size-2xs);
+      line-height: var(--line-height-2xs);
+      padding: 0.0625rem 0.25rem;
+    }
+
+    .tag--m {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      padding: 0.0625rem 0.375rem;
+    }
+
+    .tag--l {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      padding: 0.125rem 0.5rem;
+    }
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--size-xs);
+      height: var(--size-xs);
+      border-radius: 50%;
+      background: var(--theme-surface);
+      border: 1px solid var(--theme-border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-fallback {
+      font-size: var(--font-size-2xs);
+      line-height: 1;
+      color: var(--theme-fg-secondary);
+    }
+
+    .avatar--l {
+      width: calc(var(--size-xs) * 1.5);
+      height: calc(var(--size-xs) * 1.5);
+    }
+
+    .avatar--l .avatar-fallback {
+      font-size: var(--font-size-xs);
+    }
+
+    .dropdown-demo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+
+    .dropdown-menu {
+      min-width: 10rem;
+      padding: var(--spacing-xs);
+      background: var(--theme-bg);
+      border: 1px solid var(--theme-border);
+      border-radius: var(--border-radius-s);
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+
+    .dropdown-item {
+      all: unset;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      font-family: var(--font-base-family);
+      font-weight: var(--font-base-weight);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      padding: var(--spacing-xs);
+      border-radius: var(--border-radius-s);
+      color: var(--theme-fg-body);
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .dropdown-item.is-active {
+      background: var(--theme-surface);
+      color: var(--theme-fg);
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: var(--theme-border);
+      margin: 0.125rem 0;
+    }
+
+    .alert {
+      padding: var(--spacing-s);
+      border: 1px solid var(--theme-border);
+      border-radius: var(--border-radius-s);
+      background: var(--theme-surface);
+    }
+
+    .alert-title {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg);
+    }
+
+    .alert-description {
+      margin-top: var(--spacing-xs);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-body);
+    }
+
+    .alert--destructive {
+      background: color-mix(in srgb, var(--color-red) 8%, var(--theme-surface));
+      border-color: color-mix(in srgb, var(--color-red) 25%, var(--theme-border));
+    }
+
+    .alert--destructive .alert-title {
+      color: var(--color-red);
+    }
 
     /* ── Spacing ── */
-    .spacing-row { display: flex; align-items: flex-end; gap: var(--spacing-s); }
-    .spacing-item { flex: 1; }
-
     .spacing-bar {
       width: 100%;
-      background: var(--color-black);
+      background: var(--theme-fg);
       border-radius: var(--border-radius-s);
     }
 
@@ -533,13 +1197,23 @@
     .spacing-bar--l  { height: var(--spacing-l); }
     .spacing-bar--xl { height: var(--spacing-xl); }
 
-    /* ── Sizes ── */
-    .sizes-row { display: flex; align-items: flex-end; gap: var(--spacing-s); }
-    .size-item { min-width: var(--size-s); }
+    .spacing-item,
+    .size-item {
+      align-self: end;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-s);
+    }
 
+    .spacing-item .token-name,
+    .size-item .token-name {
+      margin-top: 0;
+    }
+
+    /* ── Sizes ── */
     .size-block {
-      border: 1px solid var(--color-light-gray);
-      background: var(--color-white);
+      border: 1px solid var(--theme-border);
+      background: var(--theme-surface);
       border-radius: var(--border-radius-s);
     }
 
@@ -548,23 +1222,292 @@
     .size-block--m  { width: var(--size-m);  height: var(--size-m); }
     .size-block--l  { width: var(--size-l);  height: var(--size-l); }
     .size-block--xl { width: var(--size-xl); height: var(--size-xl); }
+
+    /* ── Layout ── */
+    :root {
+      --columns-demo-gap: var(--spacing-xs);
+      --columns-demo-cell-size: var(--size-xs);
+    }
+
+    @media (min-width: 30rem) {
+      :root {
+        --columns-demo-gap: var(--spacing-xs);
+        --columns-demo-cell-size: var(--size-s);
+      }
+    }
+
+    @media (min-width: 60rem) {
+      :root {
+        --columns-demo-gap: var(--column-gap);
+        --columns-demo-cell-size: var(--size-s);
+      }
+    }
+
+    .columns-intro {
+      grid-column: 1 / -1;
+      max-width: none;
+      margin-bottom: var(--spacing-s);
+    }
+
+    .sample-box.columns-chart,
+    .sample-box.viewport-chart {
+      row-gap: var(--spacing-s);
+    }
+
+    .sample-box.viewport-chart {
+      row-gap: var(--spacing-xs);
+      overflow: visible;
+    }
+
+    .columns-lane,
+    .viewport-chart-scale-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--spacing-xs);
+    }
+
+    .viewport-lane {
+      grid-column: 1 / -1;
+    }
+
+    .columns-lane-label,
+    .viewport-lane-label,
+    .viewport-chart-corner {
+      padding-left: var(--chart-inset);
+      align-self: center;
+      min-width: 0;
+    }
+
+    .columns-lane-label .token-name,
+    .viewport-lane-label .token-name {
+      margin-top: 0;
+    }
+
+    .columns-lane-cells,
+    .viewport-chart-scale {
+      min-width: 0;
+    }
+
+    .columns-lane-cells {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--columns-demo-gap);
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .columns-demo-cell {
+      flex: 0 1 var(--columns-demo-cell-size);
+      width: var(--columns-demo-cell-size);
+      height: var(--columns-demo-cell-size);
+      min-width: 0;
+      background: var(--color-gray);
+      border-radius: var(--border-radius-s);
+    }
+
+    .viewport-lane-track {
+      position: relative;
+      height: var(--size-xs);
+      align-self: center;
+    }
+
+    @media (max-width: 59.999rem) {
+      .columns-lane-label {
+        grid-column: 1 / -1;
+        padding-right: var(--chart-inset);
+      }
+
+      .columns-lane {
+        display: grid;
+        grid-template-columns: subgrid;
+        row-gap: var(--spacing-xs);
+      }
+
+      .columns-lane-cells {
+        grid-column: 1 / -1;
+        padding-left: var(--chart-inset);
+        padding-right: var(--chart-inset);
+      }
+
+      .viewport-lane + .viewport-lane {
+        margin-top: var(--spacing-s);
+      }
+
+      .viewport-lane-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-left: var(--chart-inset);
+        margin-right: var(--chart-inset);
+      }
+
+      .viewport-lane-label {
+        padding: 0;
+        width: 25%;
+        margin-left: 0;
+        align-self: flex-start;
+      }
+
+      .viewport-lane--medium .viewport-lane-label { margin-left: 25%; }
+      .viewport-lane--wide .viewport-lane-label { margin-left: 50%; }
+      .viewport-lane--extra-wide .viewport-lane-label { margin-left: 75%; }
+
+      .viewport-lane-body .viewport-lane-track {
+        width: 100%;
+        min-height: var(--size-xs);
+        flex-shrink: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .viewport-chart-scale {
+        grid-column: 1 / -1;
+        margin-left: var(--chart-inset);
+        margin-right: var(--chart-inset);
+      }
+
+      .viewport-chart-scale-row {
+        display: grid;
+        grid-template-columns: subgrid;
+      }
+
+      .viewport-chart-corner {
+        display: none;
+      }
+
+      .viewport-scale-unit {
+        display: none;
+      }
+    }
+
+    @media (min-width: 60rem) {
+      .viewport-lane,
+      .viewport-chart-scale-row {
+        display: contents;
+      }
+
+      .viewport-lane-body {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+      }
+
+      .columns-lane-label,
+      .viewport-lane-label,
+      .viewport-chart-corner {
+        grid-column: span 1;
+      }
+
+      .viewport-lane-label {
+        width: auto;
+        margin-left: 0;
+        align-self: center;
+      }
+
+      .columns-lane-cells,
+      .viewport-lane-track,
+      .viewport-chart-scale {
+        grid-column: span calc(var(--content-columns) - 1);
+        padding-left: 0;
+        margin-left: 0;
+        margin-right: var(--chart-inset);
+      }
+
+      .columns-lane-cells {
+        padding-right: var(--chart-inset);
+      }
+    }
+
+    .viewport-chart-scale {
+      position: relative;
+      height: var(--line-height-xs);
+      border-bottom: 1px solid var(--theme-border);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .viewport-scale-tick {
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-50%);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      color: var(--theme-fg-secondary);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    .viewport-scale-tick::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      height: var(--spacing-xs);
+      background: var(--theme-border);
+    }
+
+    .viewport-scale-tick--0   { left: 0%; transform: none; }
+    .viewport-scale-tick--0::before { left: 0; }
+    .viewport-scale-tick--30  { left: 25%; }
+    .viewport-scale-tick--60  { left: 50%; }
+    .viewport-scale-tick--90  { left: 75%; }
+    .viewport-scale-tick--max { left: 100%; transform: translateX(-100%); }
+    .viewport-scale-tick--max::before { left: 100%; }
+
+    .viewport-lane-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: var(--color-gray);
+      border-radius: var(--border-radius-s);
+    }
+
+    .viewport-lane-fill--narrow      { left: 0;    width: 25%; }
+    .viewport-lane-fill--medium      { left: 25%;  width: 25%; }
+    .viewport-lane-fill--wide        { left: 50%;  width: 25%; }
+    .viewport-lane-fill--extra-wide  { left: 75%;  width: 25%; }
   </style>
 </head>
 <body>
+
+  <div class="page">
+    <div class="column-overlay is-hidden" id="columnOverlay"></div>
 
   <aside class="sidebar">
     <h1 class="sidebar-title">Basement UI</h1>
     <div class="sidebar-byline">@gwenzhir</div>
     <nav class="sidebar-nav">
-      <button class="nav-item is-active" data-section="colors">Colors</button>
-      <button class="nav-item" data-section="typography">Typography</button>
-      <button class="nav-item" data-section="borders">Borders</button>
-      <button class="nav-item" data-section="spacing">Spacing</button>
-      <button class="nav-item" data-section="sizes">Sizes</button>
+      <div class="nav-group">
+        <div class="nav-group-label">Foundation</div>
+        <button class="nav-item is-active" data-section="colors">Colors</button>
+        <button class="nav-item" data-section="typography">Typography</button>
+        <button class="nav-item" data-section="measure">Measure</button>
+        <button class="nav-item" data-section="layout">Layout</button>
+        <button class="nav-item" data-section="icons">Icons</button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Components</div>
+        <button class="nav-item" data-section="button">Button</button>
+        <button class="nav-item" data-section="form">Form</button>
+        <button class="nav-item" data-section="tag">Tag</button>
+        <button class="nav-item" data-section="avatar">Avatar</button>
+        <button class="nav-item" data-section="dropdown">Dropdown</button>
+        <button class="nav-item" data-section="alert">Alert</button>
+      </div>
     </nav>
+    <div class="sidebar-footer">
+      <label class="dev-toggle">
+        <input type="checkbox" id="darkModeToggle">
+        Dark mode
+      </label>
+      <label class="dev-toggle">
+        <input type="checkbox" id="columnOverlayToggle">
+        Show columns
+      </label>
+    </div>
   </aside>
 
-  <main class="content">
+    <main class="content">
 
     <!-- ── Colors ── -->
     <section class="section is-active" id="colors">
@@ -575,7 +1518,7 @@
 
         <div class="palette-hue-group">
           <h4 class="palette-hue-label">Grayscale</h4>
-          <div class="color-row">
+          <div class="col-row col-row--5">
             <div>
               <div class="swatch-face swatch-face--black"></div>
               <div class="token-name">Black</div>
@@ -584,7 +1527,7 @@
             <div>
               <div class="swatch-face swatch-face--dark-gray"></div>
               <div class="token-name">Dark Gray</div>
-              <div class="token-value">#666666</div>
+              <div class="token-value">#333333</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--gray"></div>
@@ -606,32 +1549,32 @@
 
         <div class="palette-hue-group">
           <h4 class="palette-hue-label">Red</h4>
-          <div class="color-row">
+          <div class="col-row col-row--5">
             <div>
               <div class="swatch-face swatch-face--red-dark"></div>
               <div class="token-name">Red Dark</div>
-              <div class="token-value">#8B0000</div>
+              <div class="token-value">#7A1000</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--red"></div>
               <div class="token-name">Red</div>
-              <div class="token-value">#EE3333</div>
+              <div class="token-value">#EF3D28</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--red-light"></div>
               <div class="token-name">Red Light</div>
-              <div class="token-value">#FFE8E8</div>
+              <div class="token-value">#FFEBE6</div>
             </div>
           </div>
         </div>
 
         <div class="palette-hue-group">
           <h4 class="palette-hue-label">Green</h4>
-          <div class="color-row">
+          <div class="col-row col-row--5">
             <div>
               <div class="swatch-face swatch-face--green-dark"></div>
               <div class="token-name">Green Dark</div>
-              <div class="token-value">#1A5C28</div>
+              <div class="token-value">#133D22</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--green"></div>
@@ -648,11 +1591,11 @@
 
         <div class="palette-hue-group">
           <h4 class="palette-hue-label">Blue</h4>
-          <div class="color-row">
+          <div class="col-row col-row--5">
             <div>
               <div class="swatch-face swatch-face--blue-dark"></div>
               <div class="token-name">Blue Dark</div>
-              <div class="token-value">#1A2E6E</div>
+              <div class="token-value">#0F1848</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--blue"></div>
@@ -671,19 +1614,17 @@
       <div class="border-group">
         <h3 class="subsection-label">Scheme</h3>
 
-        <div class="scheme-table-header">
-          <span></span>
-          <span class="scheme-theme-label">Light</span>
-          <span class="scheme-theme-label">Dark</span>
-        </div>
-
         <div class="scheme-group">
-          <div class="scheme-group-label">Background</div>
+          <div class="scheme-group-header">
+            <h4 class="scheme-group-label">Background</h4>
+            <span class="scheme-theme-label">Light</span>
+            <span class="scheme-theme-label">Dark</span>
+          </div>
           <div class="scheme-row">
             <div class="scheme-row-header">
               <span class="scheme-role-label">Primary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
                 <span class="scheme-color-name">White</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
@@ -697,11 +1638,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Secondary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#666666;"></span>
+                <span class="scheme-swatch" style="background:#333333;"></span>
                 <span class="scheme-color-name">Dark Gray</span>
               </button>
             </div>
@@ -710,7 +1651,9 @@
         </div>
 
         <div class="scheme-group">
-          <div class="scheme-group-label">Text</div>
+          <div class="scheme-group-header">
+            <h4 class="scheme-group-label">Text</h4>
+          </div>
           <div class="scheme-row">
             <div class="scheme-row-header">
               <span class="scheme-role-label">Primary</span>
@@ -719,7 +1662,7 @@
                 <span class="scheme-color-name">Black</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
                 <span class="scheme-color-name">White</span>
               </button>
             </div>
@@ -733,7 +1676,7 @@
                 <span class="scheme-color-name">Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
             </div>
@@ -742,16 +1685,18 @@
         </div>
 
         <div class="scheme-group">
-          <div class="scheme-group-label">Border</div>
+          <div class="scheme-group-header">
+            <h4 class="scheme-group-label">Border</h4>
+          </div>
           <div class="scheme-row">
             <div class="scheme-row-header">
               <span class="scheme-role-label">Resting</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#DDDDDD; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#666666;"></span>
+                <span class="scheme-swatch" style="background:#333333;"></span>
                 <span class="scheme-color-name">Dark Gray</span>
               </button>
             </div>
@@ -765,7 +1710,7 @@
                 <span class="scheme-color-name">Black</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#FFFFFF; border-color:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
                 <span class="scheme-color-name">White</span>
               </button>
             </div>
@@ -782,121 +1727,209 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Typeface</h3>
-        <div class="sample-box">
-          <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
-          <p class="font-body-sample">Basement UI는 Gwenzhir 프로젝트 전반에 걸쳐 사용되는 공유 디자인 언어입니다. Colors, typography, and spacing — 이 세 가지 토큰이 모든 화면에서 반복적으로 쌓이며 일관된 경험을 만든다.</p>
-        </div>
-        <div class="font-meta">
-          <span class="font-token">Base Text</span>
-          <span class="font-detail">Pretendard · 600</span>
+        <div class="type-sample-item">
+          <div class="sample-box sample-box--typeface">
+            <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
+            <p class="font-body-sample">Basement UI is the shared design language used across Gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+          </div>
+          <div class="sample-meta">
+            <span class="sample-meta-label sample-meta-label--wide">Base Text</span>
+            <span class="sample-meta-detail">Pretendard</span>
+            <span class="sample-meta-detail">600</span>
+          </div>
         </div>
       </div>
 
       <div class="border-group">
         <h3 class="subsection-label">Sizes</h3>
-        <div class="sample-box">
-          <div class="font-size-entry font-size-entry--xs">
-            <span class="font-size-sample font-size-sample--xs">Metadata · Labels · Captions</span>
-            <span class="font-size-meta">XS · 0.75rem / 1.25rem</span>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-2xs">
+              <span class="font-size-sample font-size-sample--2xs">Sidebar · Meta · Fine print</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">2XS</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
+            </div>
           </div>
-          <div class="font-size-entry font-size-entry--s">
-            <span class="font-size-sample font-size-sample--s">Body copy reads at this size in most contexts.</span>
-            <span class="font-size-meta">S · 1rem / 1.5rem</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-xs">
+              <span class="font-size-sample font-size-sample--xs">Metadata · Labels · Captions</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
+            </div>
           </div>
-          <div class="font-size-entry font-size-entry--m">
-            <span class="font-size-sample font-size-sample--m">A section begins here.</span>
-            <span class="font-size-meta">M · 1.5rem / 2rem</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-s">
+              <span class="font-size-sample font-size-sample--s">Body copy reads at this size in most contexts.</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
+            </div>
           </div>
-          <div class="font-size-entry font-size-entry--l">
-            <span class="font-size-sample font-size-sample--l">화면 위의 것들</span>
-            <span class="font-size-meta">L · 2.25rem / 2.75rem</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-m">
+              <span class="font-size-sample font-size-sample--m">A section begins here.</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1.5rem / 2rem</span>
+            </div>
           </div>
-          <div class="font-size-entry font-size-entry--xl">
-            <span class="font-size-sample font-size-sample--xl">Everything compounds.</span>
-            <span class="font-size-meta">XL · 3rem / 3.5rem</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-l">
+              <span class="font-size-sample font-size-sample--l">화면 위의 것들</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">2.25rem / 2.75rem</span>
+            </div>
           </div>
-          <div class="font-size-entry font-size-entry--2xl">
-            <span class="font-size-sample font-size-sample--2xl">Design.</span>
-            <span class="font-size-meta">2XL · 4rem / 4.5rem</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-xl">
+              <span class="font-size-sample font-size-sample--xl">Everything compounds.</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XL</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">3rem / 3.5rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--size-2xl">
+              <span class="font-size-sample font-size-sample--2xl">Design.</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">2XL</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">4rem / 4.5rem</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="border-group">
         <h3 class="subsection-label">Headings</h3>
-        <div class="sample-box">
-          <div class="type-row">
-            <div class="type-h1">Design Systems</div>
-            <div class="type-row-meta">H1 · 4rem / 4.5rem · −0.03em</div>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="type-h1">Design Systems</div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">H1</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">4rem / 4.5rem</span>
+              <span class="sample-meta-detail">−0.03em</span>
+            </div>
           </div>
-          <div class="type-row">
-            <div class="type-h2">Color and Typography</div>
-            <div class="type-row-meta">H2 · 2.25rem / 2.75rem · −0.02em</div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="type-h2">Color and Typography</div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">H2</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">2.25rem / 2.75rem</span>
+              <span class="sample-meta-detail">−0.02em</span>
+            </div>
           </div>
-          <div class="type-row">
-            <div class="type-h3">Token Reference</div>
-            <div class="type-row-meta">H3 · 1.5rem / 2rem · −0.01em</div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="type-h3">Token Reference</div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">H3</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">1.5rem / 2rem</span>
+              <span class="sample-meta-detail">−0.01em</span>
+            </div>
           </div>
-          <div class="type-row">
-            <div class="type-h4">Base Text</div>
-            <div class="type-row-meta">H4 · 1rem / 1.5rem</div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="type-h4">Base Text</div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">H4</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">1rem / 1.5rem</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="border-group">
         <h3 class="subsection-label">Body</h3>
-        <div class="sample-box">
-          <div class="type-row">
-            <p class="type-paragraph">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
-            <div class="type-row-meta">Paragraph · S · Dark Gray</div>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Paragraph</span>
+              <span class="sample-meta-detail">S</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">Dark Gray</span>
+            </div>
           </div>
-          <div class="type-row">
-            <blockquote class="type-quote">Good design systems are invisible until you don't have one.</blockquote>
-            <div class="type-row-meta">Quote · S · Dark Gray · Left border</div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <blockquote class="type-quote">Good design systems are invisible until you don't have one.</blockquote>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Quote</span>
+              <span class="sample-meta-detail">S</span>
+              <span class="sample-meta-detail">Dark Gray</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">Left border</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="border-group">
         <h3 class="subsection-label">Caption</h3>
-        <div class="sample-box">
-          <div class="type-row">
-            <span class="type-caption">Last updated June 2026 · Gwenzhir</span>
-            <div class="type-row-meta">Caption · XS · Gray</div>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="type-caption">Last updated June 2026 · Gwenzhir</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Caption</span>
+              <span class="sample-meta-detail">XS</span>
+              <span class="sample-meta-detail">Gray</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="border-group">
         <h3 class="subsection-label">Links</h3>
-        <div class="sample-box">
-          <p class="link-sample">A design system provides <a class="link" href="#">shared foundations</a> for every surface that builds on it.</p>
-        </div>
-        <div class="link-props">
-          <div>
-            <div class="token-name">Text underline offset</div>
-            <div class="token-value">0.2em</div>
-          </div>
-          <div>
-            <div class="token-name">Text decoration thickness</div>
-            <div class="token-value">1px</div>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="link-sample">A design system provides <a class="link" href="#">shared foundations</a> for every surface that builds on it.</p>
+            </div>
+            <div class="link-props">
+              <div class="sample-meta">
+                <span class="sample-meta-label sample-meta-label--2col">Text underline offset</span>
+                <span class="sample-meta-detail">0.2em</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-meta-label sample-meta-label--2col">Text decoration thickness</span>
+                <span class="sample-meta-detail">1px</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Borders ── -->
-    <section class="section" id="borders">
-      <h2 class="section-label">Borders</h2>
+    <!-- ── Measure ── -->
+    <section class="section" id="measure">
+      <h2 class="section-label">Measure</h2>
 
       <div class="border-group">
         <h3 class="subsection-label">Radius</h3>
-        <div class="border-radius-row">
+        <div class="col-row col-row--equal">
           <div>
             <div class="radius-box radius-box--s"></div>
             <div class="token-name">S</div>
-            <div class="token-value">0.25rem · 기본값</div>
+            <div class="token-value">0.25rem · default</div>
           </div>
           <div>
             <div class="radius-box radius-box--m"></div>
@@ -912,139 +1945,980 @@
       </div>
 
       <div class="border-group">
-        <h3 class="subsection-label">Color</h3>
-        <div class="border-color-row">
-          <div>
-            <div class="color-ctx color-ctx--light">
-              <div class="color-ctx-inner"></div>
-            </div>
-            <div class="token-name">White · Light Gray</div>
-          </div>
-          <div>
-            <div class="color-ctx color-ctx--dark">
-              <div class="color-ctx-inner"></div>
-            </div>
-            <div class="token-name">Black · Dark Gray</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
         <h3 class="subsection-label">Divider</h3>
         <div class="divider-demo">
           <hr class="divider">
         </div>
       </div>
-    </section>
 
-    <!-- ── Spacing ── -->
-    <section class="section" id="spacing">
-      <h2 class="section-label">Spacing</h2>
-      <div class="spacing-row">
-        <div class="spacing-item">
-          <div class="spacing-bar spacing-bar--xs"></div>
-          <div class="token-name">XS</div>
-          <div class="token-value">0.5rem</div>
+      <div class="border-group">
+        <h3 class="subsection-label">Spacing</h3>
+        <div class="col-row col-row--5">
+          <div class="spacing-item">
+            <div class="spacing-bar spacing-bar--xs"></div>
+            <div class="token-name">XS</div>
+            <div class="token-value">0.5rem</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar spacing-bar--s"></div>
+            <div class="token-name">S</div>
+            <div class="token-value">1rem</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar spacing-bar--m"></div>
+            <div class="token-name">M</div>
+            <div class="token-value">2rem</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar spacing-bar--l"></div>
+            <div class="token-name">L</div>
+            <div class="token-value">4rem</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar spacing-bar--xl"></div>
+            <div class="token-name">XL</div>
+            <div class="token-value">8rem</div>
+          </div>
         </div>
-        <div class="spacing-item">
-          <div class="spacing-bar spacing-bar--s"></div>
-          <div class="token-name">S</div>
-          <div class="token-value">1rem</div>
-        </div>
-        <div class="spacing-item">
-          <div class="spacing-bar spacing-bar--m"></div>
-          <div class="token-name">M</div>
-          <div class="token-value">2rem</div>
-        </div>
-        <div class="spacing-item">
-          <div class="spacing-bar spacing-bar--l"></div>
-          <div class="token-name">L</div>
-          <div class="token-value">4rem</div>
-        </div>
-        <div class="spacing-item">
-          <div class="spacing-bar spacing-bar--xl"></div>
-          <div class="token-name">XL</div>
-          <div class="token-value">8rem</div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="col-row col-row--5">
+          <div class="size-item">
+            <div class="size-block size-block--xs"></div>
+            <div class="token-name">XS</div>
+            <div class="token-value">1rem</div>
+          </div>
+          <div class="size-item">
+            <div class="size-block size-block--s"></div>
+            <div class="token-name">S</div>
+            <div class="token-value">2rem</div>
+          </div>
+          <div class="size-item">
+            <div class="size-block size-block--m"></div>
+            <div class="token-name">M</div>
+            <div class="token-value">4rem</div>
+          </div>
+          <div class="size-item">
+            <div class="size-block size-block--l"></div>
+            <div class="token-name">L</div>
+            <div class="token-value">8rem</div>
+          </div>
+          <div class="size-item">
+            <div class="size-block size-block--xl"></div>
+            <div class="token-name">XL</div>
+            <div class="token-value">16rem</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Sizes ── -->
-    <section class="section" id="sizes">
-      <h2 class="section-label">Sizes</h2>
-      <div class="sizes-row">
-        <div class="size-item">
-          <div class="size-block size-block--xs"></div>
-          <div class="token-name">XS</div>
-          <div class="token-value">1rem</div>
+    <!-- ── Layout ── -->
+    <section class="section" id="layout">
+      <h2 class="section-label">Layout</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Columns</h3>
+        <p class="type-paragraph columns-intro">One column grid spans the full page. The sidebar occupies a fixed number of columns at each viewport; main content fills the rest. The gap between columns is 1rem throughout.</p>
+        <div class="sample-box columns-chart">
+          <div class="columns-lane">
+            <div class="columns-lane-label">
+              <div class="token-name">Narrow</div>
+              <div class="token-value">7 columns</div>
+            </div>
+            <div class="columns-lane-cells">
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+            </div>
+          </div>
+          <div class="columns-lane">
+            <div class="columns-lane-label">
+              <div class="token-name">Medium</div>
+              <div class="token-value">9 columns</div>
+            </div>
+            <div class="columns-lane-cells">
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+            </div>
+          </div>
+          <div class="columns-lane">
+            <div class="columns-lane-label">
+              <div class="token-name">Wide</div>
+              <div class="token-value">11 columns</div>
+            </div>
+            <div class="columns-lane-cells">
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+            </div>
+          </div>
+          <div class="columns-lane">
+            <div class="columns-lane-label">
+              <div class="token-name">Extra wide</div>
+              <div class="token-value">13 columns</div>
+            </div>
+            <div class="columns-lane-cells">
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+              <div class="columns-demo-cell"></div>
+            </div>
+          </div>
         </div>
-        <div class="size-item">
-          <div class="size-block size-block--s"></div>
-          <div class="token-name">S</div>
-          <div class="token-value">2rem</div>
-        </div>
-        <div class="size-item">
-          <div class="size-block size-block--m"></div>
-          <div class="token-name">M</div>
-          <div class="token-value">4rem</div>
-        </div>
-        <div class="size-item">
-          <div class="size-block size-block--l"></div>
-          <div class="token-name">L</div>
-          <div class="token-value">8rem</div>
-        </div>
-        <div class="size-item">
-          <div class="size-block size-block--xl"></div>
-          <div class="token-name">XL</div>
-          <div class="token-value">16rem</div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Viewport</h3>
+        <div class="sample-box viewport-chart">
+          <div class="viewport-chart-scale-row">
+            <div class="viewport-chart-corner" aria-hidden="true"></div>
+            <div class="viewport-chart-scale" aria-hidden="true">
+              <span class="viewport-scale-tick viewport-scale-tick--0">0</span>
+              <span class="viewport-scale-tick viewport-scale-tick--30">30<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--60">60<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--90">90<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--max">120<span class="viewport-scale-unit">rem</span></span>
+            </div>
+          </div>
+          <div class="viewport-lane viewport-lane--narrow">
+            <div class="viewport-lane-body">
+              <div class="viewport-lane-label">
+                <div class="token-name">Narrow</div>
+              </div>
+              <div class="viewport-lane-track">
+                <div class="viewport-lane-fill viewport-lane-fill--narrow" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="viewport-lane viewport-lane--medium">
+            <div class="viewport-lane-body">
+              <div class="viewport-lane-label">
+                <div class="token-name">Medium</div>
+              </div>
+              <div class="viewport-lane-track">
+                <div class="viewport-lane-fill viewport-lane-fill--medium" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="viewport-lane viewport-lane--wide">
+            <div class="viewport-lane-body">
+              <div class="viewport-lane-label">
+                <div class="token-name">Wide</div>
+              </div>
+              <div class="viewport-lane-track">
+                <div class="viewport-lane-fill viewport-lane-fill--wide" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="viewport-lane viewport-lane--extra-wide">
+            <div class="viewport-lane-body">
+              <div class="viewport-lane-label">
+                <div class="token-name">Extra wide</div>
+              </div>
+              <div class="viewport-lane-track">
+                <div class="viewport-lane-fill viewport-lane-fill--extra-wide" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-  </main>
+    <!-- ── Icons ── -->
+    <section class="section" id="icons">
+      <h2 class="section-label">Icons</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Icons</h3>
+        <p class="subsection-note"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a></p>
+        <div class="col-row col-row--icon-sizes">
+          <div>
+            <div class="icon-face icon-face--s"><i class="ph ph-gear" aria-hidden="true"></i></div>
+            <div class="token-name">S</div>
+            <div class="token-value">0.75rem</div>
+          </div>
+          <div>
+            <div class="icon-face icon-face--m"><i class="ph ph-gear" aria-hidden="true"></i></div>
+            <div class="token-name">M</div>
+            <div class="token-value">1rem · default</div>
+          </div>
+          <div>
+            <div class="icon-face icon-face--l"><i class="ph ph-gear" aria-hidden="true"></i></div>
+            <div class="token-name">L</div>
+            <div class="token-value">1.25rem</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Common</h3>
+
+        <div class="icon-group">
+          <h4 class="icon-group-label">Navigation</h4>
+          <div class="col-row col-row--icons">
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-house" aria-hidden="true"></i></div>
+              <div class="token-name">House</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
+              <div class="token-name">Magnifying Glass</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-list" aria-hidden="true"></i></div>
+              <div class="token-name">List</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-caret-down" aria-hidden="true"></i></div>
+              <div class="token-name">Caret Down</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-dots-three" aria-hidden="true"></i></div>
+              <div class="token-name">Dots Three</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-group">
+          <h4 class="icon-group-label">Actions</h4>
+          <div class="col-row col-row--icons">
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-plus" aria-hidden="true"></i></div>
+              <div class="token-name">Plus</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-x" aria-hidden="true"></i></div>
+              <div class="token-name">X</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-check" aria-hidden="true"></i></div>
+              <div class="token-name">Check</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-pencil-simple" aria-hidden="true"></i></div>
+              <div class="token-name">Pencil Simple</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-trash" aria-hidden="true"></i></div>
+              <div class="token-name">Trash</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-arrow-left" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Left</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
+              <div class="token-name">Arrow Right</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-copy" aria-hidden="true"></i></div>
+              <div class="token-name">Copy</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-download" aria-hidden="true"></i></div>
+              <div class="token-name">Download</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-upload" aria-hidden="true"></i></div>
+              <div class="token-name">Upload</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-group">
+          <h4 class="icon-group-label">Account</h4>
+          <div class="col-row col-row--icons">
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-user" aria-hidden="true"></i></div>
+              <div class="token-name">User</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-gear" aria-hidden="true"></i></div>
+              <div class="token-name">Gear</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-bell" aria-hidden="true"></i></div>
+              <div class="token-name">Bell</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-sign-out" aria-hidden="true"></i></div>
+              <div class="token-name">Sign Out</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-lock" aria-hidden="true"></i></div>
+              <div class="token-name">Lock</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-group">
+          <h4 class="icon-group-label">Content</h4>
+          <div class="col-row col-row--icons">
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-folder" aria-hidden="true"></i></div>
+              <div class="token-name">Folder</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-file" aria-hidden="true"></i></div>
+              <div class="token-name">File</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-link" aria-hidden="true"></i></div>
+              <div class="token-name">Link</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-eye" aria-hidden="true"></i></div>
+              <div class="token-name">Eye</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-calendar" aria-hidden="true"></i></div>
+              <div class="token-name">Calendar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-group">
+          <h4 class="icon-group-label">Feedback</h4>
+          <div class="col-row col-row--icons">
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-info" aria-hidden="true"></i></div>
+              <div class="token-name">Info</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-warning" aria-hidden="true"></i></div>
+              <div class="token-name">Warning</div>
+            </div>
+            <div>
+              <div class="icon-face icon-face--m"><i class="ph ph-envelope" aria-hidden="true"></i></div>
+              <div class="token-name">Envelope</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Button ── -->
+    <section class="section section--component" id="button">
+      <h2 class="section-label">Button</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--primary">Primary</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Primary</span>
+              <span class="sample-meta-detail">Filled</span>
+              <span class="sample-meta-detail">Primary action</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--secondary">Secondary</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Secondary</span>
+              <span class="sample-meta-detail">Surface fill</span>
+              <span class="sample-meta-detail">Border</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--outline">Outline</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Outline</span>
+              <span class="sample-meta-detail">Transparent</span>
+              <span class="sample-meta-detail">Border</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--ghost">Ghost</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Ghost</span>
+              <span class="sample-meta-detail">Transparent</span>
+              <span class="sample-meta-detail">No border</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--destructive">Destructive</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Destructive</span>
+              <span class="sample-meta-detail">Red fill</span>
+              <span class="sample-meta-detail">Destructive action</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--primary" disabled>Disabled</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Disabled</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--s btn--primary">Primary</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--primary">Primary</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--l btn--primary">Primary</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Form ── -->
+    <section class="section section--component" id="form">
+      <h2 class="section-label">Form</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Input</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <input class="input" type="text" placeholder="Email">
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Single-line</span>
+              <span class="sample-meta-detail">Text field</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="component-stack">
+                <label class="field-label" for="form-email">Email</label>
+                <input class="input" id="form-email" type="email" placeholder="name@example.com">
+                <span class="field-hint">Enter the email address for your account.</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">With label</span>
+              <span class="sample-meta-detail">Label</span>
+              <span class="sample-meta-detail">Hint text</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <input class="input" type="text" placeholder="Disabled" disabled>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Disabled</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Label</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="field-label" for="form-username">Username</label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Field label</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="component-stack">
+                <label class="field-label" for="form-password">Password</label>
+                <input class="input" id="form-password" type="password" placeholder="••••••••">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">With control</span>
+              <span class="sample-meta-detail">Label</span>
+              <span class="sample-meta-detail">Input</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Textarea</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <textarea class="textarea" placeholder="Write a short description."></textarea>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Multi-line</span>
+              <span class="sample-meta-detail">Text field</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="component-stack">
+                <label class="field-label" for="form-bio">Bio</label>
+                <textarea class="textarea" id="form-bio" placeholder="Tell us about yourself."></textarea>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">With label</span>
+              <span class="sample-meta-detail">Label</span>
+              <span class="sample-meta-detail">Textarea</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <textarea class="textarea" placeholder="Disabled" disabled></textarea>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Disabled</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Checkbox</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="checkbox" type="checkbox" checked>
+                Accept terms and conditions
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Checked</span>
+              <span class="sample-meta-detail">With label</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="checkbox" type="checkbox" disabled>
+                Disabled unchecked
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Disabled unchecked</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="checkbox" type="checkbox" checked disabled>
+                Disabled checked
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Disabled checked</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Radio</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="component-stack">
+                <label class="control-row">
+                  <input class="radio" type="radio" name="form-plan" value="free" checked>
+                  Free
+                </label>
+                <label class="control-row">
+                  <input class="radio" type="radio" name="form-plan" value="pro">
+                  Pro
+                </label>
+                <label class="control-row">
+                  <input class="radio" type="radio" name="form-plan" value="team">
+                  Team
+                </label>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Group</span>
+              <span class="sample-meta-detail">Single selection</span>
+              <span class="sample-meta-detail">Shared name</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="radio" type="radio" name="form-disabled" disabled>
+                Disabled
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Disabled</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Switch</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="switch" type="checkbox" role="switch" checked>
+                Airplane mode
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">On</span>
+              <span class="sample-meta-detail">With label</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="switch" type="checkbox" role="switch" disabled>
+                Disabled off
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Disabled off</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="switch" type="checkbox" role="switch" checked disabled>
+                Disabled on
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Disabled on</span>
+              <span class="sample-meta-detail">Reduced opacity</span>
+              <span class="sample-meta-detail">Non-interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tag ── -->
+    <section class="section section--component" id="tag">
+      <h2 class="section-label">Tag</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tag tag--s">Design</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tag tag--m">Design</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tag tag--l">Design</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Avatar ── -->
+    <section class="section section--component" id="avatar">
+      <h2 class="section-label">Avatar</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="avatar"><span class="avatar-fallback">GZ</span></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">1rem</span>
+              <span class="sample-meta-detail">Initials fallback</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="avatar avatar--l"><span class="avatar-fallback">GZ</span></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Large</span>
+              <span class="sample-meta-detail">1.5rem</span>
+              <span class="sample-meta-detail">Initials fallback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Dropdown ── -->
+    <section class="section section--component" id="dropdown">
+      <h2 class="section-label">Dropdown</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="dropdown-demo">
+                <button type="button" class="btn btn--m btn--outline">Open menu</button>
+                <div class="dropdown-menu" role="menu">
+                  <button type="button" class="dropdown-item is-active" role="menuitem">Profile</button>
+                  <button type="button" class="dropdown-item" role="menuitem">Settings</button>
+                  <button type="button" class="dropdown-item" role="menuitem">Billing</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Trigger</span>
+              <span class="sample-meta-detail">Menu panel</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="dropdown-demo">
+                <button type="button" class="btn btn--m btn--outline">Account</button>
+                <div class="dropdown-menu" role="menu">
+                  <button type="button" class="dropdown-item" role="menuitem">View profile</button>
+                  <button type="button" class="dropdown-item" role="menuitem">Preferences</button>
+                  <div class="dropdown-divider" role="separator"></div>
+                  <button type="button" class="dropdown-item" role="menuitem">Sign out</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With divider</span>
+              <span class="sample-meta-detail">Grouped items</span>
+              <span class="sample-meta-detail">Separator line</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Alert ── -->
+    <section class="section section--component" id="alert">
+      <h2 class="section-label">Alert</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="alert">
+                <div class="alert-title">Heads up</div>
+                <div class="alert-description">You can add components to your app using the Basement UI library.</div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Surface fill</span>
+              <span class="sample-meta-detail">Title and body</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="alert alert--destructive">
+                <div class="alert-title">Error</div>
+                <div class="alert-description">Your session has expired. Please sign in again.</div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Destructive</span>
+              <span class="sample-meta-detail">Red tint</span>
+              <span class="sample-meta-detail">Critical message</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </main>
+  </div>
 
   <script>
+    const SECTION_STORAGE_KEY = 'basement-ui-section';
+    const DARK_MODE_STORAGE_KEY = 'basement-ui-dark-mode';
+    const COLUMN_OVERLAY_STORAGE_KEY = 'basement-ui-show-columns';
+
     // ── Section nav ──
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.section');
 
+    function activateSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return false;
+      navItems.forEach(n => n.classList.toggle('is-active', n.dataset.section === sectionId));
+      sections.forEach(s => s.classList.remove('is-active'));
+      section.classList.add('is-active');
+      window.scrollTo(0, 0);
+      requestAnimationFrame(syncColumnOverlay);
+      return true;
+    }
+
     navItems.forEach(item => {
       item.addEventListener('click', () => {
-        navItems.forEach(n => n.classList.remove('is-active'));
-        sections.forEach(s => s.classList.remove('is-active'));
-        item.classList.add('is-active');
-        document.getElementById(item.dataset.section).classList.add('is-active');
+        const sectionId = item.dataset.section;
+        activateSection(sectionId);
+        localStorage.setItem(SECTION_STORAGE_KEY, sectionId);
       });
     });
 
     // ── Scheme picker ──
+    function resolveColor(color) {
+      const probe = document.createElement('span');
+      probe.style.display = 'none';
+      probe.style.backgroundColor = color;
+      document.body.appendChild(probe);
+      const resolved = getComputedStyle(probe).backgroundColor;
+      document.body.removeChild(probe);
+      return resolved;
+    }
+
+    function getThemeBorderColor() {
+      const probe = document.createElement('span');
+      probe.style.display = 'none';
+      probe.style.borderColor = 'var(--theme-border)';
+      document.body.appendChild(probe);
+      const resolved = getComputedStyle(probe).borderColor;
+      document.body.removeChild(probe);
+      return resolved;
+    }
+
+    function colorMatchesPageBackground(color) {
+      return resolveColor(color) === getComputedStyle(document.body).backgroundColor;
+    }
+
+    function syncColorChipBorder(el, color) {
+      el.style.borderColor = colorMatchesPageBackground(color)
+        ? getThemeBorderColor()
+        : 'transparent';
+    }
+
+    function syncAllColorChipBorders() {
+      document.querySelectorAll('.picker-chip').forEach(chip => {
+        syncColorChipBorder(chip, chip.dataset.color);
+      });
+      document.querySelectorAll('.scheme-swatch').forEach(swatch => {
+        syncColorChipBorder(swatch, swatch.style.backgroundColor || swatch.style.background);
+      });
+    }
+
     const palette = [
       { name: 'Black',        color: '#111111', light: false },
-      { name: 'Dark Gray',    color: '#666666', light: false },
+      { name: 'Dark Gray',    color: '#333333', light: false },
       { name: 'Gray',         color: '#999999', light: false },
       { name: 'Light Gray',   color: '#DDDDDD', light: true  },
       { name: 'White',        color: '#FFFFFF', light: true  },
-      { name: 'Red Dark',     color: '#8B0000', light: false },
-      { name: 'Red',          color: '#EE3333', light: false },
-      { name: 'Red Light',    color: '#FFE8E8', light: true  },
-      { name: 'Green Dark',   color: '#1A5C28', light: false },
+      { name: 'Red Dark',     color: '#7A1000', light: false },
+      { name: 'Red',          color: '#EF3D28', light: false },
+      { name: 'Red Light',    color: '#FFEBE6', light: true  },
+      { name: 'Green Dark',   color: '#133D22', light: false },
       { name: 'Green',        color: '#33BB55', light: false },
       { name: 'Green Light',  color: '#E0F8E8', light: true  },
-      { name: 'Blue Dark',    color: '#1A2E6E', light: false },
+      { name: 'Blue Dark',    color: '#0F1848', light: false },
       { name: 'Blue',         color: '#3366EE', light: false },
       { name: 'Blue Light',   color: '#E0EAFF', light: true  },
     ];
 
     document.querySelectorAll('.scheme-picker').forEach(picker => {
-      palette.forEach(({ name, color, light }) => {
+      palette.forEach(({ name, color }) => {
         const chip = document.createElement('button');
         chip.className = 'picker-chip';
         chip.title = name;
         chip.dataset.color = color;
         chip.dataset.name = name;
-        chip.dataset.light = light ? '1' : '';
         chip.style.background = color;
-        if (light) chip.style.borderColor = '#DDDDDD';
+        syncColorChipBorder(chip, color);
         picker.appendChild(chip);
       });
     });
@@ -1073,7 +2947,7 @@
         const swatch = activeBtn.querySelector('.scheme-swatch');
         const nameSpan = activeBtn.querySelector('.scheme-color-name');
         swatch.style.background = chip.dataset.color;
-        swatch.style.borderColor = chip.dataset.light ? '#DDDDDD' : 'transparent';
+        syncColorChipBorder(swatch, chip.dataset.color);
         nameSpan.textContent = chip.dataset.name;
         chip.closest('.scheme-picker').classList.remove('is-open');
         activeBtn = null;
@@ -1082,6 +2956,62 @@
       document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
       activeBtn = null;
     });
+
+    // ── Column overlay ──
+    const columnOverlay = document.getElementById('columnOverlay');
+    const columnOverlayToggle = document.getElementById('columnOverlayToggle');
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    function setDarkMode(enabled) {
+      document.documentElement.classList.toggle('is-dark', enabled);
+      darkModeToggle.checked = enabled;
+      syncAllColorChipBorders();
+    }
+
+    darkModeToggle.addEventListener('change', () => {
+      const enabled = darkModeToggle.checked;
+      setDarkMode(enabled);
+      localStorage.setItem(DARK_MODE_STORAGE_KEY, enabled ? '1' : '');
+    });
+
+    if (localStorage.getItem(DARK_MODE_STORAGE_KEY) === '1') {
+      setDarkMode(true);
+    } else {
+      syncAllColorChipBorders();
+    }
+
+    function syncColumnOverlay() {
+      const columns = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--columns'), 10);
+      columnOverlay.innerHTML = '';
+      for (let i = 0; i < columns; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'column-overlay-cell';
+        columnOverlay.appendChild(cell);
+      }
+    }
+
+    function setColumnOverlayVisible(visible) {
+      columnOverlay.classList.toggle('is-hidden', !visible);
+      columnOverlayToggle.checked = visible;
+    }
+
+    columnOverlayToggle.addEventListener('change', () => {
+      const visible = columnOverlayToggle.checked;
+      setColumnOverlayVisible(visible);
+      localStorage.setItem(COLUMN_OVERLAY_STORAGE_KEY, visible ? '1' : '');
+    });
+
+    syncColumnOverlay();
+    window.addEventListener('resize', syncColumnOverlay);
+
+    if (localStorage.getItem(COLUMN_OVERLAY_STORAGE_KEY) === '1') {
+      setColumnOverlayVisible(true);
+    } else {
+      setColumnOverlayVisible(false);
+    }
+
+    const savedSection = localStorage.getItem(SECTION_STORAGE_KEY);
+    if (savedSection) activateSection(savedSection);
   </script>
 
 </body>
