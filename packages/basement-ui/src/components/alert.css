@@ -1,18 +1,23 @@
 .alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
   padding: var(--spacing-s);
   border: 1px solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-surface);
 }
 
-.alert-title {
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+.alert-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
   color: var(--theme-fg);
 }
 
 .alert-description {
-  margin-top: var(--spacing-xs);
+  flex: 1;
+  min-width: 0;
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   color: var(--theme-fg-body);
@@ -23,6 +28,6 @@
   border-color: color-mix(in srgb, var(--color-red) 25%, var(--theme-border));
 }
 
-.alert--destructive .alert-title {
+.alert--destructive .alert-icon {
   color: var(--color-red);
 }

@@ -28,9 +28,14 @@
 
 /* ── Body types ── */
 .type-paragraph {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.type-paragraph--m {
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
-  color: var(--theme-fg-body);
 }
 
 .type-caption {
@@ -42,9 +47,14 @@
 .type-quote {
   border-left: 2px solid var(--theme-border);
   padding-left: var(--spacing-s);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-body);
+}
+
+.type-quote--m {
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
-  color: var(--theme-fg-body);
 }
 
 /* ── Links ── */

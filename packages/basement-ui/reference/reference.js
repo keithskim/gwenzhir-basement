@@ -1,15 +1,31 @@
 const SECTION_STORAGE_KEY = 'basement-ui-section';
 const DARK_MODE_STORAGE_KEY = 'basement-ui-dark-mode';
 const COLUMN_OVERLAY_STORAGE_KEY = 'basement-ui-show-columns';
+const DEFAULT_SECTION = 'home';
 
 // ── Section nav ──
 const navItems = document.querySelectorAll('.nav-item');
 const sections = document.querySelectorAll('.section');
+const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
+
+function sectionHash(sectionId) {
+  return sectionId === DEFAULT_SECTION ? '#home' : `#${sectionId}`;
+}
+
+function sectionFromHash() {
+  const id = window.location.hash.slice(1);
+  if (id && document.getElementById(id)) return id;
+  if (!window.location.hash) return DEFAULT_SECTION;
+  return null;
+}
 
 function activateSection(sectionId) {
   const section = document.getElementById(sectionId);
   if (!section) return false;
   navItems.forEach(n => n.classList.toggle('is-active', n.dataset.section === sectionId));
+  if (sidebarHomeBtn) {
+    sidebarHomeBtn.classList.toggle('is-active', sectionId === DEFAULT_SECTION);
+  }
   sections.forEach(s => s.classList.remove('is-active'));
   section.classList.add('is-active');
   window.scrollTo(0, 0);
@@ -17,12 +33,33 @@ function activateSection(sectionId) {
   return true;
 }
 
+function navigateToSection(sectionId, { replace = false } = {}) {
+  if (!activateSection(sectionId)) return;
+  const hash = sectionHash(sectionId);
+  localStorage.setItem(SECTION_STORAGE_KEY, sectionId);
+  if (window.location.hash === hash) return;
+  const method = replace ? 'replaceState' : 'pushState';
+  history[method](null, '', hash);
+}
+
 navItems.forEach(item => {
   item.addEventListener('click', () => {
-    const sectionId = item.dataset.section;
+    navigateToSection(item.dataset.section);
+  });
+});
+
+if (sidebarHomeBtn) {
+  sidebarHomeBtn.addEventListener('click', () => {
+    navigateToSection(DEFAULT_SECTION);
+  });
+}
+
+window.addEventListener('hashchange', () => {
+  const sectionId = sectionFromHash();
+  if (sectionId) {
     activateSection(sectionId);
     localStorage.setItem(SECTION_STORAGE_KEY, sectionId);
-  });
+  }
 });
 
 // ── Scheme picker ──
@@ -66,21 +103,25 @@ function syncAllColorChipBorders() {
 }
 
 const palette = [
-  { name: 'Black',        color: '#111111', light: false },
-  { name: 'Dark Gray',    color: '#333333', light: false },
-  { name: 'Gray',         color: '#999999', light: false },
-  { name: 'Light Gray',   color: '#DDDDDD', light: true  },
-  { name: 'White',        color: '#FFFFFF', light: true  },
-  { name: 'Red Dark',     color: '#7A1000', light: false },
-  { name: 'Red',          color: '#EF3D28', light: false },
-  { name: 'Red Light',    color: '#FFEBE6', light: true  },
-  { name: 'Green Dark',   color: '#133D22', light: false },
-  { name: 'Green',        color: '#33BB55', light: false },
-  { name: 'Green Light',  color: '#E0F8E8', light: true  },
-  { name: 'Blue Dark',    color: '#0F1848', light: false },
-  { name: 'Blue',         color: '#3366EE', light: false },
-  { name: 'Blue Light',   color: '#E0EAFF', light: true  },
-];
+  { name: 'Black',      var: '--color-black',      light: false },
+  { name: 'Dark Gray',  var: '--color-dark-gray',  light: false },
+  { name: 'Gray',       var: '--color-gray',       light: false },
+  { name: 'Light Gray', var: '--color-light-gray', light: true  },
+  { name: 'White',      var: '--color-white',      light: true  },
+  { name: 'Red Dark',   var: '--color-red-dark',   light: false },
+  { name: 'Red',        var: '--color-red',        light: false },
+  { name: 'Red Light',  var: '--color-red-light',  light: true  },
+  { name: 'Green Dark', var: '--color-green-dark', light: false },
+  { name: 'Green',      var: '--color-green',      light: false },
+  { name: 'Green Light',var: '--color-green-light',light: true  },
+  { name: 'Blue Dark',  var: '--color-blue-dark',  light: false },
+  { name: 'Blue',       var: '--color-blue',       light: false },
+  { name: 'Blue Light', var: '--color-blue-light', light: true  },
+].map(({ name, var: tokenVar, light }) => ({
+  name,
+  color: getComputedStyle(document.documentElement).getPropertyValue(tokenVar).trim(),
+  light,
+}));
 
 document.querySelectorAll('.scheme-picker').forEach(picker => {
   palette.forEach(({ name, color }) => {
@@ -219,5 +260,7 @@ if (localStorage.getItem(COLUMN_OVERLAY_STORAGE_KEY) === '1') {
   setColumnOverlayVisible(false);
 }
 
-const savedSection = localStorage.getItem(SECTION_STORAGE_KEY);
-if (savedSection) activateSection(savedSection);
+const initialSection = sectionFromHash()
+  || localStorage.getItem(SECTION_STORAGE_KEY)
+  || DEFAULT_SECTION;
+navigateToSection(initialSection, { replace: true });

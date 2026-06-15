@@ -120,6 +120,6 @@ html.is-dark {
   --theme-fg-secondary: var(--color-gray);
   --theme-fg-body: var(--color-light-gray);
   --theme-border: var(--color-dark-gray);
-  --theme-surface: #1A1A1A;
+  --theme-surface: var(--color-black);
   --theme-accent: var(--color-white);
 }

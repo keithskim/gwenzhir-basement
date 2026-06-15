@@ -38,16 +38,17 @@ The live token reference is at `packages/basement-ui/index.html`. It documents a
 
 **Reference page sections:**
 - **Foundation** — Colors, Typography, Measure, Layout, Icons
-- **Components** — Button (Default, Accent, Ghost + disabled state; S / M / L), Form (Input, Label, Textarea, Checkbox, Radio, Switch), Tag, Avatar, Dropdown, Alert
+- **Components** — Button (Default, Accent, Ghost + disabled state; S / M / L), Form (Input, Label, Textarea, Checkbox, Radio, Switch), Tag, Avatar, Dropdown, Alert (icon + body)
 - **Colors > Palette** — grayscale row + hue rows (Red, Green, Blue) each with Dark / Mid / Light swatches
 - **Colors > Scheme** — assigns Light and Dark theme colors to 6 roles grouped by Background, Text, Border (h4 headings); roles are clickable to swap color from the full palette
-- **Typography** — Typeface, Sizes, Headings (H1–H4), Body (paragraph, blockquote), Caption, Links
+- **Typography** — Typeface, Sizes, Headings (H1–H4), Body (paragraph S / M, quote S / M), Caption, Links
 - **Measure** — Radius, Divider, Spacing (rising bars), Sizes (bottom-aligned squares)
 - **Layout** — Columns (one row per viewport in a shared sample box), Viewport (GANTT-style swimlanes on a proportional scale)
 - **Icons > Sizes** — S / M / L gear samples with Phosphor attribution; **Icons > Icons** — grouped catalog (~100 icons: Navigation, Actions, Account & settings, Content & communication)
 
 **Design principles:**
-- Tokens are the source of truth — components reference tokens, not raw values
+- Tokens are the source of truth — components reference tokens, not raw values; the reference page uses only colors from the defined palette (14 swatches + theme roles), never ad-hoc hex values
+- Middle dot (`·`) is the in-text list separator; size pairs use `·` not `/`
 - All values in rem
 - No all-caps or non-standard letter-spacing in UI text
 - Subsection headings omit a bottom border when immediately followed by a full-width bordered box

@@ -55,11 +55,20 @@
 }
 
 .sidebar-title {
+  all: unset;
+  display: block;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
   letter-spacing: -0.03em;
   color: var(--theme-fg);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
 }
+
+.sidebar-title.is-active { color: var(--theme-fg); }
 
 .sidebar-byline {
   margin-top: var(--spacing-xs);
@@ -86,8 +95,8 @@
 }
 
 .nav-group-label {
-  font-size: var(--font-size-2xs);
-  line-height: var(--line-height-2xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
   color: var(--theme-fg-secondary);
 }
 
@@ -96,8 +105,8 @@
   display: block;
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
   color: var(--theme-fg-secondary);
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
@@ -201,7 +210,8 @@
 .subsection-label:has(+ .sample-box),
 .subsection-label:has(+ .type-sample-list),
 .subsection-label:has(+ .type-sample-item),
-.subsection-label:has(+ .divider-demo) {
+.subsection-label:has(+ .divider-demo),
+.subsection-label:has(+ .type-paragraph) {
   border-bottom: none;
   padding-bottom: 0;
 }
@@ -210,17 +220,22 @@
 .palette-hue-group,
 .icon-group,
 .scheme-group,
-.divider-demo,
-.subsection-note {
+.divider-demo {
   grid-column: 1 / -1;
 }
 
-.subsection-note {
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--theme-fg-secondary);
-  margin-top: calc(-1 * var(--spacing-xs));
+.border-group > .type-paragraph,
+#home .type-paragraph {
+  grid-column: 1 / -1;
   margin-bottom: var(--spacing-s);
+}
+
+#home .home-intro {
+  max-width: 40rem;
+}
+
+.subsection-label + .type-paragraph {
+  margin-top: calc(-1 * var(--spacing-xs));
 }
 
 /* ── Column-snapped rows ── */
@@ -307,7 +322,7 @@
   overflow: hidden;
 }
 
-#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-caption, .type-quote, .link-sample) {
+#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .link-sample) {
   grid-column: 1 / -1;
 }
 
@@ -549,6 +564,7 @@ html.is-dark .swatch-face--black { border-color: var(--theme-border); }
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
   align-items: baseline;
+  row-gap: var(--spacing-xs);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
 }
@@ -556,33 +572,59 @@ html.is-dark .swatch-face--black { border-color: var(--theme-border); }
 .sample-meta-label {
   grid-column: span 1;
   color: var(--theme-fg);
+  min-width: 0;
 }
 
-.sample-meta-label--wide {
-  grid-column: span 2;
-}
-
+.sample-meta-label--wide,
 .sample-meta-label--2col {
   grid-column: span 2;
+}
+
+.sample-meta-label--3col {
+  grid-column: span 3;
 }
 
 .sample-meta-detail {
   grid-column: span 1;
   color: var(--theme-fg-secondary);
+  min-width: 0;
 }
 
-.sample-meta-detail--wide {
-  grid-column: span 2;
-}
-
+.sample-meta-detail--wide,
 .sample-meta-detail--2col {
   grid-column: span 2;
+}
+
+/* Sole meta entry uses full width of the parent item's column span. */
+.sample-meta > :only-child {
+  grid-column: 1 / -1;
 }
 
 @media (min-width: 30rem) {
   .sample-meta-label--wide,
   .sample-meta-detail--wide {
     grid-column: span 1;
+  }
+}
+
+@media (max-width: 29.999rem) {
+  .sample-meta-label,
+  .sample-meta-detail,
+  .sample-meta-label--wide,
+  .sample-meta-label--2col,
+  .sample-meta-label--3col,
+  .sample-meta-detail--wide,
+  .sample-meta-detail--2col {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 30rem) {
+  #dropdown .sample-meta-label,
+  #dropdown .sample-meta-detail,
+  #alert .sample-meta-label,
+  #alert .sample-meta-detail {
+    grid-column: span 2;
   }
 }
 
@@ -815,12 +857,6 @@ html.is-dark .swatch-face--black { border-color: var(--theme-border); }
     --columns-demo-gap: var(--column-gap);
     --columns-demo-cell-size: var(--size-s);
   }
-}
-
-.columns-intro {
-  grid-column: 1 / -1;
-  max-width: none;
-  margin-bottom: var(--spacing-s);
 }
 
 .sample-box.columns-chart,

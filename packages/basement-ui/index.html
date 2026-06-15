@@ -15,12 +15,12 @@
     <div class="column-overlay is-hidden" id="columnOverlay"></div>
 
   <aside class="sidebar">
-    <h1 class="sidebar-title">Basement UI</h1>
+    <button type="button" class="sidebar-title is-active" id="sidebarHomeBtn">Basement UI</button>
     <div class="sidebar-byline">@gwenzhir</div>
     <nav class="sidebar-nav">
       <div class="nav-group">
         <div class="nav-group-label">Foundation</div>
-        <button class="nav-item is-active" data-section="colors">Colors</button>
+        <button class="nav-item" data-section="colors">Colors</button>
         <button class="nav-item" data-section="typography">Typography</button>
         <button class="nav-item" data-section="measure">Measure</button>
         <button class="nav-item" data-section="layout">Layout</button>
@@ -50,8 +50,14 @@
 
     <main class="content">
 
+    <!-- ── Home ── -->
+    <section class="section is-active" id="home">
+      <h2 class="section-label">Basement UI</h2>
+      <p class="type-paragraph home-intro">A project-agnostic component library and design system for use in internal tools, admin interfaces, and other Gwenzhir projects.</p>
+    </section>
+
     <!-- ── Colors ── -->
-    <section class="section is-active" id="colors">
+    <section class="section" id="colors">
       <h2 class="section-label">Colors</h2>
 
       <div class="border-group">
@@ -165,11 +171,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Primary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
+                <span class="scheme-swatch" style="background:var(--color-white);"></span>
                 <span class="scheme-color-name">White</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-swatch" style="background:var(--color-black);"></span>
                 <span class="scheme-color-name">Black</span>
               </button>
             </div>
@@ -179,11 +185,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Secondary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#333333;"></span>
+                <span class="scheme-swatch" style="background:var(--color-dark-gray);"></span>
                 <span class="scheme-color-name">Dark Gray</span>
               </button>
             </div>
@@ -199,11 +205,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Primary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-swatch" style="background:var(--color-black);"></span>
                 <span class="scheme-color-name">Black</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
+                <span class="scheme-swatch" style="background:var(--color-white);"></span>
                 <span class="scheme-color-name">White</span>
               </button>
             </div>
@@ -213,11 +219,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Secondary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#999999;"></span>
+                <span class="scheme-swatch" style="background:var(--color-gray);"></span>
                 <span class="scheme-color-name">Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
             </div>
@@ -233,11 +239,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Resting</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#DDDDDD;"></span>
+                <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
                 <span class="scheme-color-name">Light Gray</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#333333;"></span>
+                <span class="scheme-swatch" style="background:var(--color-dark-gray);"></span>
                 <span class="scheme-color-name">Dark Gray</span>
               </button>
             </div>
@@ -247,11 +253,11 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Highlighted</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:#111111;"></span>
+                <span class="scheme-swatch" style="background:var(--color-black);"></span>
                 <span class="scheme-color-name">Black</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
-                <span class="scheme-swatch" style="background:#FFFFFF;"></span>
+                <span class="scheme-swatch" style="background:var(--color-white);"></span>
                 <span class="scheme-color-name">White</span>
               </button>
             </div>
@@ -275,8 +281,7 @@
           </div>
           <div class="sample-meta">
             <span class="sample-meta-label sample-meta-label--wide">Base Text</span>
-            <span class="sample-meta-detail">Pretendard</span>
-            <span class="sample-meta-detail">600</span>
+            <span class="sample-meta-detail">Pretendard · 600</span>
           </div>
         </div>
       </div>
@@ -290,7 +295,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">2XS</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem / 1rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem · 1rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -299,7 +304,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">XS</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem / 1.25rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.75rem · 1.25rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -308,7 +313,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">S</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">1rem / 1.5rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1rem · 1.5rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -317,7 +322,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">M</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">1.5rem / 2rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">1.5rem · 2rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -326,7 +331,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">L</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">2.25rem / 2.75rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">2.25rem · 2.75rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -335,7 +340,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">XL</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">3rem / 3.5rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">3rem · 3.5rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -344,7 +349,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">2XL</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">4rem / 4.5rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">4rem · 4.5rem</span>
             </div>
           </div>
         </div>
@@ -359,8 +364,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">H1</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">4rem / 4.5rem</span>
-              <span class="sample-meta-detail">−0.03em</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">4rem · 4.5rem · −0.03em</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -369,8 +373,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">H2</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">2.25rem / 2.75rem</span>
-              <span class="sample-meta-detail">−0.02em</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">2.25rem · 2.75rem · −0.02em</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -379,8 +382,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">H3</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">1.5rem / 2rem</span>
-              <span class="sample-meta-detail">−0.01em</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">1.5rem · 2rem · −0.01em</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -389,7 +391,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">H4</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">1rem / 1.5rem</span>
+              <span class="sample-meta-detail sample-meta-detail--wide">1rem · 1.5rem</span>
             </div>
           </div>
         </div>
@@ -403,9 +405,17 @@
               <p class="type-paragraph">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label sample-meta-label--wide">Paragraph</span>
-              <span class="sample-meta-detail">S</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">Dark Gray</span>
+              <span class="sample-meta-label sample-meta-label--2col">Paragraph</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">S · Gray</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph type-paragraph--m">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--2col">Paragraph</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">M · Gray</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -413,10 +423,17 @@
               <blockquote class="type-quote">Good design systems are invisible until you don't have one.</blockquote>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Quote</span>
-              <span class="sample-meta-detail">S</span>
-              <span class="sample-meta-detail">Dark Gray</span>
-              <span class="sample-meta-detail sample-meta-detail--wide">Left border</span>
+              <span class="sample-meta-label sample-meta-label--2col">Quote</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">S · Dark Gray · Left border</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <blockquote class="type-quote type-quote--m">Good design systems are invisible until you don't have one.</blockquote>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--2col">Quote</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">M · Dark Gray · Left border</span>
             </div>
           </div>
         </div>
@@ -431,8 +448,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Caption</span>
-              <span class="sample-meta-detail">XS</span>
-              <span class="sample-meta-detail">Gray</span>
+              <span class="sample-meta-detail">XS · Gray</span>
             </div>
           </div>
         </div>
@@ -447,11 +463,11 @@
             </div>
             <div class="link-props">
               <div class="sample-meta">
-                <span class="sample-meta-label sample-meta-label--2col">Text underline offset</span>
+                <span class="sample-meta-label sample-meta-label--3col">Text underline offset</span>
                 <span class="sample-meta-detail">0.2em</span>
               </div>
               <div class="sample-meta">
-                <span class="sample-meta-label sample-meta-label--2col">Text decoration thickness</span>
+                <span class="sample-meta-label sample-meta-label--3col">Text decoration thickness</span>
                 <span class="sample-meta-detail">1px</span>
               </div>
             </div>
@@ -561,7 +577,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Columns</h3>
-        <p class="type-paragraph columns-intro">One column grid spans the full page. The sidebar occupies a fixed number of columns at each viewport; main content fills the rest. The gap between columns is 1rem throughout.</p>
+        <p class="type-paragraph">One column grid spans the full page. The sidebar occupies a fixed number of columns at each viewport; main content fills the rest. The gap between columns is 1rem throughout.</p>
         <div class="sample-box columns-chart">
           <div class="columns-lane">
             <div class="columns-lane-label">
@@ -701,7 +717,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Sizes</h3>
-        <p class="subsection-note"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a></p>
+        <p class="type-paragraph"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a> regular weight, vendored for offline use. Icon sizes S, M, and L map to 0.75, 1, and 1.25rem.</p>
         <div class="col-row col-row--icon-sizes">
           <div>
             <div class="icon-face icon-face--s"><i class="ph ph-gear" aria-hidden="true"></i></div>
@@ -1551,8 +1567,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Trigger</span>
-              <span class="sample-meta-detail">Menu panel</span>
+              <span class="sample-meta-detail">Trigger · Menu panel</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1573,8 +1588,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">With divider</span>
-              <span class="sample-meta-detail">Grouped items</span>
-              <span class="sample-meta-detail">Separator line</span>
+              <span class="sample-meta-detail">Grouped items · Separator line</span>
             </div>
           </div>
         </div>
@@ -1590,27 +1604,25 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="alert">
-                <div class="alert-title">Heads up</div>
-                <div class="alert-description">You can add components to your app using the Basement UI library.</div>
+                <i class="ph ph-info alert-icon" aria-hidden="true"></i>
+                <p class="alert-description">You can add components to your app using the Basement UI library.</p>
               </div>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Surface fill</span>
-              <span class="sample-meta-detail">Title and body</span>
+              <span class="sample-meta-detail">Surface fill · Icon and body</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="alert alert--destructive">
-                <div class="alert-title">Error</div>
-                <div class="alert-description">Your session has expired. Please sign in again.</div>
+                <i class="ph ph-warning-circle alert-icon" aria-hidden="true"></i>
+                <p class="alert-description">Your session has expired. Please sign in again.</p>
               </div>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Destructive</span>
-              <span class="sample-meta-detail">Red tint</span>
-              <span class="sample-meta-detail">Critical message</span>
+              <span class="sample-meta-detail">Red tint · Icon and body</span>
             </div>
           </div>
         </div>
