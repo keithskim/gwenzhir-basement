@@ -1,0 +1,19 @@
+/* Phosphor icon size utilities */
+.ph {
+  line-height: 1;
+}
+
+.icon--s.ph,
+.ph.icon--s {
+  font-size: 0.75rem;
+}
+
+.icon--m.ph,
+.ph.icon--m {
+  font-size: 1rem;
+}
+
+.icon--l.ph,
+.ph.icon--l {
+  font-size: 1.25rem;
+}

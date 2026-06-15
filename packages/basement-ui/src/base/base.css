@@ -1,0 +1,19 @@
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
+
+/* ── Base ── */
+html, body { height: 100%; }
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  word-break: keep-all;
+  line-break: strict;
+}

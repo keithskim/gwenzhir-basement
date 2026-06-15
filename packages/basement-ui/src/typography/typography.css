@@ -1,0 +1,56 @@
+/* ── Headings ── */
+.type-h1 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-2xl);
+  letter-spacing: -0.03em;
+  color: var(--theme-fg);
+}
+
+.type-h2 {
+  font-size: var(--font-size-l);
+  line-height: var(--line-height-l);
+  letter-spacing: -0.02em;
+  color: var(--theme-fg);
+}
+
+.type-h3 {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  letter-spacing: -0.01em;
+  color: var(--theme-fg);
+}
+
+.type-h4 {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--theme-fg);
+}
+
+/* ── Body types ── */
+.type-paragraph {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--theme-fg-body);
+}
+
+.type-caption {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.type-quote {
+  border-left: 2px solid var(--theme-border);
+  padding-left: var(--spacing-s);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--theme-fg-body);
+}
+
+/* ── Links ── */
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}

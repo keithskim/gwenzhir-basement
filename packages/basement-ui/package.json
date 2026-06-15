@@ -2,8 +2,20 @@
   "name": "basement-ui",
   "version": "1.0.0",
   "description": "Design system and component library for Gwenzhir projects.",
-  "main": "index.js",
+  "exports": {
+    ".": "./src/index.css",
+    "./tokens": "./src/tokens/tokens.css",
+    "./components": "./src/components/index.css",
+    "./typography": "./src/typography/typography.css"
+  },
+  "files": [
+    "src/",
+    "vendor/",
+    "reference/"
+  ],
   "scripts": {
+    "dev": "npx --yes serve . -p 5173",
+    "reference": "open index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

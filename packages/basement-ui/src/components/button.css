@@ -1,0 +1,77 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  border-radius: var(--border-radius-s);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--theme-fg);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn--s {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  padding: 0.125rem 0.375rem;
+}
+
+.btn--m {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  padding: 0.25rem 0.625rem;
+}
+
+.btn--l {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  padding: 0.25rem 0.875rem;
+}
+
+.btn--accent {
+  background: var(--theme-fg);
+  color: var(--theme-bg);
+}
+
+.btn--accent:hover:not(:disabled) {
+  background: var(--color-dark-gray);
+}
+
+html.is-dark .btn--accent:hover:not(:disabled) {
+  background: var(--color-light-gray);
+  color: var(--color-black);
+}
+
+.btn--default {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+.btn--default:hover:not(:disabled) {
+  background: var(--color-light-gray);
+  border-color: var(--color-gray);
+}
+
+html.is-dark .btn--default:hover:not(:disabled) {
+  background: var(--color-dark-gray);
+  border-color: var(--color-gray);
+}
+
+.btn--ghost { background: transparent; }
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--theme-surface);
+}
+
+html.is-dark .btn--ghost:hover:not(:disabled) {
+  background: var(--color-dark-gray);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

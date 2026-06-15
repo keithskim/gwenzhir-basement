@@ -1,0 +1,125 @@
+/* ── Tokens ── */
+:root {
+  --color-black:      #111111;
+  --color-dark-gray:  #333333;
+  --color-gray:       #999999;
+  --color-light-gray: #DDDDDD;
+  --color-white:      #FFFFFF;
+
+  --color-red-dark:    #7A1000;
+  --color-red:         #EF3D28;
+  --color-red-light:   #FFEBE6;
+
+  --color-green-dark:  #133D22;
+  --color-green:       #33BB55;
+  --color-green-light: #E0F8E8;
+
+  --color-blue-dark:  #0F1848;
+  --color-blue:       #3366EE;
+  --color-blue-light: #E0EAFF;
+
+  --theme-bg: var(--color-white);
+  --theme-fg: var(--color-black);
+  --theme-fg-secondary: var(--color-gray);
+  --theme-fg-body: var(--color-dark-gray);
+  --theme-border: var(--color-light-gray);
+  --theme-surface: var(--color-white);
+  --theme-accent: var(--color-black);
+
+  --font-base-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-base-weight: 600;
+
+  --font-size-2xs: 0.5rem;
+  --font-size-xs:  0.75rem;
+  --font-size-s:   1rem;
+  --font-size-m:   1.5rem;
+  --font-size-l:   2.25rem;
+  --font-size-xl:  3rem;
+  --font-size-2xl: 4rem;
+
+  --line-height-2xs: 1rem;
+  --line-height-xs:  1.25rem;
+  --line-height-s:   1.5rem;
+  --line-height-m:   2rem;
+  --line-height-l:   2.75rem;
+  --line-height-xl:  3.5rem;
+  --line-height-2xl: 4.5rem;
+
+  --border-radius-s: 0.25rem;
+  --border-radius-m: 0.5rem;
+  --border-radius-l: 1rem;
+
+  --spacing-xs: 0.5rem;
+  --spacing-s:  1rem;
+  --spacing-m:  2rem;
+  --spacing-l:  4rem;
+  --spacing-xl: 8rem;
+
+  --size-xs: 1rem;
+  --size-s:  2rem;
+  --size-m:  4rem;
+  --size-l:  8rem;
+  --size-xl: 16rem;
+
+  --chart-inset: var(--spacing-m);
+
+  --viewport-medium-min: 30rem;
+  --viewport-wide-min: 60rem;
+  --viewport-extra-wide-min: 90rem;
+  --viewport-max: 120rem;
+  --viewport-narrow-max: calc(var(--viewport-medium-min) - 0.0625rem);
+
+  --columns-narrow: 7;
+  --columns-medium: 9;
+  --columns-wide: 11;
+  --columns-extra-wide: 13;
+  --columns: var(--columns-narrow);
+  --column-gap: var(--spacing-s);
+
+  --sidebar-columns-narrow: 2;
+  --sidebar-columns-medium: 2;
+  --sidebar-columns-wide: 2;
+  --sidebar-columns-extra-wide: 2;
+  --sidebar-columns: var(--sidebar-columns-narrow);
+
+  --content-columns-narrow: 5;
+  --content-columns-medium: 7;
+  --content-columns-wide: 9;
+  --content-columns-extra-wide: 11;
+  --content-columns: var(--content-columns-narrow);
+}
+
+@media (min-width: 30rem) {
+  :root {
+    --columns: var(--columns-medium);
+    --sidebar-columns: var(--sidebar-columns-medium);
+    --content-columns: var(--content-columns-medium);
+  }
+}
+
+@media (min-width: 60rem) {
+  :root {
+    --columns: var(--columns-wide);
+    --sidebar-columns: var(--sidebar-columns-wide);
+    --content-columns: var(--content-columns-wide);
+  }
+}
+
+@media (min-width: 90rem) {
+  :root {
+    --columns: var(--columns-extra-wide);
+    --sidebar-columns: var(--sidebar-columns-extra-wide);
+    --content-columns: var(--content-columns-extra-wide);
+  }
+}
+
+html.is-dark {
+  color-scheme: dark;
+  --theme-bg: var(--color-black);
+  --theme-fg: var(--color-white);
+  --theme-fg-secondary: var(--color-gray);
+  --theme-fg-body: var(--color-light-gray);
+  --theme-border: var(--color-dark-gray);
+  --theme-surface: #1A1A1A;
+  --theme-accent: var(--color-white);
+}

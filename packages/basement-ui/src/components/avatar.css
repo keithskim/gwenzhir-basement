@@ -1,0 +1,27 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-xs);
+  height: var(--size-xs);
+  border-radius: 50%;
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-fallback {
+  font-size: var(--font-size-2xs);
+  line-height: 1;
+  color: var(--theme-fg-secondary);
+}
+
+.avatar--l {
+  width: calc(var(--size-xs) * 1.5);
+  height: calc(var(--size-xs) * 1.5);
+}
+
+.avatar--l .avatar-fallback {
+  font-size: var(--font-size-xs);
+}
