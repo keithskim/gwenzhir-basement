@@ -47,6 +47,7 @@
         <button class="nav-item" data-section="tag">Tag</button>
         <button class="nav-item" data-section="avatar">Avatar</button>
         <button class="nav-item" data-section="dropdown">Dropdown</button>
+        <button class="nav-item" data-section="table">Table</button>
         <button class="nav-item" data-section="alert">Alert</button>
       </div>
     </nav>
@@ -1532,6 +1533,17 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="variant-row">
+                <button type="button" class="btn btn--m btn--subtle">Subtle</button>
+                <button type="button" class="btn btn--m btn--subtle" disabled>Subtle</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Subtle</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
                 <button type="button" class="btn btn--m btn--accent">Accent</button>
                 <button type="button" class="btn btn--m btn--accent" disabled>Accent</button>
               </div>
@@ -1950,6 +1962,82 @@
             <div class="sample-meta">
               <span class="sample-meta-label">With divider</span>
               <span class="sample-meta-detail">Grouped items · Separator line</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Table ── -->
+    <section class="section section--component" id="table">
+      <h2 class="section-label">Table</h2>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="table-wrap">
+                <table class="table table--striped table-demo">
+                  <thead>
+                    <tr>
+                      <th scope="col" data-sortable aria-sort="ascending">
+                        <button type="button" class="table-sort is-sorted is-sorted--asc">
+                          <span class="table-sort-label">Project</span>
+                          <i class="ph ph-caret-up table-sort-icon" aria-hidden="true"></i>
+                        </button>
+                      </th>
+                      <th scope="col" data-sortable>
+                        <button type="button" class="table-sort">
+                          <span class="table-sort-label">Status</span>
+                          <i class="ph ph-caret-down table-sort-icon" aria-hidden="true"></i>
+                        </button>
+                      </th>
+                      <th scope="col" data-sortable data-sort-type="number">
+                        <button type="button" class="table-sort">
+                          <span class="table-sort-label">Updated</span>
+                          <i class="ph ph-caret-down table-sort-icon" aria-hidden="true"></i>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Brand refresh</td>
+                      <td><span class="tag tag--s">Active</span></td>
+                      <td data-sort-value="20260601">Jun 1, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Platform migration</td>
+                      <td><span class="tag tag--s">Paused</span></td>
+                      <td data-sort-value="20260512">May 12, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Docs overhaul</td>
+                      <td><span class="tag tag--s">Active</span></td>
+                      <td data-sort-value="20260610">Jun 10, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Inventory sync</td>
+                      <td><span class="tag tag--s">Done</span></td>
+                      <td data-sort-value="20260428">Apr 28, 2026</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="table-props">
+              <div class="sample-meta">
+                <span class="sample-meta-label">Header</span>
+                <span class="sample-meta-detail">Column labels in the top row</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-meta-label">Sorting</span>
+                <span class="sample-meta-detail">Click a column label to reorder rows</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-meta-label">Striped rows</span>
+                <span class="sample-meta-detail">Alternating shading for easier scanning</span>
+              </div>
             </div>
           </div>
         </div>

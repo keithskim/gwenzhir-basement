@@ -337,6 +337,59 @@ if (localStorage.getItem(COLUMN_OVERLAY_STORAGE_KEY) === '1') {
   setColumnOverlayVisible(false);
 }
 
+// ── Table sorting demo ──
+function initTableSorting() {
+  document.querySelectorAll('.table-demo').forEach(table => {
+    const tbody = table.querySelector('tbody');
+    const headers = table.querySelectorAll('th[data-sortable]');
+
+    headers.forEach(th => {
+      const btn = th.querySelector('.table-sort');
+      if (!btn || !tbody) return;
+
+      btn.addEventListener('click', () => {
+        const colIndex = [...th.parentElement.children].indexOf(th);
+        const sortType = th.dataset.sortType || 'string';
+        const current = th.getAttribute('aria-sort');
+        const next = current === 'ascending' ? 'descending' : 'ascending';
+
+        headers.forEach(header => {
+          if (header === th) return;
+          header.setAttribute('aria-sort', 'none');
+          const otherBtn = header.querySelector('.table-sort');
+          const otherIcon = header.querySelector('.table-sort-icon');
+          otherBtn?.classList.remove('is-sorted', 'is-sorted--asc', 'is-sorted--desc');
+          if (otherIcon) otherIcon.className = 'ph ph-caret-down table-sort-icon';
+        });
+
+        th.setAttribute('aria-sort', next);
+        btn.classList.add('is-sorted');
+        btn.classList.toggle('is-sorted--asc', next === 'ascending');
+        btn.classList.toggle('is-sorted--desc', next === 'descending');
+        const icon = btn.querySelector('.table-sort-icon');
+        if (icon) {
+          icon.className = `ph ph-caret-${next === 'ascending' ? 'up' : 'down'} table-sort-icon`;
+        }
+
+        const rows = [...tbody.querySelectorAll('tr')];
+        rows.sort((rowA, rowB) => {
+          const cellA = rowA.children[colIndex];
+          const cellB = rowB.children[colIndex];
+          const aVal = cellA.dataset.sortValue ?? cellA.textContent.trim();
+          const bVal = cellB.dataset.sortValue ?? cellB.textContent.trim();
+          const cmp = sortType === 'number'
+            ? Number(aVal) - Number(bVal)
+            : aVal.localeCompare(bVal, undefined, { sensitivity: 'base' });
+          return next === 'ascending' ? cmp : -cmp;
+        });
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+  });
+}
+
+initTableSorting();
+
 const initialSection = sectionFromHash()
   || localStorage.getItem(SECTION_STORAGE_KEY)
   || DEFAULT_SECTION;

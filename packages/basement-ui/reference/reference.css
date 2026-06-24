@@ -936,6 +936,35 @@ html.is-dark .swatch-face--black { border-color: var(--theme-border); }
   width: 100%;
 }
 
+#table .type-sample-item {
+  grid-column: 1 / -1;
+}
+
+.table-props {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: start;
+  row-gap: var(--spacing-xs);
+}
+
+#table .table-props > .sample-meta {
+  align-items: start;
+}
+
+@media (min-width: 40rem) {
+  #table .table-props > .sample-meta {
+    grid-row: 1;
+    grid-column: span 2;
+    align-self: start;
+  }
+
+  #table .table-props > .sample-meta .sample-meta-label,
+  #table .table-props > .sample-meta .sample-meta-detail {
+    grid-column: 1 / -1;
+  }
+}
+
 /* ── Spacing ── */
 .spacing-bar {
   width: 100%;

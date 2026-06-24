@@ -61,6 +61,21 @@ html.is-dark .btn--default:hover:not(:disabled) {
   border-color: var(--color-gray);
 }
 
+.btn--subtle {
+  background: transparent;
+  border-color: var(--theme-border);
+}
+
+.btn--subtle:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
+  border-color: var(--color-gray);
+}
+
+html.is-dark .btn--subtle:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--theme-border) 22%, var(--theme-bg));
+  border-color: var(--color-gray);
+}
+
 .btn--ghost { background: transparent; }
 
 .btn--ghost:hover:not(:disabled) {
