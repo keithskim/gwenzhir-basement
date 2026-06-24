@@ -14,19 +14,19 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.btn--s {
+.btn--2xs {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
   padding: 0.125rem 0.375rem;
 }
 
-.btn--m {
+.btn--xs {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   padding: 0.25rem 0.625rem;
 }
 
-.btn--l {
+.btn--s {
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
   padding: 0.25rem 0.875rem;
@@ -96,17 +96,17 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   flex-shrink: 0;
 }
 
-.btn--icon.btn--s {
+.btn--icon.btn--2xs {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.btn--icon.btn--m {
+.btn--icon.btn--xs {
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.btn--icon.btn--l {
+.btn--icon.btn--s {
   width: 2.125rem;
   height: 2.125rem;
 }
