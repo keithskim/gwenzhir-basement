@@ -1,0 +1,29 @@
+---
+description: Reference page copy uses design language, not implementation names
+globs: packages/basement-ui/index.html,packages/basement-ui/reference/**
+alwaysApply: true
+---
+
+# Reference copy
+
+When writing or editing Basement UI reference content (`index.html`, `reference/`), describe what users see — not how it is built.
+
+## Do
+
+- Use component and design terms: “Pinned header”, “Striped rows”, “Optional tally”.
+- Name tokens from the palette and type scale when relevant: “Gray D”, “XS”, “1rem”.
+- Keep `sample-meta-label` and `sample-meta-detail` readable to designers and PMs.
+
+## Do not
+
+- Mention CSS class names, BEM modifiers, or HTML structure (`table--sticky`, `sidebar-item-meta`, `tag--filled`).
+- Wrap implementation identifiers in `<code>`.
+- Reference file paths, selectors, or props unless the page is explicitly a developer API doc.
+
+## Examples
+
+- Bad: `Scrollable body · table-wrap--scroll · table--sticky`
+- Good: `Scrollable body · Pinned header and footer`
+
+- Bad: `Uses sidebar-item-icon and tag--xs`
+- Good: `Leading icon · Optional filled tag`

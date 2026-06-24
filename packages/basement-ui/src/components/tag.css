@@ -8,6 +8,12 @@
   white-space: nowrap;
 }
 
+.tag--filled {
+  background: var(--theme-fg);
+  border-color: var(--theme-fg);
+  color: var(--theme-bg);
+}
+
 .tag--2xs {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);

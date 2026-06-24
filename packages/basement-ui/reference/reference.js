@@ -4,7 +4,7 @@ const COLUMN_OVERLAY_STORAGE_KEY = 'basement-ui-show-columns';
 const DEFAULT_SECTION = 'home';
 
 // ── Section nav ──
-const navItems = document.querySelectorAll('.nav-item');
+const navItems = document.querySelectorAll('.sidebar-item[data-section]');
 const sections = document.querySelectorAll('.section');
 const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
 const sidebarToggle = document.getElementById('sidebarToggle');
@@ -160,9 +160,11 @@ function syncAllColorChipBorders() {
 
 const palette = [
   { name: 'Black',      var: '--color-black',      light: false },
+  { name: 'Gray XD', var: '--color-gray-extra-dark', light: false },
   { name: 'Gray D',  var: '--color-dark-gray',  light: false },
   { name: 'Gray',       var: '--color-gray',       light: false },
   { name: 'Gray L', var: '--color-light-gray', light: true  },
+  { name: 'Gray XL', var: '--color-gray-extra-light', light: true },
   { name: 'White',      var: '--color-white',      light: true  },
   { name: 'Red XD',    var: '--color-red-extra-dark',    light: false },
   { name: 'Red D',          var: '--color-red-dark',          light: false },

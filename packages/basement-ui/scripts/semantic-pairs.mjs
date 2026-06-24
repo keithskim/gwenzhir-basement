@@ -23,6 +23,7 @@ export const THEME_LIGHT = {
   'theme-bg-affirm': 'color-green-extra-light',
   'theme-bg-warn': 'color-yellow-extra-light',
   'theme-bg-destructive': 'color-red-extra-light',
+  'theme-bg-subtle': 'color-gray-extra-light',
 };
 
 export const THEME_DARK = {
@@ -42,6 +43,7 @@ export const THEME_DARK = {
   'theme-bg-affirm': 'color-green-extra-dark',
   'theme-bg-warn': 'color-yellow-extra-dark',
   'theme-bg-destructive': 'color-red-extra-dark',
+  'theme-bg-subtle': 'color-gray-extra-dark',
 };
 
 /** @typedef {{ label: string, fg: string, bg: string, minRatio: number, type: 'text' | 'ui' }} SemanticPair */
@@ -96,7 +98,7 @@ export const SEMANTIC_PAIRS = [
 ];
 
 export const RAMP_GROUPS = {
-  grayscale: ['color-black', 'color-dark-gray', 'color-gray', 'color-light-gray', 'color-white'],
+  grayscale: ['color-black', 'color-gray-extra-dark', 'color-dark-gray', 'color-gray', 'color-light-gray', 'color-gray-extra-light', 'color-white'],
   red: ['color-red-extra-dark', 'color-red-dark', 'color-red', 'color-red-light', 'color-red-extra-light'],
   green: ['color-green-extra-dark', 'color-green-dark', 'color-green', 'color-green-light', 'color-green-extra-light'],
   blue: ['color-blue-extra-dark', 'color-blue-dark', 'color-blue', 'color-blue-light', 'color-blue-extra-light'],

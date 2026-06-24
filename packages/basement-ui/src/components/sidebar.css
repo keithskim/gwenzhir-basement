@@ -1,0 +1,196 @@
+.sidebar,
+.sidebar-nav,
+.sidebar-demo {
+  --sidebar-hit-pad: var(--spacing-xs);
+  --sidebar-icon-size: 1rem;
+  --sidebar-icon-gap: var(--spacing-xs);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.sidebar-title {
+  all: unset;
+  display: block;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  letter-spacing: -0.03em;
+  color: var(--theme-fg-secondary);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+.sidebar-title.is-active {
+  color: var(--theme-fg);
+}
+
+.sidebar-byline {
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.sidebar-nav {
+  margin-top: var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sidebar-nav--flush {
+  margin-top: 0;
+}
+
+.sidebar-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sidebar-group + .sidebar-group {
+  margin-top: var(--spacing-m);
+}
+
+.sidebar-group-label {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.sidebar-item {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding-block: 0.125rem;
+  padding-inline: 0;
+  border-radius: var(--border-radius-s);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--theme-fg-secondary);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  inset-inline: calc(-1 * var(--sidebar-hit-pad));
+  border-radius: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-item:has(.sidebar-item-icon) {
+  gap: var(--sidebar-icon-gap);
+}
+
+.sidebar-item:has(.sidebar-item-icon) .sidebar-item-icon {
+  flex: 0 0 var(--sidebar-icon-size);
+  width: var(--sidebar-icon-size);
+  height: var(--sidebar-icon-size);
+}
+
+.sidebar-item:hover {
+  color: var(--theme-fg);
+}
+
+.sidebar-item:hover::before {
+  background: var(--theme-bg-subtle);
+}
+
+.sidebar-item.is-active {
+  color: var(--theme-fg);
+}
+
+.sidebar-item.is-active::before {
+  background: var(--theme-bg-subtle);
+}
+
+.sidebar-item.is-active:hover::before {
+  background: var(--theme-bg-subtle);
+}
+
+.sidebar-item-label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.sidebar-item-meta {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.sidebar-item.is-active .sidebar-item-meta {
+  color: var(--theme-fg-secondary);
+}
+
+.sidebar-item-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: inherit;
+}
+
+.sidebar-footer {
+  padding-top: var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sidebar--compact {
+  --sidebar-item-indent: var(--spacing-xs);
+}
+
+.sidebar--compact .sidebar-title {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
+.sidebar--compact .sidebar-nav {
+  margin-top: var(--spacing-s);
+}
+
+.sidebar--compact .sidebar-group {
+  gap: 0.125rem;
+}
+
+.sidebar--compact .sidebar-group + .sidebar-group {
+  margin-top: var(--spacing-s);
+}
+
+.sidebar--compact .sidebar-item {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  padding-block: 0.0625rem;
+  margin-inline-start: var(--sidebar-item-indent);
+  width: calc(100% - var(--sidebar-item-indent));
+}
+
+.sidebar--compact .sidebar-item-meta {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}

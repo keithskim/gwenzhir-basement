@@ -228,7 +228,7 @@ function syncContextMd(md, colors) {
     ].join('` · `');
   }
 
-  const gray = `${colors['color-black']} · ${colors['color-dark-gray']} · ${colors['color-gray']} · ${colors['color-light-gray']} · ${colors['color-white']}`;
+  const gray = `${colors['color-black']} · ${colors['color-gray-extra-dark']} · ${colors['color-dark-gray']} · ${colors['color-gray']} · ${colors['color-light-gray']} · ${colors['color-gray-extra-light']} · ${colors['color-white']}`;
   const ramps = hueOrder.map(h => {
     const label = h.charAt(0).toUpperCase() + h.slice(1);
     return `${label} (\`${rampHex(h)}\`)`;

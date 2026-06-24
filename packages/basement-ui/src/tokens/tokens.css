@@ -1,9 +1,11 @@
 /* ── Tokens ── */
 :root {
   --color-black:      #111210;
+  --color-gray-extra-dark: #20211F;
   --color-dark-gray:  #626462;
   --color-gray:       #757775;
   --color-light-gray: #DDDDDD;
+  --color-gray-extra-light: #F6F6F4;
   --color-white:      #FFFFFC;
 
   --color-red-extra-dark: #641400;
@@ -55,6 +57,7 @@
   --theme-border-destructive: var(--color-red-light);
   --theme-surface: var(--color-white);
   --theme-accent: var(--color-black);
+  --theme-bg-subtle: var(--color-gray-extra-light);
 
   --theme-bg-neutral: var(--theme-surface);
   --theme-bg-affirm: var(--color-green-extra-light);
@@ -187,6 +190,7 @@ html.is-dark {
   --theme-border-destructive: var(--color-red-dark);
   --theme-surface: var(--color-black);
   --theme-accent: var(--color-white);
+  --theme-bg-subtle: var(--color-gray-extra-dark);
 
   --theme-bg-neutral: var(--theme-surface);
   --theme-bg-affirm: var(--color-green-extra-dark);
