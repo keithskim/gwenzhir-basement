@@ -7,6 +7,60 @@ const DEFAULT_SECTION = 'home';
 const navItems = document.querySelectorAll('.nav-item');
 const sections = document.querySelectorAll('.section');
 const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+const page = document.querySelector('.page');
+const narrowMedia = window.matchMedia('(max-width: 39.9375rem)');
+
+function isNarrowViewport() {
+  return narrowMedia.matches;
+}
+
+function syncSidebarToggleVisibility() {
+  if (!sidebarToggle) return;
+  if (isNarrowViewport()) {
+    sidebarToggle.hidden = false;
+  } else {
+    sidebarToggle.hidden = true;
+    setSidebarOpen(false);
+  }
+}
+
+function setSidebarOpen(open) {
+  if (!page) return;
+  page.classList.toggle('is-sidebar-open', open);
+  if (sidebarToggle) {
+    sidebarToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    sidebarToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  if (sidebarBackdrop) {
+    sidebarBackdrop.hidden = !open;
+  }
+  document.documentElement.classList.toggle('is-sidebar-locked', open && isNarrowViewport());
+}
+
+function closeSidebar() {
+  setSidebarOpen(false);
+}
+
+if (sidebarToggle) {
+  sidebarToggle.addEventListener('click', () => {
+    setSidebarOpen(!page.classList.contains('is-sidebar-open'));
+  });
+}
+
+if (sidebarBackdrop) {
+  sidebarBackdrop.addEventListener('click', closeSidebar);
+}
+
+narrowMedia.addEventListener('change', syncSidebarToggleVisibility);
+syncSidebarToggleVisibility();
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && page?.classList.contains('is-sidebar-open')) {
+    closeSidebar();
+  }
+});
 
 function sectionHash(sectionId) {
   return sectionId === DEFAULT_SECTION ? '#home' : `#${sectionId}`;
@@ -35,6 +89,7 @@ function activateSection(sectionId) {
 
 function navigateToSection(sectionId, { replace = false } = {}) {
   if (!activateSection(sectionId)) return;
+  closeSidebar();
   const hash = sectionHash(sectionId);
   localStorage.setItem(SECTION_STORAGE_KEY, sectionId);
   if (window.location.hash === hash) return;
@@ -58,6 +113,7 @@ window.addEventListener('hashchange', () => {
   const sectionId = sectionFromHash();
   if (sectionId) {
     activateSection(sectionId);
+    closeSidebar();
     localStorage.setItem(SECTION_STORAGE_KEY, sectionId);
   }
 });
@@ -104,19 +160,40 @@ function syncAllColorChipBorders() {
 
 const palette = [
   { name: 'Black',      var: '--color-black',      light: false },
-  { name: 'Dark Gray',  var: '--color-dark-gray',  light: false },
+  { name: 'Gray D',  var: '--color-dark-gray',  light: false },
   { name: 'Gray',       var: '--color-gray',       light: false },
-  { name: 'Light Gray', var: '--color-light-gray', light: true  },
+  { name: 'Gray L', var: '--color-light-gray', light: true  },
   { name: 'White',      var: '--color-white',      light: true  },
-  { name: 'Red Dark',   var: '--color-red-dark',   light: false },
-  { name: 'Red',        var: '--color-red',        light: false },
-  { name: 'Red Light',  var: '--color-red-light',  light: true  },
-  { name: 'Green Dark', var: '--color-green-dark', light: false },
-  { name: 'Green',      var: '--color-green',      light: false },
-  { name: 'Green Light',var: '--color-green-light',light: true  },
-  { name: 'Blue Dark',  var: '--color-blue-dark',  light: false },
-  { name: 'Blue',       var: '--color-blue',       light: false },
-  { name: 'Blue Light', var: '--color-blue-light', light: true  },
+  { name: 'Red XD',    var: '--color-red-extra-dark',    light: false },
+  { name: 'Red D',          var: '--color-red-dark',          light: false },
+  { name: 'Red',               var: '--color-red',               light: false },
+  { name: 'Red L',         var: '--color-red-light',         light: true  },
+  { name: 'Red XL',   var: '--color-red-extra-light',   light: true  },
+  { name: 'Green XD',  var: '--color-green-extra-dark',  light: false },
+  { name: 'Green D',        var: '--color-green-dark',        light: false },
+  { name: 'Green',             var: '--color-green',             light: false },
+  { name: 'Green L',       var: '--color-green-light',       light: true  },
+  { name: 'Green XL', var: '--color-green-extra-light', light: true  },
+  { name: 'Blue XD',   var: '--color-blue-extra-dark',   light: false },
+  { name: 'Blue D',         var: '--color-blue-dark',         light: false },
+  { name: 'Blue',              var: '--color-blue',              light: false },
+  { name: 'Blue L',        var: '--color-blue-light',        light: true  },
+  { name: 'Blue XL',  var: '--color-blue-extra-light',  light: true  },
+  { name: 'Yellow XD', var: '--color-yellow-extra-dark', light: false },
+  { name: 'Yellow D',       var: '--color-yellow-dark',       light: false },
+  { name: 'Yellow',            var: '--color-yellow',            light: false },
+  { name: 'Yellow L',      var: '--color-yellow-light',      light: true  },
+  { name: 'Yellow XL',var: '--color-yellow-extra-light',light: true  },
+  { name: 'Pink XD',   var: '--color-pink-extra-dark',   light: false },
+  { name: 'Pink D',         var: '--color-pink-dark',         light: false },
+  { name: 'Pink',              var: '--color-pink',              light: false },
+  { name: 'Pink L',        var: '--color-pink-light',        light: true  },
+  { name: 'Pink XL',  var: '--color-pink-extra-light',  light: true  },
+  { name: 'Cyan XD',   var: '--color-cyan-extra-dark',   light: false },
+  { name: 'Cyan D',         var: '--color-cyan-dark',         light: false },
+  { name: 'Cyan',              var: '--color-cyan',              light: false },
+  { name: 'Cyan L',        var: '--color-cyan-light',        light: true  },
+  { name: 'Cyan XL',  var: '--color-cyan-extra-light',  light: true  },
 ].map(({ name, var: tokenVar, light }) => ({
   name,
   color: getComputedStyle(document.documentElement).getPropertyValue(tokenVar).trim(),

@@ -13,8 +13,22 @@
 
   <div class="page">
     <div class="column-overlay is-hidden" id="columnOverlay"></div>
+    <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
 
-  <aside class="sidebar">
+    <button
+      type="button"
+      class="sidebar-toggle btn btn--m btn--default btn--icon"
+      id="sidebarToggle"
+      aria-expanded="false"
+      aria-controls="sidebar"
+      aria-label="Open menu"
+      hidden
+    >
+      <i class="ph ph-list icon--m sidebar-toggle-icon sidebar-toggle-icon--open" aria-hidden="true"></i>
+      <i class="ph ph-x icon--m sidebar-toggle-icon sidebar-toggle-icon--close" aria-hidden="true"></i>
+    </button>
+
+  <aside class="sidebar" id="sidebar">
     <button type="button" class="sidebar-title is-active" id="sidebarHomeBtn">Basement UI</button>
     <div class="sidebar-byline">@gwenzhir</div>
     <nav class="sidebar-nav">
@@ -69,90 +83,215 @@
             <div>
               <div class="swatch-face swatch-face--black"></div>
               <div class="token-name">Black</div>
-              <div class="token-value">#111111</div>
+              <div class="token-value">#111210</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--dark-gray"></div>
-              <div class="token-name">Dark Gray</div>
-              <div class="token-value">#333333</div>
+              <div class="token-name">Gray D</div>
+              <div class="token-value">#626462</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--gray"></div>
               <div class="token-name">Gray</div>
-              <div class="token-value">#999999</div>
+              <div class="token-value">#757775</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--light-gray"></div>
-              <div class="token-name">Light Gray</div>
+              <div class="token-name">Gray L</div>
               <div class="token-value">#DDDDDD</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--white"></div>
               <div class="token-name">White</div>
-              <div class="token-value">#FFFFFF</div>
+              <div class="token-value">#FFFFFC</div>
             </div>
           </div>
         </div>
 
-        <div class="palette-hue-group">
-          <h4 class="palette-hue-label">Red</h4>
-          <div class="col-row col-row--5">
-            <div>
-              <div class="swatch-face swatch-face--red-dark"></div>
-              <div class="token-name">Red Dark</div>
-              <div class="token-value">#7A1000</div>
-            </div>
-            <div>
-              <div class="swatch-face swatch-face--red"></div>
-              <div class="token-name">Red</div>
-              <div class="token-value">#EF3D28</div>
-            </div>
-            <div>
-              <div class="swatch-face swatch-face--red-light"></div>
-              <div class="token-name">Red Light</div>
-              <div class="token-value">#FFEBE6</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="palette-hue-group">
-          <h4 class="palette-hue-label">Green</h4>
-          <div class="col-row col-row--5">
-            <div>
-              <div class="swatch-face swatch-face--green-dark"></div>
-              <div class="token-name">Green Dark</div>
-              <div class="token-value">#133D22</div>
-            </div>
-            <div>
-              <div class="swatch-face swatch-face--green"></div>
-              <div class="token-name">Green</div>
-              <div class="token-value">#33BB55</div>
-            </div>
-            <div>
-              <div class="swatch-face swatch-face--green-light"></div>
-              <div class="token-name">Green Light</div>
-              <div class="token-value">#E0F8E8</div>
+        <div class="palette-hues">
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Red</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--red-extra-dark"></div>
+                <div class="token-name">Red XD</div>
+                <div class="token-value">#641400</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--red-dark"></div>
+                <div class="token-name">Red D</div>
+                <div class="token-value">#BC3618</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--red"></div>
+                <div class="token-name">Red</div>
+                <div class="token-value">#EC5844</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--red-light"></div>
+                <div class="token-name">Red L</div>
+                <div class="token-value">#FFAA88</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--red-extra-light"></div>
+                <div class="token-name">Red XL</div>
+                <div class="token-value">#FFF4EC</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="palette-hue-group">
-          <h4 class="palette-hue-label">Blue</h4>
-          <div class="col-row col-row--5">
-            <div>
-              <div class="swatch-face swatch-face--blue-dark"></div>
-              <div class="token-name">Blue Dark</div>
-              <div class="token-value">#0F1848</div>
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Green</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--green-extra-dark"></div>
+                <div class="token-name">Green XD</div>
+                <div class="token-value">#10301A</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--green-dark"></div>
+                <div class="token-name">Green D</div>
+                <div class="token-value">#237038</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--green"></div>
+                <div class="token-name">Green</div>
+                <div class="token-value">#289448</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--green-light"></div>
+                <div class="token-name">Green L</div>
+                <div class="token-value">#ACEBC4</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--green-extra-light"></div>
+                <div class="token-name">Green XL</div>
+                <div class="token-value">#F0FCF2</div>
+              </div>
             </div>
-            <div>
-              <div class="swatch-face swatch-face--blue"></div>
-              <div class="token-name">Blue</div>
-              <div class="token-value">#3366EE</div>
+          </div>
+
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Blue</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--blue-extra-dark"></div>
+                <div class="token-name">Blue XD</div>
+                <div class="token-value">#0A1338</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--blue-dark"></div>
+                <div class="token-name">Blue D</div>
+                <div class="token-value">#1F3F9B</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--blue"></div>
+                <div class="token-name">Blue</div>
+                <div class="token-value">#406CE6</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--blue-light"></div>
+                <div class="token-name">Blue L</div>
+                <div class="token-value">#A8D4FF</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--blue-extra-light"></div>
+                <div class="token-name">Blue XL</div>
+                <div class="token-value">#F2F8FC</div>
+              </div>
             </div>
-            <div>
-              <div class="swatch-face swatch-face--blue-light"></div>
-              <div class="token-name">Blue Light</div>
-              <div class="token-value">#E0EAFF</div>
+          </div>
+
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Pink</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--pink-extra-dark"></div>
+                <div class="token-name">Pink XD</div>
+                <div class="token-value">#46124C</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--pink-dark"></div>
+                <div class="token-name">Pink D</div>
+                <div class="token-value">#A44C9C</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--pink"></div>
+                <div class="token-name">Pink</div>
+                <div class="token-value">#DE64C6</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--pink-light"></div>
+                <div class="token-name">Pink L</div>
+                <div class="token-value">#F8D4F6</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--pink-extra-light"></div>
+                <div class="token-name">Pink XL</div>
+                <div class="token-value">#FEF2F9</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Yellow</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--yellow-extra-dark"></div>
+                <div class="token-name">Yellow XD</div>
+                <div class="token-value">#4E3000</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--yellow-dark"></div>
+                <div class="token-name">Yellow D</div>
+                <div class="token-value">#8A6600</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--yellow"></div>
+                <div class="token-name">Yellow</div>
+                <div class="token-value">#E0C008</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--yellow-light"></div>
+                <div class="token-name">Yellow L</div>
+                <div class="token-value">#FFEB80</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--yellow-extra-light"></div>
+                <div class="token-name">Yellow XL</div>
+                <div class="token-value">#FFFAE8</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="palette-hue-group">
+            <h4 class="palette-hue-label">Cyan</h4>
+            <div class="col-row col-row--5">
+              <div>
+                <div class="swatch-face swatch-face--cyan-extra-dark"></div>
+                <div class="token-name">Cyan XD</div>
+                <div class="token-value">#045458</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--cyan-dark"></div>
+                <div class="token-name">Cyan D</div>
+                <div class="token-value">#089898</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--cyan"></div>
+                <div class="token-name">Cyan</div>
+                <div class="token-value">#0AB0C4</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--cyan-light"></div>
+                <div class="token-name">Cyan L</div>
+                <div class="token-value">#84E4F4</div>
+              </div>
+              <div>
+                <div class="swatch-face swatch-face--cyan-extra-light"></div>
+                <div class="token-name">Cyan XL</div>
+                <div class="token-value">#EAF6FA</div>
+              </div>
             </div>
           </div>
         </div>
@@ -186,11 +325,67 @@
               <span class="scheme-role-label">Secondary</span>
               <button class="scheme-btn" data-slot="light">
                 <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
-                <span class="scheme-color-name">Light Gray</span>
+                <span class="scheme-color-name">Gray L</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
                 <span class="scheme-swatch" style="background:var(--color-dark-gray);"></span>
-                <span class="scheme-color-name">Dark Gray</span>
+                <span class="scheme-color-name">Gray D</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Neutral</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-white);"></span>
+                <span class="scheme-color-name">White</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-black);"></span>
+                <span class="scheme-color-name">Black</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Affirm</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-green-extra-light);"></span>
+                <span class="scheme-color-name">Green XL</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-green-extra-dark);"></span>
+                <span class="scheme-color-name">Green XD</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Warn</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-yellow-extra-light);"></span>
+                <span class="scheme-color-name">Yellow XL</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-yellow-extra-dark);"></span>
+                <span class="scheme-color-name">Yellow XD</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Destructive</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-red-extra-light);"></span>
+                <span class="scheme-color-name">Red XL</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-red-extra-dark);"></span>
+                <span class="scheme-color-name">Red XD</span>
               </button>
             </div>
             <div class="scheme-picker"></div>
@@ -200,6 +395,8 @@
         <div class="scheme-group">
           <div class="scheme-group-header">
             <h4 class="scheme-group-label">Text</h4>
+            <span class="scheme-theme-label">Light</span>
+            <span class="scheme-theme-label">Dark</span>
           </div>
           <div class="scheme-row">
             <div class="scheme-row-header">
@@ -224,7 +421,49 @@
               </button>
               <button class="scheme-btn" data-slot="dark">
                 <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
-                <span class="scheme-color-name">Light Gray</span>
+                <span class="scheme-color-name">Gray L</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Affirm</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-green-dark);"></span>
+                <span class="scheme-color-name">Green D</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-green-light);"></span>
+                <span class="scheme-color-name">Green L</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Warn</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-yellow-dark);"></span>
+                <span class="scheme-color-name">Yellow D</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-yellow-light);"></span>
+                <span class="scheme-color-name">Yellow L</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Destructive</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-red-dark);"></span>
+                <span class="scheme-color-name">Red D</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-red-light);"></span>
+                <span class="scheme-color-name">Red L</span>
               </button>
             </div>
             <div class="scheme-picker"></div>
@@ -234,17 +473,19 @@
         <div class="scheme-group">
           <div class="scheme-group-header">
             <h4 class="scheme-group-label">Border</h4>
+            <span class="scheme-theme-label">Light</span>
+            <span class="scheme-theme-label">Dark</span>
           </div>
           <div class="scheme-row">
             <div class="scheme-row-header">
               <span class="scheme-role-label">Resting</span>
               <button class="scheme-btn" data-slot="light">
                 <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
-                <span class="scheme-color-name">Light Gray</span>
+                <span class="scheme-color-name">Gray L</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
                 <span class="scheme-swatch" style="background:var(--color-dark-gray);"></span>
-                <span class="scheme-color-name">Dark Gray</span>
+                <span class="scheme-color-name">Gray D</span>
               </button>
             </div>
             <div class="scheme-picker"></div>
@@ -259,6 +500,48 @@
               <button class="scheme-btn" data-slot="dark">
                 <span class="scheme-swatch" style="background:var(--color-white);"></span>
                 <span class="scheme-color-name">White</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Affirm</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-green-light);"></span>
+                <span class="scheme-color-name">Green L</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-green-dark);"></span>
+                <span class="scheme-color-name">Green D</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Warn</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-yellow-light);"></span>
+                <span class="scheme-color-name">Yellow L</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-yellow-dark);"></span>
+                <span class="scheme-color-name">Yellow D</span>
+              </button>
+            </div>
+            <div class="scheme-picker"></div>
+          </div>
+          <div class="scheme-row">
+            <div class="scheme-row-header">
+              <span class="scheme-role-label">Destructive</span>
+              <button class="scheme-btn" data-slot="light">
+                <span class="scheme-swatch" style="background:var(--color-red-light);"></span>
+                <span class="scheme-color-name">Red L</span>
+              </button>
+              <button class="scheme-btn" data-slot="dark">
+                <span class="scheme-swatch" style="background:var(--color-red-dark);"></span>
+                <span class="scheme-color-name">Red D</span>
               </button>
             </div>
             <div class="scheme-picker"></div>
@@ -424,7 +707,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label sample-meta-label--2col">Quote</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">S · Dark Gray · Left border</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">S · Gray D · Left border</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -433,7 +716,40 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label sample-meta-label--2col">Quote</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">M · Dark Gray · Left border</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">M · Gray D · Left border</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Semantic text</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph type-text--affirm">Payment received. Your subscription is now active.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Affirm</span>
+              <span class="sample-meta-detail">Green D · Green L</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph type-text--warn">Your trial ends in 3 days. Upgrade to keep access.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Warn</span>
+              <span class="sample-meta-detail">Yellow D · Yellow L</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph type-text--destructive">This action cannot be undone.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Destructive</span>
+              <span class="sample-meta-detail">Red D · Red L</span>
             </div>
           </div>
         </div>
@@ -577,7 +893,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Columns</h3>
-        <p class="type-paragraph">One column grid spans the full page. The sidebar occupies a fixed number of columns at each viewport; main content fills the rest. The gap between columns is 1rem throughout.</p>
+        <p class="type-paragraph">One column grid spans the full page. Below 40rem the sidebar is an overlay and main content uses every column; from medium up the sidebar reserves 2 columns and content fills the rest. The gap between columns is 1rem throughout.</p>
         <div class="sample-box columns-chart">
           <div class="columns-lane">
             <div class="columns-lane-label">
@@ -661,10 +977,10 @@
             <div class="viewport-chart-corner" aria-hidden="true"></div>
             <div class="viewport-chart-scale" aria-hidden="true">
               <span class="viewport-scale-tick viewport-scale-tick--0">0</span>
-              <span class="viewport-scale-tick viewport-scale-tick--30">30<span class="viewport-scale-unit">rem</span></span>
-              <span class="viewport-scale-tick viewport-scale-tick--60">60<span class="viewport-scale-unit">rem</span></span>
-              <span class="viewport-scale-tick viewport-scale-tick--90">90<span class="viewport-scale-unit">rem</span></span>
-              <span class="viewport-scale-tick viewport-scale-tick--max">120<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--40">40<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--80">80<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--120">120<span class="viewport-scale-unit">rem</span></span>
+              <span class="viewport-scale-tick viewport-scale-tick--max">160<span class="viewport-scale-unit">rem</span></span>
             </div>
           </div>
           <div class="viewport-lane viewport-lane--narrow">
@@ -1235,6 +1551,21 @@
               <span class="sample-meta-label">Ghost</span>
             </div>
           </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
+                <button type="button" class="btn btn--m btn--default btn--icon" aria-label="Settings">
+                  <i class="ph ph-gear icon--m" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn--m btn--default btn--icon" aria-label="Settings" disabled>
+                  <i class="ph ph-gear icon--m" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1263,6 +1594,36 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">L</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--s btn--default btn--icon" aria-label="Settings">
+                <i class="ph ph-gear icon--s" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon S</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--m btn--default btn--icon" aria-label="Settings">
+                <i class="ph ph-gear icon--m" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon M</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <button type="button" class="btn btn--l btn--default btn--icon" aria-label="Settings">
+                <i class="ph ph-gear icon--l" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon L</span>
             </div>
           </div>
         </div>
@@ -1600,6 +1961,7 @@
       <h2 class="section-label">Alert</h2>
 
       <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
             <div class="sample-box">
@@ -1609,8 +1971,32 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-label">Neutral</span>
               <span class="sample-meta-detail">Surface fill · Icon and body</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="alert alert--affirm">
+                <i class="ph ph-check-circle alert-icon" aria-hidden="true"></i>
+                <p class="alert-description">Your changes have been saved successfully.</p>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Affirm</span>
+              <span class="sample-meta-detail">Green tint · Hue dark text</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="alert alert--warn">
+                <i class="ph ph-warning alert-icon" aria-hidden="true"></i>
+                <p class="alert-description">Your trial ends in 3 days. Upgrade to keep access.</p>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Warn</span>
+              <span class="sample-meta-detail">Yellow tint · Hue dark text</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1622,7 +2008,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Destructive</span>
-              <span class="sample-meta-detail">Red tint · Icon and body</span>
+              <span class="sample-meta-detail">Red tint · Hue dark text</span>
             </div>
           </div>
         </div>

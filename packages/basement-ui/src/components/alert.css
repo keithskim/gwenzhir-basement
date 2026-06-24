@@ -3,16 +3,16 @@
   align-items: flex-start;
   gap: var(--spacing-xs);
   padding: var(--spacing-s);
-  border: 1px solid var(--theme-border);
+  border: 1px solid var(--alert-neutral-border);
   border-radius: var(--border-radius-s);
-  background: var(--theme-surface);
+  background: var(--alert-neutral-bg);
 }
 
 .alert-icon {
   flex-shrink: 0;
   font-size: 1rem;
   line-height: 1;
-  color: var(--theme-fg);
+  color: var(--alert-neutral-icon);
 }
 
 .alert-description {
@@ -20,14 +20,44 @@
   min-width: 0;
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
-  color: var(--theme-fg-body);
+  color: var(--alert-neutral-fg);
+}
+
+.alert--affirm {
+  background: var(--alert-affirm-bg);
+  border-color: var(--alert-affirm-border);
+}
+
+.alert--affirm .alert-icon {
+  color: var(--alert-affirm-icon);
+}
+
+.alert--affirm .alert-description {
+  color: var(--alert-affirm-fg);
+}
+
+.alert--warn {
+  background: var(--alert-warn-bg);
+  border-color: var(--alert-warn-border);
+}
+
+.alert--warn .alert-icon {
+  color: var(--alert-warn-icon);
+}
+
+.alert--warn .alert-description {
+  color: var(--alert-warn-fg);
 }
 
 .alert--destructive {
-  background: color-mix(in srgb, var(--color-red) 8%, var(--theme-surface));
-  border-color: color-mix(in srgb, var(--color-red) 25%, var(--theme-border));
+  background: var(--alert-destructive-bg);
+  border-color: var(--alert-destructive-border);
 }
 
 .alert--destructive .alert-icon {
-  color: var(--color-red);
+  color: var(--alert-destructive-icon);
+}
+
+.alert--destructive .alert-description {
+  color: var(--alert-destructive-fg);
 }

@@ -57,6 +57,18 @@
   line-height: var(--line-height-s);
 }
 
+.type-text--affirm {
+  color: var(--theme-fg-affirm);
+}
+
+.type-text--warn {
+  color: var(--theme-fg-warn);
+}
+
+.type-text--destructive {
+  color: var(--theme-fg-destructive);
+}
+
 /* ── Links ── */
 .link {
   color: inherit;

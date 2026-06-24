@@ -75,3 +75,23 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.btn--icon {
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.btn--icon.btn--s {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btn--icon.btn--m {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.btn--icon.btn--l {
+  width: 2.125rem;
+  height: 2.125rem;
+}

@@ -16,6 +16,8 @@
   "scripts": {
     "dev": "npx --yes serve . -p 5173",
     "reference": "open index.html",
+    "audit:colors": "node scripts/audit-palette.mjs",
+    "audit:colors:fix": "node scripts/audit-palette.mjs --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -24,5 +26,9 @@
   "type": "commonjs",
   "dependencies": {
     "@phosphor-icons/web": "2.1.2"
+  },
+  "devDependencies": {
+    "apca-w3": "^0.1.9",
+    "culori": "^4.0.2"
   }
 }
