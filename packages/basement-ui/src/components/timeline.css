@@ -1,0 +1,78 @@
+.timeline {
+  --timeline-ticks: 4;
+  --timeline-bar-color: var(--theme-fg);
+  --timeline-grid-line: color-mix(in srgb, var(--theme-border) 60%, var(--theme-bg));
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: var(--spacing-s);
+  row-gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
+.timeline-row {
+  display: contents;
+}
+
+.timeline-label {
+  align-self: center;
+  color: var(--theme-fg-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: var(--size-xl);
+}
+
+.timeline-track {
+  position: relative;
+  height: var(--line-height-s);
+  background-image: linear-gradient(to right, var(--timeline-grid-line) 1px, transparent 1px);
+  background-size: calc(100% / var(--timeline-ticks)) 100%;
+  border-inline-end: 1px solid var(--timeline-grid-line);
+  box-sizing: border-box;
+}
+
+/* Bar range is set per bar: --bar-start and --bar-end as percentages of the axis. */
+.timeline-bar {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--bar-start, 0%);
+  inset-inline-end: calc(100% - var(--bar-end, 100%));
+  min-width: 0.25rem;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius-s);
+  background: var(--timeline-bar-color);
+  overflow: hidden;
+}
+
+.timeline-bar-label {
+  padding: 0 var(--spacing-xs);
+  color: var(--theme-bg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-font-smoothing: antialiased;
+}
+
+.timeline-marker {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--marker-at, 0%);
+  width: 1px;
+  background: var(--theme-fg-destructive);
+  z-index: 1;
+}
+
+.timeline-axis {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--timeline-ticks), minmax(0, 1fr));
+}
+
+.timeline-axis-tick {
+  color: var(--theme-fg-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

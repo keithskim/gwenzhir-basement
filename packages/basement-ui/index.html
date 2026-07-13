@@ -45,9 +45,12 @@
         <button type="button" class="sidebar-item" data-section="button">Button</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
+        <button type="button" class="sidebar-item" data-section="mention">Mention</button>
         <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
+        <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
         <button type="button" class="sidebar-item" data-section="table">Table</button>
+        <button type="button" class="sidebar-item" data-section="timeline">Timeline</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
       </div>
@@ -69,7 +72,7 @@
     <!-- ── Home ── -->
     <section class="section is-active" id="home">
       <h2 class="section-label">Basement UI</h2>
-      <p class="type-paragraph home-intro">A project-agnostic component library and design system for use in internal tools, admin interfaces, and other Gwenzhir projects.</p>
+      <p class="type-paragraph home-intro">A project-agnostic component library and design system for use in internal tools, admin interfaces, and other @gwenzhir projects.</p>
     </section>
 
     <!-- ── Colors ── -->
@@ -572,7 +575,7 @@
         <div class="type-sample-item">
           <div class="sample-box sample-box--typeface">
             <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
-            <p class="font-body-sample">Basement UI is the shared design language used across Gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+            <p class="font-body-sample">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
           </div>
           <div class="sample-meta">
             <span class="sample-meta-label sample-meta-label--wide">Base Text</span>
@@ -772,7 +775,7 @@
         <div class="type-sample-list">
           <div class="type-sample-item">
             <div class="sample-box">
-              <span class="type-caption">Last updated June 2026 · Gwenzhir</span>
+              <span class="type-caption">Last updated June 2026 · @gwenzhir</span>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Caption</span>
@@ -1931,6 +1934,119 @@
           </div>
         </div>
       </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Compact labels</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
+                <span class="tag tag--xs">3</span>
+                <span class="tag tag--xs">N</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Short text</span>
+              <span class="sample-meta-detail">At least square for single characters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Mention ── -->
+    <section class="section section--component" id="mention">
+      <h2 class="section-label">Mention</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--xs">
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Linked</span>
+              <span class="sample-meta-detail">Name only · Opens profile when available</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--xs">
+                <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With avatar</span>
+              <span class="sample-meta-detail">Leading portrait · Linked name</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="mention mention--xs">
+                <span class="mention-label">Guest</span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Unlinked</span>
+              <span class="sample-meta-detail">Plain text when no profile exists</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--2xs">
+                <span class="avatar avatar--2xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">2XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--xs">
+                <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--s">
+                <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <a href="#" class="mention mention--m">
+                <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="mention-label">@gwenzhir</span>
+              </a>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ── Avatar ── -->
@@ -1942,18 +2058,174 @@
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
             <div class="sample-box">
-              <span class="avatar"><span class="avatar-fallback">GZ</span></span>
+              <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-label">2XS</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
-              <span class="avatar avatar--l"><span class="avatar-fallback">GZ</span></span>
+              <span class="avatar avatar--xs"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Large</span>
+              <span class="sample-meta-label">XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="avatar avatar--m"><span class="avatar-fallback">G</span></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="avatar avatar--l"><span class="avatar-fallback">G</span></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Menu ── -->
+    <section class="section section--component" id="menu">
+      <h2 class="section-label">Menu</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Menu items</h3>
+        <div class="type-sample-list type-sample-list--items">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="menu-demo menu-demo--items">
+                <div class="menu" role="menu">
+                  <button type="button" class="menu-item" role="menuitem">Overview</button>
+                  <button type="button" class="menu-item" role="menuitem">Projects</button>
+                  <button type="button" class="menu-item" role="menuitem">Team</button>
+                  <button type="button" class="menu-item" role="menuitem">Settings</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Label only</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="menu-demo menu-demo--items">
+                <div class="menu" role="menu">
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="menu-item-label">Inbox</span>
+                    <span class="menu-item-meta">12</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="menu-item-label">Drafts</span>
+                    <span class="menu-item-meta">3</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="menu-item-label">Sent</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="menu-item-label">Archive</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="menu-item-label">Spam</span>
+                    <span class="menu-item-meta">2</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With count</span>
+              <span class="sample-meta-detail">Optional tally on any item</span>
+            </div>
+          </div>
+          <div class="type-sample-item type-sample-item--rich">
+            <div class="sample-box">
+              <div class="menu-demo menu-demo--items menu-demo--rich">
+                <div class="menu" role="menu">
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-house menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-label">Home</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-sparkle menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-text">
+                      <span class="menu-item-label">Features</span>
+                      <span class="tag">New</span>
+                    </span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-book-open menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-text">
+                      <span class="menu-item-label">Guides</span>
+                      <span class="tag">New</span>
+                    </span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-gear menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-label">Settings</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With icon and label</span>
+              <span class="sample-meta-detail">Leading icon · Optional tag beside label</span>
+            </div>
+          </div>
+          <div class="type-sample-item type-sample-item--rich">
+            <div class="sample-box">
+              <div class="menu-demo menu-demo--items menu-demo--rich">
+                <div class="menu" role="menu">
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-tray menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-label">Inbox</span>
+                    <span class="menu-item-meta">12</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-sparkle menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-text">
+                      <span class="menu-item-label">Features</span>
+                      <span class="tag">New</span>
+                    </span>
+                    <span class="menu-item-meta">4</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-book-open menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-text">
+                      <span class="menu-item-label">Guides</span>
+                      <span class="tag">New</span>
+                    </span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-file-dashed menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-label">Drafts</span>
+                    <span class="menu-item-meta">3</span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">
+                    <i class="ph ph-gear menu-item-icon" aria-hidden="true"></i>
+                    <span class="menu-item-label">Settings</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With icon, count, and tag</span>
+              <span class="sample-meta-detail">Leading icon · Label · Optional tag · Optional tally</span>
             </div>
           </div>
         </div>
@@ -1974,10 +2246,10 @@
                   <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
                   <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
                 </button>
-                <div class="dropdown-menu" role="menu" hidden>
-                  <button type="button" class="dropdown-item is-active" role="menuitem">Profile</button>
-                  <button type="button" class="dropdown-item" role="menuitem">Settings</button>
-                  <button type="button" class="dropdown-item" role="menuitem">Billing</button>
+                <div class="menu" role="menu" hidden>
+                  <button type="button" class="menu-item" role="menuitem">Profile</button>
+                  <button type="button" class="menu-item" role="menuitem">Settings</button>
+                  <button type="button" class="menu-item" role="menuitem">Billing</button>
                 </div>
               </div>
             </div>
@@ -1994,11 +2266,11 @@
                   <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
                   <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
                 </button>
-                <div class="dropdown-menu" role="menu" hidden>
-                  <button type="button" class="dropdown-item" role="menuitem">View profile</button>
-                  <button type="button" class="dropdown-item" role="menuitem">Preferences</button>
-                  <div class="dropdown-divider" role="separator"></div>
-                  <button type="button" class="dropdown-item" role="menuitem">Sign out</button>
+                <div class="menu" role="menu" hidden>
+                  <button type="button" class="menu-item" role="menuitem">View profile</button>
+                  <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                  <div class="menu-divider" role="separator"></div>
+                  <button type="button" class="menu-item" role="menuitem">Sign out</button>
                 </div>
               </div>
             </div>
@@ -2158,6 +2430,65 @@
       </div>
     </section>
 
+    <!-- ── Timeline ── -->
+    <section class="section section--component" id="timeline">
+      <h2 class="section-label">Timeline</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="timeline" style="--timeline-ticks: 4;">
+                <div class="timeline-row">
+                  <div class="timeline-label">Checking</div>
+                  <div class="timeline-track">
+                    <div class="timeline-bar" style="--bar-start: 0%; --bar-end: 100%;">
+                      <span class="timeline-bar-label">Jan – Dec</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-row">
+                  <div class="timeline-label">Savings</div>
+                  <div class="timeline-track">
+                    <div class="timeline-bar" style="--bar-start: 12.5%; --bar-end: 66.7%;">
+                      <span class="timeline-bar-label">Feb – Aug</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-row">
+                  <div class="timeline-label">Brokerage</div>
+                  <div class="timeline-track">
+                    <div class="timeline-bar" style="--bar-start: 25%; --bar-end: 87.5%;">
+                      <span class="timeline-bar-label">Apr – Nov</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-row">
+                  <div class="timeline-label">Credit card</div>
+                  <div class="timeline-track">
+                    <div class="timeline-bar" style="--bar-start: 50%; --bar-end: 100%;">
+                      <span class="timeline-bar-label">Jul – Dec</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-axis">
+                  <span class="timeline-axis-tick">Jan</span>
+                  <span class="timeline-axis-tick">Apr</span>
+                  <span class="timeline-axis-tick">Jul</span>
+                  <span class="timeline-axis-tick">Oct</span>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Shared date axis · One range bar per row</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Sidebar ── -->
     <section class="section section--component" id="sidebar">
       <h2 class="section-label">Sidebar</h2>
@@ -2289,13 +2620,17 @@
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-sparkle sidebar-item-icon" aria-hidden="true"></i>
-                      <span class="sidebar-item-label">Features</span>
-                      <span class="tag tag--xs tag--filled">New</span>
+                      <span class="sidebar-item-text">
+                        <span class="sidebar-item-label">Features</span>
+                        <span class="tag">New</span>
+                      </span>
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-book-open sidebar-item-icon" aria-hidden="true"></i>
-                      <span class="sidebar-item-label">Guides</span>
-                      <span class="tag tag--xs tag--filled">New</span>
+                      <span class="sidebar-item-text">
+                        <span class="sidebar-item-label">Guides</span>
+                        <span class="tag">New</span>
+                      </span>
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-gear sidebar-item-icon" aria-hidden="true"></i>
@@ -2307,7 +2642,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">With icon and label</span>
-              <span class="sample-meta-detail">Leading icon · Optional filled tag</span>
+              <span class="sample-meta-detail">Leading icon · Optional tag beside label</span>
             </div>
           </div>
           <div class="type-sample-item type-sample-item--rich">
@@ -2322,14 +2657,18 @@
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-sparkle sidebar-item-icon" aria-hidden="true"></i>
-                      <span class="sidebar-item-label">Features</span>
-                      <span class="tag tag--xs tag--filled">New</span>
+                      <span class="sidebar-item-text">
+                        <span class="sidebar-item-label">Features</span>
+                        <span class="tag">New</span>
+                      </span>
                       <span class="sidebar-item-meta">4</span>
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-book-open sidebar-item-icon" aria-hidden="true"></i>
-                      <span class="sidebar-item-label">Guides</span>
-                      <span class="tag tag--xs tag--filled">New</span>
+                      <span class="sidebar-item-text">
+                        <span class="sidebar-item-label">Guides</span>
+                        <span class="tag">New</span>
+                      </span>
                     </button>
                     <button type="button" class="sidebar-item">
                       <i class="ph ph-file-dashed sidebar-item-icon" aria-hidden="true"></i>
@@ -2346,7 +2685,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">With icon, count, and tag</span>
-              <span class="sample-meta-detail">Leading icon · Label · Optional filled tag · Optional tally</span>
+              <span class="sample-meta-detail">Leading icon · Label · Optional tag · Optional tally</span>
             </div>
           </div>
         </div>
