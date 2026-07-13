@@ -1,0 +1,73 @@
+.mention {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  border: 1px solid var(--theme-border);
+  background: var(--theme-bg);
+  color: var(--theme-fg);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+a.mention {
+  cursor: pointer;
+}
+
+a.mention:hover {
+  border-color: var(--theme-fg);
+}
+
+a.mention:focus-visible {
+  outline: 2px solid var(--theme-fg);
+  outline-offset: 2px;
+}
+
+.mention-label {
+  min-width: 0;
+}
+
+.mention--2xs {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  padding-inline: 0.375rem;
+}
+
+.mention--2xs:has(.avatar) {
+  padding-inline-start: 0.125rem;
+}
+
+.mention--xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  padding-inline: 0.5rem;
+}
+
+.mention--xs:has(.avatar) {
+  padding-inline-start: 0.125rem;
+}
+
+.mention--s {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  padding-inline: 0.625rem;
+}
+
+.mention--s:has(.avatar) {
+  padding-inline-start: 0.1875rem;
+}
+
+.mention--m {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  padding-block: 0.0625rem;
+  padding-inline: 0.75rem;
+}
+
+.mention--m:has(.avatar) {
+  padding-inline-start: 0.25rem;
+}

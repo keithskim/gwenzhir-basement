@@ -257,7 +257,7 @@ function closeAllDropdowns() {
   document.querySelectorAll('.dropdown-demo.is-open').forEach(demo => {
     demo.classList.remove('is-open');
     const trigger = demo.querySelector('.dropdown-trigger');
-    const menu = demo.querySelector('.dropdown-menu');
+    const menu = demo.querySelector('.menu');
     trigger.setAttribute('aria-expanded', 'false');
     menu.hidden = true;
   });
@@ -265,7 +265,7 @@ function closeAllDropdowns() {
 
 document.querySelectorAll('.dropdown-demo').forEach(demo => {
   const trigger = demo.querySelector('.dropdown-trigger');
-  const menu = demo.querySelector('.dropdown-menu');
+  const menu = demo.querySelector('.menu');
 
   trigger.addEventListener('click', e => {
     e.stopPropagation();
@@ -278,12 +278,6 @@ document.querySelectorAll('.dropdown-demo').forEach(demo => {
     }
   });
 
-  menu.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', () => {
-      menu.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('is-active'));
-      item.classList.add('is-active');
-    });
-  });
 });
 
 // ── Column overlay ──
