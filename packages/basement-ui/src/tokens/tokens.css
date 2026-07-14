@@ -1,12 +1,12 @@
 /* ── Tokens ── */
 :root {
-  --color-black:      #111210;
-  --color-gray-extra-dark: #20211F;
-  --color-dark-gray:  #626462;
-  --color-gray:       #757775;
-  --color-light-gray: #DDDDDD;
-  --color-gray-extra-light: #F6F6F4;
-  --color-white:      #FFFFFC;
+  --color-black:      #131410;
+  --color-gray-extra-dark: #222320;
+  --color-dark-gray:  #65685F;
+  --color-gray:       #777B71;
+  --color-light-gray: #DEDFD8;
+  --color-gray-extra-light: #F6F6F1;
+  --color-white:      #FFFFF9;
 
   --color-red-extra-dark: #641400;
   --color-red-dark:       #BC3618;
