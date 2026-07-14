@@ -101,9 +101,9 @@
   flex-shrink: 0;
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
-  min-width: var(--line-height-2xs);
+  min-width: calc(var(--line-height-2xs) + 0.125rem);
   min-height: var(--line-height-2xs);
-  padding: 0 0.1875rem;
+  padding: 0 0.25rem;
 }
 
 .menu-item-icon {

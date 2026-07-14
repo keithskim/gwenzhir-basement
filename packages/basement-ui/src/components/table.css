@@ -74,6 +74,11 @@ html.is-dark .table--sticky {
   border-bottom: 1px solid var(--theme-border);
 }
 
+.table--sticky:has(tfoot) tbody tr:last-child td,
+.table--sticky:has(tfoot) tbody tr:last-child th {
+  border-bottom: none;
+}
+
 .table--striped tbody tr:nth-child(even) {
   background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
 }
