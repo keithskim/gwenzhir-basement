@@ -706,6 +706,8 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   #menu .sample-meta-detail,
   #alert .sample-meta-label,
   #alert .sample-meta-detail,
+  #prompt .sample-meta-label,
+  #prompt .sample-meta-detail,
   #timeline .sample-meta-label,
   #timeline .sample-meta-detail {
     grid-column: span 2;
@@ -896,6 +898,30 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 #table .sample-box:has(.table-wrap--scroll) {
   padding-block: var(--spacing-s);
+}
+
+#prompt .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #prompt .type-sample-list > .type-sample-item {
+    grid-column: span 4;
+  }
+}
+
+#prompt .sample-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--spacing-m);
+  padding-inline: var(--spacing-s);
+}
+
+#prompt .prompt {
+  max-width: 28rem;
+  width: 100%;
 }
 
 #sidebar .type-sample-item {
