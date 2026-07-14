@@ -843,13 +843,13 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   }
 }
 
-:is(#button, #form, #tag, #mention, #avatar) .type-sample-item {
+:is(#button, #form, #text-input, #tag, #mention, #avatar) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #form, #tag, #mention, #avatar) .type-sample-item {
+  :is(#button, #form, #text-input, #tag, #mention, #avatar) .type-sample-item {
     grid-column: span 2;
   }
 }
@@ -881,9 +881,21 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   width: auto;
 }
 
-#form .type-sample-list--fields .component-stack {
+#form .type-sample-list--fields .component-stack,
+#text-input .type-sample-list--fields .component-stack {
   max-width: none;
   width: 100%;
+}
+
+#text-input .type-sample-list--fields .sample-box {
+  width: 100%;
+}
+
+#text-input .input,
+#text-input .textarea,
+#text-input .text-input,
+#text-input .text-input-group {
+  max-width: 28rem;
 }
 
 #table .type-sample-item {

@@ -43,6 +43,7 @@
       <div class="sidebar-group">
         <div class="sidebar-group-label">Components</div>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
+        <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
         <button type="button" class="sidebar-item" data-section="mention">Mention</button>
@@ -1657,12 +1658,12 @@
       </div>
     </section>
 
-    <!-- ── Form ── -->
-    <section class="section section--component" id="form">
-      <h2 class="section-label">Form</h2>
+    <!-- ── Text Input ── -->
+    <section class="section section--component" id="text-input">
+      <h2 class="section-label">Text Input</h2>
 
       <div class="border-group">
-        <h3 class="subsection-label">Input</h3>
+        <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
             <div class="sample-box">
@@ -1670,18 +1671,71 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Single-line field</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
+              <div class="text-input">
+                <i class="ph ph-magnifying-glass text-input-icon" aria-hidden="true"></i>
+                <input class="input" type="search" placeholder="Search" aria-label="Search">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Search</span>
+              <span class="sample-meta-detail">Leading icon · Find field</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="text-input">
+                <input class="input" type="email" placeholder="name@example.com" aria-label="Email">
+                <button type="button" class="btn btn--2xs btn--default">Subscribe</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Button inside</span>
+              <span class="sample-meta-detail">Trailing action · Nested in field</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="text-input-group">
+                <input class="input" type="email" placeholder="name@example.com" aria-label="Email">
+                <button type="button" class="btn btn--xs btn--default">Subscribe</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With button</span>
+              <span class="sample-meta-detail">Field · Attached default button</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <textarea class="textarea" placeholder="Write a short description."></textarea>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Textarea</span>
+              <span class="sample-meta-detail">Multi-line field</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">States</h3>
+        <div class="type-sample-list type-sample-list--fields">
+          <div class="type-sample-item">
+            <div class="sample-box">
               <div class="component-stack">
-                <label class="field-label" for="form-email">Email</label>
-                <input class="input" id="form-email" type="email" placeholder="name@example.com">
+                <label class="field-label" for="text-input-email">Email</label>
+                <input class="input" id="text-input-email" type="email" placeholder="name@example.com">
                 <span class="field-hint">Enter the email address for your account.</span>
               </div>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">With label</span>
+              <span class="sample-meta-detail">Label · Field · Optional hint</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1694,6 +1748,11 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ── Form ── -->
+    <section class="section section--component" id="form">
+      <h2 class="section-label">Form</h2>
 
       <div class="border-group">
         <h3 class="subsection-label">Label</h3>
@@ -1715,39 +1774,6 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">With control</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Textarea</h3>
-        <div class="type-sample-list type-sample-list--fields">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <textarea class="textarea" placeholder="Write a short description."></textarea>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Default</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="component-stack">
-                <label class="field-label" for="form-bio">Bio</label>
-                <textarea class="textarea" id="form-bio" placeholder="Tell us about yourself."></textarea>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">With label</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <textarea class="textarea" placeholder="Disabled" disabled></textarea>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Disabled</span>
             </div>
           </div>
         </div>

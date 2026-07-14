@@ -11,38 +11,6 @@
   color: var(--theme-fg-secondary);
 }
 
-.input,
-.textarea {
-  display: block;
-  width: 100%;
-  font-family: var(--font-base-family);
-  font-weight: var(--font-base-weight);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--theme-fg);
-  background: var(--theme-bg);
-  border: 1px solid var(--theme-border);
-  border-radius: var(--border-radius-s);
-  padding: var(--spacing-xs);
-  -webkit-font-smoothing: antialiased;
-}
-
-.textarea {
-  min-height: 5rem;
-  resize: vertical;
-}
-
-.input:disabled,
-.textarea:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.input::placeholder,
-.textarea::placeholder {
-  color: var(--theme-fg-secondary);
-}
-
 .control-row {
   display: flex;
   align-items: center;
