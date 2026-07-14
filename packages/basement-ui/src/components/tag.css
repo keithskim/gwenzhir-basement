@@ -16,6 +16,39 @@
   color: var(--theme-bg);
 }
 
+.tag--affirm {
+  border-color: var(--theme-border-affirm);
+  color: var(--theme-fg-affirm);
+}
+
+.tag--affirm.tag--filled {
+  background: var(--theme-fg-affirm);
+  border-color: var(--theme-fg-affirm);
+  color: var(--theme-bg);
+}
+
+.tag--warn {
+  border-color: var(--theme-border-warn);
+  color: var(--theme-fg-warn);
+}
+
+.tag--warn.tag--filled {
+  background: var(--theme-fg-warn);
+  border-color: var(--theme-fg-warn);
+  color: var(--theme-bg);
+}
+
+.tag--destructive {
+  border-color: var(--theme-border-destructive);
+  color: var(--theme-fg-destructive);
+}
+
+.tag--destructive.tag--filled {
+  background: var(--theme-fg-destructive);
+  border-color: var(--theme-fg-destructive);
+  color: var(--theme-bg);
+}
+
 .tag--2xs {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);

@@ -103,6 +103,12 @@ navItems.forEach(item => {
   });
 });
 
+document.querySelectorAll('.home-card[data-section]').forEach(card => {
+  card.addEventListener('click', () => {
+    navigateToSection(card.dataset.section);
+  });
+});
+
 if (sidebarHomeBtn) {
   sidebarHomeBtn.addEventListener('click', () => {
     navigateToSection(DEFAULT_SECTION);
