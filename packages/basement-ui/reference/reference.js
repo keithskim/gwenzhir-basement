@@ -124,6 +124,51 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+// ── Tabs demos ──
+document.querySelectorAll('[data-tabs-demo]').forEach(demo => {
+  const tabs = [...demo.querySelectorAll('[role="tab"]')];
+
+  function activateTab(activeTab, { focus = false } = {}) {
+    tabs.forEach(tab => {
+      const isActive = tab === activeTab;
+      const panelId = tab.getAttribute('aria-controls');
+      const panel = panelId ? document.getElementById(panelId) : null;
+
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.tabIndex = isActive ? 0 : -1;
+      if (panel && demo.contains(panel)) panel.hidden = !isActive;
+    });
+
+    if (focus) activeTab.focus();
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', event => {
+      const enabledTabs = tabs.filter(candidate =>
+        !candidate.disabled && candidate.getAttribute('aria-disabled') !== 'true'
+      );
+      const currentIndex = enabledTabs.indexOf(tab);
+      let nextTab;
+
+      if (event.key === 'ArrowRight') {
+        nextTab = enabledTabs[(currentIndex + 1) % enabledTabs.length];
+      } else if (event.key === 'ArrowLeft') {
+        nextTab = enabledTabs[(currentIndex - 1 + enabledTabs.length) % enabledTabs.length];
+      } else if (event.key === 'Home') {
+        nextTab = enabledTabs[0];
+      } else if (event.key === 'End') {
+        nextTab = enabledTabs.at(-1);
+      }
+
+      if (!nextTab) return;
+      event.preventDefault();
+      activateTab(nextTab, { focus: true });
+    });
+  });
+});
+
 // ── Scheme picker ──
 function resolveColor(color) {
   const probe = document.createElement('span');

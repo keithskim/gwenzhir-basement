@@ -422,6 +422,13 @@ html.is-sidebar-locked {
   pointer-events: none;
 }
 
+.home-preview-tabs .tab {
+  padding: 0.125rem 0.375rem;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  pointer-events: none;
+}
+
 .home-preview-menu {
   width: 100%;
   max-width: 10rem;
@@ -1078,9 +1085,34 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   flex-direction: row;
 }
 
+#tabs .type-sample-item {
+  grid-column: 1 / -1;
+}
+
+#tabs .sample-box {
+  display: flex;
+  justify-content: center;
+}
+
+.tabs-demo {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.tabs-demo-panel {
+  padding-top: var(--spacing-s);
+  color: var(--theme-fg-body);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
 @media (min-width: 80rem) {
   #button .type-sample-list--types .variant-row {
     flex-direction: column;
+  }
+
+  #tabs .type-sample-list > .type-sample-item {
+    grid-column: span 4;
   }
 }
 

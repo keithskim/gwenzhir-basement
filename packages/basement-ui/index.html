@@ -43,6 +43,7 @@
       <div class="sidebar-group">
         <div class="sidebar-group-label">Components</div>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
+        <button type="button" class="sidebar-item" data-section="tabs">Tabs</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
@@ -140,6 +141,15 @@
               <span class="home-card-title">Button</span>
               <span class="home-card-preview" aria-hidden="true">
                 <span class="btn btn--xs btn--accent">Save</span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="tabs">
+              <span class="home-card-title">Tabs</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="tabs home-preview-tabs">
+                  <span class="tab is-active">Overview</span>
+                  <span class="tab">Activity</span>
+                </span>
               </span>
             </button>
             <button type="button" class="home-card" data-section="text-input">
@@ -1847,6 +1857,65 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Icon S</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tabs ── -->
+    <section class="section section--component" id="tabs">
+      <h2 class="section-label">Tabs</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="tabs-demo" data-tabs-demo>
+                <div class="tabs" role="tablist" aria-label="Project pages">
+                  <button type="button" class="tab is-active" id="tab-overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
+                  <button type="button" class="tab" id="tab-activity" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Activity</button>
+                  <button type="button" class="tab" id="tab-settings" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Settings</button>
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+                  Project summary and recent progress.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>
+                  Recent updates from your team.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>
+                  Project preferences and access.
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Subtle grouped controls · Selected page raised</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="tabs-demo" data-tabs-demo>
+                <div class="tabs tabs--underline" role="tablist" aria-label="Record pages">
+                  <button type="button" class="tab is-active" id="tab-details" role="tab" aria-selected="true" aria-controls="panel-details">Details</button>
+                  <button type="button" class="tab" id="tab-notes" role="tab" aria-selected="false" aria-controls="panel-notes" tabindex="-1">Notes</button>
+                  <button type="button" class="tab" id="tab-history" role="tab" aria-selected="false" aria-controls="panel-history" tabindex="-1">History</button>
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-details" role="tabpanel" aria-labelledby="tab-details" tabindex="0">
+                  Core information for this record.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" tabindex="0" hidden>
+                  Notes shared by your team.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" tabindex="0" hidden>
+                  Changes made to this record.
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Underline</span>
+              <span class="sample-meta-detail">Minimal rule · Selected page underlined</span>
             </div>
           </div>
         </div>
