@@ -44,6 +44,7 @@
         <div class="sidebar-group-label">Components</div>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
         <button type="button" class="sidebar-item" data-section="tabs">Tabs</button>
+        <button type="button" class="sidebar-item" data-section="toggle">Toggle</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
@@ -150,6 +151,12 @@
                   <span class="tab is-active">Overview</span>
                   <span class="tab">Activity</span>
                 </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="toggle">
+              <span class="home-card-title">Toggle</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="toggle-switch home-preview-toggle"></span>
               </span>
             </button>
             <button type="button" class="home-card" data-section="text-input">
@@ -1891,7 +1898,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Subtle grouped controls · Selected page raised</span>
+              <span class="sample-meta-detail">Single outline · Selected page softly filled</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1916,6 +1923,81 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Underline</span>
               <span class="sample-meta-detail">Minimal rule · Selected page underlined</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Toggle ── -->
+    <section class="section section--component" id="toggle">
+      <h2 class="section-label">Toggle</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="toggle-control">
+                <input class="toggle-switch" type="checkbox" role="switch" checked>
+                Notifications
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Toggle</span>
+              <span class="sample-meta-detail">Horizontal on or off control</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="toggle-control">
+                <input class="toggle-checkbox" type="checkbox" checked>
+                Include archived projects
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Checkbox</span>
+              <span class="sample-meta-detail">Choose any number of options</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="toggle-demo-group" role="radiogroup" aria-label="Billing cycle">
+                <label class="toggle-control">
+                  <input class="toggle-radio" type="radio" name="toggle-billing" value="monthly" checked>
+                  Monthly
+                </label>
+                <label class="toggle-control">
+                  <input class="toggle-radio" type="radio" name="toggle-billing" value="yearly">
+                  Yearly
+                </label>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Radio button</span>
+              <span class="sample-meta-detail">Choose one option from a list</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <fieldset class="segmented-select" aria-label="View density">
+                <label class="segmented-select-option">
+                  <input class="segmented-select-input" type="radio" name="toggle-density" value="compact">
+                  <span class="segmented-select-label">Compact</span>
+                </label>
+                <label class="segmented-select-option">
+                  <input class="segmented-select-input" type="radio" name="toggle-density" value="comfortable" checked>
+                  <span class="segmented-select-label">Comfortable</span>
+                </label>
+                <label class="segmented-select-option">
+                  <input class="segmented-select-input" type="radio" name="toggle-density" value="spacious">
+                  <span class="segmented-select-label">Spacious</span>
+                </label>
+              </fieldset>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Segmented select</span>
+              <span class="sample-meta-detail">Choose one option in a compact group</span>
             </div>
           </div>
         </div>

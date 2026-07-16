@@ -429,6 +429,16 @@ html.is-sidebar-locked {
   pointer-events: none;
 }
 
+.home-preview-toggle {
+  border-color: var(--theme-fg);
+  background: var(--theme-fg);
+  pointer-events: none;
+}
+
+.home-preview-toggle::after {
+  transform: translateX(0.75rem);
+}
+
 .home-preview-menu {
   width: 100%;
   max-width: 10rem;
@@ -1106,6 +1116,19 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   line-height: var(--line-height-xs);
 }
 
+#toggle .sample-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5rem;
+}
+
+.toggle-demo-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
 @media (min-width: 80rem) {
   #button .type-sample-list--types .variant-row {
     flex-direction: column;
@@ -1116,13 +1139,13 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   }
 }
 
-:is(#button, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
+:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
+  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
     grid-column: span 2;
   }
 }

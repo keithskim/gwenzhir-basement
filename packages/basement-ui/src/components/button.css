@@ -91,6 +91,10 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   cursor: not-allowed;
 }
 
+.btn--accent:disabled {
+  opacity: 0.3;
+}
+
 .btn--icon {
   padding: 0;
   flex-shrink: 0;
