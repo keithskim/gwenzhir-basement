@@ -923,7 +923,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 }
 
 .sample-meta-detail {
-  grid-column: span 1;
+  grid-column: 2 / -1;
   color: var(--theme-fg-secondary);
   min-width: 0;
 }
@@ -1415,19 +1415,6 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 #table .table-props > .sample-meta {
   align-items: start;
-}
-
-@media (min-width: 40rem) {
-  #table .table-props > .sample-meta {
-    grid-row: 1;
-    grid-column: span 2;
-    align-self: start;
-  }
-
-  #table .table-props > .sample-meta .sample-meta-label,
-  #table .table-props > .sample-meta .sample-meta-detail {
-    grid-column: 1 / -1;
-  }
 }
 
 /* ── Spacing ── */

@@ -16,19 +16,16 @@
 }
 
 .table--sticky {
-  --table-sticky-edge: var(--color-gray);
+  --table-sticky-edge: var(--theme-border);
   border-collapse: separate;
   border-spacing: 0;
 }
 
-html.is-dark .table--sticky {
-  --table-sticky-edge: var(--color-dark-gray);
-}
-
-.table--sticky thead th {
+.table.table--sticky thead th {
   position: sticky;
   top: 0;
   z-index: 2;
+  background: var(--theme-bg);
   border-bottom-color: var(--table-sticky-edge);
 }
 
@@ -50,7 +47,7 @@ html.is-dark .table--sticky {
 .table thead th {
   color: var(--theme-fg);
   font-weight: var(--font-base-weight);
-  background: color-mix(in srgb, var(--theme-border) 12%, var(--theme-bg));
+  background: transparent;
   border-bottom: 1px solid var(--theme-border);
 }
 

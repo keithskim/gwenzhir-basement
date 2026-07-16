@@ -230,7 +230,7 @@
             <button type="button" class="home-card" data-section="table">
               <span class="home-card-title">Table</span>
               <span class="home-card-preview" aria-hidden="true">
-                <table class="table table--striped home-preview-table">
+                <table class="table home-preview-table">
                   <tbody>
                     <tr><td>Name</td><td>Status</td></tr>
                     <tr><td>Alpha</td><td>Active</td></tr>
@@ -2022,6 +2022,24 @@
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
+              <div class="component-stack">
+                <label class="invisible-input">
+                  <input class="input input--invisible" type="text" value="Q3 brand refresh" placeholder="Untitled project" aria-label="Project name with value">
+                  <i class="ph ph-pencil-simple invisible-input-icon" aria-hidden="true"></i>
+                </label>
+                <label class="invisible-input">
+                  <input class="input input--invisible" type="text" placeholder="Untitled project" aria-label="Empty project name">
+                  <i class="ph ph-pencil-simple invisible-input-icon" aria-hidden="true"></i>
+                </label>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Invisible</span>
+              <span class="sample-meta-detail">Value and empty placeholder states · Inline edit icon</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
               <div class="text-input">
                 <i class="ph ph-magnifying-glass text-input-icon" aria-hidden="true"></i>
                 <input class="input" type="search" placeholder="Search" aria-label="Search">
@@ -2767,7 +2785,7 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="table-wrap">
-                <table class="table table--striped table-demo">
+                <table class="table table-demo">
                   <thead>
                     <tr>
                       <th scope="col" data-sortable aria-sort="ascending">
@@ -2818,7 +2836,7 @@
             <div class="table-props">
               <div class="sample-meta">
                 <span class="sample-meta-label">Default</span>
-                <span class="sample-meta-detail">Header · Sorting · Striped rows</span>
+                <span class="sample-meta-detail">Header · Sorting · Plain rows</span>
               </div>
             </div>
           </div>
@@ -2897,7 +2915,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Sticky header and footer</span>
-              <span class="sample-meta-detail">Scrollable body · Pinned header and footer</span>
+              <span class="sample-meta-detail">Scrollable body · Pinned header and footer · Optional striped rows</span>
             </div>
           </div>
         </div>
