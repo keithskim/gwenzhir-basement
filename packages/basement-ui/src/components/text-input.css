@@ -11,11 +11,15 @@
   background: var(--theme-bg);
   border: 1px solid var(--theme-border);
   border-radius: var(--border-radius-s);
-  padding: var(--spacing-xs);
   -webkit-font-smoothing: antialiased;
 }
 
+.input {
+  padding: 0.25rem var(--spacing-xs);
+}
+
 .textarea {
+  padding: var(--spacing-xs);
   min-height: 5rem;
   resize: vertical;
 }
