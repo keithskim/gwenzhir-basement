@@ -29,11 +29,12 @@
   border-bottom-color: var(--table-sticky-edge);
 }
 
-.table--sticky tfoot th,
-.table--sticky tfoot td {
+.table.table--sticky tfoot th,
+.table.table--sticky tfoot td {
   position: sticky;
   bottom: 0;
   z-index: 2;
+  background: var(--theme-bg);
   border-top-color: var(--table-sticky-edge);
 }
 
@@ -55,7 +56,7 @@
 .table tfoot td {
   color: var(--theme-fg);
   font-weight: var(--font-base-weight);
-  background: color-mix(in srgb, var(--theme-border) 12%, var(--theme-bg));
+  background: transparent;
   border-top: 1px solid var(--theme-border);
 }
 .table tbody td {
