@@ -273,28 +273,31 @@ html.is-sidebar-locked {
 
 #home .home-index {
   grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-l);
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: var(--spacing-l);
 }
 
 .home-index-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-s);
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: var(--spacing-s);
   min-width: 0;
 }
 
 .home-index-label {
+  grid-column: 1 / -1;
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
   color: var(--theme-fg-secondary);
 }
 
 .home-index-grid {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: var(--spacing-s);
+  grid-template-columns: subgrid;
+  gap: var(--column-gap);
 }
 
 .home-card {
@@ -312,6 +315,19 @@ html.is-sidebar-locked {
   text-align: left;
   position: relative;
   isolation: isolate;
+  grid-column: span 4;
+}
+
+@media (min-width: 40rem) {
+  .home-card {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 80rem) {
+  .home-card {
+    grid-column: span 2;
+  }
 }
 
 .home-card::before {
@@ -1420,7 +1436,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 /* ── Spacing ── */
 .spacing-bar {
   width: 100%;
-  background: var(--theme-fg);
+  background: var(--theme-border);
   border-radius: var(--border-radius-s);
 }
 
