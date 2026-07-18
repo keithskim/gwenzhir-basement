@@ -1,7 +1,15 @@
 .btn {
+  --btn-gap: 0.375rem;
+  --btn-pad-block: 0.25rem;
+  --btn-pad-inline: 0.625rem;
+  --btn-pad-inline-tight: 0.375rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--btn-gap);
+  padding-block: var(--btn-pad-block);
+  padding-inline-start: var(--btn-pad-inline);
+  padding-inline-end: var(--btn-pad-inline);
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   border-radius: var(--border-radius-s);
@@ -15,21 +23,36 @@
 }
 
 .btn--2xs {
+  --btn-pad-block: 0.125rem;
+  --btn-pad-inline: 0.375rem;
+  --btn-pad-inline-tight: 0.25rem;
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
-  padding: 0.125rem 0.375rem;
 }
 
 .btn--xs {
+  --btn-pad-block: 0.25rem;
+  --btn-pad-inline: 0.625rem;
+  --btn-pad-inline-tight: 0.375rem;
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
-  padding: 0.25rem 0.625rem;
 }
 
 .btn--s {
+  --btn-pad-block: 0.25rem;
+  --btn-pad-inline: 0.875rem;
+  --btn-pad-inline-tight: 0.5rem;
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
-  padding: 0.25rem 0.875rem;
+}
+
+.btn:not(.btn--icon):has(> .tag:last-child),
+.btn:not(.btn--icon):has(> .ph:last-child):not(:has(> .ph:first-child)) {
+  padding-inline-end: var(--btn-pad-inline-tight);
+}
+
+.btn:not(.btn--icon):has(> .ph:first-child):not(:has(> .ph:last-child)) {
+  padding-inline-start: var(--btn-pad-inline-tight);
 }
 
 .btn--accent {
@@ -113,4 +136,45 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
 .btn--icon.btn--s {
   width: 2.125rem;
   height: 2.125rem;
+}
+
+.btn .ph {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn .tag {
+  flex-shrink: 0;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  min-width: calc(var(--line-height-2xs) + 0.125rem);
+  min-height: var(--line-height-2xs);
+  padding: 0 0.25rem;
+}
+
+.btn:hover:not(:disabled) .tag {
+  border-color: var(--color-gray);
+}
+
+.btn--accent .tag {
+  border-color: color-mix(in srgb, var(--theme-bg) 45%, transparent);
+  color: color-mix(in srgb, var(--theme-bg) 85%, transparent);
+  background: transparent;
+}
+
+.btn--accent:hover:not(:disabled) .tag {
+  border-color: color-mix(in srgb, var(--theme-bg) 55%, transparent);
+}
+
+.btn--accent .tag.tag--filled {
+  background: var(--theme-bg);
+  border-color: var(--theme-bg);
+  color: var(--theme-fg);
+}
+
+html.is-dark .btn--accent .tag.tag--filled {
+  color: var(--color-black);
 }

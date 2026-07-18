@@ -81,6 +81,24 @@
   background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
 }
 
+.table--selectable tbody tr {
+  cursor: pointer;
+}
+
+.table--selectable tbody tr:hover {
+  background: var(--theme-bg-subtle);
+}
+
+.table--selectable tbody tr.is-selected,
+.table--selectable tbody tr[aria-selected='true'] {
+  background: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
+}
+
+.table--selectable tbody tr.is-selected:hover,
+.table--selectable tbody tr[aria-selected='true']:hover {
+  background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
+}
+
 .table-sort {
   display: inline-flex;
   align-items: center;

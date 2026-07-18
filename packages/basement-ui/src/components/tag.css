@@ -17,6 +17,7 @@
 }
 
 .tag--affirm {
+  background: var(--theme-bg-affirm);
   border-color: var(--theme-border-affirm);
   color: var(--theme-fg-affirm);
 }
@@ -28,7 +29,8 @@
 }
 
 .tag--warn {
-  border-color: var(--theme-border-warn);
+  background: var(--theme-bg-warn);
+  border-color: var(--color-yellow);
   color: var(--theme-fg-warn);
 }
 
@@ -39,6 +41,7 @@
 }
 
 .tag--destructive {
+  background: var(--theme-bg-destructive);
   border-color: var(--theme-border-destructive);
   color: var(--theme-fg-destructive);
 }

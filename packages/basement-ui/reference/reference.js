@@ -437,6 +437,25 @@ function initTableSorting() {
 
 initTableSorting();
 
+// ── Table selectable rows demo ──
+function initTableSelection() {
+  document.querySelectorAll('.table-demo-selectable').forEach(table => {
+    const rows = table.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      row.addEventListener('click', () => {
+        rows.forEach(other => {
+          other.classList.remove('is-selected');
+          other.removeAttribute('aria-selected');
+        });
+        row.classList.add('is-selected');
+        row.setAttribute('aria-selected', 'true');
+      });
+    });
+  });
+}
+
+initTableSelection();
+
 const initialSection = sectionFromHash()
   || localStorage.getItem(SECTION_STORAGE_KEY)
   || DEFAULT_SECTION;
