@@ -8,7 +8,7 @@ Design system and component library for Gwenzhir projects.
 - `src/base/` — Reset and base element styles
 - `src/typography/` — Heading, body, caption, and link styles
 - `src/icons/` — Phosphor icon size utilities
-- `src/components/` — Reusable UI component styles (Button, Tabs, Toggle, Text Input, Form, Tag, Status Chip, Avatar, Dropdown, Prompt, Alert, Table, Timeline, Sidebar)
+- `src/components/` — Reusable UI component styles (Button, Tabs, Toggle, Text Input, Form, Tag, Status Chip, Progress, Player, Avatar, Dropdown, Prompt, Alert, Table, Timeline, Sidebar)
 - `src/index.css` — Full library entry (imports all of the above)
 - `reference/` — Reference page chrome (sidebar, demos, dev toggles)
 - `index.html` — Live token and component reference

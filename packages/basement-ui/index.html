@@ -49,6 +49,8 @@
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
         <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
+        <button type="button" class="sidebar-item" data-section="progress">Progress</button>
+        <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="mention">Mention</button>
         <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
@@ -189,6 +191,31 @@
                 <span class="status-chip status-chip--affirm">
                   <span class="status-chip-dot" aria-hidden="true"></span>
                   <span class="status-chip-label">Active</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="progress">
+              <span class="home-card-title">Progress</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="progress home-preview-progress" style="--progress: 40%;">
+                  <span class="progress-track">
+                    <span class="progress-fill"></span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="player">
+              <span class="home-card-title">Player</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="player home-preview-player">
+                  <span class="btn btn--2xs btn--default btn--icon">
+                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
+                  </span>
+                  <span class="progress" style="--progress: 35%;">
+                    <span class="progress-track">
+                      <span class="progress-fill"></span>
+                    </span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -2464,6 +2491,169 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Destructive</span>
               <span class="sample-meta-detail">Red tint · Error or blocked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Progress ── -->
+    <section class="section section--component" id="progress">
+      <h2 class="section-label">Progress</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Values</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="progress"
+                style="--progress: 0%;"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
+                <div class="progress-track">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Empty</span>
+              <span class="sample-meta-detail">Subtle track · No fill</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="progress"
+                style="--progress: 40%;"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="40"
+              >
+                <div class="progress-track">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Partial</span>
+              <span class="sample-meta-detail">Foreground fill · Mid value</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="progress"
+                style="--progress: 100%;"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="100"
+              >
+                <div class="progress-track">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Complete</span>
+              <span class="sample-meta-detail">Full fill · End state</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">With value</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="progress"
+                style="--progress: 65%;"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="65"
+              >
+                <div class="progress-track">
+                  <div class="progress-fill"></div>
+                </div>
+                <span class="progress-value">65%</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Percentage</span>
+              <span class="sample-meta-detail">Track · Value at the end</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Player ── -->
+    <section class="section section--component" id="player">
+      <h2 class="section-label">Player</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="player" role="group" aria-label="Audio player">
+                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Play">
+                  <i class="ph ph-play icon--m" aria-hidden="true"></i>
+                </button>
+                <div
+                  class="progress"
+                  style="--progress: 22%;"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="22"
+                  aria-label="Playback position"
+                >
+                  <div class="progress-track">
+                    <div class="progress-fill"></div>
+                  </div>
+                </div>
+                <span class="player-time">0:42 / 3:15</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Play control · Scrubber · Elapsed and duration</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="player" role="group" aria-label="Audio player">
+                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Pause">
+                  <i class="ph ph-pause icon--m" aria-hidden="true"></i>
+                </button>
+                <div
+                  class="progress"
+                  style="--progress: 48%;"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="48"
+                  aria-label="Playback position"
+                >
+                  <div class="progress-track">
+                    <div class="progress-fill"></div>
+                  </div>
+                </div>
+                <span class="player-time">1:34 / 3:15</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Playing</span>
+              <span class="sample-meta-detail">Pause control · Mid scrubber</span>
             </div>
           </div>
         </div>

@@ -1,0 +1,40 @@
+.progress {
+  --progress: 0%;
+  --progress-fill: var(--theme-fg);
+  --progress-track-height: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.progress-track {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--progress-track-height);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-bg-subtle);
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  width: var(--progress);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress-fill);
+}
+
+.progress-value {
+  flex: 0 0 auto;
+  color: var(--theme-fg-secondary);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
