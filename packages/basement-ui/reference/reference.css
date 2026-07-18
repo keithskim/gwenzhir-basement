@@ -508,6 +508,23 @@ html.is-sidebar-locked {
   max-width: 8rem;
 }
 
+.home-preview-graph {
+  width: 100%;
+  max-width: 6rem;
+  pointer-events: none;
+}
+
+.home-preview-graph .graph-bars {
+  gap: 0.25rem;
+  padding-inline: 0;
+}
+
+.home-preview-graph .graph-bar {
+  max-width: none;
+  padding: 0;
+  border-radius: 0.125rem;
+}
+
 .home-preview-player {
   width: 100%;
   max-width: 9rem;
@@ -1261,6 +1278,29 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 #progress .progress {
   max-width: 16rem;
+}
+
+#graph .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #graph .type-sample-list > .type-sample-item {
+    grid-column: span 4;
+  }
+}
+
+#graph .sample-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--spacing-m);
+  padding-inline: var(--spacing-s);
+}
+
+#graph .graph {
+  max-width: 28rem;
 }
 
 #player .type-sample-item {

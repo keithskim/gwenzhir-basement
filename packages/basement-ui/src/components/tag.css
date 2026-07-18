@@ -83,3 +83,57 @@
   min-height: calc(var(--line-height-m) + 0.125rem);
   padding: 0.0625rem 0.625rem;
 }
+
+.tag--split {
+  padding-inline: 0;
+  overflow: hidden;
+}
+
+.tag--split .tag-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.tag--split .tag-label + .tag-label {
+  border-inline-start: 1px solid var(--theme-border);
+}
+
+.tag--split.tag--filled .tag-label + .tag-label {
+  border-inline-start-color: color-mix(in srgb, var(--theme-bg) 40%, transparent);
+}
+
+.tag--split.tag--affirm .tag-label + .tag-label {
+  border-inline-start-color: var(--theme-border-affirm);
+}
+
+.tag--split.tag--warn .tag-label + .tag-label {
+  border-inline-start-color: var(--color-yellow);
+}
+
+.tag--split.tag--destructive .tag-label + .tag-label {
+  border-inline-start-color: var(--theme-border-destructive);
+}
+
+.tag--split.tag--affirm.tag--filled .tag-label + .tag-label,
+.tag--split.tag--warn.tag--filled .tag-label + .tag-label,
+.tag--split.tag--destructive.tag--filled .tag-label + .tag-label {
+  border-inline-start-color: color-mix(in srgb, var(--theme-bg) 40%, transparent);
+}
+
+.tag--2xs.tag--split .tag-label {
+  padding-inline: 0.25rem;
+}
+
+.tag--xs.tag--split .tag-label {
+  padding-inline: 0.375rem;
+}
+
+.tag--s.tag--split .tag-label {
+  padding-inline: 0.5rem;
+}
+
+.tag--m.tag--split .tag-label {
+  padding-inline: 0.625rem;
+}

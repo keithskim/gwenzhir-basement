@@ -1,0 +1,164 @@
+.graph {
+  --graph-ticks: 4;
+  --graph-grid-line: color-mix(in srgb, var(--theme-border) 70%, var(--theme-bg));
+  --graph-bar-muted: var(--color-light-gray);
+  --graph-bar-accent: var(--theme-fg);
+  --graph-plot-height: 12rem;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  -webkit-font-smoothing: antialiased;
+}
+
+.graph-plot {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.graph-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.graph-bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.graph-bar {
+  --bar-size: 0%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+}
+
+.graph-bar--muted {
+  background: var(--graph-bar-muted);
+  color: var(--color-black);
+}
+
+.graph-bar--accent {
+  background: var(--graph-bar-accent);
+  color: var(--theme-bg);
+}
+
+.graph-bar-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.graph-value {
+  flex-shrink: 0;
+  color: var(--theme-fg-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ── Vertical ── */
+
+.graph--vertical .graph-plot {
+  height: var(--graph-plot-height);
+  padding-block-start: var(--spacing-s);
+}
+
+.graph--vertical .graph-grid {
+  background-image: linear-gradient(
+    to top,
+    var(--graph-grid-line) 1px,
+    transparent 1px
+  );
+  background-size: 100% calc(100% / var(--graph-ticks));
+  background-position: bottom;
+  border-block-end: 1px solid var(--graph-grid-line);
+}
+
+.graph--vertical .graph-bars {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  height: 100%;
+  padding-inline: var(--spacing-xs);
+}
+
+.graph--vertical .graph-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+}
+
+.graph--vertical .graph-bar {
+  width: 100%;
+  max-width: 3.5rem;
+  height: var(--bar-size);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.25rem;
+}
+
+.graph--vertical .graph-bar-label {
+  width: 100%;
+  text-align: center;
+}
+
+.graph--vertical .graph-value {
+  order: -1;
+}
+
+/* ── Horizontal ── */
+
+.graph--horizontal .graph-plot {
+  min-height: calc(var(--graph-plot-height) * 0.55);
+}
+
+.graph--horizontal .graph-grid {
+  background-image: linear-gradient(
+    to right,
+    var(--graph-grid-line) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / var(--graph-ticks)) 100%;
+  border-inline-end: 1px solid var(--graph-grid-line);
+}
+
+.graph--horizontal .graph-bars {
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  padding-block: var(--spacing-xs);
+}
+
+.graph--horizontal .graph-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.graph--horizontal .graph-bar {
+  height: var(--line-height-s);
+  width: var(--bar-size);
+  flex: 0 1 auto;
+  padding-inline: var(--spacing-xs);
+}
+
+.graph--horizontal .graph-bar-label {
+  flex: 1 1 auto;
+}

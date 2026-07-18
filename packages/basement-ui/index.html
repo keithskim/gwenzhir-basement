@@ -47,6 +47,7 @@
         <button type="button" class="sidebar-item" data-section="toggle">Toggle</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
+        <button type="button" class="sidebar-item" data-section="graph">Graph</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
         <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
         <button type="button" class="sidebar-item" data-section="progress">Progress</button>
@@ -176,6 +177,26 @@
                 <span class="control-row home-preview-control">
                   <input class="checkbox" type="checkbox" checked tabindex="-1">
                   Remember me
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="graph">
+              <span class="home-card-title">Graph</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="graph graph--bar graph--vertical home-preview-graph" style="--graph-ticks: 3; --graph-plot-height: 2.5rem;">
+                  <span class="graph-plot">
+                    <span class="graph-bars">
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--muted" style="--bar-size: 45%;"></span>
+                      </span>
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--accent" style="--bar-size: 100%;"></span>
+                      </span>
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--muted" style="--bar-size: 65%;"></span>
+                      </span>
+                    </span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -2371,6 +2392,93 @@
       </div>
     </section>
 
+    <!-- ── Graph ── -->
+    <section class="section section--component" id="graph">
+      <h2 class="section-label">Graph</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Bar</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="graph graph--bar graph--vertical"
+                style="--graph-ticks: 4;"
+                role="img"
+                aria-label="Vertical bar graph of Alpha 28, Beta 72, Gamma 45"
+              >
+                <div class="graph-plot">
+                  <div class="graph-grid" aria-hidden="true"></div>
+                  <div class="graph-bars">
+                    <div class="graph-col">
+                      <span class="graph-value">28</span>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
+                        <span class="graph-bar-label">Alpha</span>
+                      </div>
+                    </div>
+                    <div class="graph-col">
+                      <span class="graph-value">72</span>
+                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
+                        <span class="graph-bar-label">Beta</span>
+                      </div>
+                    </div>
+                    <div class="graph-col">
+                      <span class="graph-value">45</span>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
+                        <span class="graph-bar-label">Gamma</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Vertical</span>
+              <span class="sample-meta-detail">Bar label · Value above · One accent bar</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="graph graph--bar graph--horizontal"
+                style="--graph-ticks: 4;"
+                role="img"
+                aria-label="Horizontal bar graph of Alpha 28, Beta 72, Gamma 45"
+              >
+                <div class="graph-plot">
+                  <div class="graph-grid" aria-hidden="true"></div>
+                  <div class="graph-bars">
+                    <div class="graph-row">
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
+                        <span class="graph-bar-label">Alpha</span>
+                      </div>
+                      <span class="graph-value">28</span>
+                    </div>
+                    <div class="graph-row">
+                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
+                        <span class="graph-bar-label">Beta</span>
+                      </div>
+                      <span class="graph-value">72</span>
+                    </div>
+                    <div class="graph-row">
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
+                        <span class="graph-bar-label">Gamma</span>
+                      </div>
+                      <span class="graph-value">45</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Horizontal</span>
+              <span class="sample-meta-detail">Bar label · Value at end · Minimalist grid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Tag ── -->
     <section class="section section--component" id="tag">
       <h2 class="section-label">Tag</h2>
@@ -2394,6 +2502,18 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Filled</span>
               <span class="sample-meta-detail">Inverted background and text</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tag tag--xs tag--split">
+                <span class="tag-label">Owner</span>
+                <span class="tag-label">Design</span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Split</span>
+              <span class="sample-meta-detail">Two labels · Middle border</span>
             </div>
           </div>
         </div>
