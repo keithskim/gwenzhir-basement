@@ -4,6 +4,7 @@
   --graph-bar-muted: var(--color-light-gray);
   --graph-bar-accent: var(--theme-fg);
   --graph-plot-height: 12rem;
+  --graph-label-width: 4rem;
   box-sizing: border-box;
   width: 100%;
   font-family: var(--font-base-family);
@@ -58,6 +59,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--theme-fg-body);
 }
 
 .graph-value {
@@ -82,6 +84,11 @@
   );
   background-size: 100% calc(100% / var(--graph-ticks));
   background-position: bottom;
+  border-block-end: 1px solid var(--graph-grid-line);
+}
+
+.graph--vertical:not(.graph--labels-inside) .graph-grid {
+  inset-block-end: calc(var(--line-height-xs) + 0.25rem);
   border-block-end: 1px solid var(--graph-grid-line);
 }
 
@@ -110,16 +117,26 @@
   height: var(--bar-size);
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0.25rem;
 }
 
-.graph--vertical .graph-bar-label {
+.graph--vertical:not(.graph--labels-inside) .graph-bar-label {
   width: 100%;
+  max-width: 3.5rem;
   text-align: center;
 }
 
 .graph--vertical .graph-value {
   order: -1;
+}
+
+.graph--vertical.graph--labels-inside .graph-bar {
+  padding: 0.25rem;
+}
+
+.graph--vertical.graph--labels-inside .graph-bar-label {
+  width: 100%;
+  text-align: center;
+  color: inherit;
 }
 
 /* ── Horizontal ── */
@@ -138,6 +155,10 @@
   border-inline-end: 1px solid var(--graph-grid-line);
 }
 
+.graph--horizontal:not(.graph--labels-inside) .graph-grid {
+  inset-inline-start: calc(var(--graph-label-width) + var(--spacing-xs));
+}
+
 .graph--horizontal .graph-bars {
   flex-direction: column;
   justify-content: space-between;
@@ -152,13 +173,30 @@
   min-width: 0;
 }
 
+.graph--horizontal .graph-track {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.graph--horizontal:not(.graph--labels-inside) .graph-bar-label {
+  flex: 0 0 var(--graph-label-width);
+  width: var(--graph-label-width);
+  text-align: end;
+}
+
 .graph--horizontal .graph-bar {
   height: var(--line-height-s);
   width: var(--bar-size);
   flex: 0 1 auto;
+}
+
+.graph--horizontal.graph--labels-inside .graph-bar {
   padding-inline: var(--spacing-xs);
 }
 
-.graph--horizontal .graph-bar-label {
+.graph--horizontal.graph--labels-inside .graph-bar-label {
   flex: 1 1 auto;
+  color: inherit;
 }

@@ -2412,21 +2412,18 @@
                   <div class="graph-bars">
                     <div class="graph-col">
                       <span class="graph-value">28</span>
-                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
-                        <span class="graph-bar-label">Alpha</span>
-                      </div>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;"></div>
+                      <span class="graph-bar-label">Alpha</span>
                     </div>
                     <div class="graph-col">
                       <span class="graph-value">72</span>
-                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
-                        <span class="graph-bar-label">Beta</span>
-                      </div>
+                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;"></div>
+                      <span class="graph-bar-label">Beta</span>
                     </div>
                     <div class="graph-col">
                       <span class="graph-value">45</span>
-                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
-                        <span class="graph-bar-label">Gamma</span>
-                      </div>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;"></div>
+                      <span class="graph-bar-label">Gamma</span>
                     </div>
                   </div>
                 </div>
@@ -2434,7 +2431,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Vertical</span>
-              <span class="sample-meta-detail">Bar label · Value above · One accent bar</span>
+              <span class="sample-meta-detail">Labels below grid · Value above · One accent bar</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2449,20 +2446,23 @@
                   <div class="graph-grid" aria-hidden="true"></div>
                   <div class="graph-bars">
                     <div class="graph-row">
-                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
-                        <span class="graph-bar-label">Alpha</span>
+                      <span class="graph-bar-label">Alpha</span>
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;"></div>
                       </div>
                       <span class="graph-value">28</span>
                     </div>
                     <div class="graph-row">
-                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
-                        <span class="graph-bar-label">Beta</span>
+                      <span class="graph-bar-label">Beta</span>
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;"></div>
                       </div>
                       <span class="graph-value">72</span>
                     </div>
                     <div class="graph-row">
-                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
-                        <span class="graph-bar-label">Gamma</span>
+                      <span class="graph-bar-label">Gamma</span>
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;"></div>
                       </div>
                       <span class="graph-value">45</span>
                     </div>
@@ -2472,7 +2472,95 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Horizontal</span>
-              <span class="sample-meta-detail">Bar label · Value at end · Minimalist grid</span>
+              <span class="sample-meta-detail">Labels beside grid · Value at end</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Labels</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="graph graph--bar graph--vertical graph--labels-inside"
+                style="--graph-ticks: 4;"
+                role="img"
+                aria-label="Vertical bar graph with labels inside bars"
+              >
+                <div class="graph-plot">
+                  <div class="graph-grid" aria-hidden="true"></div>
+                  <div class="graph-bars">
+                    <div class="graph-col">
+                      <span class="graph-value">28</span>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
+                        <span class="graph-bar-label">Alpha</span>
+                      </div>
+                    </div>
+                    <div class="graph-col">
+                      <span class="graph-value">72</span>
+                      <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
+                        <span class="graph-bar-label">Beta</span>
+                      </div>
+                    </div>
+                    <div class="graph-col">
+                      <span class="graph-value">45</span>
+                      <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
+                        <span class="graph-bar-label">Gamma</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Inside</span>
+              <span class="sample-meta-detail">Category label on the bar</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div
+                class="graph graph--bar graph--horizontal graph--labels-inside"
+                style="--graph-ticks: 4;"
+                role="img"
+                aria-label="Horizontal bar graph with labels inside bars"
+              >
+                <div class="graph-plot">
+                  <div class="graph-grid" aria-hidden="true"></div>
+                  <div class="graph-bars">
+                    <div class="graph-row">
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
+                          <span class="graph-bar-label">Alpha</span>
+                        </div>
+                      </div>
+                      <span class="graph-value">28</span>
+                    </div>
+                    <div class="graph-row">
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
+                          <span class="graph-bar-label">Beta</span>
+                        </div>
+                      </div>
+                      <span class="graph-value">72</span>
+                    </div>
+                    <div class="graph-row">
+                      <div class="graph-track">
+                        <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
+                          <span class="graph-bar-label">Gamma</span>
+                        </div>
+                      </div>
+                      <span class="graph-value">45</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Inside</span>
+              <span class="sample-meta-detail">Category label on the bar · Horizontal</span>
             </div>
           </div>
         </div>
@@ -2514,6 +2602,18 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Split</span>
               <span class="sample-meta-detail">Two labels · Middle border</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
+                <span class="tag tag--xs">Design</span>
+                <span class="tag tag--xs tag--compact">Design</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Compact</span>
+              <span class="sample-meta-detail">Tighter padding and height</span>
             </div>
           </div>
         </div>
@@ -2605,13 +2705,13 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="variant-row">
-                <span class="tag tag--xs">3</span>
-                <span class="tag tag--xs">N</span>
+                <span class="tag tag--xs tag--compact">3</span>
+                <span class="tag tag--xs tag--compact">N</span>
               </div>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Short text</span>
-              <span class="sample-meta-detail">At least square for single characters</span>
+              <span class="sample-meta-detail">Compact · At least square for single characters</span>
             </div>
           </div>
         </div>

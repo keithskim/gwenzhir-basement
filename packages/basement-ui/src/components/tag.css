@@ -137,3 +137,51 @@
 .tag--m.tag--split .tag-label {
   padding-inline: 0.625rem;
 }
+
+.tag--compact.tag--2xs {
+  min-width: calc(var(--font-size-2xs) + 0.125rem);
+  min-height: calc(var(--font-size-2xs) + 0.25rem);
+  line-height: 1.2;
+  padding-block: 0.0625rem;
+  padding-inline: 0.125rem;
+}
+
+.tag--compact.tag--xs {
+  min-width: calc(var(--font-size-xs) + 0.125rem);
+  min-height: calc(var(--font-size-xs) + 0.25rem);
+  line-height: 1.2;
+  padding-block: 0.0625rem;
+  padding-inline: 0.25rem;
+}
+
+.tag--compact.tag--s {
+  min-width: calc(var(--font-size-s) + 0.125rem);
+  min-height: calc(var(--font-size-s) + 0.375rem);
+  line-height: 1.2;
+  padding-block: 0.125rem;
+  padding-inline: 0.375rem;
+}
+
+.tag--compact.tag--m {
+  min-width: calc(var(--font-size-m) + 0.125rem);
+  min-height: calc(var(--font-size-m) + 0.375rem);
+  line-height: 1.2;
+  padding-block: 0.125rem;
+  padding-inline: 0.5rem;
+}
+
+.tag--compact.tag--2xs.tag--split .tag-label {
+  padding-inline: 0.125rem;
+}
+
+.tag--compact.tag--xs.tag--split .tag-label {
+  padding-inline: 0.25rem;
+}
+
+.tag--compact.tag--s.tag--split .tag-label {
+  padding-inline: 0.375rem;
+}
+
+.tag--compact.tag--m.tag--split .tag-label {
+  padding-inline: 0.5rem;
+}
