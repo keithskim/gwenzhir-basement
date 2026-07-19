@@ -3,7 +3,7 @@
   --color-black:      #131410;
   --color-gray-extra-dark: #222320;
   --color-dark-gray:  #65685F;
-  --color-gray:       #777B71;
+  --color-gray:       #898D83;
   --color-light-gray: #DEDFD8;
   --color-gray-extra-light: #F6F6F1;
   --color-white:      #FFFFF9;
@@ -46,7 +46,7 @@
 
   --theme-bg: var(--color-white);
   --theme-fg: var(--color-black);
-  --theme-fg-secondary: var(--color-gray);
+  --theme-fg-secondary: var(--color-dark-gray);
   --theme-fg-body: var(--color-dark-gray);
   --theme-fg-affirm: var(--color-green-dark);
   --theme-fg-warn: var(--color-yellow-dark);

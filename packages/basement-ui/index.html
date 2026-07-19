@@ -185,6 +185,7 @@
               <span class="home-card-preview" aria-hidden="true">
                 <span class="graph graph--bar graph--vertical home-preview-graph" style="--graph-ticks: 3; --graph-plot-height: 2.5rem;">
                   <span class="graph-plot">
+                    <span class="graph-grid"></span>
                     <span class="graph-bars">
                       <span class="graph-col">
                         <span class="graph-bar graph-bar--muted" style="--bar-size: 45%;"></span>
@@ -365,7 +366,7 @@
             <div>
               <div class="swatch-face swatch-face--gray"></div>
               <div class="token-name">Gray</div>
-              <div class="token-value">#777B71</div>
+              <div class="token-value">#898D83</div>
             </div>
             <div>
               <div class="swatch-face swatch-face--light-gray"></div>
@@ -693,8 +694,8 @@
             <div class="scheme-row-header">
               <span class="scheme-role-label">Secondary</span>
               <button class="scheme-btn" data-slot="light">
-                <span class="scheme-swatch" style="background:var(--color-gray);"></span>
-                <span class="scheme-color-name">Gray</span>
+                <span class="scheme-swatch" style="background:var(--color-dark-gray);"></span>
+                <span class="scheme-color-name">Gray D</span>
               </button>
               <button class="scheme-btn" data-slot="dark">
                 <span class="scheme-swatch" style="background:var(--color-light-gray);"></span>
@@ -966,7 +967,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label sample-meta-label--2col">Paragraph</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">S · Gray</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">S · Gray D</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -975,7 +976,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label sample-meta-label--2col">Paragraph</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">M · Gray</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">M · Gray D</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1041,7 +1042,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Caption</span>
-              <span class="sample-meta-detail">XS · Gray</span>
+              <span class="sample-meta-detail">XS · Gray D</span>
             </div>
           </div>
         </div>
@@ -2431,7 +2432,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Vertical</span>
-              <span class="sample-meta-detail">Labels below grid · Value above · One accent bar</span>
+              <span class="sample-meta-detail">Bar and value labels outside · One accent bar</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2472,41 +2473,41 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Horizontal</span>
-              <span class="sample-meta-detail">Labels beside grid · Value next to bar</span>
+              <span class="sample-meta-detail">Bar and value labels outside · Value next to bar</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="border-group">
-        <h3 class="subsection-label">Labels</h3>
+        <h3 class="subsection-label">Bar options</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
             <div class="sample-box">
               <div
-                class="graph graph--bar graph--vertical graph--labels-inside"
+                class="graph graph--bar graph--vertical graph--bar-label-inside graph--value-inside"
                 style="--graph-ticks: 4;"
                 role="img"
-                aria-label="Vertical bar graph with labels inside bars"
+                aria-label="Vertical bar graph with bar and value labels inside"
               >
                 <div class="graph-plot">
                   <div class="graph-grid" aria-hidden="true"></div>
                   <div class="graph-bars">
                     <div class="graph-col">
-                      <span class="graph-value">28</span>
                       <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
+                        <span class="graph-value">28</span>
                         <span class="graph-bar-label">Alpha</span>
                       </div>
                     </div>
                     <div class="graph-col">
-                      <span class="graph-value">72</span>
                       <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
+                        <span class="graph-value">72</span>
                         <span class="graph-bar-label">Beta</span>
                       </div>
                     </div>
                     <div class="graph-col">
-                      <span class="graph-value">45</span>
                       <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
+                        <span class="graph-value">45</span>
                         <span class="graph-bar-label">Gamma</span>
                       </div>
                     </div>
@@ -2515,17 +2516,17 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Inside</span>
-              <span class="sample-meta-detail">Category label on the bar</span>
+              <span class="sample-meta-label">Labels inside</span>
+              <span class="sample-meta-detail">Vertical · Category and value on the bar</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
               <div
-                class="graph graph--bar graph--horizontal graph--labels-inside"
+                class="graph graph--bar graph--horizontal graph--bar-label-inside graph--value-inside"
                 style="--graph-ticks: 4;"
                 role="img"
-                aria-label="Horizontal bar graph with labels inside bars"
+                aria-label="Horizontal bar graph with bar and value labels inside"
               >
                 <div class="graph-plot">
                   <div class="graph-grid" aria-hidden="true"></div>
@@ -2534,24 +2535,24 @@
                       <div class="graph-track">
                         <div class="graph-bar graph-bar--muted" style="--bar-size: 39%;">
                           <span class="graph-bar-label">Alpha</span>
+                          <span class="graph-value">28</span>
                         </div>
-                        <span class="graph-value">28</span>
                       </div>
                     </div>
                     <div class="graph-row">
                       <div class="graph-track">
                         <div class="graph-bar graph-bar--accent" style="--bar-size: 100%;">
                           <span class="graph-bar-label">Beta</span>
+                          <span class="graph-value">72</span>
                         </div>
-                        <span class="graph-value">72</span>
                       </div>
                     </div>
                     <div class="graph-row">
                       <div class="graph-track">
                         <div class="graph-bar graph-bar--muted" style="--bar-size: 62%;">
                           <span class="graph-bar-label">Gamma</span>
+                          <span class="graph-value">45</span>
                         </div>
-                        <span class="graph-value">45</span>
                       </div>
                     </div>
                   </div>
@@ -2559,8 +2560,8 @@
               </div>
             </div>
             <div class="sample-meta">
-              <span class="sample-meta-label">Inside</span>
-              <span class="sample-meta-detail">Category label on the bar · Horizontal</span>
+              <span class="sample-meta-label">Labels inside</span>
+              <span class="sample-meta-detail">Horizontal · Category and value on the bar</span>
             </div>
           </div>
         </div>
@@ -2580,7 +2581,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Outline · Gray text</span>
+              <span class="sample-meta-detail">Outline · Gray D text</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2734,7 +2735,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Neutral</span>
-              <span class="sample-meta-detail">Subtle fill · Gray indicator</span>
+              <span class="sample-meta-detail">Subtle fill · Gray D indicator</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -3509,7 +3510,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Outline bars · Gray labels</span>
+              <span class="sample-meta-detail">Outline bars · Gray D labels</span>
             </div>
           </div>
           <div class="type-sample-item">

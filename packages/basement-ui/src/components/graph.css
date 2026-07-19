@@ -1,10 +1,13 @@
 .graph {
   --graph-ticks: 4;
   --graph-grid-line: color-mix(in srgb, var(--theme-border) 70%, var(--theme-bg));
+  --graph-baseline: var(--theme-border);
   --graph-bar-muted: var(--color-light-gray);
   --graph-bar-accent: var(--theme-fg);
   --graph-plot-height: 12rem;
   --graph-label-width: 4rem;
+  --graph-axis-gap: 0.25rem;
+  display: block;
   box-sizing: border-box;
   width: 100%;
   font-family: var(--font-base-family);
@@ -15,6 +18,7 @@
 }
 
 .graph-plot {
+  display: block;
   position: relative;
   box-sizing: border-box;
 }
@@ -69,6 +73,11 @@
   white-space: nowrap;
 }
 
+.graph-bar .graph-bar-label,
+.graph-bar .graph-value {
+  color: inherit;
+}
+
 /* ── Vertical ── */
 
 .graph--vertical .graph-plot {
@@ -76,20 +85,23 @@
   padding-block-start: var(--spacing-s);
 }
 
+.graph--vertical.graph--value-inside .graph-plot {
+  padding-block-start: 0;
+}
+
 .graph--vertical .graph-grid {
   background-image: linear-gradient(
-    to top,
+    to bottom,
     var(--graph-grid-line) 1px,
     transparent 1px
   );
   background-size: 100% calc(100% / var(--graph-ticks));
-  background-position: bottom;
-  border-block-end: 1px solid var(--graph-grid-line);
+  background-position: left top;
+  border-block-end: 1px solid var(--graph-baseline);
 }
 
-.graph--vertical:not(.graph--labels-inside) .graph-grid {
-  inset-block-end: calc(var(--line-height-xs) + 0.25rem);
-  border-block-end: 1px solid var(--graph-grid-line);
+.graph--vertical:not(.graph--bar-label-inside) .graph-plot {
+  margin-block-end: calc(var(--line-height-xs) + var(--graph-axis-gap));
 }
 
 .graph--vertical .graph-bars {
@@ -109,6 +121,7 @@
   flex: 1 1 0;
   min-width: 0;
   height: 100%;
+  position: relative;
 }
 
 .graph--vertical .graph-bar {
@@ -117,26 +130,44 @@
   height: var(--bar-size);
   flex-direction: column;
   justify-content: flex-end;
+  gap: 0.125rem;
+  border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
 }
 
-.graph--vertical:not(.graph--labels-inside) .graph-bar-label {
-  width: 100%;
-  max-width: 3.5rem;
-  text-align: center;
-}
-
-.graph--vertical .graph-value {
+.graph--vertical:not(.graph--value-inside) .graph-value {
   order: -1;
 }
 
-.graph--vertical.graph--labels-inside .graph-bar {
+.graph--vertical:not(.graph--bar-label-inside) .graph-bar-label {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(100% + var(--graph-axis-gap));
+  width: 100%;
+  max-width: 3.5rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.graph--vertical.graph--bar-label-inside .graph-bar,
+.graph--vertical.graph--value-inside .graph-bar {
   padding: 0.25rem;
 }
 
-.graph--vertical.graph--labels-inside .graph-bar-label {
+.graph--vertical.graph--bar-label-inside .graph-bar-label {
   width: 100%;
   text-align: center;
-  color: inherit;
+}
+
+.graph--vertical.graph--value-inside .graph-value {
+  order: 0;
+}
+
+.graph--vertical.graph--value-inside.graph--bar-label-inside .graph-bar {
+  justify-content: space-between;
+}
+
+.graph--vertical.graph--value-inside:not(.graph--bar-label-inside) .graph-bar {
+  justify-content: flex-start;
 }
 
 /* ── Horizontal ── */
@@ -152,10 +183,11 @@
     transparent 1px
   );
   background-size: calc(100% / var(--graph-ticks)) 100%;
-  border-inline-end: 1px solid var(--graph-grid-line);
+  background-position: left top;
+  border-inline-end: 1px solid var(--graph-baseline);
 }
 
-.graph--horizontal:not(.graph--labels-inside) .graph-grid {
+.graph--horizontal:not(.graph--bar-label-inside) .graph-grid {
   inset-inline-start: calc(var(--graph-label-width) + var(--spacing-xs));
 }
 
@@ -181,7 +213,7 @@
   gap: var(--spacing-xs);
 }
 
-.graph--horizontal:not(.graph--labels-inside) .graph-bar-label {
+.graph--horizontal:not(.graph--bar-label-inside) .graph-bar-label {
   flex: 0 0 var(--graph-label-width);
   width: var(--graph-label-width);
   text-align: end;
@@ -190,15 +222,29 @@
 .graph--horizontal .graph-bar {
   height: var(--line-height-s);
   width: var(--bar-size);
-  max-width: calc(100% - 2rem);
   flex: 0 0 auto;
+  gap: var(--spacing-xs);
+  border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
 }
 
-.graph--horizontal.graph--labels-inside .graph-bar {
+.graph--horizontal:not(.graph--value-inside) .graph-bar {
+  max-width: calc(100% - 2rem);
+}
+
+.graph--horizontal.graph--value-inside .graph-bar {
+  max-width: 100%;
+  padding-inline: var(--spacing-xs);
+  justify-content: flex-end;
+}
+
+.graph--horizontal.graph--bar-label-inside .graph-bar {
   padding-inline: var(--spacing-xs);
 }
 
-.graph--horizontal.graph--labels-inside .graph-bar-label {
+.graph--horizontal.graph--bar-label-inside .graph-bar-label {
   flex: 1 1 auto;
-  color: inherit;
+}
+
+.graph--horizontal.graph--bar-label-inside.graph--value-inside .graph-bar {
+  justify-content: space-between;
 }
