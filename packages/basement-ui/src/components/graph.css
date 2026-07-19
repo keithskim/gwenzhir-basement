@@ -178,6 +178,7 @@
   min-width: 0;
   display: flex;
   align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .graph--horizontal:not(.graph--labels-inside) .graph-bar-label {
@@ -189,7 +190,8 @@
 .graph--horizontal .graph-bar {
   height: var(--line-height-s);
   width: var(--bar-size);
-  flex: 0 1 auto;
+  max-width: calc(100% - 2rem);
+  flex: 0 0 auto;
 }
 
 .graph--horizontal.graph--labels-inside .graph-bar {
