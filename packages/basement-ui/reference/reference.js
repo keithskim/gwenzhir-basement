@@ -126,6 +126,7 @@ window.addEventListener('hashchange', () => {
 
 // ── Tabs demos ──
 document.querySelectorAll('[data-tabs-demo]').forEach(demo => {
+  const tablist = demo.querySelector('.tabs[role="tablist"], .tabs');
   const tabs = [...demo.querySelectorAll('[role="tab"]')];
 
   function activateTab(activeTab, { focus = false } = {}) {
@@ -141,6 +142,7 @@ document.querySelectorAll('[data-tabs-demo]').forEach(demo => {
     });
 
     if (focus) activeTab.focus();
+    if (tablist && window.BasementTabs) window.BasementTabs.sync(tablist);
   }
 
   tabs.forEach(tab => {
@@ -151,10 +153,11 @@ document.querySelectorAll('[data-tabs-demo]').forEach(demo => {
       );
       const currentIndex = enabledTabs.indexOf(tab);
       let nextTab;
+      const stacked = tablist?.classList.contains('tabs--stacked');
 
-      if (event.key === 'ArrowRight') {
+      if (event.key === 'ArrowRight' || (stacked && event.key === 'ArrowDown')) {
         nextTab = enabledTabs[(currentIndex + 1) % enabledTabs.length];
-      } else if (event.key === 'ArrowLeft') {
+      } else if (event.key === 'ArrowLeft' || (stacked && event.key === 'ArrowUp')) {
         nextTab = enabledTabs[(currentIndex - 1 + enabledTabs.length) % enabledTabs.length];
       } else if (event.key === 'Home') {
         nextTab = enabledTabs[0];

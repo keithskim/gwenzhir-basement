@@ -674,7 +674,7 @@ html.is-sidebar-locked {
   overflow: hidden;
 }
 
-#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .link-sample) {
+#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .link-sample, .control-row) {
   grid-column: 1 / -1;
 }
 

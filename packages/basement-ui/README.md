@@ -41,6 +41,14 @@ Or import subsets via npm package exports:
 <link rel="stylesheet" href="path/to/basement-ui/src/components/index.css">
 ```
 
+For Tabs that should collapse into a vertical list when labels exceed the container:
+
+```html
+<script src="path/to/basement-ui/src/components/tabs-collapse.js" defer></script>
+```
+
+Force stacked with `tabs--stacked`, or opt out with `data-tabs-collapse="off"`.
+
 Load Pretendard separately (CDN or self-hosted). Phosphor regular weight is vendored at `vendor/phosphor/regular/`.
 
 ## Intended use

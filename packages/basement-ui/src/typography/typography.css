@@ -57,6 +57,11 @@
   line-height: var(--line-height-s);
 }
 
+/* Compact leading: font-size + 0.25rem (default is + 0.5rem) */
+.type-compact {
+  line-height: calc(1em + 0.25rem);
+}
+
 .type-text--affirm {
   color: var(--theme-fg-affirm);
 }

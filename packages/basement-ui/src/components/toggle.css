@@ -6,7 +6,7 @@
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  line-height: calc(1em + 0.25rem);
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
 }
@@ -172,7 +172,7 @@
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  line-height: calc(1em + 0.25rem);
   text-align: center;
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;

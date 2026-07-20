@@ -1,8 +1,12 @@
 .tabs {
   display: inline-flex;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: flex-start;
   gap: 0;
   max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 0;
   overflow: visible;
   border: 0.0625rem solid var(--theme-border);
@@ -22,13 +26,14 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  max-width: 100%;
   padding: 0.25rem 0.625rem;
   border-radius: 0;
   color: var(--theme-fg-secondary);
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  line-height: calc(1em + 0.25rem);
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
@@ -41,34 +46,26 @@
   background: color-mix(in srgb, var(--theme-border) 24%, transparent);
 }
 
-.tab:first-child {
-  border-start-start-radius: calc(var(--border-radius-s) - 0.0625rem);
-  border-end-start-radius: calc(var(--border-radius-s) - 0.0625rem);
-}
-
-.tab:last-child {
-  border-start-end-radius: calc(var(--border-radius-s) - 0.0625rem);
-  border-end-end-radius: calc(var(--border-radius-s) - 0.0625rem);
-}
-
-.tabs:not(.tabs--underline) .tab {
-  border: 0.0625rem solid transparent;
-  margin-block: -0.0625rem;
-}
-
-.tabs:not(.tabs--underline) .tab:first-child {
-  margin-inline-start: -0.0625rem;
-}
-
-.tabs:not(.tabs--underline) .tab:last-child {
-  margin-inline-end: -0.0625rem;
-}
-
 .tab.is-active,
 .tab[aria-selected='true'] {
   color: var(--theme-fg);
   background: transparent;
   box-shadow: none;
+}
+
+.tabs:not(.tabs--underline) .tab {
+  border: 0.0625rem solid transparent;
+  margin: -0.0625rem;
+}
+
+.tabs:not(.tabs--underline):not(.tabs--stacked) .tab:first-child {
+  border-start-start-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-end-start-radius: calc(var(--border-radius-s) - 0.0625rem);
+}
+
+.tabs:not(.tabs--underline):not(.tabs--stacked) .tab:last-child {
+  border-start-end-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-end-end-radius: calc(var(--border-radius-s) - 0.0625rem);
 }
 
 .tabs:not(.tabs--underline) .tab.is-active,
@@ -89,8 +86,51 @@
   cursor: not-allowed;
 }
 
+/* Vertical list when labels exceed the available width */
+.tabs--stacked {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+.tabs--stacked:not(.tabs--underline) .tab {
+  margin: -0.0625rem;
+  padding-block: 0.5rem;
+}
+
+.tabs--stacked .tab {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  width: auto;
+  max-width: none;
+  align-self: stretch;
+  text-align: start;
+}
+
+.tabs--stacked:not(.tabs--underline) .tab:first-child {
+  border-start-start-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-start-end-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.tabs--stacked:not(.tabs--underline) .tab:last-child {
+  border-end-start-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-end-end-radius: calc(var(--border-radius-s) - 0.0625rem);
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+.tabs--stacked:not(.tabs--underline) .tab:only-child {
+  border-radius: calc(var(--border-radius-s) - 0.0625rem);
+}
+
 .tabs--full {
   display: flex;
+  flex-wrap: nowrap;
   width: 100%;
   box-sizing: border-box;
 }
@@ -98,24 +138,40 @@
 .tabs--full .tab {
   flex: 1 1 0;
   min-width: 0;
+  justify-content: center;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
 .tabs--underline {
   gap: 0;
   padding: 0;
+  overflow: visible;
   border: 0;
   border-bottom: 0.0625rem solid var(--theme-border);
   border-radius: 0;
   background: transparent;
 }
 
+.tabs--underline.tabs--stacked {
+  border-bottom: 0;
+  border-inline-start: 0.0625rem solid var(--theme-border);
+}
+
 .tabs--underline .tab {
-  margin-bottom: -0.0625rem;
+  margin: 0 0 -0.0625rem;
   padding: 0.375rem 0.75rem;
+  border: 0;
   border-bottom: 0.0625rem solid transparent;
   border-radius: 0;
+}
+
+.tabs--underline.tabs--stacked .tab {
+  margin: 0 0 0 -0.0625rem;
+  padding-block: 0.5rem;
+  border-bottom: 0;
+  border-inline-start: 0.0625rem solid transparent;
 }
 
 .tabs--underline .tab:hover:not(:disabled) {
@@ -127,6 +183,12 @@
   background: transparent;
   border-bottom-color: var(--theme-fg);
   box-shadow: none;
+}
+
+.tabs--underline.tabs--stacked .tab.is-active,
+.tabs--underline.tabs--stacked .tab[aria-selected='true'] {
+  border-bottom-color: transparent;
+  border-inline-start-color: var(--theme-fg);
 }
 
 .tab-panel[hidden] {

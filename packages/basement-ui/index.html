@@ -1074,6 +1074,42 @@
       </div>
 
       <div class="border-group">
+        <h3 class="subsection-label">Compact</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph">Default leading keeps body copy open and readable across longer passages on the page.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">XS · Size + 0.5rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p class="type-paragraph type-compact">Compact leading tightens vertical rhythm for dense UI like table cells and control labels.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Compact</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">XS · Size + 0.25rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <label class="control-row">
+                <input class="checkbox" type="checkbox" checked>
+                Remember me on this device
+              </label>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Control label</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">Checkbox · Compact by default</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
         <h3 class="subsection-label">Links</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
@@ -2032,7 +2068,35 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Content width · Selected page outlined</span>
+              <span class="sample-meta-detail">Content width · Stacks when needed · Selected page outlined</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="tabs-demo" data-tabs-demo>
+                <div class="tabs" role="tablist" aria-label="Billing pages" style="max-width: 18rem;">
+                  <button type="button" class="tab is-active" id="tab-dues" role="tab" aria-selected="true" aria-controls="panel-dues">월 회비 (운영자)</button>
+                  <button type="button" class="tab" id="tab-usage" role="tab" aria-selected="false" aria-controls="panel-usage" tabindex="-1">월 이용료 (멤버)</button>
+                  <button type="button" class="tab" id="tab-fixed" role="tab" aria-selected="false" aria-controls="panel-fixed" tabindex="-1">고정 지출</button>
+                  <button type="button" class="tab" id="tab-rent" role="tab" aria-selected="false" aria-controls="panel-rent" tabindex="-1">월세 계산</button>
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-dues" role="tabpanel" aria-labelledby="tab-dues" tabindex="0">
+                  Operator monthly dues.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-usage" role="tabpanel" aria-labelledby="tab-usage" tabindex="0" hidden>
+                  Member monthly usage fees.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-fixed" role="tabpanel" aria-labelledby="tab-fixed" tabindex="0" hidden>
+                  Fixed recurring expenses.
+                </div>
+                <div class="tab-panel tabs-demo-panel" id="panel-rent" role="tabpanel" aria-labelledby="tab-rent" tabindex="0" hidden>
+                  Monthly rent calculation.
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Overflow</span>
+              <span class="sample-meta-detail">Long labels · Collapse into a vertical list</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -4017,6 +4081,7 @@
     </main>
   </div>
 
+  <script src="src/components/tabs-collapse.js" defer></script>
   <script src="reference/reference.js" defer></script>
 
 </body>
