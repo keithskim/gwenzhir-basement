@@ -15,6 +15,7 @@
 .sidebar-title {
   all: unset;
   display: block;
+  flex-shrink: 0;
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-m);
@@ -31,6 +32,7 @@
 }
 
 .sidebar-byline {
+  flex-shrink: 0;
   margin-top: var(--spacing-xs);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
@@ -42,6 +44,11 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .sidebar-nav--flush {
@@ -181,6 +188,7 @@
 }
 
 .sidebar-footer {
+  flex-shrink: 0;
   padding-top: var(--spacing-m);
   display: flex;
   flex-direction: column;

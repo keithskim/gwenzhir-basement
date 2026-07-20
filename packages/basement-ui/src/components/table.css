@@ -130,3 +130,51 @@
 .table-sort.is-sorted .table-sort-icon {
   opacity: 1;
 }
+
+.table .tag.tag--2xs {
+  min-width: calc(var(--font-size-2xs) + 0.125rem);
+  min-height: calc(var(--font-size-2xs) + 0.25rem);
+  line-height: 1.2;
+  padding-block: 0.0625rem;
+  padding-inline: 0.125rem;
+}
+
+.table .tag.tag--xs {
+  min-width: calc(var(--font-size-xs) + 0.125rem);
+  min-height: calc(var(--font-size-xs) + 0.25rem);
+  line-height: 1.2;
+  padding-block: 0.0625rem;
+  padding-inline: 0.25rem;
+}
+
+.table .tag.tag--s {
+  min-width: calc(var(--font-size-s) + 0.125rem);
+  min-height: calc(var(--font-size-s) + 0.375rem);
+  line-height: 1.2;
+  padding-block: 0.125rem;
+  padding-inline: 0.375rem;
+}
+
+.table .tag.tag--m {
+  min-width: calc(var(--font-size-m) + 0.125rem);
+  min-height: calc(var(--font-size-m) + 0.375rem);
+  line-height: 1.2;
+  padding-block: 0.125rem;
+  padding-inline: 0.5rem;
+}
+
+.table .tag.tag--2xs.tag--split .tag-label {
+  padding-inline: 0.125rem;
+}
+
+.table .tag.tag--xs.tag--split .tag-label {
+  padding-inline: 0.25rem;
+}
+
+.table .tag.tag--s.tag--split .tag-label {
+  padding-inline: 0.375rem;
+}
+
+.table .tag.tag--m.tag--split .tag-label {
+  padding-inline: 0.5rem;
+}

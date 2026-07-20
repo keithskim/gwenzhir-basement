@@ -41,25 +41,32 @@
         <button type="button" class="sidebar-item" data-section="icons">Icons</button>
       </div>
       <div class="sidebar-group">
-        <div class="sidebar-group-label">Components</div>
+        <div class="sidebar-group-label">Base</div>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
+        <button type="button" class="sidebar-item" data-section="tag">Tag</button>
+        <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
+        <button type="button" class="sidebar-item" data-section="mention">Mention</button>
+        <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
+        <button type="button" class="sidebar-item" data-section="progress">Progress</button>
+        <button type="button" class="sidebar-item" data-section="spinner">Spinner</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Interactivity</div>
         <button type="button" class="sidebar-item" data-section="tabs">Tabs</button>
         <button type="button" class="sidebar-item" data-section="toggle">Toggle</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
-        <button type="button" class="sidebar-item" data-section="graph">Graph</button>
-        <button type="button" class="sidebar-item" data-section="tag">Tag</button>
-        <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
-        <button type="button" class="sidebar-item" data-section="progress">Progress</button>
-        <button type="button" class="sidebar-item" data-section="player">Player</button>
-        <button type="button" class="sidebar-item" data-section="mention">Mention</button>
-        <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
-        <button type="button" class="sidebar-item" data-section="table">Table</button>
-        <button type="button" class="sidebar-item" data-section="timeline">Timeline</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Visualization</div>
+        <button type="button" class="sidebar-item" data-section="table">Table</button>
+        <button type="button" class="sidebar-item" data-section="timeline">Timeline</button>
+        <button type="button" class="sidebar-item" data-section="graph">Graph</button>
+        <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
       </div>
     </nav>
@@ -139,7 +146,7 @@
         </div>
 
         <div class="home-index-group">
-          <h3 class="home-index-label">Components</h3>
+          <h3 class="home-index-label">Base</h3>
           <div class="home-index-grid">
             <button type="button" class="home-card" data-section="button">
               <span class="home-card-title">Button</span>
@@ -147,6 +154,57 @@
                 <span class="btn btn--xs btn--accent">Save</span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="tag">
+              <span class="home-card-title">Tag</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="tag tag--xs">Design</span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="status-chip">
+              <span class="home-card-title">Status Chip</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="status-chip status-chip--affirm">
+                  <span class="status-chip-dot" aria-hidden="true"></span>
+                  <span class="status-chip-label">Active</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="mention">
+              <span class="home-card-title">Mention</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="mention mention--xs">
+                  <span class="mention-label">@gwenzhir</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="avatar">
+              <span class="home-card-title">Avatar</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="progress">
+              <span class="home-card-title">Progress</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="progress home-preview-progress" style="--progress: 40%;">
+                  <span class="progress-track">
+                    <span class="progress-fill"></span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="spinner">
+              <span class="home-card-title">Spinner</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="spinner spinner--m"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Interactivity</h3>
+          <div class="home-index-grid">
             <button type="button" class="home-card" data-section="tabs">
               <span class="home-card-title">Tabs</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -180,81 +238,6 @@
                 </span>
               </span>
             </button>
-            <button type="button" class="home-card" data-section="graph">
-              <span class="home-card-title">Graph</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="graph graph--bar graph--vertical home-preview-graph" style="--graph-ticks: 3; --graph-plot-height: 2.5rem;">
-                  <span class="graph-plot">
-                    <span class="graph-grid"></span>
-                    <span class="graph-bars">
-                      <span class="graph-col">
-                        <span class="graph-bar graph-bar--muted" style="--bar-size: 45%;"></span>
-                      </span>
-                      <span class="graph-col">
-                        <span class="graph-bar graph-bar--accent" style="--bar-size: 100%;"></span>
-                      </span>
-                      <span class="graph-col">
-                        <span class="graph-bar graph-bar--muted" style="--bar-size: 65%;"></span>
-                      </span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="tag">
-              <span class="home-card-title">Tag</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="tag tag--xs">Design</span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="status-chip">
-              <span class="home-card-title">Status Chip</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="status-chip status-chip--affirm">
-                  <span class="status-chip-dot" aria-hidden="true"></span>
-                  <span class="status-chip-label">Active</span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="progress">
-              <span class="home-card-title">Progress</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="progress home-preview-progress" style="--progress: 40%;">
-                  <span class="progress-track">
-                    <span class="progress-fill"></span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="player">
-              <span class="home-card-title">Player</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="player home-preview-player">
-                  <span class="btn btn--2xs btn--default btn--icon">
-                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
-                  </span>
-                  <span class="progress" style="--progress: 35%;">
-                    <span class="progress-track">
-                      <span class="progress-fill"></span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="mention">
-              <span class="home-card-title">Mention</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="mention mention--xs">
-                  <span class="mention-label">@gwenzhir</span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="avatar">
-              <span class="home-card-title">Avatar</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
-              </span>
-            </button>
             <button type="button" class="home-card" data-section="menu">
               <span class="home-card-title">Menu</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -276,6 +259,34 @@
                 </span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="sidebar">
+              <span class="home-card-title">Sidebar</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-sidebar">
+                  <span class="sidebar-item is-active">Overview</span>
+                  <span class="sidebar-item">Settings</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="prompt">
+              <span class="home-card-title">Prompt</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="prompt home-preview-prompt">
+                  <span class="prompt-body">
+                    <span class="prompt-description">Save before leaving?</span>
+                  </span>
+                  <span class="prompt-actions">
+                    <span class="btn btn--2xs btn--accent">Save</span>
+                  </span>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Visualization</h3>
+          <div class="home-index-grid">
             <button type="button" class="home-card" data-section="table">
               <span class="home-card-title">Table</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -302,24 +313,38 @@
                 </span>
               </span>
             </button>
-            <button type="button" class="home-card" data-section="sidebar">
-              <span class="home-card-title">Sidebar</span>
+            <button type="button" class="home-card" data-section="graph">
+              <span class="home-card-title">Graph</span>
               <span class="home-card-preview" aria-hidden="true">
-                <span class="home-preview-sidebar">
-                  <span class="sidebar-item is-active">Overview</span>
-                  <span class="sidebar-item">Settings</span>
+                <span class="graph graph--bar graph--vertical home-preview-graph" style="--graph-ticks: 3; --graph-plot-height: 2.5rem;">
+                  <span class="graph-plot">
+                    <span class="graph-grid"></span>
+                    <span class="graph-bars">
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--muted" style="--bar-size: 45%;"></span>
+                      </span>
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--accent" style="--bar-size: 100%;"></span>
+                      </span>
+                      <span class="graph-col">
+                        <span class="graph-bar graph-bar--muted" style="--bar-size: 65%;"></span>
+                      </span>
+                    </span>
+                  </span>
                 </span>
               </span>
             </button>
-            <button type="button" class="home-card" data-section="prompt">
-              <span class="home-card-title">Prompt</span>
+            <button type="button" class="home-card" data-section="player">
+              <span class="home-card-title">Player</span>
               <span class="home-card-preview" aria-hidden="true">
-                <span class="prompt home-preview-prompt">
-                  <span class="prompt-body">
-                    <span class="prompt-description">Save before leaving?</span>
+                <span class="player home-preview-player">
+                  <span class="btn btn--2xs btn--default btn--icon">
+                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
                   </span>
-                  <span class="prompt-actions">
-                    <span class="btn btn--2xs btn--accent">Save</span>
+                  <span class="progress" style="--progress: 35%;">
+                    <span class="progress-track">
+                      <span class="progress-fill"></span>
+                    </span>
                   </span>
                 </span>
               </span>
@@ -1943,19 +1968,19 @@
             <div class="sample-box">
               <button type="button" class="btn btn--xs btn--default">
                 Save
-                <span class="tag">⌘S</span>
+                <span class="tag tag--2xs tag--compact">⌘S</span>
               </button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Label · Trailing tag · Tighter end padding</span>
+              <span class="sample-meta-detail">Label · Trailing compact tag · Tighter end padding</span>
             </div>
           </div>
           <div class="type-sample-item">
             <div class="sample-box">
               <button type="button" class="btn btn--xs btn--accent">
                 Save
-                <span class="tag">⌘S</span>
+                <span class="tag tag--2xs tag--compact">⌘S</span>
               </button>
             </div>
             <div class="sample-meta">
@@ -1967,7 +1992,7 @@
             <div class="sample-box">
               <button type="button" class="btn btn--xs btn--ghost">
                 Search
-                <span class="tag">⌘K</span>
+                <span class="tag tag--2xs tag--compact">⌘K</span>
               </button>
             </div>
             <div class="sample-meta">
@@ -2876,6 +2901,59 @@
       </div>
     </section>
 
+    <!-- ── Spinner ── -->
+    <section class="section section--component" id="spinner">
+      <h2 class="section-label">Spinner</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="spinner" role="status" aria-label="Loading"></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Gray L ring · Open gap · Continuous spin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="spinner spinner--s" role="status" aria-label="Loading"></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail">0.75rem</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="spinner spinner--m" role="status" aria-label="Loading"></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail">1rem · Default</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="spinner spinner--l" role="status" aria-label="Loading"></span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail">1.25rem</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Player ── -->
     <section class="section section--component" id="player">
       <h2 class="section-label">Player</h2>
@@ -3306,22 +3384,22 @@
                   <tbody>
                     <tr>
                       <td>Brand refresh</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td data-sort-value="20260601">Jun 1, 2026</td>
                     </tr>
                     <tr>
                       <td>Platform migration</td>
-                      <td><span class="tag tag--xs">Paused</span></td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
                       <td data-sort-value="20260512">May 12, 2026</td>
                     </tr>
                     <tr>
                       <td>Docs overhaul</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td data-sort-value="20260610">Jun 10, 2026</td>
                     </tr>
                     <tr>
                       <td>Inventory sync</td>
-                      <td><span class="tag tag--xs">Done</span></td>
+                      <td><span class="tag tag--xs tag--compact">Done</span></td>
                       <td data-sort-value="20260428">Apr 28, 2026</td>
                     </tr>
                   </tbody>
@@ -3331,7 +3409,7 @@
             <div class="table-props">
               <div class="sample-meta">
                 <span class="sample-meta-label">Default</span>
-                <span class="sample-meta-detail">Header · Sorting · Plain rows</span>
+                <span class="sample-meta-detail">Header · Sorting · Plain rows · Compact tags</span>
               </div>
             </div>
           </div>
@@ -3349,52 +3427,52 @@
                   <tbody>
                     <tr>
                       <td>Brand refresh</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 1, 2026</td>
                     </tr>
                     <tr>
                       <td>Platform migration</td>
-                      <td><span class="tag tag--xs">Paused</span></td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
                       <td>May 12, 2026</td>
                     </tr>
                     <tr>
                       <td>Docs overhaul</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 10, 2026</td>
                     </tr>
                     <tr>
                       <td>Inventory sync</td>
-                      <td><span class="tag tag--xs">Done</span></td>
+                      <td><span class="tag tag--xs tag--compact">Done</span></td>
                       <td>Apr 28, 2026</td>
                     </tr>
                     <tr>
                       <td>Onboarding flow</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 4, 2026</td>
                     </tr>
                     <tr>
                       <td>API gateway</td>
-                      <td><span class="tag tag--xs">Paused</span></td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
                       <td>May 30, 2026</td>
                     </tr>
                     <tr>
                       <td>Search indexing</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 8, 2026</td>
                     </tr>
                     <tr>
                       <td>Mobile shell</td>
-                      <td><span class="tag tag--xs">Done</span></td>
+                      <td><span class="tag tag--xs tag--compact">Done</span></td>
                       <td>Apr 15, 2026</td>
                     </tr>
                     <tr>
                       <td>Billing export</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 2, 2026</td>
                     </tr>
                     <tr>
                       <td>Access review</td>
-                      <td><span class="tag tag--xs">Paused</span></td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
                       <td>May 22, 2026</td>
                     </tr>
                   </tbody>
@@ -3427,22 +3505,22 @@
                   <tbody>
                     <tr class="is-selected" aria-selected="true">
                       <td>Brand refresh</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 1, 2026</td>
                     </tr>
                     <tr>
                       <td>Platform migration</td>
-                      <td><span class="tag tag--xs">Paused</span></td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
                       <td>May 12, 2026</td>
                     </tr>
                     <tr>
                       <td>Docs overhaul</td>
-                      <td><span class="tag tag--xs">Active</span></td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
                       <td>Jun 10, 2026</td>
                     </tr>
                     <tr>
                       <td>Inventory sync</td>
-                      <td><span class="tag tag--xs">Done</span></td>
+                      <td><span class="tag tag--xs tag--compact">Done</span></td>
                       <td>Apr 28, 2026</td>
                     </tr>
                   </tbody>

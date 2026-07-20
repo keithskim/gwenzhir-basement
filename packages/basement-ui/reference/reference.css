@@ -163,12 +163,11 @@ html.is-sidebar-locked {
     height: 100dvh;
     padding: var(--page-padding-block) var(--column-gap);
     box-sizing: border-box;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
   }
 
   .page.is-sidebar-open .sidebar-footer {
-    margin-top: var(--spacing-m);
+    margin-top: auto;
     padding-bottom: var(--spacing-m);
   }
 }
@@ -1193,18 +1192,18 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   }
 }
 
-:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
+:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar) .type-sample-item {
+  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-item {
     grid-column: span 2;
   }
 }
 
-:is(#button, #tag, #status-chip, #mention, #avatar) .type-sample-list--sizes .sample-box {
+:is(#button, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1213,7 +1212,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #tag, #status-chip, #mention, #avatar) .type-sample-list--sizes .sample-box {
+  :is(#button, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
     aspect-ratio: 2 / 1;
     padding-block: 0;
   }

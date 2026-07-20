@@ -149,10 +149,11 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
 .btn .tag {
   flex-shrink: 0;
   font-size: var(--font-size-2xs);
-  line-height: var(--line-height-2xs);
-  min-width: calc(var(--line-height-2xs) + 0.125rem);
-  min-height: var(--line-height-2xs);
-  padding: 0 0.25rem;
+  line-height: 1.2;
+  min-width: calc(var(--font-size-2xs) + 0.125rem);
+  min-height: calc(var(--font-size-2xs) + 0.25rem);
+  padding-block: 0.0625rem;
+  padding-inline: 0.125rem;
 }
 
 .btn:hover:not(:disabled) .tag {
