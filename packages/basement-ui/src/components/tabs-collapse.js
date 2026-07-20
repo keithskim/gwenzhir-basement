@@ -7,6 +7,7 @@
     if (
       !tabsEl ||
       tabsEl.classList.contains('tabs--full') ||
+      tabsEl.classList.contains('tabs--bottom-nav') ||
       tabsEl.dataset.tabsCollapse === 'off'
     ) {
       return;
