@@ -19,7 +19,7 @@
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
   white-space: nowrap;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn--2xs {
@@ -58,6 +58,7 @@
 .btn--accent {
   background: var(--theme-fg);
   color: var(--theme-bg);
+  box-shadow: var(--shadow-s);
 }
 
 .btn--accent:hover:not(:disabled) {
@@ -72,6 +73,7 @@ html.is-dark .btn--accent:hover:not(:disabled) {
 .btn--default {
   background: var(--theme-surface);
   border-color: var(--theme-border);
+  box-shadow: var(--shadow-s);
 }
 
 .btn--default:hover:not(:disabled) {
