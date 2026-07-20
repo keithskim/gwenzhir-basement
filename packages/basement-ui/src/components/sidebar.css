@@ -1,7 +1,9 @@
 .sidebar,
 .sidebar-nav,
 .sidebar-demo {
-  --sidebar-hit-pad: var(--spacing-xs);
+  --sidebar-item-bleed: var(--spacing-xs);
+  --sidebar-item-selected-bg: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
+  --sidebar-item-selected-hover-bg: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
   --sidebar-icon-size: 1rem;
   --sidebar-icon-gap: var(--spacing-xs);
 }
@@ -41,11 +43,13 @@
 
 .sidebar-nav {
   margin-top: var(--spacing-m);
+  margin-inline: calc(-1 * var(--sidebar-item-bleed));
   display: flex;
   flex-direction: column;
   gap: 0;
   flex: 1 1 auto;
   min-height: 0;
+  padding-inline: var(--sidebar-item-bleed);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -99,8 +103,8 @@
   position: absolute;
   z-index: -1;
   inset-block: 0;
-  inset-inline: calc(-1 * var(--sidebar-hit-pad));
-  border-radius: inherit;
+  inset-inline: calc(-1 * var(--sidebar-item-bleed));
+  border-radius: var(--border-radius-s);
   transition: background-color 0.15s ease;
 }
 
@@ -127,11 +131,11 @@
 }
 
 .sidebar-item.is-active::before {
-  background: var(--theme-bg-subtle);
+  background: var(--sidebar-item-selected-bg);
 }
 
 .sidebar-item.is-active:hover::before {
-  background: var(--theme-bg-subtle);
+  background: var(--sidebar-item-selected-hover-bg);
 }
 
 .sidebar-item-label {

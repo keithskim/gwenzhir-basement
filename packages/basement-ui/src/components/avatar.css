@@ -4,6 +4,7 @@
   justify-content: center;
   width: var(--size-xs);
   height: var(--size-xs);
+  aspect-ratio: 1;
   border-radius: 50%;
   background: var(--theme-bg-subtle);
   border: 1px solid var(--theme-border);
@@ -23,7 +24,7 @@
 }
 
 .avatar--2xs .avatar-fallback {
-  font-size: 0.4375rem;
+  font-size: var(--font-size-2xs);
 }
 
 .avatar--xs {

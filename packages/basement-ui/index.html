@@ -58,6 +58,7 @@
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
+        <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
       </div>
@@ -256,6 +257,15 @@
                     <span class="menu-item">Profile</span>
                     <span class="menu-item">Sign out</span>
                   </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="datetime">
+              <span class="home-card-title">Datetime</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="datetime-input input home-preview-datetime">
+                  <span class="datetime-placeholder">Jun 10, 2026</span>
+                  <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
                 </span>
               </span>
             </button>
@@ -881,7 +891,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">2XS</span>
-              <span class="sample-meta-detail sample-meta-detail--2col">0.5rem · 1rem</span>
+              <span class="sample-meta-detail sample-meta-detail--2col">0.625rem · 1.125rem</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -1221,6 +1231,27 @@
             <div class="size-block size-block--xl"></div>
             <div class="token-name">XL</div>
             <div class="token-value">16rem</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Depth</h3>
+        <div class="col-row col-row--equal">
+          <div>
+            <div class="depth-swatch depth-swatch--s"></div>
+            <div class="token-name">S</div>
+            <div class="token-value">0.125rem 0.375rem</div>
+          </div>
+          <div>
+            <div class="depth-swatch depth-swatch--m"></div>
+            <div class="token-name">M</div>
+            <div class="token-value">0.25rem 1rem · Popovers</div>
+          </div>
+          <div>
+            <div class="depth-swatch depth-swatch--l"></div>
+            <div class="token-name">L</div>
+            <div class="token-value">0.5rem 2rem</div>
           </div>
         </div>
       </div>
@@ -3412,6 +3443,78 @@
       </div>
     </section>
 
+    <!-- ── Datetime ── -->
+    <section class="section section--component" id="datetime">
+      <h2 class="section-label">Datetime</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="datetime" data-value="2026-06-10">
+                <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose date">
+                  <span class="datetime-value"></span>
+                  <span class="datetime-placeholder">Select date</span>
+                  <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                </button>
+                <div class="datetime-popup" role="dialog" aria-label="Choose date" hidden></div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Single input · Calendar popup · One day</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="datetime datetime--duration">
+                <div class="datetime-range">
+                  <div class="datetime-field" data-value="2026-06-01">
+                    <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose start date">
+                      <span class="datetime-value"></span>
+                      <span class="datetime-placeholder">Start date</span>
+                      <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="datetime-popup" role="dialog" aria-label="Choose start date" hidden></div>
+                  </div>
+                  <span class="datetime-separator" aria-hidden="true">–</span>
+                  <div class="datetime-field" data-value="2026-06-10">
+                    <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose end date">
+                      <span class="datetime-value"></span>
+                      <span class="datetime-placeholder">End date</span>
+                      <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="datetime-popup" role="dialog" aria-label="Choose end date" hidden></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Duration</span>
+              <span class="sample-meta-detail">Start and end inputs · Each opens its own calendar</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="datetime datetime--year-month" data-value="2026-06">
+                <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose month">
+                  <span class="datetime-value"></span>
+                  <span class="datetime-placeholder">Select month</span>
+                  <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                </button>
+                <div class="datetime-popup" role="dialog" aria-label="Choose month" hidden></div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Year–month</span>
+              <span class="sample-meta-detail">Month and year only · No day grid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Table ── -->
     <section class="section section--component" id="table">
       <h2 class="section-label">Table</h2>
@@ -3473,7 +3576,7 @@
             <div class="table-props">
               <div class="sample-meta">
                 <span class="sample-meta-label">Default</span>
-                <span class="sample-meta-detail">Header · Sorting · Plain rows · Compact tags</span>
+                <span class="sample-meta-detail">Header · Sorting · Plain rows · Flush first and last columns · Compact tags</span>
               </div>
             </div>
           </div>
@@ -3593,7 +3696,48 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Selectable rows</span>
-              <span class="sample-meta-detail">Pointer cursor · Hover highlight · Selected row</span>
+              <span class="sample-meta-detail">Pointer cursor · Hover highlight · Selected row bleeds past edges with rounded corners</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="table-wrap">
+                <table class="table table--full-page">
+                  <thead>
+                    <tr>
+                      <th scope="col">Project</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Brand refresh</td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
+                      <td>Jun 1, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Platform migration</td>
+                      <td><span class="tag tag--xs tag--compact">Paused</span></td>
+                      <td>May 12, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Docs overhaul</td>
+                      <td><span class="tag tag--xs tag--compact">Active</span></td>
+                      <td>Jun 10, 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Inventory sync</td>
+                      <td><span class="tag tag--xs tag--compact">Done</span></td>
+                      <td>Apr 28, 2026</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Full page</span>
+              <span class="sample-meta-detail">Edge padding on first and last columns · For page-width layouts</span>
             </div>
           </div>
         </div>
@@ -4082,6 +4226,7 @@
   </div>
 
   <script src="src/components/tabs-collapse.js" defer></script>
+  <script src="src/components/datetime.js" defer></script>
   <script src="reference/reference.js" defer></script>
 
 </body>

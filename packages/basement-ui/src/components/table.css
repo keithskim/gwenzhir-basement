@@ -45,6 +45,26 @@
   vertical-align: middle;
 }
 
+.table th:first-child,
+.table td:first-child {
+  padding-inline-start: 0;
+}
+
+.table th:last-child,
+.table td:last-child {
+  padding-inline-end: 0;
+}
+
+.table--full-page th:first-child,
+.table--full-page td:first-child {
+  padding-inline-start: var(--spacing-s);
+}
+
+.table--full-page th:last-child,
+.table--full-page td:last-child {
+  padding-inline-end: var(--spacing-s);
+}
+
 .table thead th {
   color: var(--theme-fg);
   font-weight: var(--font-base-weight);
@@ -85,6 +105,19 @@
   cursor: pointer;
 }
 
+.table--selectable:not(.table--full-page) {
+  --table-row-bleed: var(--spacing-xs);
+  --table-row-selected-bg: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
+  --table-row-selected-hover-bg: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-wrap:has(> .table--selectable:not(.table--full-page)) {
+  padding-inline: var(--table-row-bleed, var(--spacing-xs));
+  margin-inline: calc(-1 * var(--table-row-bleed, var(--spacing-xs)));
+}
+
 .table--selectable tbody tr:hover {
   background: var(--theme-bg-subtle);
 }
@@ -97,6 +130,55 @@
 .table--selectable tbody tr.is-selected:hover,
 .table--selectable tbody tr[aria-selected='true']:hover {
   background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] {
+  background: transparent;
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected:hover,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true']:hover {
+  background: transparent;
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected td,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] td {
+  position: relative;
+  z-index: 1;
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected td::before,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] td::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--table-row-selected-bg);
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected td:first-child::before,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] td:first-child::before {
+  left: calc(-1 * var(--table-row-bleed));
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected td:last-child::before,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] td:last-child::before {
+  right: calc(-1 * var(--table-row-bleed));
+  border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected td:first-child:last-child::before,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true'] td:first-child:last-child::before {
+  left: calc(-1 * var(--table-row-bleed));
+  right: calc(-1 * var(--table-row-bleed));
+  border-radius: var(--border-radius-s);
+}
+
+.table--selectable:not(.table--full-page) tbody tr.is-selected:hover td::before,
+.table--selectable:not(.table--full-page) tbody tr[aria-selected='true']:hover td::before {
+  background: var(--table-row-selected-hover-bg);
 }
 
 .table-sort {

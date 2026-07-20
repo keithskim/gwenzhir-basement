@@ -4,6 +4,10 @@
   align-items: flex-start;
   gap: var(--spacing-xs);
   position: relative;
+  align-self: start;
+  width: auto;
+  max-width: 100%;
+  height: fit-content;
 }
 
 .dropdown-trigger {
@@ -15,7 +19,11 @@
   line-height: 1;
 }
 
-.dropdown-caret--up {
+.dropdown-trigger .dropdown-caret--down {
+  display: inline-flex;
+}
+
+.dropdown-trigger .dropdown-caret--up {
   display: none;
 }
 
@@ -24,7 +32,7 @@
 }
 
 .dropdown-demo.is-open .dropdown-caret--up {
-  display: inline;
+  display: inline-flex;
 }
 
 .dropdown-demo .menu {

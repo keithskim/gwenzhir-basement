@@ -87,7 +87,7 @@
   --font-base-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-base-weight: 600;
 
-  --font-size-2xs: 0.5rem;
+  --font-size-2xs: 0.625rem;
   --font-size-xs:  0.75rem;
   --font-size-s:   1rem;
   --font-size-m:   1.5rem;
@@ -95,7 +95,7 @@
   --font-size-xl:  3rem;
   --font-size-2xl: 4rem;
 
-  --line-height-2xs: 1rem;
+  --line-height-2xs: 1.125rem;
   --line-height-xs:  1.25rem;
   --line-height-s:   1.5rem;
   --line-height-m:   2rem;
@@ -106,6 +106,10 @@
   --border-radius-s: 0.25rem;
   --border-radius-m: 0.5rem;
   --border-radius-l: 1rem;
+
+  --shadow-s: 0 0.125rem 0.375rem color-mix(in srgb, var(--theme-fg) 8%, transparent);
+  --shadow-m: 0 0.25rem 1rem color-mix(in srgb, var(--theme-fg) 12%, transparent);
+  --shadow-l: 0 0.5rem 2rem color-mix(in srgb, var(--theme-fg) 16%, transparent);
 
   --spacing-xs: 0.5rem;
   --spacing-s:  1rem;
