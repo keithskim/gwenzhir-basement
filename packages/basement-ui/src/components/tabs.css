@@ -196,7 +196,7 @@
 }
 
 /* ── Bottom navigation ──
-   Mobile app style: liquid-glass container with icon + label tabs.
+   Mobile app style: icon + label tabs in a compact bar.
 */
 .tabs--bottom-nav {
   display: flex;
@@ -209,14 +209,9 @@
   padding: 0.1875rem;
   overflow: visible;
 
-  /* Override base container styling */
-  border: 0.0625rem solid color-mix(in srgb, var(--theme-border) 45%, transparent);
-  border-radius: var(--border-radius-l);
-  background: color-mix(in srgb, var(--theme-bg-subtle) 35%, transparent);
-  box-shadow: var(--shadow-s);
-
-  -webkit-backdrop-filter: blur(0.75rem) saturate(1.2);
-  backdrop-filter: blur(0.75rem) saturate(1.2);
+  border: 0.0625rem solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-surface);
 }
 
 .tabs--bottom-nav .tab {
@@ -225,7 +220,7 @@
   max-width: none;
   margin: 0;
 
-  padding: 0.25rem 0.125rem 0.1875rem;
+  padding: 0.1875rem 0.125rem 0.125rem;
   border-radius: var(--border-radius-m);
   border: 0.0625rem solid transparent;
   background: transparent;
@@ -250,6 +245,8 @@
 
 .tabs--bottom-nav .tab-label {
   display: inline-block;
+  line-height: 1;
+  margin-top: -0.125rem;
 }
 
 .tabs--bottom-nav .tab i.ph {
