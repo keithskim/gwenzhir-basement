@@ -23,7 +23,7 @@
   flex: 1;
   min-width: 0;
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  line-height: calc(1em + 0.25rem);
   color: var(--alert-neutral-fg);
 }
 
