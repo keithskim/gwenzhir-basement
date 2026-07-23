@@ -1,3 +1,15 @@
-.DS_Store
+# Local / private (not published with the repo)
+CONTEXT.md
+docs/
 .claude/
+.cursor/
+
+# OS / tooling
+.DS_Store
+*.log
+.env
+.env.*
+
+# Dependencies and install noise
 node_modules/
+/package-lock.json

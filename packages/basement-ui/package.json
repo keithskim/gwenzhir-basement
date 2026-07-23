@@ -2,6 +2,17 @@
   "name": "basement-ui",
   "version": "1.0.0",
   "description": "Design system and component library for Gwenzhir projects.",
+  "author": "Keith Gwenzhir Kim <gwenzhir@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keithskim/gwenzhir-basement.git",
+    "directory": "packages/basement-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/keithskim/gwenzhir-basement/issues"
+  },
+  "homepage": "https://github.com/keithskim/gwenzhir-basement/tree/main/packages/basement-ui#readme",
   "exports": {
     ".": "./src/index.css",
     "./tokens": "./src/tokens/tokens.css",
@@ -11,22 +22,21 @@
   "files": [
     "src/",
     "vendor/",
-    "reference/"
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "dev": "npx --yes serve . -p 5173",
     "reference": "open index.html",
     "audit:colors": "node scripts/audit-palette.mjs",
-    "audit:colors:fix": "node scripts/audit-palette.mjs --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "audit:colors:fix": "node scripts/audit-palette.mjs --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "@phosphor-icons/web": "2.1.2"
-  },
+  "keywords": [
+    "css",
+    "design-system",
+    "design-tokens",
+    "ui"
+  ],
   "devDependencies": {
     "apca-w3": "^0.1.9",
     "culori": "^4.0.2"
