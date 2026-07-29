@@ -61,11 +61,11 @@
   box-shadow: var(--shadow-s);
 }
 
-.btn--accent:hover:not(:disabled) {
+.btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray);
 }
 
-html.is-dark .btn--accent:hover:not(:disabled) {
+html.is-dark .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-light-gray);
   color: var(--color-black);
 }
@@ -76,12 +76,12 @@ html.is-dark .btn--accent:hover:not(:disabled) {
   box-shadow: var(--shadow-s);
 }
 
-.btn--default:hover:not(:disabled) {
+.btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-light-gray);
   border-color: var(--color-gray);
 }
 
-html.is-dark .btn--default:hover:not(:disabled) {
+html.is-dark .btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray);
   border-color: var(--color-gray);
 }
@@ -91,23 +91,23 @@ html.is-dark .btn--default:hover:not(:disabled) {
   border-color: var(--theme-border);
 }
 
-.btn--subtle:hover:not(:disabled) {
+.btn--subtle:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
   border-color: var(--color-gray);
 }
 
-html.is-dark .btn--subtle:hover:not(:disabled) {
+html.is-dark .btn--subtle:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: color-mix(in srgb, var(--theme-border) 22%, var(--theme-bg));
   border-color: var(--color-gray);
 }
 
 .btn--ghost { background: transparent; }
 
-.btn--ghost:hover:not(:disabled) {
+.btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--theme-surface);
 }
 
-html.is-dark .btn--ghost:hover:not(:disabled) {
+html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray);
 }
 
@@ -123,6 +123,7 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
 .btn--icon {
   padding: 0;
   flex-shrink: 0;
+  aspect-ratio: 1 / 1;
 }
 
 .btn--round {
@@ -162,7 +163,7 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   padding-inline: 0.125rem;
 }
 
-.btn:hover:not(:disabled) .tag {
+.btn:is(:hover, :active, [aria-pressed="true"]):not(:disabled) .tag {
   border-color: var(--color-gray);
 }
 
@@ -172,7 +173,7 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   background: transparent;
 }
 
-.btn--accent:hover:not(:disabled) .tag {
+.btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) .tag {
   border-color: color-mix(in srgb, var(--theme-bg) 55%, transparent);
 }
 

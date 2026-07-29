@@ -1363,12 +1363,12 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   }
 }
 
-:is(#button, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
+:is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
   padding-block: var(--spacing-m);
   place-items: center;
 }
 
-:is(#button, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box > * {
   grid-column: 1 / -1;
   width: auto;
   min-width: auto;
@@ -1377,10 +1377,16 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
+  :is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
     aspect-ratio: 2 / 1;
     padding-block: 0;
   }
+}
+
+#button .type-sample-list--sizes .sample-box > .btn,
+#button .type-sample-list--button-tags .sample-box > .btn {
+  justify-self: center;
+  width: fit-content;
 }
 
 #form .type-sample-list--compact .sample-box {
