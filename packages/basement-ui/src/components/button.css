@@ -125,6 +125,10 @@ html.is-dark .btn--ghost:hover:not(:disabled) {
   flex-shrink: 0;
 }
 
+.btn--round {
+  border-radius: 9999px;
+}
+
 .btn--icon.btn--2xs {
   width: 1.25rem;
   height: 1.25rem;

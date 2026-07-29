@@ -53,7 +53,7 @@
   z-index: 2;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 44rem) {
   .page > .sidebar {
     padding-inline-end: var(--spacing-s);
     box-sizing: border-box;
@@ -140,7 +140,7 @@ html.is-sidebar-locked {
   overflow: hidden;
 }
 
-@media (max-width: 39.9375rem) {
+@media (max-width: 43.9375rem) {
   .sidebar-toggle {
     display: inline-flex;
   }
@@ -479,6 +479,16 @@ html.is-sidebar-locked {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25rem;
+}
+
+.home-preview-tooltip {
+  pointer-events: none;
+}
+
+.home-preview-tooltip .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 .home-preview-dropdown-menu {
@@ -1178,16 +1188,16 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   min-width: 0;
 }
 
-.section--component .type-sample-list:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo),
-.section--component .type-sample-item:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo) {
+.section--component .type-sample-list:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip),
+.section--component .type-sample-item:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip) {
   overflow: visible;
 }
 
-.section--component .sample-box:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo) {
+.section--component .sample-box:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip) {
   overflow: visible;
 }
 
-.section--component .sample-box:has(.dropdown-demo, .datetime) > * {
+.section--component .sample-box:has(.dropdown-demo, .datetime, .tooltip) > * {
   align-self: start;
 }
 
@@ -1202,6 +1212,24 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 .section--component .sample-box:has(.menu-demo) {
   min-height: 14rem;
+}
+
+.section--component .sample-box:has(.tooltip) {
+  min-height: 12rem;
+}
+
+#tooltip .sample-box {
+  padding-block: var(--spacing-m);
+}
+
+#tooltip .variant-row {
+  flex-wrap: wrap;
+  row-gap: var(--spacing-s);
+  column-gap: var(--spacing-l);
+}
+
+#tooltip .variant-row .tooltip {
+  margin-inline: 0.125rem;
 }
 
 .type-sample-list--items > .type-sample-item {
@@ -1314,6 +1342,13 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 @media (min-width: 80rem) {
   :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-item {
     grid-column: span 2;
+  }
+}
+
+@media (min-width: 80rem) {
+  #button .type-sample-list--sizes > .type-sample-item,
+  #button .type-sample-list--button-tags > .type-sample-item {
+    grid-column: span 4;
   }
 }
 

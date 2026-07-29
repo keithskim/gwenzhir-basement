@@ -59,6 +59,7 @@
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
+        <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
@@ -275,6 +276,15 @@
                     <span class="menu-item">Profile</span>
                     <span class="menu-item">Sign out</span>
                   </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="tooltip">
+              <span class="home-card-title">Tooltip</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="tooltip tooltip--top home-preview-tooltip">
+                  <span class="btn btn--2xs btn--default">Hover</span>
+                  <span class="tooltip-content" role="tooltip">Helpful hint</span>
                 </span>
               </span>
             </button>
@@ -1968,6 +1978,22 @@
           <div class="type-sample-item">
             <div class="sample-box">
               <div class="variant-row">
+                <button type="button" class="btn btn--xs btn--default btn--icon btn--round" aria-label="Help">
+                  <i class="ph ph-question icon--m" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn--xs btn--default btn--icon btn--round" aria-label="Help" disabled>
+                  <i class="ph ph-question icon--m" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Round icon</span>
+              <span class="sample-meta-detail">Circular icon button · Common tooltip trigger</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default">
                   <i class="ph ph-plus icon--m" aria-hidden="true"></i>
                   <span>Add</span>
@@ -2048,7 +2074,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">With tag</h3>
-        <div class="type-sample-list type-sample-list--types">
+        <div class="type-sample-list type-sample-list--types type-sample-list--button-tags">
           <div class="type-sample-item">
             <div class="sample-box">
               <button type="button" class="btn btn--xs btn--default">
@@ -3647,6 +3673,69 @@
             <div class="sample-meta">
               <span class="sample-meta-label">With divider</span>
               <span class="sample-meta-detail">Grouped items · Separator line</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tooltip ── -->
+    <section class="section section--component" id="tooltip">
+      <h2 class="section-label">Tooltip</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Placement</h3>
+        <div class="type-sample-list type-sample-list--items">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="variant-row">
+                <span class="tooltip tooltip--top">
+                  <button type="button" class="btn btn--xs btn--default" aria-describedby="tooltip-top-demo">Top</button>
+                  <span class="tooltip-content" id="tooltip-top-demo" role="tooltip">Top placement</span>
+                </span>
+                <span class="tooltip tooltip--right">
+                  <button type="button" class="btn btn--xs btn--default" aria-describedby="tooltip-right-demo">Right</button>
+                  <span class="tooltip-content" id="tooltip-right-demo" role="tooltip">Right placement</span>
+                </span>
+                <span class="tooltip tooltip--bottom">
+                  <button type="button" class="btn btn--xs btn--default" aria-describedby="tooltip-bottom-demo">Bottom</button>
+                  <span class="tooltip-content" id="tooltip-bottom-demo" role="tooltip">Bottom placement</span>
+                </span>
+                <span class="tooltip tooltip--left">
+                  <button type="button" class="btn btn--xs btn--default" aria-describedby="tooltip-left-demo">Left</button>
+                  <span class="tooltip-content" id="tooltip-left-demo" role="tooltip">Left placement</span>
+                </span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Hover or keyboard focus trigger · Four placement options</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tooltip tooltip--right">
+                <button type="button" class="btn btn--xs btn--default btn--icon btn--round" aria-label="More info" aria-describedby="tooltip-info-demo">
+                  <i class="ph ph-question icon--m" aria-hidden="true"></i>
+                </button>
+                <span class="tooltip-content" id="tooltip-info-demo" role="tooltip">Use this when you need a quick explanation for a field or action.</span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Info trigger</span>
+              <span class="sample-meta-detail">Round question icon button · Common tooltip pattern</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <span class="tooltip tooltip--top">
+                <button type="button" class="btn btn--xs btn--accent" aria-describedby="tooltip-multiline-demo">Publish</button>
+                <span class="tooltip-content" id="tooltip-multiline-demo" role="tooltip">Sends this draft live and notifies subscribers.</span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Long text</span>
+              <span class="sample-meta-detail">Compact label with multi-line helper copy</span>
             </div>
           </div>
         </div>

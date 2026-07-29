@@ -10,7 +10,7 @@ const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
 const sidebarToggle = document.getElementById('sidebarToggle');
 const sidebarBackdrop = document.getElementById('sidebarBackdrop');
 const page = document.querySelector('.page');
-const narrowMedia = window.matchMedia('(max-width: 39.9375rem)');
+const narrowMedia = window.matchMedia('(max-width: 43.9375rem)');
 
 function isNarrowViewport() {
   return narrowMedia.matches;
