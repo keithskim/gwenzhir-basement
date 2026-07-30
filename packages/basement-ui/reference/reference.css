@@ -481,6 +481,13 @@ html.is-sidebar-locked {
   gap: 0.25rem;
 }
 
+.home-card-preview:has(.home-preview-tooltip) {
+  overflow: visible;
+  align-items: flex-end;
+  min-height: 5.5rem;
+  padding-block: 0.25rem;
+}
+
 .home-preview-tooltip {
   pointer-events: none;
 }
@@ -1489,6 +1496,14 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 #graph .sample-box {
   padding-block: var(--spacing-m);
   padding-inline: var(--spacing-s);
+}
+
+#graph .sample-box:has(.graph--line.graph--point-values) {
+  overflow: visible;
+}
+
+#graph .sample-box:has(.graph--signed) {
+  overflow: visible;
 }
 
 #graph .sample-box > * {

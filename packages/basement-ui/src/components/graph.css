@@ -1,12 +1,28 @@
 .graph {
   --graph-ticks: 4;
+  --graph-zero: 0%;
   --graph-grid-line: color-mix(in srgb, var(--theme-border) 70%, var(--theme-bg));
   --graph-baseline: var(--theme-border);
+  --graph-zero-line: var(--theme-fg-secondary);
   --graph-bar-muted: var(--color-light-gray);
   --graph-bar-accent: var(--theme-fg);
+  --graph-bar-red: var(--color-red-light);
+  --graph-bar-yellow: var(--color-yellow-light);
+  --graph-bar-green: var(--color-green-light);
+  --graph-bar-red-label: var(--color-red-dark);
+  --graph-bar-yellow-label: var(--color-yellow-dark);
+  --graph-bar-green-label: var(--color-green-dark);
+  --graph-line-red: var(--color-red);
+  --graph-line-yellow: var(--color-yellow);
+  --graph-line-green: var(--color-green);
+  --graph-line-red-label: var(--color-red-dark);
+  --graph-line-yellow-label: var(--color-yellow-dark);
+  --graph-line-green-label: var(--color-green-dark);
   --graph-plot-height: 12rem;
   --graph-label-width: 4rem;
   --graph-axis-gap: 0.25rem;
+  --graph-point-size: 0.375rem;
+  --graph-line-stroke: 1.5px;
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -23,11 +39,19 @@
   box-sizing: border-box;
 }
 
-.graph-grid {
+.graph-grid,
+.graph-zero {
   position: absolute;
-  inset: 0;
   pointer-events: none;
   box-sizing: border-box;
+}
+
+.graph-grid {
+  inset: 0;
+}
+
+.graph-zero {
+  z-index: 2;
 }
 
 .graph-bars {
@@ -39,7 +63,6 @@
 }
 
 .graph-bar {
-  --bar-size: 0%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -56,6 +79,39 @@
 .graph-bar--accent {
   background: var(--graph-bar-accent);
   color: var(--theme-bg);
+}
+
+.graph-bar--red {
+  background: var(--graph-bar-red);
+  color: var(--graph-bar-red-label);
+}
+
+.graph-bar--yellow {
+  background: var(--graph-bar-yellow);
+  color: var(--graph-bar-yellow-label);
+}
+
+.graph-bar--green {
+  background: var(--graph-bar-green);
+  color: var(--graph-bar-green-label);
+}
+
+.graph-stack:has(> .graph-bar--red) > .graph-value,
+.graph-track:has(> .graph-bar--red) > .graph-value,
+.graph-col:has(> .graph-bar--red) > .graph-value {
+  color: var(--graph-bar-red-label);
+}
+
+.graph-stack:has(> .graph-bar--yellow) > .graph-value,
+.graph-track:has(> .graph-bar--yellow) > .graph-value,
+.graph-col:has(> .graph-bar--yellow) > .graph-value {
+  color: var(--graph-bar-yellow-label);
+}
+
+.graph-stack:has(> .graph-bar--green) > .graph-value,
+.graph-track:has(> .graph-bar--green) > .graph-value,
+.graph-col:has(> .graph-bar--green) > .graph-value {
+  color: var(--graph-bar-green-label);
 }
 
 .graph-bar-label {
@@ -78,14 +134,34 @@
   color: inherit;
 }
 
-/* ── Vertical ── */
+.graph-cluster {
+  display: flex;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.graph-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.125rem;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ── Vertical bar ── */
 
 .graph--vertical .graph-plot {
   height: var(--graph-plot-height);
   padding-block-start: var(--spacing-s);
 }
 
-.graph--vertical.graph--value-inside .graph-plot {
+.graph--vertical.graph--value-inside .graph-plot,
+.graph--vertical.graph--signed .graph-plot {
   padding-block-start: 0;
 }
 
@@ -100,7 +176,7 @@
   border-block-end: 1px solid var(--graph-baseline);
 }
 
-.graph--vertical:not(.graph--bar-label-inside) .graph-plot {
+.graph--vertical:not(.graph--bar-label-inside):not(.graph--line) .graph-plot {
   margin-block-end: calc(var(--line-height-xs) + var(--graph-axis-gap));
 }
 
@@ -127,18 +203,48 @@
 .graph--vertical .graph-bar {
   width: 100%;
   max-width: 3.5rem;
-  height: var(--bar-size);
+  height: var(--bar-size, 0%);
   flex-direction: column;
   justify-content: flex-end;
   gap: 0.125rem;
   border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
 }
 
-.graph--vertical:not(.graph--value-inside) .graph-value {
+.graph--vertical .graph-cluster {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.125rem;
+  width: 100%;
+  max-width: 3.5rem;
+  height: 100%;
+}
+
+.graph--vertical .graph-cluster > .graph-bar {
+  flex: 1 1 0;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+}
+
+.graph--vertical .graph-stack .graph-bar {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: var(--bar-size, 0%);
+}
+
+.graph--vertical:not(.graph--value-inside):not(.graph--signed) .graph-value {
   order: -1;
 }
 
-.graph--vertical:not(.graph--bar-label-inside) .graph-bar-label {
+.graph--vertical .graph-stack .graph-value {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
+.graph--vertical:not(.graph--bar-label-inside) .graph-col > .graph-bar-label {
   position: absolute;
   inset-inline: 0;
   top: calc(100% + var(--graph-axis-gap));
@@ -170,10 +276,120 @@
   justify-content: flex-start;
 }
 
-/* ── Horizontal ── */
+/* Signed vertical — bars anchored to --graph-zero */
+
+.graph--vertical.graph--signed .graph-zero {
+  inset-inline: 0;
+  bottom: var(--graph-zero);
+  border-block-start: 1px solid var(--graph-zero-line);
+}
+
+.graph--vertical.graph--signed .graph-col {
+  display: block;
+}
+
+.graph--vertical.graph--signed .graph-col > .graph-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: var(--graph-zero);
+  width: 100%;
+  max-width: 3.5rem;
+  height: var(--bar-size, 0%);
+  margin: 0;
+}
+
+.graph--vertical.graph--signed .graph-col > .graph-bar--negative {
+  bottom: calc(var(--graph-zero) - var(--bar-size, 0%));
+  border-radius: 0 0 var(--border-radius-s) var(--border-radius-s);
+  justify-content: flex-start;
+}
+
+.graph--vertical.graph--signed .graph-cluster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 3.5rem;
+  margin-inline: auto;
+  height: auto;
+  display: block;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar {
+  position: absolute;
+  bottom: var(--graph-zero);
+  height: var(--bar-size, 0%);
+  width: calc((100% - 0.125rem) / 2);
+  max-width: none;
+  left: auto;
+  transform: none;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(1 of .graph-bar) {
+  inset-inline-start: 0;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(2 of .graph-bar) {
+  inset-inline-end: 0;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(1 of .graph-bar):nth-last-child(3 of .graph-bar),
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(1 of .graph-bar):nth-last-child(3 of .graph-bar) ~ .graph-bar {
+  width: calc((100% - 0.25rem) / 3);
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(1 of .graph-bar):nth-last-child(3 of .graph-bar) {
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(2 of .graph-bar):nth-last-child(2 of .graph-bar) {
+  inset-inline-start: calc(33.333% + 0.083rem);
+  inset-inline-end: auto;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar:nth-child(3 of .graph-bar):nth-last-child(1 of .graph-bar) {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+.graph--vertical.graph--signed .graph-cluster > .graph-bar--negative {
+  bottom: calc(var(--graph-zero) - var(--bar-size, 0%));
+  border-radius: 0 0 var(--border-radius-s) var(--border-radius-s);
+  justify-content: flex-start;
+}
+
+.graph--vertical.graph--signed:not(.graph--value-inside) .graph-col > .graph-value {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  bottom: calc(var(--graph-zero) + var(--bar-size, 0%) + 0.125rem);
+  order: 0;
+}
+
+.graph--vertical.graph--signed:not(.graph--bar-label-inside) .graph-plot {
+  margin-block-end: calc(var(--line-height-xs) * 2 + var(--graph-axis-gap) + 0.25rem);
+  overflow: visible;
+}
+
+.graph--vertical.graph--signed:not(.graph--bar-label-inside) .graph-col > .graph-bar-label {
+  top: calc(100% + var(--line-height-xs) + var(--graph-axis-gap));
+}
+
+.graph--vertical.graph--signed:not(.graph--value-inside) .graph-col > .graph-value:has(+ .graph-bar--negative) {
+  bottom: auto;
+  top: calc(100% - var(--graph-zero) + var(--bar-size, 0%) + 0.125rem);
+}
+
+/* ── Horizontal bar ── */
 
 .graph--horizontal .graph-plot {
   min-height: calc(var(--graph-plot-height) * 0.55);
+}
+
+.graph--horizontal.graph--signed .graph-plot {
+  min-height: var(--graph-plot-height);
 }
 
 .graph--horizontal .graph-grid {
@@ -211,9 +427,10 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
+  position: relative;
 }
 
-.graph--horizontal:not(.graph--bar-label-inside) .graph-bar-label {
+.graph--horizontal:not(.graph--bar-label-inside) .graph-row > .graph-bar-label {
   flex: 0 0 var(--graph-label-width);
   width: var(--graph-label-width);
   text-align: end;
@@ -221,10 +438,24 @@
 
 .graph--horizontal .graph-bar {
   height: var(--line-height-s);
-  width: var(--bar-size);
+  width: var(--bar-size, 0%);
   flex: 0 0 auto;
   gap: var(--spacing-xs);
   border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
+}
+
+.graph--horizontal .graph-cluster {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.125rem;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.graph--horizontal .graph-cluster .graph-bar {
+  height: calc(var(--line-height-s) * 0.7);
+  width: var(--bar-size, 0%);
 }
 
 .graph--horizontal:not(.graph--value-inside) .graph-bar {
@@ -247,4 +478,226 @@
 
 .graph--horizontal.graph--bar-label-inside.graph--value-inside .graph-bar {
   justify-content: space-between;
+}
+
+/* Signed horizontal */
+
+/* Signed horizontal — zero % is of the plot track (same box as the grid), not the full plot. */
+.graph--horizontal.graph--signed .graph-zero {
+  inset-block: 0;
+  inset-inline-start: calc(var(--graph-label-width) + var(--spacing-xs));
+  inset-inline-end: 0;
+  border: none;
+}
+
+.graph--horizontal.graph--signed .graph-zero::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--graph-zero);
+  border-inline-start: 1px solid var(--graph-zero-line);
+}
+
+.graph--horizontal.graph--signed.graph--bar-label-inside .graph-zero {
+  inset-inline-start: 0;
+}
+
+.graph--horizontal.graph--signed .graph-track {
+  min-height: var(--line-height-s);
+}
+
+.graph--horizontal.graph--signed .graph-track > .graph-bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-start: var(--graph-zero);
+  width: var(--bar-size, 0%);
+  max-width: none;
+  margin: 0;
+}
+
+.graph--horizontal.graph--signed .graph-track > .graph-bar--negative {
+  inset-inline-start: calc(var(--graph-zero) - var(--bar-size, 0%));
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+  justify-content: flex-start;
+}
+
+.graph--horizontal.graph--signed .graph-cluster {
+  position: relative;
+  min-height: calc(var(--line-height-s) * 1.6);
+  width: 100%;
+  flex: 1 1 auto;
+  display: block;
+}
+
+.graph--horizontal.graph--signed .graph-cluster > .graph-bar {
+  position: absolute;
+  inset-inline-start: var(--graph-zero);
+  width: var(--bar-size, 0%);
+  max-width: none;
+  height: calc(var(--line-height-s) * 0.7);
+}
+
+.graph--horizontal.graph--signed .graph-cluster > .graph-bar:nth-child(1 of .graph-bar) {
+  top: 0;
+}
+
+.graph--horizontal.graph--signed .graph-cluster > .graph-bar:nth-child(2 of .graph-bar) {
+  bottom: 0;
+}
+
+.graph--horizontal.graph--signed .graph-cluster > .graph-bar--negative {
+  inset-inline-start: calc(var(--graph-zero) - var(--bar-size, 0%));
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+}
+
+.graph--horizontal.graph--signed:not(.graph--value-inside) .graph-track > .graph-value {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-start: calc(var(--graph-zero) + var(--bar-size, 0%) + var(--spacing-xs));
+  z-index: 2;
+}
+
+.graph--horizontal.graph--signed:not(.graph--value-inside) .graph-track > .graph-value:has(+ .graph-bar--negative) {
+  inset-inline-start: calc(var(--graph-zero) - var(--bar-size, 0%) - 2rem);
+}
+
+/* ── Line ── */
+
+.graph--line .graph-plot {
+  height: var(--graph-plot-height);
+  margin-block-end: calc(var(--line-height-xs) + var(--graph-axis-gap));
+  padding-block-start: 0;
+}
+
+.graph--line .graph-grid {
+  background-image: linear-gradient(
+    to bottom,
+    var(--graph-grid-line) 1px,
+    transparent 1px
+  );
+  background-size: 100% calc(100% / var(--graph-ticks));
+  background-position: left top;
+  border-block-end: 1px solid var(--graph-baseline);
+}
+
+.graph--line .graph-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.graph--line .graph-line {
+  fill: none;
+  stroke-width: var(--graph-line-stroke);
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.graph--line .graph-line--red {
+  stroke: var(--graph-line-red);
+}
+
+.graph--line .graph-line--yellow {
+  stroke: var(--graph-line-yellow);
+}
+
+.graph--line .graph-line--green {
+  stroke: var(--graph-line-green);
+}
+
+.graph--line .graph-series {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--graph-line-red);
+}
+
+.graph--line .graph-series--red {
+  color: var(--graph-line-red);
+}
+
+.graph--line .graph-series--yellow {
+  color: var(--graph-line-yellow);
+}
+
+.graph--line .graph-series--green {
+  color: var(--graph-line-green);
+}
+
+.graph--line .graph-point {
+  --point-x: 0%;
+  --point-y: 0%;
+  position: absolute;
+  left: var(--point-x);
+  bottom: var(--point-y);
+  width: var(--graph-point-size);
+  height: var(--graph-point-size);
+  transform: translate(-50%, 50%);
+  background: currentColor;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.graph--line .graph-point .graph-value {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.25rem);
+  top: auto;
+  transform: translateX(-50%);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
+.graph--line .graph-series--red .graph-point .graph-value {
+  color: var(--graph-line-red-label);
+}
+
+.graph--line .graph-series--yellow .graph-point .graph-value {
+  color: var(--graph-line-yellow-label);
+}
+
+.graph--line .graph-series--green .graph-point .graph-value {
+  color: var(--graph-line-green-label);
+}
+
+.graph--line.graph--point-values .graph-point .graph-value {
+  display: block;
+}
+
+/* Prefer below when series or point opts in — keeps close multi-series labels apart. */
+.graph--line.graph--point-values .graph-series--value-below .graph-point .graph-value,
+.graph--line.graph--point-values .graph-point--value-below .graph-value {
+  bottom: auto;
+  top: calc(100% + 0.25rem);
+}
+
+.graph--line.graph--point-values .graph-point--value-above .graph-value {
+  bottom: calc(100% + 0.25rem);
+  top: auto;
+}
+
+.graph--line .graph-cats {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(100% + var(--graph-axis-gap));
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  padding-inline: var(--spacing-xs);
+  box-sizing: border-box;
+}
+
+.graph--line .graph-cats .graph-bar-label {
+  flex: 1 1 0;
+  max-width: none;
+  text-align: center;
+  position: static;
 }
