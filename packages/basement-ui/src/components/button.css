@@ -62,11 +62,11 @@
 }
 
 .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
-  background: var(--color-dark-gray);
+  background: var(--color-dark-gray-a);
 }
 
 html.is-dark .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
-  background: var(--color-light-gray);
+  background: var(--color-light-gray-a);
   color: var(--color-black);
 }
 
@@ -77,12 +77,12 @@ html.is-dark .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabl
 }
 
 .btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
-  background: var(--color-light-gray);
+  background: var(--color-light-gray-a);
   border-color: var(--color-gray);
 }
 
 html.is-dark .btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
-  background: var(--color-dark-gray);
+  background: var(--color-dark-gray-a);
   border-color: var(--color-gray);
 }
 
@@ -108,7 +108,7 @@ html.is-dark .btn--subtle:is(:hover, :active, [aria-pressed="true"]):not(:disabl
 }
 
 html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
-  background: var(--color-dark-gray);
+  background: var(--color-dark-gray-a);
 }
 
 .btn:disabled {

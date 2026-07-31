@@ -3,7 +3,10 @@
  * Generate translucent (--color-*-a) tokens that match each solid when
  * composited over the light (white) or dark (black) page background.
  *
- * Algorithm adapted from Radix Colors alpha-scale generation.
+ * Solves the compositing equation for the smallest alpha at which every
+ * channel of the solid is reachable, so each token composites back to its
+ * solid exactly. Colors the background cannot be diluted or lifted to reach
+ * fall back to fully opaque.
  *
  * Usage: node scripts/generate-alpha-colors.mjs [--write]
  */
@@ -32,93 +35,77 @@ function parseSolidColors(css) {
   return colors;
 }
 
-function hexToRgb01(hex) {
+function hexToRgb(hex) {
   const n = parseInt(hex.slice(1), 16);
-  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-function blendAlpha(foreground, alpha, background, round = true) {
-  if (round) {
-    return Math.round(background * (1 - alpha)) + Math.round(foreground * alpha);
-  }
-  return background * (1 - alpha) + foreground * alpha;
+function blendAlpha(foreground, alpha, background) {
+  return Math.round(background * (1 - alpha) + foreground * alpha);
 }
 
-function getAlphaColor(targetRgb, backgroundRgb, rgbPrecision, alphaPrecision, targetAlpha) {
-  const [tr, tg, tb] = targetRgb.map((c) => Math.round(c * rgbPrecision));
-  const [br, bg, bb] = backgroundRgb.map((c) => Math.round(c * rgbPrecision));
-
-  if (tr === br && tg === bg && tb === bb) {
-    return [0, 0, 0, 0];
-  }
-
-  let desiredRgb = 0;
-  if (tr > br) desiredRgb = rgbPrecision;
-  else if (tg > bg) desiredRgb = rgbPrecision;
-  else if (tb > bb) desiredRgb = rgbPrecision;
-
-  const alphaR = (tr - br) / (desiredRgb - br);
-  const alphaG = (tg - bg) / (desiredRgb - bg);
-  const alphaB = (tb - bb) / (desiredRgb - bb);
-  const alphas = [alphaR, alphaG, alphaB];
-  const pureGray =
-    alphas.every((a) => Number.isFinite(a)) &&
-    Math.abs(alphaR - alphaG) < 1e-9 &&
-    Math.abs(alphaG - alphaB) < 1e-9;
-
-  if (!targetAlpha && pureGray) {
-    return [desiredRgb / rgbPrecision, desiredRgb / rgbPrecision, desiredRgb / rgbPrecision, alphaR];
-  }
-
-  const clampRgb = (n) => (Number.isNaN(n) ? 0 : Math.min(rgbPrecision, Math.max(0, n)));
-  const clampA = (n) => (Number.isNaN(n) ? 0 : Math.min(alphaPrecision, Math.max(0, n)));
-  const safeAlphas = alphas.map((a) => (Number.isFinite(a) ? a : 0));
-  const maxAlpha = targetAlpha ?? Math.max(...safeAlphas);
-  const A = clampA(Math.ceil(maxAlpha * alphaPrecision)) / alphaPrecision;
-
-  if (A === 0) return [0, 0, 0, 0];
-
-  let R = clampRgb(((br * (1 - A) - tr) / A) * -1);
-  let G = clampRgb(((bg * (1 - A) - tg) / A) * -1);
-  let B = clampRgb(((bb * (1 - A) - tb) / A) * -1);
-
-  R = Math.ceil(R);
-  G = Math.ceil(G);
-  B = Math.ceil(B);
-
-  const blendedR = blendAlpha(R, A, br);
-  const blendedG = blendAlpha(G, A, bg);
-  const blendedB = blendAlpha(B, A, bb);
-
-  if (desiredRgb === 0) {
-    if (tr <= br && tr !== blendedR) R = tr > blendedR ? R + 1 : R - 1;
-    if (tg <= bg && tg !== blendedG) G = tg > blendedG ? G + 1 : G - 1;
-    if (tb <= bb && tb !== blendedB) B = tb > blendedB ? B + 1 : B - 1;
-  }
-
-  if (desiredRgb === rgbPrecision) {
-    if (tr >= br && tr !== blendedR) R = tr > blendedR ? R + 1 : R - 1;
-    if (tg >= bg && tg !== blendedG) G = tg > blendedG ? G + 1 : G - 1;
-    if (tb >= bb && tb !== blendedB) B = tb > blendedB ? B + 1 : B - 1;
-  }
-
-  return [
-    Math.min(rgbPrecision, Math.max(0, R)) / rgbPrecision,
-    Math.min(rgbPrecision, Math.max(0, G)) / rgbPrecision,
-    Math.min(rgbPrecision, Math.max(0, B)) / rgbPrecision,
-    A,
-  ];
+/**
+ * Lowest alpha at which every channel of the target is reachable: a channel
+ * darker than the background has to dilute the background away, a lighter one
+ * has to lift it toward full intensity. Below this alpha the channel clamps
+ * and the composite drifts off the solid.
+ */
+function minimumAlpha(target, background) {
+  return Math.max(
+    ...target.map((t, i) => {
+      const b = background[i];
+      if (t < b) return (b - t) / b;
+      if (t > b) return (t - b) / (255 - b);
+      return 0;
+    })
+  );
 }
 
-function toHex8([r, g, b, a]) {
-  const chan = (v) => Math.round(v * 255).toString(16).padStart(2, '0');
-  return `#${chan(r)}${chan(g)}${chan(b)}${chan(a)}`.toUpperCase();
+/**
+ * Overlay channel value that composites to `target` at this alpha, or null if
+ * no 8-bit value does. Among the values that land on target, the one closest
+ * to the unrounded solution survives rounding differences best.
+ */
+function solveChannel(target, background, alpha) {
+  const ideal = (target - background * (1 - alpha)) / alpha;
+  const rounded = Math.round(ideal);
+  let best = null;
+  for (const candidate of [rounded - 1, rounded, rounded + 1]) {
+    const value = Math.min(255, Math.max(0, candidate));
+    if (blendAlpha(value, alpha, background) !== target) continue;
+    const error = Math.abs(background * (1 - alpha) + value * alpha - target);
+    if (!best || error < best.error) best = { value, error };
+  }
+  return best ? best.value : null;
+}
+
+function getAlphaColor(target, background) {
+  if (target.every((t, i) => t === background[i])) return [0, 0, 0, 0];
+
+  const start = Math.max(1, Math.ceil(minimumAlpha(target, background) * 255));
+  for (let steps = start; steps < 255; steps++) {
+    const alpha = steps / 255;
+    const channels = target.map((t, i) => solveChannel(t, background[i], alpha));
+    if (channels.every((c) => c !== null)) return [...channels, steps];
+  }
+  return [...target, 255];
+}
+
+function toHex8(rgba) {
+  return `#${rgba.map((v) => v.toString(16).padStart(2, '0')).join('')}`.toUpperCase();
 }
 
 function formatBlock(colors, background, indent = '  ') {
+  const backgroundRgb = hexToRgb(background);
   return Object.keys(colors)
     .map((name) => {
-      const rgba = getAlphaColor(hexToRgb01(colors[name]), hexToRgb01(background), 255, 255);
+      const target = hexToRgb(colors[name]);
+      const rgba = getAlphaColor(target, backgroundRgb);
+      const alpha = rgba[3] / 255;
+      const blended = rgba.slice(0, 3).map((c, i) => blendAlpha(c, alpha, backgroundRgb[i]));
+      if (blended.some((c, i) => c !== target[i])) {
+        console.warn(`Warning: --${name}-a composites to ${toHex8([...blended, 255]).slice(0, 7)}, not ${colors[name]}`);
+      }
       return `${indent}--${name}-a: ${toHex8(rgba)};`;
     })
     .join('\n');

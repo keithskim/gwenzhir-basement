@@ -4,11 +4,11 @@
   --graph-grid-line: color-mix(in srgb, var(--theme-border) 70%, var(--theme-bg));
   --graph-baseline: var(--theme-border);
   --graph-zero-line: var(--theme-fg-secondary);
-  --graph-bar-muted: var(--color-light-gray);
+  --graph-bar-muted: var(--color-light-gray-a);
   --graph-bar-accent: var(--theme-fg);
-  --graph-bar-red: var(--color-red-light);
-  --graph-bar-yellow: var(--color-yellow-light);
-  --graph-bar-green: var(--color-green-light);
+  --graph-bar-red: var(--color-red-light-a);
+  --graph-bar-yellow: var(--color-yellow-light-a);
+  --graph-bar-green: var(--color-green-light-a);
   --graph-bar-red-label: var(--color-red-dark);
   --graph-bar-yellow-label: var(--color-yellow-dark);
   --graph-bar-green-label: var(--color-green-dark);
