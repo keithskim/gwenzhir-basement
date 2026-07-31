@@ -1185,6 +1185,10 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   grid-column: 1 / -1;
   justify-self: center;
   align-self: center;
+}
+
+:is(#tag, #status-chip, #mention, #avatar) .sample-box > * {
+  /* Intrinsic demos: avoid stretching. Spinner keeps its fixed size tokens. */
   width: auto;
   min-width: auto;
 }
@@ -1377,10 +1381,13 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 :is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box > * {
   grid-column: 1 / -1;
-  width: auto;
-  min-width: auto;
   justify-self: center;
   align-self: center;
+}
+
+:is(#tag, #status-chip, #mention, #avatar) .type-sample-list--sizes .sample-box > * {
+  width: auto;
+  min-width: auto;
 }
 
 @media (min-width: 80rem) {
@@ -1854,7 +1861,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
     align-self: flex-start;
   }
 
-  .viewport-lane--medium .viewport-lane-label { margin-left: 25%; }
+  .viewport-lane--medium .viewport-lane-label { margin-left: 27.5%; }
   .viewport-lane--wide .viewport-lane-label { margin-left: 50%; }
   .viewport-lane--extra-wide .viewport-lane-label { margin-left: 75%; }
 
@@ -1953,7 +1960,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 
 .viewport-scale-tick--0   { left: 0%; transform: none; }
 .viewport-scale-tick--0::before { left: 0; }
-.viewport-scale-tick--40  { left: 25%; }
+.viewport-scale-tick--44  { left: 27.5%; }
 .viewport-scale-tick--80  { left: 50%; }
 .viewport-scale-tick--120 { left: 75%; }
 .viewport-scale-tick--max { left: 100%; transform: translateX(-100%); }
@@ -1967,7 +1974,7 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   border-radius: var(--border-radius-s);
 }
 
-.viewport-lane-fill--narrow      { left: 0;    width: 25%; }
-.viewport-lane-fill--medium      { left: 25%;  width: 25%; }
-.viewport-lane-fill--wide        { left: 50%;  width: 25%; }
-.viewport-lane-fill--extra-wide  { left: 75%;  width: 25%; }
+.viewport-lane-fill--narrow      { left: 0;     width: 27.5%; }
+.viewport-lane-fill--medium      { left: 27.5%; width: 22.5%; }
+.viewport-lane-fill--wide        { left: 50%;   width: 25%; }
+.viewport-lane-fill--extra-wide  { left: 75%;   width: 25%; }

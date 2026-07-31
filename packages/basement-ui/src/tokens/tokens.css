@@ -127,7 +127,7 @@
 
   --page-padding-block: var(--spacing-s);
 
-  --viewport-medium-min: 40rem;
+  --viewport-medium-min: 44rem;
   --viewport-wide-min: 80rem;
   --viewport-extra-wide-min: 120rem;
   --viewport-max: 160rem;
@@ -155,7 +155,7 @@
   --content-columns: var(--content-columns-narrow);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 44rem) {
   :root {
     --columns: var(--columns-medium);
     --sidebar-columns: var(--sidebar-columns-medium);
