@@ -1374,6 +1374,50 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
   }
 }
 
+#content-block .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+#content-block .sample-box {
+  padding-block: var(--spacing-m);
+  padding-inline: var(--spacing-m);
+  align-content: start;
+  align-items: start;
+}
+
+#content-block .sample-box > * {
+  align-self: start;
+  height: auto;
+}
+
+#content-block .type-sample-list--sizes .sample-box {
+  padding-block: var(--spacing-l);
+  padding-inline: var(--spacing-m);
+}
+
+#content-block .type-sample-list--layout .type-sample-item {
+  grid-column: 1 / -1;
+}
+
+#content-block .type-sample-list--layout .sample-box > * {
+  width: 100%;
+}
+
+@media (min-width: 80rem) {
+  #content-block .type-sample-item {
+    grid-column: span 3;
+  }
+
+  #content-block .type-sample-list--sizes .type-sample-item {
+    grid-column: span 3;
+  }
+
+  #content-block .type-sample-list--layout .type-sample-item {
+    grid-column: 1 / -1;
+  }
+}
+
 :is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
   padding-block: var(--spacing-m);
   place-items: center;
