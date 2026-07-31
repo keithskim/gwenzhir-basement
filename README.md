@@ -2,6 +2,8 @@
 
 Shared design foundation for Gwenzhir projects. The main package is **Basement UI** — tokens, typography, and reusable CSS components with a live reference page.
 
+**App home:** [Basement UI reference](https://keithskim.github.io/gwenzhir-basement/packages/basement-ui/)
+
 ## Quick start
 
 ```bash
