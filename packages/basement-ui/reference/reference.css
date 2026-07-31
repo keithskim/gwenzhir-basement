@@ -246,6 +246,19 @@ html.is-sidebar-locked {
   margin-bottom: var(--spacing-s);
 }
 
+.subsection-note {
+  grid-column: 1 / -1;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+  margin: calc(var(--spacing-s) * -1) 0 var(--spacing-s);
+}
+
+.subsection-note code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: inherit;
+}
+
 .subsection-label:has(+ .sample-box),
 .subsection-label:has(+ .type-sample-list),
 .subsection-label:has(+ .type-sample-item),
@@ -743,8 +756,12 @@ html.is-sidebar-locked {
 
 html:not(.is-dark) .swatch-face--white { border-color: var(--theme-border); }
 html:not(.is-dark) .swatch-face--gray-extra-light { border-color: var(--theme-border); }
+html:not(.is-dark) .swatch-face--white-a { border-color: var(--theme-border); }
+html:not(.is-dark) .swatch-face--gray-extra-light-a { border-color: var(--theme-border); }
 html.is-dark .swatch-face--black { border-color: var(--theme-border); }
 html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); }
+html.is-dark .swatch-face--black-a { border-color: var(--theme-border); }
+html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border); }
 
 .swatch-face--black        { background: var(--color-black); }
 .swatch-face--gray-extra-dark { background: var(--color-gray-extra-dark); }
@@ -783,6 +800,44 @@ html.is-dark .swatch-face--gray-extra-dark { border-color: var(--theme-border); 
 .swatch-face--cyan               { background: var(--color-cyan); }
 .swatch-face--cyan-light         { background: var(--color-cyan-light); }
 .swatch-face--cyan-extra-light   { background: var(--color-cyan-extra-light); }
+
+.swatch-face--black-a        { background: var(--color-black-a); }
+.swatch-face--gray-extra-dark-a { background: var(--color-gray-extra-dark-a); }
+.swatch-face--dark-gray-a    { background: var(--color-dark-gray-a); }
+.swatch-face--gray-a         { background: var(--color-gray-a); }
+.swatch-face--light-gray-a   { background: var(--color-light-gray-a); }
+.swatch-face--gray-extra-light-a { background: var(--color-gray-extra-light-a); }
+.swatch-face--white-a        { background: var(--color-white-a); }
+.swatch-face--red-extra-dark-a     { background: var(--color-red-extra-dark-a); }
+.swatch-face--red-dark-a           { background: var(--color-red-dark-a); }
+.swatch-face--red-a                { background: var(--color-red-a); }
+.swatch-face--red-light-a          { background: var(--color-red-light-a); }
+.swatch-face--red-extra-light-a    { background: var(--color-red-extra-light-a); }
+.swatch-face--green-extra-dark-a   { background: var(--color-green-extra-dark-a); }
+.swatch-face--green-dark-a         { background: var(--color-green-dark-a); }
+.swatch-face--green-a              { background: var(--color-green-a); }
+.swatch-face--green-light-a        { background: var(--color-green-light-a); }
+.swatch-face--green-extra-light-a  { background: var(--color-green-extra-light-a); }
+.swatch-face--blue-extra-dark-a    { background: var(--color-blue-extra-dark-a); }
+.swatch-face--blue-dark-a          { background: var(--color-blue-dark-a); }
+.swatch-face--blue-a               { background: var(--color-blue-a); }
+.swatch-face--blue-light-a         { background: var(--color-blue-light-a); }
+.swatch-face--blue-extra-light-a   { background: var(--color-blue-extra-light-a); }
+.swatch-face--yellow-extra-dark-a  { background: var(--color-yellow-extra-dark-a); }
+.swatch-face--yellow-dark-a        { background: var(--color-yellow-dark-a); }
+.swatch-face--yellow-a             { background: var(--color-yellow-a); }
+.swatch-face--yellow-light-a       { background: var(--color-yellow-light-a); }
+.swatch-face--yellow-extra-light-a { background: var(--color-yellow-extra-light-a); }
+.swatch-face--pink-extra-dark-a    { background: var(--color-pink-extra-dark-a); }
+.swatch-face--pink-dark-a          { background: var(--color-pink-dark-a); }
+.swatch-face--pink-a               { background: var(--color-pink-a); }
+.swatch-face--pink-light-a         { background: var(--color-pink-light-a); }
+.swatch-face--pink-extra-light-a   { background: var(--color-pink-extra-light-a); }
+.swatch-face--cyan-extra-dark-a    { background: var(--color-cyan-extra-dark-a); }
+.swatch-face--cyan-dark-a          { background: var(--color-cyan-dark-a); }
+.swatch-face--cyan-a               { background: var(--color-cyan-a); }
+.swatch-face--cyan-light-a         { background: var(--color-cyan-light-a); }
+.swatch-face--cyan-extra-light-a   { background: var(--color-cyan-extra-light-a); }
 
 /* ── Palette hue groups ── */
 .palette-hue-group + .palette-hue-group,

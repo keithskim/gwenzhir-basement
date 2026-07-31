@@ -343,6 +343,14 @@ function setDarkMode(enabled) {
   document.documentElement.classList.toggle('is-dark', enabled);
   darkModeToggle.checked = enabled;
   syncAllColorChipBorders();
+  syncTokenValues();
+}
+
+function syncTokenValues() {
+  const styles = getComputedStyle(document.documentElement);
+  document.querySelectorAll('.token-value[data-token]').forEach(el => {
+    el.textContent = styles.getPropertyValue(el.dataset.token).trim().toUpperCase();
+  });
 }
 
 darkModeToggle.addEventListener('change', () => {
@@ -355,6 +363,7 @@ if (localStorage.getItem(DARK_MODE_STORAGE_KEY) === '1') {
   setDarkMode(true);
 } else {
   syncAllColorChipBorders();
+  syncTokenValues();
 }
 
 function syncColumnOverlay() {

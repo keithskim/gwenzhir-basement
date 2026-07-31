@@ -29,7 +29,8 @@
     "dev": "npx --yes serve . -p 5173",
     "reference": "open index.html",
     "audit:colors": "node scripts/audit-palette.mjs",
-    "audit:colors:fix": "node scripts/audit-palette.mjs --fix"
+    "audit:colors:fix": "node scripts/audit-palette.mjs --fix",
+    "generate:alpha": "node scripts/generate-alpha-colors.mjs --write"
   },
   "keywords": [
     "css",

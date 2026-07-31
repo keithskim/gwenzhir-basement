@@ -60,6 +60,12 @@ npm run audit:colors
 npm run audit:colors:fix
 ```
 
+Translucent (`-a`) tokens match each solid color when composited over the page background (white in light mode, black in dark mode). Regenerate them after solid palette edits:
+
+```bash
+npm run generate:alpha
+```
+
 ## Intended use
 
 Import tokens and components into any Gwenzhir app or internal tool. Do not add application-specific logic here — this package has no opinion about routing, auth, or data fetching.
