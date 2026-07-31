@@ -46,7 +46,6 @@
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
         <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
         <button type="button" class="sidebar-item" data-section="pairs">Pairs</button>
-        <button type="button" class="sidebar-item" data-section="content-block">Content Block</button>
         <button type="button" class="sidebar-item" data-section="mention">Mention</button>
         <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
         <button type="button" class="sidebar-item" data-section="progress">Progress</button>
@@ -64,14 +63,15 @@
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
+        <button type="button" class="sidebar-item" data-section="player">Player</button>
+        <button type="button" class="sidebar-item" data-section="alert">Alert</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Visualization</div>
+        <button type="button" class="sidebar-item" data-section="content-block">Content Block</button>
         <button type="button" class="sidebar-item" data-section="table">Table</button>
         <button type="button" class="sidebar-item" data-section="timeline">Timeline</button>
         <button type="button" class="sidebar-item" data-section="graph">Graph</button>
-        <button type="button" class="sidebar-item" data-section="player">Player</button>
-        <button type="button" class="sidebar-item" data-section="alert">Alert</button>
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -185,20 +185,6 @@
                     <span class="pair">
                       <span class="pair-key">Jane Doe</span>
                       <span class="pair-value">2026-04</span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="content-block">
-              <span class="home-card-title">Content Block</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="content-block content-block--row content-block--s">
-                  <span class="content-block-media"></span>
-                  <span class="content-block-body">
-                    <span class="content-block-title">Title</span>
-                    <span class="content-block-meta">
-                      <span class="content-block-date">2026-07-09</span>
                     </span>
                   </span>
                 </span>
@@ -334,12 +320,50 @@
                 </span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="player">
+              <span class="home-card-title">Player</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="player home-preview-player">
+                  <span class="btn btn--2xs btn--default btn--icon">
+                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
+                  </span>
+                  <span class="progress" style="--progress: 35%;">
+                    <span class="progress-track">
+                      <span class="progress-fill"></span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="alert">
+              <span class="home-card-title">Alert</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="alert alert--affirm home-preview-alert">
+                  <i class="ph ph-check-circle alert-icon" aria-hidden="true"></i>
+                  <span class="alert-description">Changes saved.</span>
+                </span>
+              </span>
+            </button>
           </div>
         </div>
 
         <div class="home-index-group">
           <h3 class="home-index-label">Visualization</h3>
           <div class="home-index-grid">
+            <button type="button" class="home-card" data-section="content-block">
+              <span class="home-card-title">Content Block</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="content-block content-block--row content-block--s">
+                  <span class="content-block-media"></span>
+                  <span class="content-block-body">
+                    <span class="content-block-title">Title</span>
+                    <span class="content-block-meta">
+                      <span class="content-block-date">2026-07-09</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </button>
             <button type="button" class="home-card" data-section="table">
               <span class="home-card-title">Table</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -384,30 +408,6 @@
                       </span>
                     </span>
                   </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="player">
-              <span class="home-card-title">Player</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="player home-preview-player">
-                  <span class="btn btn--2xs btn--default btn--icon">
-                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
-                  </span>
-                  <span class="progress" style="--progress: 35%;">
-                    <span class="progress-track">
-                      <span class="progress-fill"></span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="alert">
-              <span class="home-card-title">Alert</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="alert alert--affirm home-preview-alert">
-                  <i class="ph ph-check-circle alert-icon" aria-hidden="true"></i>
-                  <span class="alert-description">Changes saved.</span>
                 </span>
               </span>
             </button>
@@ -3486,346 +3486,6 @@
       </div>
     </section>
 
-    <!-- ── Content Block ── -->
-    <section class="section section--component" id="content-block">
-      <h2 class="section-label">Content Block</h2>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Types</h3>
-        <div class="type-sample-list">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block">
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Quarterly planning notes</h3>
-                  <p class="content-block-description">A short summary of goals, open questions, and next steps for the team.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Title · Description · Stacked</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block">
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Design review recap</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
-                  </div>
-                  <p class="content-block-description">Decisions from the last review, plus a few follow-ups still open.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">With meta</span>
-              <span class="sample-meta-detail">Title · Gray date · Description</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Launch checklist</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
-                  </div>
-                  <p class="content-block-description">Final pass on copy, assets, and rollout owners before publish.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">With media</span>
-              <span class="sample-meta-detail">Leading media · Row · 4×3</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row content-block--s">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Project North</h3>
-                  <div class="content-block-meta">
-                    <span class="tag tag--2xs">Product</span>
-                    <span class="tag tag--2xs">Active</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">With tags</span>
-              <span class="sample-meta-detail">Title · Optional 2XS tags · No date</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Sizes</h3>
-        <div class="type-sample-list type-sample-list--sizes">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row content-block--xs">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Inbox zero tips</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
-                  </div>
-                  <p class="content-block-description">Dense rows without a date line.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">XS</span>
-              <span class="sample-meta-detail">2.75rem · 4×3 · XS title · No date</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row content-block--s">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Project North</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
-                  </div>
-                  <p class="content-block-description">Short supporting line for the S size.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">S</span>
-              <span class="sample-meta-detail">3.5rem · 4×3 · XS title</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row content-block--m">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Launch checklist</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
-                  </div>
-                  <p class="content-block-description">Default size for most lists and cards.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">M</span>
-              <span class="sample-meta-detail">5.5rem · 4×3 · S title · Default</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row content-block--l">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Quarterly planning notes</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
-                  </div>
-                  <p class="content-block-description">Larger media and type for featured rows.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">L</span>
-              <span class="sample-meta-detail">8rem · 4×3 · S title</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Lines</h3>
-        <div class="type-sample-list">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row" style="--content-block-title-lines: 1; --content-block-lines: 2;">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">A longer title that should stop after one line and end with an ellipsis when it runs out of room</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
-                  </div>
-                  <p class="content-block-description">This description is intentionally long so it wraps past two lines. Anything beyond the max line count is clipped and replaced with an ellipsis so dense lists stay even.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Clamped</span>
-              <span class="sample-meta-detail">Title + meta top · Description bottom</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--row">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">A longer title that can wrap freely without a line limit</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
-                  </div>
-                  <p class="content-block-description">This description is intentionally long so it wraps past two lines. Without a max line count, the full text stays visible.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Unclamped</span>
-              <span class="sample-meta-detail">No max lines · Full text</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
-        <h3 class="subsection-label">List</h3>
-        <div class="type-sample-list">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <ul class="content-block-list">
-                <li>
-                  <div class="content-block content-block--row">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Quarterly planning notes</h3>
-                      <div class="content-block-meta">
-                        <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
-                      </div>
-                      <p class="content-block-description">Goals, open questions, and next steps for the team.</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-block content-block--row">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Design review recap</h3>
-                      <div class="content-block-meta">
-                        <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
-                      </div>
-                      <p class="content-block-description">Decisions from the last review, plus a few follow-ups still open.</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-block content-block--row">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Launch checklist</h3>
-                      <div class="content-block-meta">
-                        <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
-                      </div>
-                      <p class="content-block-description">Final pass on copy, assets, and rollout owners before publish.</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Stacked</span>
-              <span class="sample-meta-detail">Row blocks · 2rem gap</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <ul class="content-block-list content-block-list--compact">
-                <li>
-                  <div class="content-block content-block--row content-block--s">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Project North</h3>
-                      <div class="content-block-meta">
-                        <span class="tag tag--2xs">Product</span>
-                        <span class="tag tag--2xs">Active</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-block content-block--row content-block--s">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Project East</h3>
-                      <div class="content-block-meta">
-                        <span class="tag tag--2xs">Research</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-block content-block--row content-block--s">
-                    <div class="content-block-media" aria-hidden="true"></div>
-                    <div class="content-block-body">
-                      <h3 class="content-block-title">Project West</h3>
-                      <div class="content-block-meta">
-                        <span class="tag tag--2xs">Ops</span>
-                        <span class="tag tag--2xs">Draft</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">S list</span>
-              <span class="sample-meta-detail">S rows · 1rem gap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Layout</h3>
-        <div class="type-sample-list type-sample-list--layout">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--split">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <h3 class="content-block-title">Borrowed city, quiet days</h3>
-                  <div class="content-block-meta">
-                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
-                  </div>
-                  <p class="content-block-description">Media fills one half and text fills the other at every viewport. Title and meta stay at the top; description sits at the bottom.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Split</span>
-              <span class="sample-meta-detail">Half media · Half text · Title and meta top · Description bottom</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="content-block content-block--full-media">
-                <div class="content-block-media" aria-hidden="true"></div>
-                <div class="content-block-body">
-                  <div class="content-block-lead">
-                    <h3 class="content-block-title">Launch checklist</h3>
-                    <div class="content-block-meta">
-                      <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
-                      <span class="tag tag--2xs">Product</span>
-                    </div>
-                  </div>
-                  <p class="content-block-description">Media spans the full width at 16×9, then title, meta, and date share one column while the description sits in the other from medium up.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Full media</span>
-              <span class="sample-meta-detail">Full-width 16×9 media · Title and meta · Description · From medium</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── Progress ── -->
     <section class="section section--component" id="progress">
       <h2 class="section-label">Progress</h2>
@@ -3971,71 +3631,6 @@
             <div class="sample-meta">
               <span class="sample-meta-label">L</span>
               <span class="sample-meta-detail">1.25rem</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Player ── -->
-    <section class="section section--component" id="player">
-      <h2 class="section-label">Player</h2>
-
-      <div class="border-group">
-        <h3 class="subsection-label">Types</h3>
-        <div class="type-sample-list">
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="player" role="group" aria-label="Audio player">
-                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Play">
-                  <i class="ph ph-play icon--m" aria-hidden="true"></i>
-                </button>
-                <div
-                  class="progress"
-                  style="--progress: 22%;"
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  aria-valuenow="22"
-                  aria-label="Playback position"
-                >
-                  <div class="progress-track">
-                    <div class="progress-fill"></div>
-                  </div>
-                </div>
-                <span class="player-time">0:42 / 3:15</span>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Play control · Scrubber · Elapsed and duration</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="sample-box">
-              <div class="player" role="group" aria-label="Audio player">
-                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Pause">
-                  <i class="ph ph-pause icon--m" aria-hidden="true"></i>
-                </button>
-                <div
-                  class="progress"
-                  style="--progress: 48%;"
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  aria-valuenow="48"
-                  aria-label="Playback position"
-                >
-                  <div class="progress-track">
-                    <div class="progress-fill"></div>
-                  </div>
-                </div>
-                <span class="player-time">1:34 / 3:15</span>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Playing</span>
-              <span class="sample-meta-detail">Pause control · Mid scrubber</span>
             </div>
           </div>
         </div>
@@ -4500,6 +4095,346 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Year–month</span>
               <span class="sample-meta-detail">Month and year only · No day grid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Content Block ── -->
+    <section class="section section--component" id="content-block">
+      <h2 class="section-label">Content Block</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block">
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Quarterly planning notes</h3>
+                  <p class="content-block-description">A short summary of goals, open questions, and next steps for the team.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Title · Description · Stacked</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block">
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Design review recap</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
+                  </div>
+                  <p class="content-block-description">Decisions from the last review, plus a few follow-ups still open.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With meta</span>
+              <span class="sample-meta-detail">Title · Gray date · Description</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Launch checklist</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
+                  </div>
+                  <p class="content-block-description">Final pass on copy, assets, and rollout owners before publish.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With media</span>
+              <span class="sample-meta-detail">Leading media · Row · 4×3</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row content-block--s">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Project North</h3>
+                  <div class="content-block-meta">
+                    <span class="tag tag--2xs">Product</span>
+                    <span class="tag tag--2xs">Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With tags</span>
+              <span class="sample-meta-detail">Title · Optional 2XS tags · No date</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row content-block--xs">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Inbox zero tips</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
+                  </div>
+                  <p class="content-block-description">Dense rows without a date line.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+              <span class="sample-meta-detail">2.75rem · 4×3 · XS title · No date</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row content-block--s">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Project North</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
+                  </div>
+                  <p class="content-block-description">Short supporting line for the S size.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail">3.5rem · 4×3 · XS title</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row content-block--m">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Launch checklist</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
+                  </div>
+                  <p class="content-block-description">Default size for most lists and cards.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail">5.5rem · 4×3 · S title · Default</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row content-block--l">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Quarterly planning notes</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
+                  </div>
+                  <p class="content-block-description">Larger media and type for featured rows.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail">8rem · 4×3 · S title</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Lines</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row" style="--content-block-title-lines: 1; --content-block-lines: 2;">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">A longer title that should stop after one line and end with an ellipsis when it runs out of room</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
+                  </div>
+                  <p class="content-block-description">This description is intentionally long so it wraps past two lines. Anything beyond the max line count is clipped and replaced with an ellipsis so dense lists stay even.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Clamped</span>
+              <span class="sample-meta-detail">Title + meta top · Description bottom</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--row">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">A longer title that can wrap freely without a line limit</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
+                  </div>
+                  <p class="content-block-description">This description is intentionally long so it wraps past two lines. Without a max line count, the full text stays visible.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Unclamped</span>
+              <span class="sample-meta-detail">No max lines · Full text</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">List</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <ul class="content-block-list">
+                <li>
+                  <div class="content-block content-block--row">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Quarterly planning notes</h3>
+                      <div class="content-block-meta">
+                        <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
+                      </div>
+                      <p class="content-block-description">Goals, open questions, and next steps for the team.</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-block content-block--row">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Design review recap</h3>
+                      <div class="content-block-meta">
+                        <time class="content-block-date" datetime="2026-06-22">2026-06-22</time>
+                      </div>
+                      <p class="content-block-description">Decisions from the last review, plus a few follow-ups still open.</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-block content-block--row">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Launch checklist</h3>
+                      <div class="content-block-meta">
+                        <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
+                      </div>
+                      <p class="content-block-description">Final pass on copy, assets, and rollout owners before publish.</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Stacked</span>
+              <span class="sample-meta-detail">Row blocks · 2rem gap</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <ul class="content-block-list content-block-list--compact">
+                <li>
+                  <div class="content-block content-block--row content-block--s">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Project North</h3>
+                      <div class="content-block-meta">
+                        <span class="tag tag--2xs">Product</span>
+                        <span class="tag tag--2xs">Active</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-block content-block--row content-block--s">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Project East</h3>
+                      <div class="content-block-meta">
+                        <span class="tag tag--2xs">Research</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-block content-block--row content-block--s">
+                    <div class="content-block-media" aria-hidden="true"></div>
+                    <div class="content-block-body">
+                      <h3 class="content-block-title">Project West</h3>
+                      <div class="content-block-meta">
+                        <span class="tag tag--2xs">Ops</span>
+                        <span class="tag tag--2xs">Draft</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S list</span>
+              <span class="sample-meta-detail">S rows · 1rem gap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Layout</h3>
+        <div class="type-sample-list type-sample-list--layout">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--split">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <h3 class="content-block-title">Borrowed city, quiet days</h3>
+                  <div class="content-block-meta">
+                    <time class="content-block-date" datetime="2026-07-09">2026-07-09</time>
+                  </div>
+                  <p class="content-block-description">Media fills one half and text fills the other at every viewport. Title and meta stay at the top; description sits at the bottom.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Split</span>
+              <span class="sample-meta-detail">Half media · Half text · Title and meta top · Description bottom</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="content-block content-block--full-media">
+                <div class="content-block-media" aria-hidden="true"></div>
+                <div class="content-block-body">
+                  <div class="content-block-lead">
+                    <h3 class="content-block-title">Launch checklist</h3>
+                    <div class="content-block-meta">
+                      <time class="content-block-date" datetime="2026-05-26">2026-05-26</time>
+                      <span class="tag tag--2xs">Product</span>
+                    </div>
+                  </div>
+                  <p class="content-block-description">Media spans the full width at 16×9, then title, meta, and date share one column while the description sits in the other from medium up.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Full media</span>
+              <span class="sample-meta-detail">Full-width 16×9 media · Title and meta · Description · From medium</span>
             </div>
           </div>
         </div>
@@ -5148,6 +5083,71 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Two actions</span>
               <span class="sample-meta-detail">Short message · Primary and secondary</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Player ── -->
+    <section class="section section--component" id="player">
+      <h2 class="section-label">Player</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="player" role="group" aria-label="Audio player">
+                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Play">
+                  <i class="ph ph-play icon--m" aria-hidden="true"></i>
+                </button>
+                <div
+                  class="progress"
+                  style="--progress: 22%;"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="22"
+                  aria-label="Playback position"
+                >
+                  <div class="progress-track">
+                    <div class="progress-fill"></div>
+                  </div>
+                </div>
+                <span class="player-time">0:42 / 3:15</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Play control · Scrubber · Elapsed and duration</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="player" role="group" aria-label="Audio player">
+                <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Pause">
+                  <i class="ph ph-pause icon--m" aria-hidden="true"></i>
+                </button>
+                <div
+                  class="progress"
+                  style="--progress: 48%;"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="48"
+                  aria-label="Playback position"
+                >
+                  <div class="progress-track">
+                    <div class="progress-fill"></div>
+                  </div>
+                </div>
+                <span class="player-time">1:34 / 3:15</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Playing</span>
+              <span class="sample-meta-detail">Pause control · Mid scrubber</span>
             </div>
           </div>
         </div>
