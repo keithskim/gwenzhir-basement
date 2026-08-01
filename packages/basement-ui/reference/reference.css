@@ -560,6 +560,36 @@ html.is-sidebar-locked {
   line-height: var(--line-height-2xs);
 }
 
+.home-preview-calendar {
+  width: 100%;
+  max-width: 8rem;
+  pointer-events: none;
+}
+
+.home-preview-calendar .calendar-weekdays,
+.home-preview-calendar .calendar-grid {
+  gap: 0.0625rem;
+}
+
+.home-preview-calendar .calendar-weekday {
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
+.home-preview-calendar .calendar-day {
+  min-height: 0;
+  aspect-ratio: 1;
+  padding: 0.0625rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-preview-calendar .calendar-day-number {
+  align-self: center;
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
 .home-preview-progress {
   width: 100%;
   max-width: 8rem;
@@ -1709,6 +1739,21 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #timeline .type-sample-list > .type-sample-item {
     grid-column: span 4;
   }
+}
+
+#calendar .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #calendar .type-sample-list > .type-sample-item {
+    grid-column: span 4;
+  }
+}
+
+#calendar .sample-box > * {
+  align-self: start;
 }
 
 #sidebar .type-sample-item {
