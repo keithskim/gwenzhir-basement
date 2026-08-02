@@ -17,11 +17,12 @@
 
 .pairs-body {
   display: grid;
-  grid-template-columns: var(--pairs-key-width) minmax(0, 1fr);
+  grid-template-columns: fit-content(var(--pairs-key-width)) minmax(0, 1fr);
   column-gap: var(--spacing-s);
   row-gap: 0.125rem;
   align-items: baseline;
   margin: 0;
+  min-width: 0;
 }
 
 .pair {
@@ -40,6 +41,9 @@
 .pair-value {
   margin: 0;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--theme-fg);
 }
 
@@ -49,4 +53,27 @@
 
 .pairs--wide {
   --pairs-key-width: 12rem;
+}
+
+/* Lined chrome comes from `.box`; this adds inset padding + surface fill. */
+.pairs--boxed {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-s) var(--spacing-m);
+  background: var(--theme-surface);
+}
+
+.pairs--columns-2 .pairs-body {
+  grid-template-columns: repeat(2, fit-content(var(--pairs-key-width)) minmax(0, 1fr));
+  column-gap: var(--spacing-m);
+}
+
+.pairs--columns-2 .pairs-body .pair-key {
+  padding-inline-end: var(--spacing-s);
+}
+
+@media (max-width: 600px) {
+  .pairs--columns-2 .pairs-body {
+    grid-template-columns: var(--pairs-key-width) minmax(0, 1fr);
+  }
 }

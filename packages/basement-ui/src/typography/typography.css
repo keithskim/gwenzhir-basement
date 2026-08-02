@@ -74,6 +74,13 @@
   color: var(--theme-fg-destructive);
 }
 
+/* Tabular numerals — equal-width digits in the base face (not Mono).
+   Prefer on dense numeric UI: table amounts, graph values, counts, ISO dates. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
 /* ── Family styles ── */
 .type-mono {
   font-family: var(--font-mono-family);

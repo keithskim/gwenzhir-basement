@@ -239,3 +239,47 @@
 .tabs--icon .tab[aria-selected='true'] {
   z-index: 2;
 }
+
+/* Overflow → Dropdown + Menu */
+.tabs.tabs--dropdown {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.tabs.tabs--dropdown > .tab {
+  display: none;
+}
+
+.tabs-dropdown-control {
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+.tabs-dropdown-control .dropdown-trigger {
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: var(--shadow-s);
+}
+
+.tabs-dropdown-control .menu {
+  width: 100%;
+  overflow-y: visible;
+  z-index: 4;
+}
+
+.tabs-dropdown-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.tabs-dropdown-label .avatar,
+.menu-item-text .avatar {
+  margin-inline-start: 0;
+  flex-shrink: 0;
+}

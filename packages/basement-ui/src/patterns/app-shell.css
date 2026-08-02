@@ -1,0 +1,174 @@
+/* Fixed-height multi-pane tool shell: left panel | sheet | optional right panel.
+   Pane chrome (border, drawer, resize) comes from Panel; this file owns sheet layout. */
+
+.app-shell {
+  --panel-drawer-at-left: 37.5rem;
+  --panel-drawer-at-right: 56.25rem;
+  container-type: inline-size;
+  container-name: app-shell panel-host;
+  position: relative;
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.app-shell-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
+.app-shell-maincol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell-body {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: var(--theme-bg);
+  min-height: 0;
+}
+
+/* Sheet tables: match sheet-bar inset; keep stripe bleed inside padding (no shift). */
+.app-shell-body > .table-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--spacing-s);
+  margin-inline: 0;
+}
+
+.app-shell-body > .table-wrap:has(> .table--striped:not(.table--full-page)),
+.app-shell-body > .table-wrap:has(> .table--selectable:not(.table--full-page)) {
+  margin-inline: 0;
+  padding-inline: var(--spacing-s);
+}
+
+/* Sheet header bar */
+.sheet-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-s);
+  border-bottom: 1px solid var(--theme-border);
+  background: var(--theme-surface);
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 45; /* above panel backdrop so drawer toggles stay usable */
+}
+
+.sheet-title,
+.sheet-bar h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  margin: 0;
+  font-weight: var(--font-base-weight);
+  color: var(--theme-fg);
+}
+
+.sheet-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.sheet-spacer {
+  flex: 1;
+  min-width: 0.5rem;
+}
+
+.sheet-actions,
+.sheet-subactions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.sheet-subactions {
+  flex: 1 1 100%;
+  order: 2;
+}
+
+.sheet-bar .text-input {
+  width: 12rem;
+  max-width: 100%;
+}
+
+.app-shell .panel--left .sidebar-nav--flush {
+  margin-top: 0;
+}
+
+/* Detail content helpers inside right Panel */
+.app-shell .panel--right .panel-body .tabs {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.app-shell .panel--right .panel-title-row h2 {
+  margin: 0;
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  letter-spacing: -0.03em;
+  font-weight: var(--font-base-weight);
+  color: var(--theme-fg);
+}
+
+/* Header under-scroll fade (sticky title inside scroller) */
+.app-shell .panel--right .panel-title-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: var(--spacing-s);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  background: linear-gradient(var(--theme-bg), transparent);
+}
+
+.app-shell .panel--right .panel-body.scrolled .panel-title-row::after {
+  opacity: 1;
+}
+
+.app-shell .panel--right[hidden] {
+  display: none !important;
+}
+
+/* ≤ ~600px shell — sheet bar wraps */
+@container app-shell (max-width: 37.5rem) {
+  .sheet-bar {
+    flex-wrap: wrap;
+  }
+
+  .sheet-bar .text-input {
+    width: 100%;
+    order: 1;
+  }
+
+  .sheet-spacer {
+    display: none;
+  }
+
+  .sheet-title,
+  .sheet-bar h2 {
+    margin-left: auto;
+  }
+
+  .sheet-meta {
+    margin-right: auto;
+  }
+}

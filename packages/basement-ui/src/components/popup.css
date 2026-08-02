@@ -3,3 +3,17 @@
 .dropdown-demo .menu {
   box-shadow: var(--shadow-m);
 }
+
+/* Portaled float panels — escape overflow clipping; JS sets top/left */
+.datetime-popup.is-float-open,
+.tooltip-content.is-float-open {
+  position: fixed;
+  inset: auto;
+  z-index: 1000;
+  margin: 0;
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  max-width: min(24rem, calc(100vw - 2rem));
+}

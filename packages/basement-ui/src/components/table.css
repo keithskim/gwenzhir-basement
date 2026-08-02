@@ -97,14 +97,20 @@
   border-bottom: none;
 }
 
+.table--striped {
+  --table-row-stripe-bg: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
+}
+
 .table--striped tbody tr:nth-child(even) {
-  background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
+  background: var(--table-row-stripe-bg);
 }
 
 .table--selectable tbody tr {
   cursor: pointer;
 }
 
+/* Shared row bleed — selected + striped shading extend past flush first/last edges */
+.table--striped:not(.table--full-page),
 .table--selectable:not(.table--full-page) {
   --table-row-bleed: var(--spacing-xs);
   --table-row-selected-bg: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
@@ -113,9 +119,43 @@
   border-spacing: 0;
 }
 
+.table-wrap:has(> .table--striped:not(.table--full-page)),
 .table-wrap:has(> .table--selectable:not(.table--full-page)) {
   padding-inline: var(--table-row-bleed, var(--spacing-xs));
   margin-inline: calc(-1 * var(--table-row-bleed, var(--spacing-xs)));
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) {
+  background: transparent;
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) td {
+  position: relative;
+  z-index: 1;
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) td::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--table-row-stripe-bg);
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) td:first-child::before {
+  left: calc(-1 * var(--table-row-bleed));
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) td:last-child::before {
+  right: calc(-1 * var(--table-row-bleed));
+  border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
+}
+
+.table--striped:not(.table--full-page) tbody tr:nth-child(even) td:first-child:last-child::before {
+  left: calc(-1 * var(--table-row-bleed));
+  right: calc(-1 * var(--table-row-bleed));
+  border-radius: var(--border-radius-s);
 }
 
 .table--selectable tbody tr:hover {
@@ -259,4 +299,38 @@
 
 .table .tag.tag--m.tag--split .tag-label {
   padding-inline: 0.5rem;
+}
+
+.table th.num,
+.table td.num {
+  text-align: right;
+}
+
+.table th.num .table-sort {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.table td.num--neg {
+  color: var(--color-red);
+}
+
+.table td.num--pos {
+  color: var(--color-green);
+}
+
+.table th.col-narrow,
+.table td.col-narrow {
+  width: 1%;
+}
+
+.table td.foot-meta {
+  text-align: right;
+  color: var(--theme-fg-secondary);
+  font-weight: var(--font-base-weight);
+}
+
+.table-wrap .table ~ .table,
+.table-stack .table ~ .table {
+  margin-top: var(--spacing-m);
 }

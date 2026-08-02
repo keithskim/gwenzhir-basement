@@ -1,0 +1,51 @@
+/* Horizontal edge fade — width-clipped scrollers (tables, graph canvases) */
+.edge-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-l, 0px),
+    #000 calc(100% - var(--fade-r, 0px)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-l, 0px),
+    #000 calc(100% - var(--fade-r, 0px)),
+    transparent 100%
+  );
+}
+
+.edge-fade.fade-l {
+  --fade-l: 1.5rem;
+}
+
+.edge-fade.fade-r {
+  --fade-r: 1.5rem;
+}
+
+/* Vertical edge fade — height-clipped scrollers (sidebar nav) */
+.vedge-fade {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--vfade-t, 0px),
+    #000 calc(100% - var(--vfade-b, 0px)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--vfade-t, 0px),
+    #000 calc(100% - var(--vfade-b, 0px)),
+    transparent 100%
+  );
+}
+
+.vedge-fade.vfade-t {
+  --vfade-t: 1.5rem;
+}
+
+.vedge-fade.vfade-b {
+  --vfade-b: 1.5rem;
+}

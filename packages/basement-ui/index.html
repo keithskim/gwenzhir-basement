@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basement UI</title>
+  <script src="src/components/theme.js"></script>
   <link rel="stylesheet" href="vendor/source-han/fonts.css">
   <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
   <link rel="stylesheet" href="src/index.css">
@@ -11,24 +12,24 @@
 </head>
 <body>
 
-  <div class="page">
+  <div class="page panel-host">
     <div class="column-overlay is-hidden" id="columnOverlay"></div>
-    <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+    <div class="panel-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
 
     <button
       type="button"
-      class="sidebar-toggle btn btn--xs btn--default btn--icon"
+      class="sidebar-toggle panel-toggle panel-toggle--left btn btn--xs btn--default btn--icon"
       id="sidebarToggle"
+      data-panel-toggle="appSidebar"
       aria-expanded="false"
       aria-controls="appSidebar"
       aria-label="Open menu"
-      hidden
     >
       <i class="ph ph-list icon--m sidebar-toggle-icon sidebar-toggle-icon--open" aria-hidden="true"></i>
       <i class="ph ph-x icon--m sidebar-toggle-icon sidebar-toggle-icon--close" aria-hidden="true"></i>
     </button>
 
-  <aside class="sidebar" id="appSidebar">
+  <aside class="panel panel--left panel--drawer panel--drawer-full sidebar" id="appSidebar" style="--panel-drawer-at: 43.9375rem;">
     <button type="button" class="sidebar-title is-active" id="sidebarHomeBtn">Basement UI</button>
     <div class="sidebar-byline">@gwenzhir</div>
     <nav class="sidebar-nav">
@@ -42,6 +43,7 @@
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Base</div>
+        <button type="button" class="sidebar-item" data-section="box">Box</button>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
         <button type="button" class="sidebar-item" data-section="code">Code</button>
@@ -63,6 +65,7 @@
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
+        <button type="button" class="sidebar-item" data-section="panel">Panel</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
         <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
@@ -74,6 +77,12 @@
         <button type="button" class="sidebar-item" data-section="timeline">Timeline</button>
         <button type="button" class="sidebar-item" data-section="calendar">Calendar</button>
         <button type="button" class="sidebar-item" data-section="graph">Graph</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Patterns</div>
+        <button type="button" class="sidebar-item" data-section="tool-shell">Tool shell</button>
+        <button type="button" class="sidebar-item" data-section="edge-fade">Edge fade</button>
+        <button type="button" class="sidebar-item" data-section="float">Float</button>
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -154,6 +163,10 @@
         <div class="home-index-group">
           <h3 class="home-index-label">Base</h3>
           <div class="home-index-grid">
+            <button type="button" class="home-card" data-section="box">
+              <span class="home-card-title">Box</span>
+              <span class="home-card-preview home-card-preview--text">Lined panel · Optional resize</span>
+            </button>
             <button type="button" class="home-card" data-section="button">
               <span class="home-card-title">Button</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -315,6 +328,16 @@
                 </span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="panel">
+              <span class="home-card-title">Panel</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-panel">
+                  <span class="home-preview-panel-side"></span>
+                  <span class="home-preview-panel-main"></span>
+                  <span class="home-preview-panel-side home-preview-panel-side--right"></span>
+                </span>
+              </span>
+            </button>
             <button type="button" class="home-card" data-section="prompt">
               <span class="home-card-title">Prompt</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -443,6 +466,24 @@
                   </span>
                 </span>
               </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Patterns</h3>
+          <div class="home-index-grid">
+            <button type="button" class="home-card" data-section="tool-shell">
+              <span class="home-card-title">Tool shell</span>
+              <span class="home-card-preview home-card-preview--text">Sidebar · Sheet · Detail</span>
+            </button>
+            <button type="button" class="home-card" data-section="edge-fade">
+              <span class="home-card-title">Edge fade</span>
+              <span class="home-card-preview home-card-preview--text">Scroll masks · Header under-fade</span>
+            </button>
+            <button type="button" class="home-card" data-section="float">
+              <span class="home-card-title">Float</span>
+              <span class="home-card-preview home-card-preview--text">Portaled Datetime · Tooltip</span>
             </button>
           </div>
         </div>
@@ -1182,7 +1223,7 @@
         <h3 class="subsection-label">Typeface</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box sample-box--typeface">
+            <div class="box sample-box sample-box--typeface">
               <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
               <p class="font-body-sample">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
             </div>
@@ -1192,7 +1233,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--typeface">
+            <div class="box sample-box sample-box--typeface">
               <p class="font-display type-serif">화면 위의 모든 것은 design으로 시작된다.</p>
               <p class="font-body-sample type-serif">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
             </div>
@@ -1202,7 +1243,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--typeface">
+            <div class="box sample-box sample-box--typeface">
               <p class="font-display type-mono">화면 위의 모든 것은 design으로 시작된다.</p>
               <p class="font-body-sample type-mono">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
             </div>
@@ -1218,7 +1259,7 @@
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-2xs">
+            <div class="box sample-box sample-box--size-2xs">
               <span class="font-size-sample font-size-sample--2xs">Sidebar · Meta · Fine print</span>
             </div>
             <div class="sample-meta">
@@ -1227,7 +1268,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-xs">
+            <div class="box sample-box sample-box--size-xs">
               <span class="font-size-sample font-size-sample--xs">Metadata · Labels · Captions</span>
             </div>
             <div class="sample-meta">
@@ -1236,7 +1277,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-s">
+            <div class="box sample-box sample-box--size-s">
               <span class="font-size-sample font-size-sample--s">Body copy reads at this size in most contexts.</span>
             </div>
             <div class="sample-meta">
@@ -1245,7 +1286,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-m">
+            <div class="box sample-box sample-box--size-m">
               <span class="font-size-sample font-size-sample--m">A section begins here.</span>
             </div>
             <div class="sample-meta">
@@ -1254,7 +1295,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-l">
+            <div class="box sample-box sample-box--size-l">
               <span class="font-size-sample font-size-sample--l">화면 위의 것들</span>
             </div>
             <div class="sample-meta">
@@ -1263,7 +1304,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-xl">
+            <div class="box sample-box sample-box--size-xl">
               <span class="font-size-sample font-size-sample--xl">Everything compounds.</span>
             </div>
             <div class="sample-meta">
@@ -1272,7 +1313,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box sample-box--size-2xl">
+            <div class="box sample-box sample-box--size-2xl">
               <span class="font-size-sample font-size-sample--2xl">Design.</span>
             </div>
             <div class="sample-meta">
@@ -1287,7 +1328,7 @@
         <h3 class="subsection-label">Headings</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="type-h1">Design Systems</div>
             </div>
             <div class="sample-meta">
@@ -1296,7 +1337,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="type-h2">Color and Typography</div>
             </div>
             <div class="sample-meta">
@@ -1305,7 +1346,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="type-h3">Token Reference</div>
             </div>
             <div class="sample-meta">
@@ -1314,7 +1355,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="type-h4">Base Text</div>
             </div>
             <div class="sample-meta">
@@ -1329,7 +1370,7 @@
         <h3 class="subsection-label">Body</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
             </div>
             <div class="sample-meta">
@@ -1338,7 +1379,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph type-paragraph--m">Basement UI provides a shared design language for every project built on it. It defines the tokens and patterns that make consistency effortless across surfaces.</p>
             </div>
             <div class="sample-meta">
@@ -1347,7 +1388,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <blockquote class="type-quote">Good design systems are invisible until you don't have one.</blockquote>
             </div>
             <div class="sample-meta">
@@ -1356,7 +1397,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <blockquote class="type-quote type-quote--m">Good design systems are invisible until you don't have one.</blockquote>
             </div>
             <div class="sample-meta">
@@ -1371,7 +1412,7 @@
         <h3 class="subsection-label">Semantic text</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph type-text--affirm">Payment received. Your subscription is now active.</p>
             </div>
             <div class="sample-meta">
@@ -1380,7 +1421,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph type-text--warn">Your trial ends in 3 days. Upgrade to keep access.</p>
             </div>
             <div class="sample-meta">
@@ -1389,7 +1430,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph type-text--destructive">This action cannot be undone.</p>
             </div>
             <div class="sample-meta">
@@ -1404,7 +1445,7 @@
         <h3 class="subsection-label">Caption</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="type-caption">Last updated June 2026 · @gwenzhir</span>
             </div>
             <div class="sample-meta">
@@ -1419,7 +1460,7 @@
         <h3 class="subsection-label">Compact</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph">Default leading keeps body copy open and readable across longer passages on the page.</p>
             </div>
             <div class="sample-meta">
@@ -1428,7 +1469,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="type-paragraph type-compact">Compact leading tightens vertical rhythm for dense UI like table cells and control labels.</p>
             </div>
             <div class="sample-meta">
@@ -1437,7 +1478,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="checkbox" type="checkbox" checked>
                 Remember me on this device
@@ -1452,10 +1493,34 @@
       </div>
 
       <div class="border-group">
+        <h3 class="subsection-label">Tabular numerals</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-paragraph" style="margin: 0;">111111<br>888888</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Proportional</span>
+              <span class="sample-meta-detail">Default digit widths</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-paragraph tnum" style="margin: 0;">111111<br>888888</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Tabular</span>
+              <span class="sample-meta-detail">Equal-width digits · Base face</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
         <h3 class="subsection-label">Links</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p class="link-sample">A design system provides <a class="link" href="#">shared foundations</a> for every surface that builds on it.</p>
             </div>
             <div class="link-props">
@@ -1596,7 +1661,7 @@
       <div class="border-group">
         <h3 class="subsection-label">Columns</h3>
         <p class="type-paragraph">One column grid spans the full page. Below 44rem the sidebar is an overlay and main content uses every column; from medium up the sidebar reserves 2 columns and content fills the rest. The gap between columns is 1rem throughout.</p>
-        <div class="sample-box columns-chart">
+        <div class="box sample-box columns-chart">
           <div class="columns-lane">
             <div class="columns-lane-label">
               <div class="token-name">Narrow</div>
@@ -1674,7 +1739,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Viewport</h3>
-        <div class="sample-box viewport-chart">
+        <div class="box sample-box viewport-chart">
           <div class="viewport-chart-scale-row">
             <div class="viewport-chart-corner" aria-hidden="true"></div>
             <div class="viewport-chart-scale" aria-hidden="true">
@@ -2214,6 +2279,37 @@
     </section>
 
     <!-- ── Button ── -->
+
+    <section class="section section--component" id="box">
+      <h2 class="section-label">Box</h2>
+      <p class="type-paragraph">Generic lined panel for samples and other nondescript chrome. Resizable adds an end-edge handle.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-paragraph" style="margin: 0;">Default lined box.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Border · Radius S · Page bg</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box box--resizable sample-box" data-box-min-width="8rem" data-box-max-width="100%" style="width: 100%;">
+              <p class="type-paragraph" style="margin: 0;">Drag the handle on the end edge to resize.</p>
+              <button type="button" class="box-resize-handle" aria-label="Resize"></button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Resizable</span>
+              <span class="sample-meta-detail">End-edge handle · Min / max clamps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--component" id="button">
       <h2 class="section-label">Button</h2>
 
@@ -2221,7 +2317,7 @@
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list type-sample-list--types">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default">Default</button>
                 <button type="button" class="btn btn--xs btn--default" disabled>Default</button>
@@ -2232,7 +2328,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--subtle">Subtle</button>
                 <button type="button" class="btn btn--xs btn--subtle" disabled>Subtle</button>
@@ -2243,7 +2339,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--accent">Accent</button>
                 <button type="button" class="btn btn--xs btn--accent" disabled>Accent</button>
@@ -2254,7 +2350,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--ghost">Ghost</button>
                 <button type="button" class="btn btn--xs btn--ghost" disabled>Ghost</button>
@@ -2265,7 +2361,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Settings">
                   <i class="ph ph-gear icon--m" aria-hidden="true"></i>
@@ -2280,7 +2376,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default btn--icon btn--round" aria-label="More actions">
                   <i class="ph ph-dots-three icon--m" aria-hidden="true"></i>
@@ -2296,7 +2392,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default">
                   <i class="ph ph-plus icon--m" aria-hidden="true"></i>
@@ -2320,7 +2416,7 @@
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--2xs btn--default">Small</button>
             </div>
             <div class="sample-meta">
@@ -2328,7 +2424,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--xs btn--default">Medium</button>
             </div>
             <div class="sample-meta">
@@ -2336,7 +2432,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--s btn--default">Large</button>
             </div>
             <div class="sample-meta">
@@ -2344,7 +2440,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--2xs btn--default btn--icon" aria-label="Settings">
                 <i class="ph ph-gear icon--s" aria-hidden="true"></i>
               </button>
@@ -2354,7 +2450,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Settings">
                 <i class="ph ph-gear icon--m" aria-hidden="true"></i>
               </button>
@@ -2364,7 +2460,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--s btn--default btn--icon" aria-label="Settings">
                 <i class="ph ph-gear icon--l" aria-hidden="true"></i>
               </button>
@@ -2380,7 +2476,7 @@
         <h3 class="subsection-label">With tag</h3>
         <div class="type-sample-list type-sample-list--types type-sample-list--button-tags">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--xs btn--default">
                 Save
                 <span class="tag tag--2xs tag--compact">⌘S</span>
@@ -2392,7 +2488,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--xs btn--accent">
                 Save
                 <span class="tag tag--2xs tag--compact">⌘S</span>
@@ -2404,7 +2500,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <button type="button" class="btn btn--xs btn--ghost">
                 Search
                 <span class="tag tag--2xs tag--compact">⌘K</span>
@@ -2422,7 +2518,7 @@
         <h3 class="subsection-label">Pressed</h3>
         <div class="type-sample-list type-sample-list--types">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <button type="button" class="btn btn--xs btn--default" aria-pressed="true">Default</button>
                 <button type="button" class="btn btn--xs btn--subtle" aria-pressed="true">Subtle</button>
@@ -2447,7 +2543,7 @@
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs" role="tablist" aria-label="Project pages">
                   <button type="button" class="tab is-active" id="tab-overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
@@ -2471,7 +2567,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs" role="tablist" aria-label="Billing pages" style="max-width: 18rem;">
                   <button type="button" class="tab is-active" id="tab-dues" role="tab" aria-selected="true" aria-controls="panel-dues">월 회비 (운영자)</button>
@@ -2499,7 +2595,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs tabs--underline" role="tablist" aria-label="Record pages">
                   <button type="button" class="tab is-active" id="tab-details" role="tab" aria-selected="true" aria-controls="panel-details">Details</button>
@@ -2523,7 +2619,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs tabs--full" role="tablist" aria-label="Workspace views">
                   <button type="button" class="tab is-active" id="tab-board" role="tab" aria-selected="true" aria-controls="panel-board">Board</button>
@@ -2547,7 +2643,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs tabs--icon" role="tablist" aria-label="Icon tabs" data-tabs-collapse="off">
                   <button
@@ -2619,6 +2715,46 @@
           </div>
         </div>
       </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Overflow</h3>
+        <p class="type-paragraph">When labels exceed available width, tabs can stack vertically or collapse into a Dropdown.</p>
+
+        <div class="pattern-stage pattern-stage--intrinsic">
+          <div class="pattern-tabs-row">
+            <div class="pattern-tabs-demo">
+              <div class="pattern-panel--tabs">
+                <div class="tabs" role="tablist">
+                  <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                  <button type="button" class="tab" role="tab">Activity</button>
+                  <button type="button" class="tab" role="tab">Members</button>
+                  <button type="button" class="tab" role="tab">Settings</button>
+                </div>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-meta-label">Stack</span>
+                <span class="sample-meta-detail">Default · Parent width measure</span>
+              </div>
+            </div>
+            <div class="pattern-tabs-demo">
+              <div class="pattern-panel--tabs-wide">
+                <div class="tabs" data-tabs-overflow="dropdown" role="tablist">
+                  <button type="button" class="tab is-active" role="tab" aria-selected="true">All accounts</button>
+                  <button type="button" class="tab" role="tab">Operating</button>
+                  <button type="button" class="tab" role="tab">Savings</button>
+                  <button type="button" class="tab" role="tab">Credit</button>
+                  <button type="button" class="tab" role="tab">Investments</button>
+                </div>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-meta-label">Dropdown</span>
+                <span class="sample-meta-detail">Sheet-header style · Menu mirrors tabs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ── Toggle ── -->
@@ -2629,7 +2765,7 @@
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="toggle-control">
                 <input class="toggle-switch" type="checkbox" role="switch" checked>
                 Notifications
@@ -2641,7 +2777,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="toggle-control">
                 <input class="toggle-checkbox" type="checkbox" checked>
                 Include archived projects
@@ -2653,7 +2789,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="toggle-demo-group" role="radiogroup" aria-label="Billing cycle">
                 <label class="toggle-control">
                   <input class="toggle-radio" type="radio" name="toggle-billing" value="monthly" checked>
@@ -2671,7 +2807,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <fieldset class="segmented-select" aria-label="View density">
                 <label class="segmented-select-option">
                   <input class="segmented-select-input" type="radio" name="toggle-density" value="compact">
@@ -2704,7 +2840,7 @@
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <input class="input" type="text" placeholder="Email">
             </div>
             <div class="sample-meta">
@@ -2713,7 +2849,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="component-stack">
                 <label class="invisible-input">
                   <input class="input input--invisible" type="text" value="Q3 brand refresh" placeholder="Untitled project" aria-label="Project name with value">
@@ -2731,7 +2867,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="text-input">
                 <i class="ph ph-magnifying-glass text-input-icon" aria-hidden="true"></i>
                 <input class="input" type="search" placeholder="Search" aria-label="Search">
@@ -2743,7 +2879,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="text-input">
                 <input class="input" type="email" placeholder="name@example.com" aria-label="Email">
                 <button type="button" class="btn btn--2xs btn--default">Subscribe</button>
@@ -2755,7 +2891,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="text-input-group">
                 <input class="input" type="email" placeholder="name@example.com" aria-label="Email">
                 <button type="button" class="btn btn--xs btn--default">Subscribe</button>
@@ -2767,7 +2903,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <textarea class="textarea" placeholder="Write a short description."></textarea>
             </div>
             <div class="sample-meta">
@@ -2782,7 +2918,7 @@
         <h3 class="subsection-label">States</h3>
         <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="field">
                 <label class="field-label" for="text-input-email">Email</label>
                 <input class="input" id="text-input-email" type="email" placeholder="name@example.com">
@@ -2795,7 +2931,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <input class="input" type="text" placeholder="Disabled" disabled>
             </div>
             <div class="sample-meta">
@@ -2814,7 +2950,7 @@
         <h3 class="subsection-label">Label</h3>
         <div class="type-sample-list type-sample-list--fields">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="field-label" for="form-username">Username</label>
             </div>
             <div class="sample-meta">
@@ -2822,7 +2958,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="field">
                 <label class="field-label" for="form-password">Password</label>
                 <input class="input" id="form-password" type="password" placeholder="••••••••">
@@ -2839,7 +2975,7 @@
         <h3 class="subsection-label">Checkbox</h3>
         <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="checkbox" type="checkbox" checked>
                 Accept terms and conditions
@@ -2850,7 +2986,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="checkbox" type="checkbox" disabled>
                 Disabled unchecked
@@ -2861,7 +2997,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="checkbox" type="checkbox" checked disabled>
                 Disabled checked
@@ -2878,7 +3014,7 @@
         <h3 class="subsection-label">Radio</h3>
         <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="component-stack">
                 <label class="control-row">
                   <input class="radio" type="radio" name="form-plan" value="free" checked>
@@ -2899,7 +3035,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="radio" type="radio" name="form-disabled" disabled>
                 Disabled
@@ -2916,7 +3052,7 @@
         <h3 class="subsection-label">Switch</h3>
         <div class="type-sample-list type-sample-list--compact">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="switch" type="checkbox" role="switch" checked>
                 Airplane mode
@@ -2927,7 +3063,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="switch" type="checkbox" role="switch" disabled>
                 Disabled off
@@ -2938,7 +3074,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <label class="control-row">
                 <input class="switch" type="checkbox" role="switch" checked disabled>
                 Disabled on
@@ -2960,7 +3096,7 @@
         <h3 class="subsection-label">Bar</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--vertical"
                 style="--graph-ticks: 4;"
@@ -2995,7 +3131,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--horizontal"
                 style="--graph-ticks: 4;"
@@ -3042,7 +3178,7 @@
         <h3 class="subsection-label">Bar options</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--vertical graph--bar-label-inside graph--value-inside"
                 style="--graph-ticks: 4;"
@@ -3080,7 +3216,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--horizontal graph--bar-label-inside graph--value-inside"
                 style="--graph-ticks: 4;"
@@ -3130,7 +3266,7 @@
         <h3 class="subsection-label">Bar · Signed and grouped</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--vertical graph--signed"
                 style="--graph-ticks: 4; --graph-zero: 40%;"
@@ -3166,7 +3302,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--vertical"
                 style="--graph-ticks: 4;"
@@ -3225,7 +3361,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--horizontal graph--signed"
                 style="--graph-ticks: 4; --graph-zero: 40%;"
@@ -3267,7 +3403,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--bar graph--horizontal"
                 style="--graph-ticks: 4;"
@@ -3323,7 +3459,7 @@
         <h3 class="subsection-label">Line</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--line"
                 style="--graph-ticks: 4;"
@@ -3382,7 +3518,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="graph graph--line graph--point-values"
                 style="--graph-ticks: 4;"
@@ -3442,6 +3578,72 @@
           </div>
         </div>
       </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Density</h3>
+        <p class="type-paragraph">Dense line charts compact category labels, then scroll horizontally with edge fades when points are still too tight. Signed series keep a crisp zero line.</p>
+
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage">
+              <div class="graph graph--line has-zero-mask pattern-dense-graph" style="--graph-ticks: 4; --graph-zero: 50%; --graph-plot-height: 13.5rem;" role="img" aria-label="24-month signed multi-series line graph">
+                <div class="graph-legend">
+                  <span class="graph-legend-key" style="color: var(--color-green-dark);">Inflow</span>
+                  <span class="graph-legend-key" style="color: var(--color-red-dark);">Outflow</span>
+                </div>
+                <div class="graph-scroller">
+                  <div class="graph-canvas">
+                    <div class="graph-plot">
+                      <div class="graph-grid" aria-hidden="true"></div>
+                      <div class="graph-zero graph-zero--mask" aria-hidden="true"></div>
+                      <div class="graph-yaxis" aria-hidden="true">
+                        <span class="graph-ytick tnum" style="--tick-y: 100%;">30</span>
+                        <span class="graph-ytick tnum" style="--tick-y: 50%;">0</span>
+                        <span class="graph-ytick tnum" style="--tick-y: 0%;">−30</span>
+                      </div>
+                      <svg class="graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                        <polyline class="graph-line graph-line--green" fill="none" vector-effect="non-scaling-stroke" points="2.0,34.0 6.2,60.7 10.3,23.3 14.5,70.0 18.7,43.3 22.9,26.0 27.0,79.3 31.2,36.7 35.4,56.7 39.6,16.7 43.7,66.0 47.9,39.3 52.1,30.0 56.3,74.0 60.4,20.7 64.6,59.3 68.8,46.0 73.0,12.7 77.1,76.7 81.3,31.3 85.5,62.0 89.7,28.7 93.8,55.3 98.0,35.3"></polyline>
+                        <polyline class="graph-line graph-line--red" fill="none" vector-effect="non-scaling-stroke" points="2.0,40.4 6.2,56.4 10.3,34.0 14.5,62.0 18.7,46.0 22.9,35.6 27.0,67.6 31.2,42.0 35.4,54.0 39.6,30.0 43.7,59.6 47.9,43.6 52.1,38.0 56.3,64.4 60.4,32.4 64.6,55.6 68.8,47.6 73.0,27.6 77.1,66.0 81.3,38.8 85.5,57.2 89.7,37.2 93.8,53.2 98.0,41.2"></polyline>
+                      </svg>
+                      <div class="graph-cats">
+                    <span class="graph-bar-label">24-01</span>
+                    <span class="graph-bar-label">24-02</span>
+                    <span class="graph-bar-label">24-03</span>
+                    <span class="graph-bar-label">24-04</span>
+                    <span class="graph-bar-label">24-05</span>
+                    <span class="graph-bar-label">24-06</span>
+                    <span class="graph-bar-label">24-07</span>
+                    <span class="graph-bar-label">24-08</span>
+                    <span class="graph-bar-label">24-09</span>
+                    <span class="graph-bar-label">24-10</span>
+                    <span class="graph-bar-label">24-11</span>
+                    <span class="graph-bar-label">24-12</span>
+                    <span class="graph-bar-label">25-01</span>
+                    <span class="graph-bar-label">25-02</span>
+                    <span class="graph-bar-label">25-03</span>
+                    <span class="graph-bar-label">25-04</span>
+                    <span class="graph-bar-label">25-05</span>
+                    <span class="graph-bar-label">25-06</span>
+                    <span class="graph-bar-label">25-07</span>
+                    <span class="graph-bar-label">25-08</span>
+                    <span class="graph-bar-label">25-09</span>
+                    <span class="graph-bar-label">25-10</span>
+                    <span class="graph-bar-label">25-11</span>
+                    <span class="graph-bar-label">25-12</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">24 months</span>
+              <span class="sample-meta-detail">Compact labels · Horizontal scroll · Zero mask · Edge fade</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ── Tag ── -->
@@ -3452,7 +3654,7 @@
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--xs">Design</span>
             </div>
             <div class="sample-meta">
@@ -3461,7 +3663,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--xs tag--filled">New</span>
             </div>
             <div class="sample-meta">
@@ -3470,7 +3672,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--xs tag--split">
                 <span class="tag-label">Owner</span>
                 <span class="tag-label">Design</span>
@@ -3482,7 +3684,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="tag tag--xs">Design</span>
                 <span class="tag tag--xs tag--compact">Design</span>
@@ -3500,7 +3702,7 @@
         <h3 class="subsection-label">Colors</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="tag tag--xs tag--affirm">Done</span>
                 <span class="tag tag--xs tag--filled tag--affirm">Done</span>
@@ -3512,7 +3714,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="tag tag--xs tag--warn">Soon</span>
                 <span class="tag tag--xs tag--filled tag--warn">Soon</span>
@@ -3524,7 +3726,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="tag tag--xs tag--destructive">Alert</span>
                 <span class="tag tag--xs tag--filled tag--destructive">Alert</span>
@@ -3542,7 +3744,7 @@
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--2xs">Design</span>
             </div>
             <div class="sample-meta">
@@ -3550,7 +3752,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--xs">Design</span>
             </div>
             <div class="sample-meta">
@@ -3558,7 +3760,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--s">Design</span>
             </div>
             <div class="sample-meta">
@@ -3566,7 +3768,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tag tag--m">Design</span>
             </div>
             <div class="sample-meta">
@@ -3580,7 +3782,7 @@
         <h3 class="subsection-label">Compact labels</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="tag tag--xs tag--compact">3</span>
                 <span class="tag tag--xs tag--compact">N</span>
@@ -3603,7 +3805,7 @@
         <h3 class="subsection-label">Inline</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <p>
                 Use the <span class="code">getUser()</span> helper before rendering.
               </p>
@@ -3614,7 +3816,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="variant-row">
                 <span class="code code--xs">npm run dev</span>
                 <span class="code code--s">npm run dev</span>
@@ -3632,7 +3834,7 @@
         <h3 class="subsection-label">Block</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <pre class="code-block" tabindex="0"><code class="code">:root {
   --font-base-family: 'Inter', 'Pretendard', sans-serif;
   --font-base-weight: 500;
@@ -3644,7 +3846,7 @@
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <pre class="code-block code-block--s" tabindex="0"><code class="code">const label = 'Basement UI';
 console.log(label);</code></pre>
             </div>
@@ -3665,7 +3867,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="status-chip">
                 <span class="status-chip-dot" aria-hidden="true"></span>
                 <span class="status-chip-label">Paused</span>
@@ -3677,7 +3879,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="status-chip status-chip--affirm">
                 <span class="status-chip-dot" aria-hidden="true"></span>
                 <span class="status-chip-label">Active</span>
@@ -3689,7 +3891,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="status-chip status-chip--warn">
                 <span class="status-chip-dot" aria-hidden="true"></span>
                 <span class="status-chip-label">Pending</span>
@@ -3701,7 +3903,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="status-chip status-chip--destructive">
                 <span class="status-chip-dot" aria-hidden="true"></span>
                 <span class="status-chip-label">Failed</span>
@@ -3724,7 +3926,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="pairs">
                 <div class="pairs-title">Starting month</div>
                 <dl class="pairs-body">
@@ -3745,7 +3947,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="pairs">
                 <dl class="pairs-body">
                   <div class="pair">
@@ -3771,7 +3973,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Spacing</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="pairs pairs--narrow">
                 <div class="pairs-title">Starting month</div>
                 <dl class="pairs-body">
@@ -3792,7 +3994,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="pairs">
                 <div class="pairs-title">Starting month</div>
                 <dl class="pairs-body">
@@ -3813,7 +4015,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="pairs pairs--wide">
                 <div class="pairs-title">Starting month</div>
                 <dl class="pairs-body">
@@ -3845,7 +4047,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Values</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="progress"
                 style="--progress: 0%;"
@@ -3865,7 +4067,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="progress"
                 style="--progress: 40%;"
@@ -3885,7 +4087,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="progress"
                 style="--progress: 100%;"
@@ -3911,7 +4113,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">With value</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div
                 class="progress"
                 style="--progress: 65%;"
@@ -3943,7 +4145,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="spinner" role="status" aria-label="Loading"></span>
             </div>
             <div class="sample-meta">
@@ -3958,7 +4160,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="spinner spinner--s" role="status" aria-label="Loading"></span>
             </div>
             <div class="sample-meta">
@@ -3967,7 +4169,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="spinner spinner--m" role="status" aria-label="Loading"></span>
             </div>
             <div class="sample-meta">
@@ -3976,7 +4178,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="spinner spinner--l" role="status" aria-label="Loading"></span>
             </div>
             <div class="sample-meta">
@@ -3996,7 +4198,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--xs">
                 <span class="mention-label">@gwenzhir</span>
               </a>
@@ -4007,7 +4209,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--xs">
                 <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
                 <span class="mention-label">@gwenzhir</span>
@@ -4019,7 +4221,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="mention mention--xs">
                 <span class="mention-label">Guest</span>
               </span>
@@ -4036,7 +4238,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--2xs">
                 <span class="avatar avatar--2xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
                 <span class="mention-label">@gwenzhir</span>
@@ -4047,7 +4249,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--xs">
                 <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
                 <span class="mention-label">@gwenzhir</span>
@@ -4058,7 +4260,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--s">
                 <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">G</span></span>
                 <span class="mention-label">@gwenzhir</span>
@@ -4069,7 +4271,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <a href="#" class="mention mention--m">
                 <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
                 <span class="mention-label">@gwenzhir</span>
@@ -4091,7 +4293,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
@@ -4099,7 +4301,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="avatar avatar--xs"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
@@ -4107,7 +4309,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
@@ -4115,7 +4317,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="avatar avatar--m"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
@@ -4123,7 +4325,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="avatar avatar--l"><span class="avatar-fallback">G</span></span>
             </div>
             <div class="sample-meta">
@@ -4142,7 +4344,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Menu items</h3>
         <div class="type-sample-list type-sample-list--items">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="menu-demo menu-demo--items">
                 <div class="menu" role="menu">
                   <button type="button" class="menu-item" role="menuitem">Overview</button>
@@ -4158,7 +4360,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="menu-demo menu-demo--items">
                 <div class="menu" role="menu">
                   <button type="button" class="menu-item" role="menuitem">
@@ -4188,7 +4390,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item type-sample-item--rich">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="menu-demo menu-demo--items menu-demo--rich">
                 <div class="menu" role="menu">
                   <button type="button" class="menu-item" role="menuitem">
@@ -4222,7 +4424,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item type-sample-item--rich">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="menu-demo menu-demo--items menu-demo--rich">
                 <div class="menu" role="menu">
                   <button type="button" class="menu-item" role="menuitem">
@@ -4273,7 +4475,7 @@ console.log(label);</code></pre>
       <div class="border-group">
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="dropdown-demo">
                 <button type="button" class="btn btn--xs btn--default dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
                   Open menu
@@ -4293,7 +4495,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="dropdown-demo">
                 <button type="button" class="btn btn--xs btn--default dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
                   Account
@@ -4325,7 +4527,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Placement</h3>
         <div class="type-sample-list type-sample-list--items">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="variant-row">
                 <span class="tooltip tooltip--top">
                   <button type="button" class="btn btn--xs btn--default" aria-describedby="tooltip-top-demo">Top</button>
@@ -4351,7 +4553,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tooltip tooltip--top">
                 <button type="button" class="btn btn--2xs btn--default btn--icon btn--round" aria-label="More info" aria-describedby="tooltip-info-demo">
                   <i class="ph ph-question-mark icon--s" aria-hidden="true"></i>
@@ -4365,7 +4567,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <span class="tooltip tooltip--top">
                 <button type="button" class="btn btn--xs btn--accent" aria-describedby="tooltip-multiline-demo">Publish</button>
                 <span class="tooltip-content" id="tooltip-multiline-demo" role="tooltip">Sends this draft live and notifies subscribers.</span>
@@ -4388,7 +4590,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="datetime" data-value="2026-06-10">
                 <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose date">
                   <span class="datetime-value"></span>
@@ -4404,7 +4606,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="datetime datetime--duration">
                 <div class="datetime-range">
                   <div class="datetime-field" data-value="2026-06-01">
@@ -4433,7 +4635,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="datetime datetime--year-month" data-value="2026-06">
                 <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose month">
                   <span class="datetime-value"></span>
@@ -4460,7 +4662,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block">
                 <div class="content-block-body">
                   <h3 class="content-block-title">Quarterly planning notes</h3>
@@ -4474,7 +4676,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block">
                 <div class="content-block-body">
                   <h3 class="content-block-title">Design review recap</h3>
@@ -4491,7 +4693,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4509,7 +4711,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row content-block--s">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4533,7 +4735,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Sizes</h3>
         <div class="type-sample-list type-sample-list--sizes">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row content-block--xs">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4551,7 +4753,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row content-block--s">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4569,7 +4771,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row content-block--m">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4587,7 +4789,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row content-block--l">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4611,7 +4813,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Lines</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row" style="--content-block-title-lines: 1; --content-block-lines: 2;">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4629,7 +4831,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--row">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4653,7 +4855,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">List</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <ul class="content-block-list">
                 <li>
                   <div class="content-block content-block--row">
@@ -4699,7 +4901,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <ul class="content-block-list content-block-list--compact">
                 <li>
                   <div class="content-block content-block--row content-block--s">
@@ -4750,7 +4952,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Layout</h3>
         <div class="type-sample-list type-sample-list--layout">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--split">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4768,7 +4970,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="content-block content-block--full-media">
                 <div class="content-block-media" aria-hidden="true"></div>
                 <div class="content-block-body">
@@ -4800,7 +5002,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="table-wrap">
                 <table class="table table-demo">
                   <thead>
@@ -4858,7 +5060,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="table-wrap table-wrap--scroll">
                 <table class="table table--striped table--sticky">
                   <thead>
@@ -4932,11 +5134,11 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Sticky header and footer</span>
-              <span class="sample-meta-detail">Scrollable body · Pinned header and footer · Optional striped rows</span>
+              <span class="sample-meta-detail">Scrollable body · Pinned header and footer · Striped rows bleed past edges</span>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="table-wrap">
                 <table class="table table--selectable table-demo-selectable">
                   <thead>
@@ -4977,7 +5179,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="table-wrap">
                 <table class="table table--full-page">
                   <thead>
@@ -5029,7 +5231,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="timeline" style="--timeline-ticks: 4;">
                 <div class="timeline-row">
                   <div class="timeline-label">Checking</div>
@@ -5077,7 +5279,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="timeline timeline--filled" style="--timeline-ticks: 4;">
                 <div class="timeline-row">
                   <div class="timeline-label">Checking</div>
@@ -5125,7 +5327,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="timeline timeline--minimal" style="--timeline-ticks: 4;">
                 <div class="timeline-row">
                   <div class="timeline-label">Checking</div>
@@ -5174,6 +5376,60 @@ console.log(label);</code></pre>
           </div>
         </div>
       </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Axis</h3>
+        <p class="type-paragraph">Month labels thin by skipping ticks and spanning columns — never ellipsized.</p>
+
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage">
+              <div class="timeline pattern-timeline-axis" style="--timeline-ticks: 24;">
+                <div class="timeline-row">
+                  <div class="timeline-label">Coverage</div>
+                  <div class="timeline-track">
+                    <div class="timeline-bar" style="--bar-start: 0%; --bar-end: 100%;">
+                      <span class="timeline-bar-label">24 months</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-axis">
+              <span class="timeline-axis-tick">24-01</span>
+              <span class="timeline-axis-tick">24-02</span>
+              <span class="timeline-axis-tick">24-03</span>
+              <span class="timeline-axis-tick">24-04</span>
+              <span class="timeline-axis-tick">24-05</span>
+              <span class="timeline-axis-tick">24-06</span>
+              <span class="timeline-axis-tick">24-07</span>
+              <span class="timeline-axis-tick">24-08</span>
+              <span class="timeline-axis-tick">24-09</span>
+              <span class="timeline-axis-tick">24-10</span>
+              <span class="timeline-axis-tick">24-11</span>
+              <span class="timeline-axis-tick">24-12</span>
+              <span class="timeline-axis-tick">25-01</span>
+              <span class="timeline-axis-tick">25-02</span>
+              <span class="timeline-axis-tick">25-03</span>
+              <span class="timeline-axis-tick">25-04</span>
+              <span class="timeline-axis-tick">25-05</span>
+              <span class="timeline-axis-tick">25-06</span>
+              <span class="timeline-axis-tick">25-07</span>
+              <span class="timeline-axis-tick">25-08</span>
+              <span class="timeline-axis-tick">25-09</span>
+              <span class="timeline-axis-tick">25-10</span>
+              <span class="timeline-axis-tick">25-11</span>
+              <span class="timeline-axis-tick">25-12</span>
+                </div>
+              </div>
+              <p class="type-caption" style="margin-top: var(--spacing-s);">Resize the window or narrow the content column to see labels thin.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">24 ticks</span>
+              <span class="sample-meta-detail">Skip · Span · Full label width</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ── Calendar ── -->
@@ -5184,7 +5440,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="calendar" data-month="2026-06" data-today="2026-06-10" data-selected="2026-06-10">
                 <div class="calendar-header">
                   <button type="button" class="btn btn--xs btn--ghost btn--icon calendar-nav" data-nav="prev" aria-label="Previous month">
@@ -5223,7 +5479,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="calendar calendar--dots" data-month="2026-06" data-today="2026-06-10">
                 <div class="calendar-header">
                   <button type="button" class="btn btn--xs btn--ghost btn--icon calendar-nav" data-nav="prev" aria-label="Previous month">
@@ -5281,7 +5537,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list type-sample-list--types">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo">
                 <aside class="sidebar">
                   <button type="button" class="sidebar-title is-active">Projects</button>
@@ -5310,7 +5566,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo">
                 <aside class="sidebar sidebar--compact">
                   <button type="button" class="sidebar-title is-active">Basement</button>
@@ -5344,7 +5600,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Menu items</h3>
         <div class="type-sample-list type-sample-list--items">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo sidebar-demo--items">
                 <nav class="sidebar-nav sidebar-nav--flush">
                   <div class="sidebar-group">
@@ -5362,7 +5618,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo sidebar-demo--items">
                 <nav class="sidebar-nav sidebar-nav--flush">
                   <div class="sidebar-group">
@@ -5394,7 +5650,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item type-sample-item--rich">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo sidebar-demo--items sidebar-demo--rich">
                 <nav class="sidebar-nav sidebar-nav--flush">
                   <div class="sidebar-group">
@@ -5430,7 +5686,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item type-sample-item--rich">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="sidebar-demo sidebar-demo--items sidebar-demo--rich">
                 <nav class="sidebar-nav sidebar-nav--flush">
                   <div class="sidebar-group">
@@ -5474,6 +5730,210 @@ console.log(label);</code></pre>
           </div>
         </div>
       </div>
+
+    </section>
+
+    <!-- ── Panel ── -->
+    <section class="section section--component" id="panel">
+      <h2 class="section-label">Panel</h2>
+      <p class="type-paragraph">Side chrome for tool layouts: bordered surface on the left or right, optional drawer with toggle (defined width by default, or fullscreen), and an edge resize handle. Same pieces used in Tool shell.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--panel">
+              <div class="panel-host panel-host--demo">
+                <aside class="panel panel--left" style="--panel-width: 12rem;">
+                  <div class="panel-title-row">
+                    <h1 class="sidebar-title">Sample tool</h1>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">Inbox</button>
+                      <button type="button" class="sidebar-item">Archive</button>
+                      <button type="button" class="sidebar-item">Drafts</button>
+                    </div>
+                    <div class="sidebar-group sidebar-group--bottom">
+                      <button type="button" class="sidebar-item">Settings</button>
+                    </div>
+                  </nav>
+                </aside>
+                <div class="panel-host-main">
+                  <p class="type-paragraph" style="margin: 0;">Sheet body beside a left panel.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Left</span>
+              <span class="sample-meta-detail">End border · Surface · Nav content</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--panel">
+              <div class="panel-host panel-host--demo">
+                <div class="panel-host-main">
+                  <p class="type-paragraph" style="margin: 0;">Sheet body beside a right panel.</p>
+                </div>
+                <aside class="panel panel--right" style="--panel-width: 14rem; --panel-min-width: 12rem;">
+                  <div class="panel-body">
+                    <div class="panel-title-row">
+                      <h2>North studio</h2>
+                      <div class="panel-title-actions">
+                        <span class="status-chip">Open</span>
+                      </div>
+                    </div>
+                    <div class="box pairs pairs--boxed">
+                      <dl class="pairs-body">
+                        <div class="pair"><dt class="pair-key">Owner</dt><dd class="pair-value">Jordan Lee</dd></div>
+                        <div class="pair"><dt class="pair-key">Opened</dt><dd class="pair-value tnum">2025-03-12</dd></div>
+                        <div class="pair"><dt class="pair-key">Amount</dt><dd class="pair-value tnum">−1,240</dd></div>
+                      </dl>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Right</span>
+              <span class="sample-meta-detail">Start border · Detail content</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Options</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--panel" data-box-min-width="16rem" data-box-max-width="100%" style="width: 100%;">
+              <div class="panel-host panel-host--demo">
+                <aside class="panel panel--left panel--drawer" id="panelDrawerLeftDemo" style="--panel-width: 12rem;">
+                  <div class="panel-title-row">
+                    <h1 class="sidebar-title">Sample tool</h1>
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close panel"><i class="ph ph-x" aria-hidden="true"></i></button>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">Inbox</button>
+                      <button type="button" class="sidebar-item">Archive</button>
+                      <button type="button" class="sidebar-item">Drafts</button>
+                    </div>
+                  </nav>
+                </aside>
+                <div class="panel-host-main">
+                  <div class="panel-demo-bar">
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--left" data-panel-toggle="panelDrawerLeftDemo" aria-controls="panelDrawerLeftDemo" aria-expanded="false" aria-label="Open sidebar"><i class="ph ph-list" aria-hidden="true"></i></button>
+                    <span class="type-caption">Narrow below 37.5 rem for the left drawer toggle.</span>
+                  </div>
+                </div>
+                <div class="panel-backdrop" aria-hidden="true"></div>
+              </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Drawer · Left</span>
+              <span class="sample-meta-detail">Defined width · Overlay · Shadow when open</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--panel" data-box-min-width="20rem" data-box-max-width="100%" style="width: 100%;">
+              <div class="panel-host panel-host--demo">
+                <div class="panel-host-main">
+                  <div class="panel-demo-bar">
+                    <span class="type-caption">Narrow below 56.25 rem for the right drawer toggle.</span>
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--right" data-panel-toggle="panelDrawerRightDemo" aria-controls="panelDrawerRightDemo" aria-expanded="false" aria-label="Open detail"><i class="ph ph-dots-three-vertical" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+                <aside class="panel panel--right panel--drawer" id="panelDrawerRightDemo" style="--panel-width: 14rem; --panel-min-width: 12rem;">
+                  <div class="panel-body">
+                    <div class="panel-title-row">
+                      <h2>North studio</h2>
+                      <div class="panel-title-actions">
+                        <span class="status-chip">Open</span>
+                        <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                    <p class="type-paragraph" style="margin: 0;">Detail pane becomes a right drawer on a medium-narrow host.</p>
+                  </div>
+                </aside>
+                <div class="panel-backdrop" aria-hidden="true"></div>
+              </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Drawer · Right</span>
+              <span class="sample-meta-detail">Toggle · Overlay · Shadow when open</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--panel" data-box-min-width="16rem" data-box-max-width="100%" style="width: 100%;">
+              <div class="panel-host panel-host--demo">
+                <aside class="panel panel--left panel--drawer panel--drawer-full" id="panelDrawerFullDemo" style="--panel-width: 12rem;">
+                  <div class="panel-title-row">
+                    <h1 class="sidebar-title">Fullscreen</h1>
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close panel"><i class="ph ph-x" aria-hidden="true"></i></button>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">Inbox</button>
+                      <button type="button" class="sidebar-item">Archive</button>
+                      <button type="button" class="sidebar-item">Drafts</button>
+                    </div>
+                  </nav>
+                </aside>
+                <div class="panel-host-main">
+                  <div class="panel-demo-bar">
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--left" data-panel-toggle="panelDrawerFullDemo" aria-controls="panelDrawerFullDemo" aria-expanded="false" aria-label="Open sidebar"><i class="ph ph-list" aria-hidden="true"></i></button>
+                    <span class="type-caption">Narrow the box, then open — the drawer covers the host.</span>
+                  </div>
+                </div>
+                <div class="panel-backdrop" aria-hidden="true"></div>
+              </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Drawer · Fullscreen</span>
+              <span class="sample-meta-detail">Covers host · Backdrop behind</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--panel">
+              <div class="panel-host panel-host--demo">
+                <aside class="panel panel--left panel--resizable" style="--panel-width: 12rem; --panel-min-width: 9rem; --panel-max-width: 18rem;">
+                  <div class="panel-title-row">
+                    <h1 class="sidebar-title">Sample tool</h1>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">Inbox</button>
+                      <button type="button" class="sidebar-item">Archive</button>
+                      <button type="button" class="sidebar-item">Drafts</button>
+                    </div>
+                  </nav>
+                  <button type="button" class="panel-resize-handle" aria-label="Resize panel"></button>
+                </aside>
+                <div class="panel-host-main">
+                  <p class="type-paragraph" style="margin: 0;">Drag the left panel’s end-edge handle.</p>
+                </div>
+                <aside class="panel panel--right panel--resizable" style="--panel-width: 12rem; --panel-min-width: 10rem; --panel-max-width: 18rem;">
+                  <div class="panel-body">
+                    <div class="panel-title-row">
+                      <h2>North studio</h2>
+                    </div>
+                    <p class="type-paragraph" style="margin: 0;">Drag the right panel’s start-edge handle.</p>
+                  </div>
+                  <button type="button" class="panel-resize-handle" aria-label="Resize panel"></button>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Resizable</span>
+              <span class="sample-meta-detail">End-edge left · Start-edge right · Min / max width</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ── Prompt ── -->
@@ -5484,7 +5944,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="prompt">
                 <div class="prompt-body">
                   <p class="prompt-description">Your workspace is ready. Invite a teammate to get started.</p>
@@ -5500,7 +5960,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="prompt">
                 <div class="prompt-body">
                   <h3 class="prompt-title">Delete project?</h3>
@@ -5517,7 +5977,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="prompt">
                 <div class="prompt-body">
                   <p class="prompt-description">Save your draft before leaving this page?</p>
@@ -5545,7 +6005,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="player" role="group" aria-label="Audio player">
                 <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Play">
                   <i class="ph ph-play icon--m" aria-hidden="true"></i>
@@ -5572,7 +6032,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="player" role="group" aria-label="Audio player">
                 <button type="button" class="btn btn--xs btn--default btn--icon" aria-label="Pause">
                   <i class="ph ph-pause icon--m" aria-hidden="true"></i>
@@ -5610,7 +6070,7 @@ console.log(label);</code></pre>
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="alert">
                 <i class="ph ph-info alert-icon" aria-hidden="true"></i>
                 <p class="alert-description">You can add components to your app using the Basement UI library.</p>
@@ -5622,7 +6082,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="alert alert--affirm">
                 <i class="ph ph-check-circle alert-icon" aria-hidden="true"></i>
                 <p class="alert-description">Your changes have been saved successfully.</p>
@@ -5634,7 +6094,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="alert alert--warn">
                 <i class="ph ph-warning alert-icon" aria-hidden="true"></i>
                 <p class="alert-description">Your trial ends in 3 days. Upgrade to keep access.</p>
@@ -5646,7 +6106,7 @@ console.log(label);</code></pre>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="sample-box">
+            <div class="box sample-box">
               <div class="alert alert--destructive">
                 <i class="ph ph-warning-circle alert-icon" aria-hidden="true"></i>
                 <p class="alert-description">Your session has expired. Please sign in again.</p>
@@ -5661,11 +6121,261 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+
+    <!-- ── Patterns ── -->
+
+    <section class="section section--component" id="tool-shell">
+      <h2 class="section-label">Tool shell</h2>
+      <p class="type-paragraph">Fixed-height three-pane shell for local tools: left Panel, sheet body, and optional right Panel. Narrow the example box to turn side panes into drawers.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">App shell</h3>
+        <div class="box box--resizable pattern-shell-frame" data-box-min-width="20rem" data-box-max-width="100%">
+          <div class="app-shell panel-host is-detail-available" id="patternShellDemo">
+            <aside class="panel panel--left panel--drawer panel--resizable app-shell-side" id="patternShellSide" style="--panel-width: 12rem;">
+              <div class="panel-title-row">
+                <h1 class="sidebar-title">Sample tool</h1>
+                <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close sidebar"><i class="ph ph-x" aria-hidden="true"></i></button>
+              </div>
+              <nav class="sidebar-nav sidebar-nav--flush">
+                <div class="sidebar-group">
+                  <button type="button" class="sidebar-item is-active">Inbox</button>
+                  <button type="button" class="sidebar-item">Archive</button>
+                  <button type="button" class="sidebar-item">Drafts</button>
+                </div>
+                <div class="sidebar-group sidebar-group--bottom">
+                  <button type="button" class="sidebar-item">Settings</button>
+                </div>
+              </nav>
+              <button type="button" class="panel-resize-handle" aria-label="Resize sidebar"></button>
+            </aside>
+            <main class="app-shell-main">
+              <div class="app-shell-maincol">
+                <header class="sheet-bar">
+                  <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--left" data-panel-toggle="patternShellSide" aria-controls="patternShellSide" aria-expanded="false" aria-label="Open sidebar"><i class="ph ph-list" aria-hidden="true"></i></button>
+                  <h2 class="sheet-title">Inbox</h2>
+                  <span class="sheet-meta"><span class="status-chip">12 open</span></span>
+                  <span class="sheet-spacer"></span>
+                  <div class="text-input"><span class="text-input-icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span><input class="input" type="search" placeholder="Search"></div>
+                  <div class="sheet-actions">
+                    <button type="button" class="btn btn--xs btn--default">New</button>
+                  </div>
+                  <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--right" data-panel-toggle="patternShellDetail" aria-controls="patternShellDetail" aria-expanded="false" aria-label="Open detail"><i class="ph ph-dots-three-vertical" aria-hidden="true"></i></button>
+                  <div class="sheet-subactions">
+                    <div class="tabs" data-tabs-overflow="dropdown" role="tablist">
+                      <button type="button" class="tab is-active" role="tab" aria-selected="true">All</button>
+                      <button type="button" class="tab" role="tab">Mine</button>
+                      <button type="button" class="tab" role="tab">Watching</button>
+                      <button type="button" class="tab" role="tab">Mentions</button>
+                    </div>
+                  </div>
+                </header>
+                <div class="app-shell-body">
+                  <div class="table-wrap">
+                    <table class="table table--sticky table--striped">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th class="col-narrow">Status</th>
+                          <th class="num">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>North studio lease</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−1,240</td></tr>
+                        <tr><td>Vendor credit</td><td class="col-narrow"><span class="tag tag--xs">Done</span></td><td class="num num--pos tnum">+380</td></tr>
+                        <tr><td>Utilities Q2</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−96</td></tr>
+                        <tr><td>Refund batch</td><td class="col-narrow"><span class="tag tag--xs">Done</span></td><td class="num num--pos tnum">+54</td></tr>
+                        <tr><td>Parking permit</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−45</td></tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="2">Total</th>
+                          <td class="num foot-meta tnum">5 rows</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <aside class="panel panel--right panel--drawer panel--resizable" id="patternShellDetail" style="--panel-width: 34%; --panel-min-width: 16rem;">
+                <div class="panel-body">
+                  <div class="panel-title-row">
+                    <h2>North studio</h2>
+                    <div class="panel-title-actions">
+                      <span class="status-chip">Open</span>
+                      <div class="tooltip tooltip--bottom">
+                        <button type="button" class="tooltip-trigger btn btn--ghost btn--icon btn--xs" aria-label="About this panel"><i class="ph ph-info icon--m" aria-hidden="true"></i></button>
+                        <div class="tooltip-content" role="tooltip">Detail pane for the selected row. Scrolls independently of the sheet body.</div>
+                      </div>
+                      <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  <div class="tabs" role="tablist">
+                    <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                    <button type="button" class="tab" role="tab">History</button>
+                    <button type="button" class="tab" role="tab">Files</button>
+                  </div>
+                  <div class="box pairs pairs--boxed">
+                    <dl class="pairs-body">
+                      <div class="pair"><dt class="pair-key">Owner</dt><dd class="pair-value">Jordan Lee</dd></div>
+                      <div class="pair"><dt class="pair-key">Opened</dt><dd class="pair-value tnum">2025-03-12</dd></div>
+                      <div class="pair"><dt class="pair-key">Amount</dt><dd class="pair-value tnum">−1,240</dd></div>
+                      <div class="pair"><dt class="pair-key">Account</dt><dd class="pair-value">Operating</dd></div>
+                    </dl>
+                  </div>
+                  <p class="type-paragraph">Optional sections stack below the sticky title. On narrow screens this panel becomes a right drawer with a backdrop.</p>
+                </div>
+                <button type="button" class="panel-resize-handle" aria-label="Resize detail"></button>
+              </aside>
+            </main>
+            <div class="panel-backdrop" aria-hidden="true"></div>
+          </div>
+          <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
+        </div>
+        <div class="sample-meta">
+          <span class="sample-meta-label sample-meta-label--wide">Three panes</span>
+          <span class="sample-meta-detail">Left and right Panel · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section section--component" id="edge-fade">
+      <h2 class="section-label">Edge fade</h2>
+      <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Horizontal</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo pattern-demo--fit">
+            <div class="box pattern-stage pattern-stage--fade-x">
+              <div class="table-wrap pattern-panel--fade-x pattern-fade-x">
+                <table class="table">
+                  <thead><tr><th>Code</th><th>Name</th><th>Owner</th><th>Region</th><th>Updated</th><th>Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td class="tnum">A-104</td><td>North studio lease renewal</td><td>Jordan Lee</td><td>Seoul · Gangnam</td><td class="tnum">2025-06-01</td><td>Waiting on countersignature from landlord</td></tr>
+                    <tr><td class="tnum">B-220</td><td>East warehouse inventory sync</td><td>Sam Park</td><td>Busan · Haeundae</td><td class="tnum">2025-05-18</td><td>Import batch includes damaged SKUs</td></tr>
+                    <tr><td class="tnum">C-018</td><td>West annex utilities audit</td><td>Riley Cho</td><td>Incheon · Songdo</td><td class="tnum">2025-04-09</td><td>Compare against prior quarter totals</td></tr>
+                    <tr><td class="tnum">D-441</td><td>Central lab equipment checkout</td><td>Alex Kim</td><td>Daejeon · Yuseong</td><td class="tnum">2025-03-22</td><td>Return window closes end of month</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Table scroller</span>
+              <span class="sample-meta-detail">Left and right fades only when clipped</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Vertical</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo pattern-demo--fit">
+            <div class="box pattern-stage pattern-stage--intrinsic">
+              <div class="pattern-panel--fade-y pattern-panel--nav pattern-fade-y">
+                <button type="button" class="sidebar-item">Overview</button>
+                <button type="button" class="sidebar-item is-active">Transactions</button>
+                <button type="button" class="sidebar-item">Accounts</button>
+                <button type="button" class="sidebar-item">Reports</button>
+                <button type="button" class="sidebar-item">Imports</button>
+                <button type="button" class="sidebar-item">Rules</button>
+                <button type="button" class="sidebar-item">Members</button>
+                <button type="button" class="sidebar-item">Billing</button>
+                <button type="button" class="sidebar-item">Integrations</button>
+                <button type="button" class="sidebar-item">Settings</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">List scroller</span>
+              <span class="sample-meta-detail">Top and bottom fades</span>
+            </div>
+          </div>
+          <div class="pattern-demo pattern-demo--fit">
+            <div class="pattern-stage pattern-stage--intrinsic pattern-stage--flush">
+              <div class="panel-body pattern-panel--header pattern-header-fade">
+                <div class="panel-title-row">
+                  <h2>Sticky title</h2>
+                </div>
+                <p class="type-paragraph">Scroll this panel. The under-fade on the sticky title appears only after the body scrolls off the top.</p>
+                <p class="type-paragraph">More content keeps the title pinned while the fade signals overflow above the fold.</p>
+                <p class="type-paragraph">Placeholder copy fills the first screen so the sticky header has room to stay put.</p>
+                <p class="type-paragraph">Keep scrolling for a second screen of content — invoices, notes, and activity would stack here in a real tool.</p>
+                <p class="type-paragraph">Another block guarantees the scroller can move well past the fold on short viewports.</p>
+                <p class="type-paragraph">Final spacer paragraph so the under-fade has a long runway before the end of the panel.</p>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Header under-scroll</span>
+              <span class="sample-meta-detail">Gradient under sticky title</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--component" id="float">
+      <h2 class="section-label">Float</h2>
+      <p class="type-paragraph">Portaled placement so Datetime and Tooltip escape overflow clipping inside scroll panes, while staying inside the window frame.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Inside overflow</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo pattern-demo--fit">
+            <div class="pattern-float-window" data-float-boundary>
+              <div class="pattern-panel--float pattern-float-box">
+                <p class="type-paragraph">Scroll this window, then open the controls — the popup leaves the scroller so it isn’t clipped, but it never crosses the window border.</p>
+                <p class="type-paragraph">Placeholder copy keeps the pane tall enough to scroll on short viewports. Invoices, notes, and activity would stack here in a real tool.</p>
+                <p class="type-paragraph">Another block pushes the controls toward the middle of the scroll range so you can move above and below them.</p>
+                <div class="pattern-float-controls">
+                  <div class="datetime datetime--year-month" data-value="2025-06" aria-label="Month">
+                    <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Month">
+                      <span class="datetime-value"></span>
+                      <span class="datetime-placeholder">Select month</span>
+                      <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="datetime-popup" role="dialog" aria-label="Month" hidden></div>
+                  </div>
+                  <div class="tooltip tooltip--bottom">
+                    <button type="button" class="tooltip-trigger btn btn--default btn--xs" aria-label="Show tip">Hover tip</button>
+                    <div class="tooltip-content" role="tooltip">This tip portals out of the scroller but stays inside the window frame.</div>
+                  </div>
+                </div>
+                <p class="type-paragraph">Content below the controls guarantees you can scroll past them after opening or dismissing a popup.</p>
+                <p class="type-paragraph">Keep going — the under-scroll runway should feel longer than a single screen of the window.</p>
+                <p class="type-paragraph">More placeholder lines stand in for dense tool UI: status notes, linked records, and short comments.</p>
+                <p class="type-paragraph">Another stretch of copy so the scrollbar thumb stays meaningful after the controls leave the fold.</p>
+                <p class="type-paragraph">Final spacer paragraph so the scroller still moves when the dialog locks overflow on the pane.</p>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Datetime · Tooltip</span>
+              <span class="sample-meta-detail">Stays in window · Dialog locks scroll · Tip closes on scroll</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+    
+
+
     </main>
   </div>
 
-  <script src="src/components/tabs-collapse.js" defer></script>
+  <script src="src/components/box-resize.js" defer></script>
+  <script src="src/components/edge-fade.js" defer></script>
+  <script src="src/components/panel.js" defer></script>
+  <script src="src/components/float.js" defer></script>
   <script src="src/components/datetime.js" defer></script>
+  <script src="src/components/tooltip.js" defer></script>
+  <script src="src/components/tabs-collapse.js" defer></script>
+  <script src="src/patterns/app-shell.js" defer></script>
+  <script src="src/components/timeline-axis.js" defer></script>
+  <script src="src/components/graph-density.js" defer></script>
   <script src="src/components/calendar.js" defer></script>
   <script src="reference/reference.js" defer></script>
 

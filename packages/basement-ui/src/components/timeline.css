@@ -128,6 +128,11 @@
 .timeline-axis-tick {
   color: var(--theme-fg-secondary);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Thinned labels leave the grid; the kept tick spans their columns */
+.timeline-axis-tick.is-skipped {
+  display: none;
 }

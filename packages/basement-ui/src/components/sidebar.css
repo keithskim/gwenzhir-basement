@@ -69,6 +69,15 @@
   margin-top: var(--spacing-m);
 }
 
+.sidebar-group--bottom {
+  margin-top: auto;
+  padding-top: var(--spacing-m);
+}
+
+.sidebar-group + .sidebar-group--bottom {
+  margin-top: auto;
+}
+
 .sidebar-group-label {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
@@ -231,4 +240,15 @@
 .sidebar--compact .sidebar-item-meta {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
+}
+
+/* Sidebar nav fills a Panel when composed */
+.panel .sidebar-title {
+  color: var(--theme-fg);
+}
+
+.panel .sidebar-nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }

@@ -1,0 +1,67 @@
+/* Generic lined box — shared chrome for samples and nondescript panels */
+
+.box {
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-bg);
+  overflow: hidden;
+}
+
+.box.box--resizable {
+  --box-resize-handle-size: 0.75rem;
+  /* Subgrid locks used width to parent tracks; block + start lets drag set width. */
+  display: block;
+  position: relative;
+  justify-self: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+.box-resize-handle {
+  position: absolute;
+  z-index: 5;
+  inset-block: 0;
+  inset-inline-end: 0;
+  /* Keep out of sample-box subgrid placement (which would inset the CB by padding). */
+  grid-column: auto;
+  grid-row: auto;
+  width: var(--box-resize-handle-size);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
+  background: transparent;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.box-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.125rem;
+  height: 1.5rem;
+  border-radius: 0.0625rem;
+  background: var(--theme-border);
+  transform: translate(-50%, -50%);
+  transition: background-color 0.15s ease, height 0.15s ease;
+}
+
+.box-resize-handle:hover::after,
+.box-resize-handle:focus-visible::after,
+.box.is-resizing > .box-resize-handle::after {
+  background: var(--theme-fg-secondary);
+  height: 2rem;
+}
+
+.box-resize-handle:focus-visible {
+  outline: 0.125rem solid var(--theme-fg);
+  outline-offset: -0.125rem;
+}
+
+.box.is-resizing {
+  user-select: none;
+}

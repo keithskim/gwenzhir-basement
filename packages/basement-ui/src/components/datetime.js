@@ -55,14 +55,29 @@ function formatYearMonth(date) {
   return yearMonthFormatter.format(date);
 }
 
+function useFloat() {
+  return Boolean(window.BasementFloat);
+}
+
+function getDatetimePopup(field) {
+  return field._datetimePopup || field.querySelector('.datetime-popup');
+}
+
 function closeAllDatetimes(exceptField) {
   document.querySelectorAll('.datetime-field.is-open, .datetime.is-open').forEach(field => {
     if (field === exceptField) return;
+    if (typeof field._closeDatetime === 'function') {
+      field._closeDatetime();
+      return;
+    }
     field.classList.remove('is-open');
     const input = field.querySelector('.datetime-input');
-    const popup = field.querySelector('.datetime-popup');
+    const popup = getDatetimePopup(field);
     if (input) input.setAttribute('aria-expanded', 'false');
-    if (popup) popup.hidden = true;
+    if (popup) {
+      if (useFloat()) window.BasementFloat.close(popup);
+      popup.hidden = true;
+    }
   });
 }
 
@@ -83,7 +98,7 @@ function createNavButton(direction) {
 }
 
 function renderDayPopup(field, state) {
-  const popup = field.querySelector('.datetime-popup');
+  const popup = getDatetimePopup(field);
   const { viewDate, selectedDate } = state;
   const today = new Date();
   const monthStart = startOfMonth(viewDate);
@@ -147,10 +162,14 @@ function renderDayPopup(field, state) {
   }
 
   popup.appendChild(days);
+
+  if (useFloat() && floatStateHas(popup)) {
+    window.BasementFloat.place(field.querySelector('.datetime-input'), popup);
+  }
 }
 
 function renderYearMonthPopup(field, state) {
-  const popup = field.querySelector('.datetime-popup');
+  const popup = getDatetimePopup(field);
   const { viewDate, selectedDate } = state;
   popup.replaceChildren();
   popup.classList.add('datetime-popup--year-month');
@@ -188,6 +207,14 @@ function renderYearMonthPopup(field, state) {
   });
 
   popup.appendChild(months);
+
+  if (useFloat() && floatStateHas(popup)) {
+    window.BasementFloat.place(field.querySelector('.datetime-input'), popup);
+  }
+}
+
+function floatStateHas(panel) {
+  return Boolean(panel && panel.classList.contains('is-float-open'));
 }
 
 function setFieldValue(field, state, date) {
@@ -222,7 +249,7 @@ function openField(field, state) {
   closeAllDropdowns();
   field.classList.add('is-open');
   const input = field.querySelector('.datetime-input');
-  const popup = field.querySelector('.datetime-popup');
+  const popup = getDatetimePopup(field);
   if (input) input.setAttribute('aria-expanded', 'true');
   if (popup) popup.hidden = false;
 
@@ -231,12 +258,28 @@ function openField(field, state) {
   } else {
     renderDayPopup(field, state);
   }
+
+  if (useFloat() && input && popup) {
+    window.BasementFloat.open({
+      anchor: input,
+      panel: popup,
+      mode: 'dialog',
+      onClose: () => {
+        field.classList.remove('is-open');
+        if (input) input.setAttribute('aria-expanded', 'false');
+        popup.hidden = true;
+      },
+    });
+  }
 }
 
 function closeField(field) {
+  const popup = getDatetimePopup(field);
+  if (useFloat() && popup) {
+    window.BasementFloat.close(popup);
+  }
   field.classList.remove('is-open');
   const input = field.querySelector('.datetime-input');
-  const popup = field.querySelector('.datetime-popup');
   if (input) input.setAttribute('aria-expanded', 'false');
   if (popup) popup.hidden = true;
 }
@@ -245,6 +288,7 @@ function initDatetimeField(field, variant) {
   const input = field.querySelector('.datetime-input');
   const popup = field.querySelector('.datetime-popup');
   if (!input || !popup) return;
+  field._datetimePopup = popup;
 
   const initialValue = field.dataset.value || '';
   const selectedDate = variant === 'year-month'
@@ -260,6 +304,8 @@ function initDatetimeField(field, variant) {
   if (selectedDate) {
     setFieldValue(field, state, selectedDate);
   }
+
+  field._closeDatetime = () => closeField(field);
 
   input.addEventListener('click', event => {
     event.stopPropagation();
@@ -306,6 +352,7 @@ function initDatetimeField(field, variant) {
       if (!date) return;
       setFieldValue(field, state, date);
       closeField(field);
+      field.dispatchEvent(new Event('change', { bubbles: true }));
       return;
     }
 
@@ -316,6 +363,7 @@ function initDatetimeField(field, variant) {
       const date = new Date(state.viewDate.getFullYear(), monthIndex, 1);
       setFieldValue(field, state, date);
       closeField(field);
+      field.dispatchEvent(new Event('change', { bubbles: true }));
     }
   });
 }
@@ -345,3 +393,8 @@ document.addEventListener('keydown', event => {
     closeAllDatetimes();
   }
 });
+
+window.BasementDatetime = {
+  init: initDatetime,
+  closeAll: closeAllDatetimes,
+};

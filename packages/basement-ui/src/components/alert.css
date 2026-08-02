@@ -65,3 +65,12 @@
 .alert--destructive .alert-description {
   color: var(--alert-destructive-fg);
 }
+
+/* Stacked alerts: tight gap between consecutive items; normal margin after the group */
+.alert:has(+ .alert) {
+  margin-bottom: var(--spacing-xs);
+}
+
+.alert + .alert {
+  margin-top: 0;
+}

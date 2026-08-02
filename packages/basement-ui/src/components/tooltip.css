@@ -119,3 +119,18 @@
 .tooltip--left.is-open .tooltip-content {
   transform: translate(0, -50%);
 }
+
+/* Wired tooltips are shown only via BasementFloat, not CSS :hover */
+.tooltip[data-basement-float='tooltip']:hover .tooltip-content,
+.tooltip[data-basement-float='tooltip']:focus-within .tooltip-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: none;
+}
+
+.tooltip[data-basement-float='tooltip'] .tooltip-content.is-float-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
