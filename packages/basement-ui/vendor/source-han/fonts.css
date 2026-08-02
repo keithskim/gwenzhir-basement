@@ -1,7 +1,7 @@
 /* Basement UI typefaces.
    Sans:  Inter over Pretendard.
    Serif: Source Han Serif (slightly smaller than Sans via size-adjust).
-   Mono:  Roboto Mono over Pretendard.
+   Mono:  Roboto Mono over Pretendard (slightly smaller via size-adjust).
    See NOTICE for licenses. */
 
 @import url('https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css');
@@ -49,6 +49,7 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
+  size-adjust: 97%;
   src: local('Roboto Mono'),
        local('Roboto Mono Medium'),
        url('https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-wght-normal.woff2') format('woff2-variations');
@@ -60,6 +61,7 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
+  size-adjust: 97%;
   src: local('Roboto Mono'),
        local('Roboto Mono Medium'),
        url('https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-ext-wght-normal.woff2') format('woff2-variations');

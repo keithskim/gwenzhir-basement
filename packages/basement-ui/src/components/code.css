@@ -11,6 +11,7 @@
   font-family: var(--font-mono-family);
   font-weight: var(--font-base-weight);
   font-size: 0.875em;
+  letter-spacing: var(--font-mono-letter-spacing);
   line-height: inherit;
   -webkit-font-smoothing: antialiased;
   white-space: nowrap;
@@ -41,6 +42,7 @@
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
+  letter-spacing: var(--font-mono-letter-spacing);
   -webkit-font-smoothing: antialiased;
   overflow-x: auto;
   white-space: pre;

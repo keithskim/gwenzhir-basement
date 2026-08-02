@@ -53,7 +53,7 @@ For Tabs that should collapse into a vertical list when labels exceed the contai
 
 Force stacked with `tabs--stacked`, or opt out with `data-tabs-collapse="off"`.
 
-**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`). Load `vendor/source-han/fonts.css` in every project so the faces resolve. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
+**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Load `vendor/source-han/fonts.css` in every project so the faces resolve. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
 
 ### Palette audit
 

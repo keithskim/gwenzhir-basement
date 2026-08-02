@@ -130,8 +130,10 @@
   --font-serif-family: 'Source Han Serif', 'Noto Serif KR', Georgia, 'Times New Roman', serif;
   --font-base-weight: 500;
   --font-serif-weight: 600;
-  /* Serif face is loaded with size-adjust so the same rem steps read slightly smaller than Sans. */
+  /* Serif / Mono faces load with size-adjust so the same rem steps read slightly smaller than Sans. */
   --font-serif-size-adjust: 94%;
+  --font-mono-size-adjust: 97%;
+  --font-mono-letter-spacing: -0.01em;
 
   --font-size-2xs: 0.625rem;
   --font-size-xs:  0.75rem;

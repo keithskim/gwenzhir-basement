@@ -78,6 +78,7 @@
 .type-mono {
   font-family: var(--font-mono-family);
   font-weight: var(--font-base-weight);
+  letter-spacing: var(--font-mono-letter-spacing);
 }
 
 .type-serif {
