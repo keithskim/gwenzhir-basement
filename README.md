@@ -23,14 +23,15 @@ Open http://localhost:5173 for the token and component reference.
 ## Use in an app
 
 ```html
-<link rel="stylesheet" href="path/to/basement-ui/src/index.css">
+<link rel="stylesheet" href="path/to/basement-ui/vendor/source-han/fonts.css">
 <link rel="stylesheet" href="path/to/basement-ui/vendor/phosphor/regular/style.css">
+<link rel="stylesheet" href="path/to/basement-ui/src/index.css">
 ```
 
-Subset exports (`tokens`, `components`, `typography`) and optional scripts are documented in the [package README](packages/basement-ui/README.md).
+Subset exports (`tokens`, `components`, `typography`, `fonts`) and optional scripts are documented in the [package README](packages/basement-ui/README.md).
 
-Load [Pretendard](https://github.com/orioncactus/pretendard) separately (CDN or self-hosted).
+Base type is Inter over Pretendard at weight 500; Serif is Source Han Serif (slightly smaller than Sans); Mono is Roboto Mono over Pretendard. All load from `vendor/source-han/fonts.css`.
 
 ## License
 
-ISC. Icons are [Phosphor](https://phosphoricons.com/) (MIT), vendored under `packages/basement-ui/vendor/phosphor/`.
+ISC. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono). Icons are [Phosphor](https://phosphoricons.com/) (MIT), vendored under `packages/basement-ui/vendor/phosphor/`.

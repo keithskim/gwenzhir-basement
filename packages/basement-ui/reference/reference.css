@@ -265,7 +265,8 @@ html.is-sidebar-locked {
 }
 
 .subsection-note code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono-family);
+  font-weight: var(--font-base-weight);
   font-size: inherit;
 }
 
@@ -759,10 +760,11 @@ html.is-sidebar-locked {
 
 #typography .sample-box > * {
   min-width: 0;
-  overflow: hidden;
+  /* Inter descenders paint past the line box; do not clip sample text. */
+  overflow: visible;
 }
 
-#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .link-sample, .control-row) {
+#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .type-mono, .type-serif, .link-sample, .control-row) {
   grid-column: 1 / -1;
 }
 

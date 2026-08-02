@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basement UI</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="vendor/source-han/fonts.css">
   <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
   <link rel="stylesheet" href="src/index.css">
   <link rel="stylesheet" href="reference/reference.css">
@@ -44,6 +44,7 @@
         <div class="sidebar-group-label">Base</div>
         <button type="button" class="sidebar-item" data-section="button">Button</button>
         <button type="button" class="sidebar-item" data-section="tag">Tag</button>
+        <button type="button" class="sidebar-item" data-section="code">Code</button>
         <button type="button" class="sidebar-item" data-section="status-chip">Status Chip</button>
         <button type="button" class="sidebar-item" data-section="pairs">Pairs</button>
         <button type="button" class="sidebar-item" data-section="mention">Mention</button>
@@ -163,6 +164,12 @@
               <span class="home-card-title">Tag</span>
               <span class="home-card-preview" aria-hidden="true">
                 <span class="tag tag--xs">Design</span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="code">
+              <span class="home-card-title">Code</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="code code--xs">token</span>
               </span>
             </button>
             <button type="button" class="home-card" data-section="status-chip">
@@ -1173,14 +1180,36 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Typeface</h3>
-        <div class="type-sample-item">
-          <div class="sample-box sample-box--typeface">
-            <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
-            <p class="font-body-sample">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--typeface">
+              <p class="font-display">화면 위의 모든 것은 design으로 시작된다.</p>
+              <p class="font-body-sample">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Sans</span>
+              <span class="sample-meta-detail">Inter · Pretendard · 500</span>
+            </div>
           </div>
-          <div class="sample-meta">
-            <span class="sample-meta-label sample-meta-label--wide">Base Text</span>
-            <span class="sample-meta-detail">Pretendard · 600</span>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--typeface">
+              <p class="font-display type-serif">화면 위의 모든 것은 design으로 시작된다.</p>
+              <p class="font-body-sample type-serif">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Serif</span>
+              <span class="sample-meta-detail">Source Han Serif · 600 · Slightly smaller than Sans</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box sample-box--typeface">
+              <p class="font-display type-mono">화면 위의 모든 것은 design으로 시작된다.</p>
+              <p class="font-body-sample type-mono">Basement UI is the shared design language used across @gwenzhir projects. Colors, typography, and spacing — these three tokens stack on every surface to build a consistent experience.</p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label sample-meta-label--wide">Mono</span>
+              <span class="sample-meta-detail">Roboto Mono · Pretendard · 500</span>
+            </div>
           </div>
         </div>
       </div>
@@ -3560,6 +3589,68 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Short text</span>
               <span class="sample-meta-detail">Compact · At least square for single characters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Code ── -->
+    <section class="section section--component" id="code">
+      <h2 class="section-label">Code</h2>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Inline</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <p>
+                Use the <span class="code">getUser()</span> helper before rendering.
+              </p>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Inline</span>
+              <span class="sample-meta-detail">Mono · Subtle fill · Outline · Inherits surrounding size</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <div class="variant-row">
+                <span class="code code--xs">npm run dev</span>
+                <span class="code code--s">npm run dev</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Sizes</span>
+              <span class="sample-meta-detail">XS · S</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Block</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <pre class="code-block" tabindex="0"><code class="code">:root {
+  --font-base-family: 'Inter', 'Pretendard', sans-serif;
+  --font-base-weight: 500;
+}</code></pre>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Block</span>
+              <span class="sample-meta-detail">XS · Mono · Subtle fill · Horizontal scroll</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="sample-box">
+              <pre class="code-block code-block--s" tabindex="0"><code class="code">const label = 'Basement UI';
+console.log(label);</code></pre>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Block</span>
+              <span class="sample-meta-detail">S · Mono · Subtle fill · Horizontal scroll</span>
             </div>
           </div>
         </div>

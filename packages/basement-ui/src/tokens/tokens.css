@@ -125,8 +125,13 @@
   --alert-destructive-fg: var(--theme-fg-destructive);
   --alert-destructive-icon: var(--color-red);
 
-  --font-base-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-base-weight: 600;
+  --font-base-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono-family: 'Roboto Mono', 'Pretendard', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif-family: 'Source Han Serif', 'Noto Serif KR', Georgia, 'Times New Roman', serif;
+  --font-base-weight: 500;
+  --font-serif-weight: 600;
+  /* Serif face is loaded with size-adjust so the same rem steps read slightly smaller than Sans. */
+  --font-serif-size-adjust: 94%;
 
   --font-size-2xs: 0.625rem;
   --font-size-xs:  0.75rem;

@@ -17,7 +17,8 @@
     ".": "./src/index.css",
     "./tokens": "./src/tokens/tokens.css",
     "./components": "./src/components/index.css",
-    "./typography": "./src/typography/typography.css"
+    "./typography": "./src/typography/typography.css",
+    "./fonts": "./vendor/source-han/fonts.css"
   },
   "files": [
     "src/",

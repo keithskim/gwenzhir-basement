@@ -74,6 +74,17 @@
   color: var(--theme-fg-destructive);
 }
 
+/* ── Family styles ── */
+.type-mono {
+  font-family: var(--font-mono-family);
+  font-weight: var(--font-base-weight);
+}
+
+.type-serif {
+  font-family: var(--font-serif-family);
+  font-weight: var(--font-serif-weight);
+}
+
 /* ── Links ── */
 .link {
   color: inherit;
