@@ -2538,6 +2538,7 @@
     <!-- ── Tabs ── -->
     <section class="section section--component" id="tabs">
       <h2 class="section-label">Tabs</h2>
+      <p class="type-paragraph">Grouped page controls. When labels exceed the available width, pages stack vertically or collapse into a Dropdown — not a horizontal scroller with edge fades.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -6199,21 +6200,23 @@ console.log(label);</code></pre>
               </div>
               <aside class="panel panel--right panel--drawer panel--resizable" id="patternShellDetail" style="--panel-width: 34%; --panel-min-width: 16rem;">
                 <div class="panel-body">
-                  <div class="panel-title-row">
-                    <h2>North studio</h2>
-                    <div class="panel-title-actions">
-                      <span class="status-chip">Open</span>
-                      <div class="tooltip tooltip--bottom">
-                        <button type="button" class="tooltip-trigger btn btn--ghost btn--icon btn--xs" aria-label="About this panel"><i class="ph ph-info icon--m" aria-hidden="true"></i></button>
-                        <div class="tooltip-content" role="tooltip">Detail pane for the selected row. Scrolls independently of the sheet body.</div>
+                  <div class="panel-sticky">
+                    <div class="panel-title-row">
+                      <h2>North studio</h2>
+                      <div class="panel-title-actions">
+                        <span class="status-chip">Open</span>
+                        <div class="tooltip tooltip--bottom">
+                          <button type="button" class="tooltip-trigger btn btn--ghost btn--icon btn--xs" aria-label="About this panel"><i class="ph ph-info icon--m" aria-hidden="true"></i></button>
+                          <div class="tooltip-content" role="tooltip">Detail pane for the selected row. Scrolls independently of the sheet body.</div>
+                        </div>
+                        <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
                       </div>
-                      <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
                     </div>
-                  </div>
-                  <div class="tabs" role="tablist">
-                    <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
-                    <button type="button" class="tab" role="tab">History</button>
-                    <button type="button" class="tab" role="tab">Files</button>
+                    <div class="tabs" role="tablist">
+                      <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                      <button type="button" class="tab" role="tab">History</button>
+                      <button type="button" class="tab" role="tab">Files</button>
+                    </div>
                   </div>
                   <div class="box pairs pairs--boxed">
                     <dl class="pairs-body">
@@ -6223,7 +6226,7 @@ console.log(label);</code></pre>
                       <div class="pair"><dt class="pair-key">Account</dt><dd class="pair-value">Operating</dd></div>
                     </dl>
                   </div>
-                  <p class="type-paragraph">Optional sections stack below the sticky title. On narrow screens this panel becomes a right drawer with a backdrop.</p>
+                  <p class="type-paragraph">Optional sections stack below the sticky title and tabs. On narrow screens this panel becomes a right drawer with a backdrop.</p>
                 </div>
                 <button type="button" class="panel-resize-handle" aria-label="Resize detail"></button>
               </aside>
@@ -6234,7 +6237,7 @@ console.log(label);</code></pre>
         </div>
         <div class="sample-meta">
           <span class="sample-meta-label sample-meta-label--wide">Three panes</span>
-          <span class="sample-meta-detail">Left and right Panel · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
+          <span class="sample-meta-detail">Left and right Panel · Sticky title and tabs · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
         </div>
       </div>
     </section>
@@ -6242,7 +6245,7 @@ console.log(label);</code></pre>
     
     <section class="section section--component" id="edge-fade">
       <h2 class="section-label">Edge fade</h2>
-      <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting.</p>
+      <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting. Use on table and graph scrollers, not on Tabs — tab overflow stacks or collapses into a Dropdown.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Horizontal</h3>

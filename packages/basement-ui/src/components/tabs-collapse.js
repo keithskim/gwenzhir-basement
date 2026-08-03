@@ -121,6 +121,16 @@
     return Math.min(parentW, selfW);
   }
 
+  function intrinsicTabsWidth(tabsEl) {
+    // scrollWidth is unreliable with overflow:visible — sum tab boxes instead.
+    var tabs = tabsEl.querySelectorAll(':scope > button.tab');
+    var total = 0;
+    for (var i = 0; i < tabs.length; i++) {
+      total += tabs[i].offsetWidth;
+    }
+    return total || tabsEl.scrollWidth;
+  }
+
   function syncTabsCollapse(tabsEl) {
     if (
       !tabsEl ||
@@ -137,7 +147,8 @@
     syncTabsDropdown(tabsEl, false);
 
     var avail = availableWidth(tabsEl);
-    var overflowing = tabsEl.scrollWidth > avail + 1;
+    var need = Math.max(tabsEl.scrollWidth, intrinsicTabsWidth(tabsEl));
+    var overflowing = need > avail + 1;
 
     if (mode === 'dropdown') {
       if (overflowing) syncTabsDropdown(tabsEl, true);
