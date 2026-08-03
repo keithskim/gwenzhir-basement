@@ -117,7 +117,7 @@
     <!-- ── Home ── -->
     <section class="section is-active" id="home">
       <h2 class="section-label">Basement UI</h2>
-      <p class="type-paragraph home-intro">A project-agnostic component library and design system for use in internal tools, admin interfaces, and other @gwenzhir projects.</p>
+      <p class="type-paragraph home-intro">A CSS-first design system for dense internal tools and admin interfaces. Shared tokens and components compose into layout patterns — project-agnostic, for use across @gwenzhir work.</p>
 
       <div class="home-index">
         <div class="home-index-group">
@@ -490,15 +490,40 @@
           <div class="home-index-grid">
             <button type="button" class="home-card" data-section="app-frame">
               <span class="home-card-title">App frame</span>
-              <span class="home-card-preview home-card-preview--text">Sidebar · Sheet · Detail</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-app-frame">
+                  <span class="home-preview-app-frame-side"></span>
+                  <span class="home-preview-app-frame-main">
+                    <span class="home-preview-app-frame-bar"></span>
+                    <span class="home-preview-app-frame-body"></span>
+                  </span>
+                  <span class="home-preview-app-frame-side home-preview-app-frame-side--right"></span>
+                </span>
+              </span>
             </button>
             <button type="button" class="home-card" data-section="edge-fade">
               <span class="home-card-title">Edge fade</span>
-              <span class="home-card-preview home-card-preview--text">Scroll masks · Header under-fade</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-edge-fade">
+                  <span class="home-preview-edge-fade-row"></span>
+                  <span class="home-preview-edge-fade-row"></span>
+                  <span class="home-preview-edge-fade-row"></span>
+                </span>
+              </span>
             </button>
             <button type="button" class="home-card" data-section="float">
               <span class="home-card-title">Float</span>
-              <span class="home-card-preview home-card-preview--text">Portaled Datetime · Tooltip</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-float">
+                  <span class="home-preview-float-window">
+                    <span class="datetime-input input home-preview-datetime">
+                      <span class="datetime-placeholder">Jun 2025</span>
+                      <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                    </span>
+                  </span>
+                  <span class="home-preview-float-tip">Tip</span>
+                </span>
+              </span>
             </button>
           </div>
         </div>
@@ -6250,8 +6275,8 @@ console.log(label);</code></pre>
       <div class="border-group">
         <h3 class="subsection-label">Horizontal</h3>
         <div class="pattern-demo-list">
-          <div class="pattern-demo pattern-demo--fit">
-            <div class="box pattern-stage pattern-stage--fade-x">
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--fade-x" data-box-min-width="12rem" data-box-max-width="100%" style="width: 100%;">
               <div class="table-wrap pattern-panel--fade-x pattern-fade-x">
                 <table class="table">
                   <thead><tr><th>Code</th><th>Name</th><th>Owner</th><th>Region</th><th>Updated</th><th>Notes</th></tr></thead>
@@ -6263,6 +6288,7 @@ console.log(label);</code></pre>
                   </tbody>
                 </table>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Table scroller</span>
@@ -6275,8 +6301,8 @@ console.log(label);</code></pre>
       <div class="border-group">
         <h3 class="subsection-label">Vertical</h3>
         <div class="pattern-demo-list">
-          <div class="pattern-demo pattern-demo--fit">
-            <div class="box pattern-stage pattern-stage--intrinsic">
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--fade-y" data-box-min-width="10rem" data-box-max-width="100%" style="width: 100%;">
               <div class="pattern-panel--fade-y pattern-panel--nav pattern-fade-y">
                 <button type="button" class="sidebar-item">Overview</button>
                 <button type="button" class="sidebar-item is-active">Transactions</button>
@@ -6289,14 +6315,15 @@ console.log(label);</code></pre>
                 <button type="button" class="sidebar-item">Integrations</button>
                 <button type="button" class="sidebar-item">Settings</button>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">List scroller</span>
               <span class="sample-meta-detail">Top and bottom fades</span>
             </div>
           </div>
-          <div class="pattern-demo pattern-demo--fit">
-            <div class="pattern-stage pattern-stage--intrinsic pattern-stage--flush">
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-stage pattern-stage--header-fade" data-box-min-width="12rem" data-box-max-width="100%" style="width: 100%;">
               <div class="panel-body pattern-panel--header pattern-header-fade">
                 <div class="panel-title-row">
                   <h2>Sticky title</h2>
@@ -6308,6 +6335,7 @@ console.log(label);</code></pre>
                 <p class="type-paragraph">Another block guarantees the scroller can move well past the fold on short viewports.</p>
                 <p class="type-paragraph">Final spacer paragraph so the under-fade has a long runway before the end of the panel.</p>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label sample-meta-label--wide">Header under-scroll</span>
@@ -6325,8 +6353,8 @@ console.log(label);</code></pre>
       <div class="border-group">
         <h3 class="subsection-label">Inside overflow</h3>
         <div class="pattern-demo-list">
-          <div class="pattern-demo pattern-demo--fit">
-            <div class="pattern-float-window" data-float-boundary>
+          <div class="pattern-demo">
+            <div class="box box--resizable pattern-float-window" data-float-boundary data-box-min-width="16rem" data-box-max-width="100%" style="width: 100%;">
               <div class="pattern-panel--float pattern-float-box">
                 <p class="type-paragraph">Scroll this window, then open the controls — the popup leaves the scroller so it isn’t clipped, but it never crosses the window border.</p>
                 <p class="type-paragraph">Placeholder copy keeps the pane tall enough to scroll on short viewports. Invoices, notes, and activity would stack here in a real tool.</p>
@@ -6351,6 +6379,7 @@ console.log(label);</code></pre>
                 <p class="type-paragraph">Another stretch of copy so the scrollbar thumb stays meaningful after the controls leave the fold.</p>
                 <p class="type-paragraph">Final spacer paragraph so the scroller still moves when the dialog locks overflow on the pane.</p>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Datetime · Tooltip</span>

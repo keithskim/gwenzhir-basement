@@ -61,7 +61,12 @@
   flex: 0 0 auto;
   flex-wrap: wrap;
   position: relative;
-  z-index: 45; /* above panel backdrop so drawer toggles stay usable */
+}
+
+/* Stay above the drawer backdrop so toggles remain usable; bar itself blurs. */
+.sheet-bar .panel-toggle {
+  position: relative;
+  z-index: 45;
 }
 
 .sheet-title,
