@@ -29,6 +29,11 @@
   text-align: left;
 }
 
+.sidebar-title .ph {
+  display: block;
+  line-height: 1;
+}
+
 .sidebar-title.is-active {
   color: var(--theme-fg);
 }

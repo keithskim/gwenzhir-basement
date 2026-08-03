@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basement UI</title>
   <script src="src/components/theme.js"></script>
+  <script>
+    (function () {
+      var v = localStorage.getItem('basement-ui-dark-mode');
+      if (v === '1') document.documentElement.classList.add('is-dark');
+      else if (v === '0') document.documentElement.classList.remove('is-dark');
+    })();
+  </script>
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.2.5/files/inter-latin-wght-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/woff2/PretendardVariable.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="vendor/phosphor/regular/Phosphor.woff2">
   <link rel="stylesheet" href="vendor/source-han/fonts.css">
   <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
   <link rel="stylesheet" href="src/index.css">
@@ -30,7 +43,9 @@
     </button>
 
   <aside class="panel panel--left panel--drawer panel--drawer-full sidebar" id="appSidebar" style="--panel-drawer-at: 43.9375rem;">
-    <button type="button" class="sidebar-title is-active" id="sidebarHomeBtn">Basement UI</button>
+    <button type="button" class="sidebar-title is-active" id="sidebarHomeBtn" aria-label="Basement UI">
+      <i class="ph ph-bounding-box icon--2xl" aria-hidden="true"></i>
+    </button>
     <div class="sidebar-byline">@gwenzhir</div>
     <nav class="sidebar-nav">
       <div class="sidebar-group">
@@ -1800,7 +1815,7 @@
 
       <div class="border-group">
         <h3 class="subsection-label">Sizes</h3>
-        <p class="type-paragraph"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a> regular weight, vendored for offline use. Icon sizes S, M, and L map to 0.75, 1, and 1.25rem.</p>
+        <p class="type-paragraph"><a class="link" href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a> regular weight, vendored for offline use. Icon sizes S, M, L, XL, and 2XL map to 0.75, 1, 1.25, 1.5, and 2.25rem.</p>
         <div class="col-row col-row--icon-sizes">
           <div>
             <div class="icon-face icon-face--s"><i class="ph ph-gear" aria-hidden="true"></i></div>
@@ -1816,6 +1831,16 @@
             <div class="icon-face icon-face--l"><i class="ph ph-gear" aria-hidden="true"></i></div>
             <div class="token-name">L</div>
             <div class="token-value">1.25rem</div>
+          </div>
+          <div>
+            <div class="icon-face icon-face--xl"><i class="ph ph-gear" aria-hidden="true"></i></div>
+            <div class="token-name">XL</div>
+            <div class="token-value">1.5rem</div>
+          </div>
+          <div>
+            <div class="icon-face icon-face--2xl"><i class="ph ph-gear" aria-hidden="true"></i></div>
+            <div class="token-name">2XL</div>
+            <div class="token-value">2.25rem</div>
           </div>
         </div>
       </div>

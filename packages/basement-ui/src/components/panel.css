@@ -142,7 +142,14 @@
   border-radius: 0.0625rem;
   background: var(--theme-border);
   transform: translate(-50%, -50%);
-  transition: background-color 0.15s ease, height 0.15s ease;
+  opacity: 0;
+  transition: background-color 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+}
+
+.panel--resizable:hover > .panel-resize-handle::after,
+.panel-resize-handle:focus-visible::after,
+.panel--resizable.is-resizing > .panel-resize-handle::after {
+  opacity: 1;
 }
 
 .panel-resize-handle:hover::after,
