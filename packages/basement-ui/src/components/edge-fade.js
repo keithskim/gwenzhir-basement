@@ -17,6 +17,8 @@
 
   function wire(el, axis) {
     if (!el) return;
+    /* Tabs overflow is stack/dropdown — never horizontal scroll masks */
+    if (el.classList && el.classList.contains('tabs')) return;
     axis = axis === 'y' ? 'y' : 'x';
     el.classList.add(axis === 'y' ? 'vedge-fade' : 'edge-fade');
     if (!el.__edgeFade) {

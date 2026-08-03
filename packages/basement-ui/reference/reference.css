@@ -1374,7 +1374,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   grid-column: 1 / -1;
 }
 
-#tabs .sample-box > * {
+#tabs .sample-box > :not(.box-resize-handle) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1388,6 +1388,11 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-width: 0;
 }
 
+#tabs .sample-box.box--resizable {
+  overflow: hidden;
+}
+
+#tabs .sample-box.box--resizable:has(.tabs--icon),
 #tabs .sample-box:has(.tabs--icon) {
   overflow: visible;
 }
@@ -2200,25 +2205,25 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 .viewport-lane-fill--extra-wide  { left: 75%;   width: 25%; }
 
 /* Patterns demos */
-.pattern-shell-frame,
+.pattern-app-frame,
 .pattern-stage,
 .pattern-demo-list,
 .border-group > .sample-meta {
   grid-column: 1 / -1;
 }
 
-.pattern-shell-frame {
+.pattern-app-frame {
   height: 32rem;
   max-height: min(70vh, 40rem);
   width: 100%;
   overflow: hidden;
 }
 
-.pattern-shell-frame + .sample-meta {
+.pattern-app-frame + .sample-meta {
   margin-top: var(--spacing-xs);
 }
 
-.pattern-shell-frame .app-shell {
+.pattern-app-frame .app-frame {
   height: 100%;
   width: 100%;
   min-width: 0;
@@ -2250,6 +2255,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   overflow: hidden;
   width: fit-content;
   max-width: 100%;
+}
+
+.pattern-stage--flush.pattern-stage--fill {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .pattern-stage--intrinsic {
@@ -2440,15 +2451,28 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 .pattern-panel--tabs,
 .pattern-panel--tabs-wide {
-  max-width: 16rem;
+  box-sizing: border-box;
   padding: var(--spacing-s);
+  max-width: 100%;
+}
+
+.pattern-panel--tabs:not(.box),
+.pattern-panel--tabs-wide:not(.box) {
   border: 1px solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-surface);
 }
 
-.pattern-panel--tabs-wide {
-  max-width: 18rem;
+.pattern-panel--tabs.box,
+.pattern-panel--tabs-wide.box {
+  background: var(--theme-surface);
+}
+
+/* Tabs overflow dropdown menus portal via Float — keep the box clipped.
+   Tall enough that the menu can open below the trigger and stay in frame. */
+.pattern-panel--tabs-wide.box--resizable[data-float-boundary] {
+  min-height: 14rem;
+  overflow: hidden;
 }
 
 .pattern-tabs-row {
@@ -2456,25 +2480,30 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   flex-wrap: wrap;
   gap: var(--spacing-m) var(--spacing-l);
   align-items: flex-start;
+  width: 100%;
+}
+
+.pattern-tabs-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-l);
 }
 
 .pattern-tabs-demo {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  flex: 0 0 auto;
-  align-self: flex-start;
+  flex: 1 1 16rem;
+  align-self: stretch;
   min-width: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .pattern-tabs-demo .pattern-panel--tabs,
 .pattern-tabs-demo .pattern-panel--tabs-wide {
-  width: 16rem;
+  width: 100%;
   max-width: 100%;
-}
-
-.pattern-tabs-demo .pattern-panel--tabs-wide {
-  width: 18rem;
 }
 
 .pattern-tabs-demo .sample-meta {
@@ -2483,7 +2512,8 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   align-items: baseline;
   column-gap: var(--spacing-s);
   row-gap: 0.125rem;
-  width: min(22rem, 100%);
+  width: 100%;
+  max-width: 100%;
 }
 
 .pattern-tabs-demo .sample-meta > * {
@@ -2502,7 +2532,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   margin-top: var(--spacing-xs);
 }
 
-.subsection-label:has(+ .pattern-shell-frame),
+.subsection-label:has(+ .pattern-app-frame),
 .subsection-label:has(+ .pattern-demo-list),
 .subsection-label:has(+ .pattern-stage),
 .subsection-label:has(+ .type-paragraph + .pattern-demo-list),

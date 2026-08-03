@@ -6,7 +6,8 @@
 
 /* Portaled float panels — escape overflow clipping; JS sets top/left */
 .datetime-popup.is-float-open,
-.tooltip-content.is-float-open {
+.tooltip-content.is-float-open,
+.menu.is-float-open {
   position: fixed;
   inset: auto;
   z-index: 1000;
@@ -15,5 +16,18 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+/* Menus are flex columns; datetime must stay block or the day grid collapses. */
+.menu.is-float-open {
+  display: flex;
+}
+
+.datetime-popup.is-float-open {
+  display: block;
+}
+
+.datetime-popup.is-float-open,
+.tooltip-content.is-float-open {
   max-width: min(24rem, calc(100vw - 2rem));
 }

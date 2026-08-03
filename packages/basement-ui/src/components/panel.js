@@ -22,7 +22,7 @@
 
   function hostFor(panel) {
     return (
-      panel.closest('.panel-host, .app-shell') ||
+      panel.closest('.panel-host, .app-frame') ||
       panel.parentElement ||
       document.body
     );

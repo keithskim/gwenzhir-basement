@@ -256,26 +256,36 @@
 .tabs-dropdown-control {
   width: 100%;
   max-width: 100%;
+  min-width: min-content;
   align-items: stretch;
 }
 
 .tabs-dropdown-control .dropdown-trigger {
   width: 100%;
+  min-width: min-content;
   justify-content: space-between;
   box-shadow: var(--shadow-s);
 }
 
 .tabs-dropdown-control .menu {
   width: 100%;
+  min-width: max(100%, max-content);
   overflow-y: visible;
   z-index: 4;
+}
+
+.tabs-dropdown-control .menu.is-float-open,
+.menu.is-float-open {
+  width: auto;
+  max-width: none;
 }
 
 .tabs-dropdown-label {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  min-width: 0;
+  min-width: min-content;
+  flex: 1 1 auto;
 }
 
 .tabs-dropdown-label .avatar,

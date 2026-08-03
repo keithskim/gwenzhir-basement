@@ -9,7 +9,7 @@ Design system and component library for Gwenzhir projects.
 - `src/typography/` — Heading, body, caption, mono, serif, link, and tabular-numeral styles
 - `src/icons/` — Phosphor icon size utilities
 - `src/components/` — Reusable UI component styles and optional JS helpers
-- `src/patterns/` — Composition patterns (App shell, Edge fade) built on tokens and components
+- `src/patterns/` — Composition patterns (App frame, Edge fade) built on tokens and components
 - `src/index.css` — Full library entry (imports all of the above)
 - `reference/` — Reference page chrome (sidebar, demos, dev toggles); not part of the published package
 - `index.html` — Live token and component reference
@@ -60,7 +60,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 <script src="path/to/basement-ui/src/components/datetime.js" defer></script>
 <script src="path/to/basement-ui/src/components/tooltip.js" defer></script>
 <script src="path/to/basement-ui/src/components/tabs-collapse.js" defer></script>
-<script src="path/to/basement-ui/src/patterns/app-shell.js" defer></script>
+<script src="path/to/basement-ui/src/patterns/app-frame.js" defer></script>
 <script src="path/to/basement-ui/src/components/timeline-axis.js" defer></script>
 <script src="path/to/basement-ui/src/components/graph-density.js" defer></script>
 ```
@@ -69,22 +69,22 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 |---|---|---|
 | `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark` |
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
-| `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks (load before Panel) |
+| `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; wires nav edge fade |
-| `float.js` | `BasementFloat` | Portals Datetime / Tooltip out of overflow parents |
+| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Tabs menus out of overflow parents; dialog re-places on page scroll |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
-| `tabs-collapse.js` | `BasementTabs` | Stack or Dropdown overflow (`data-tabs-overflow`) |
-| `app-shell.js` | `BasementShell` | Sheet layout helpers; exclusive left/right Panel drawers |
+| `tabs-collapse.js` | `BasementTabs` | Stack or Dropdown overflow (`data-tabs-overflow`; dropdown uses Float when present) |
+| `app-frame.js` | `BasementFrame` | Sheet layout helpers; exclusive left/right Panel drawers |
 | `timeline-axis.js` | `BasementTimeline` | Skip/span axis labels |
 | `graph-density.js` | `BasementGraphDensity` | Compact labels + horizontal scroll for dense lines |
 
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
-**Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; optional `.panel--resizable` with an edge drag handle. Host with `.panel-host` (App shell is also a host).
+**Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; optional `.panel--resizable` with an edge drag handle. Host with `.panel-host` (App frame is also a host).
 
-**App shell** — Composes left and right Panel around the sheet. Drawers and resize come from Panel; backdrop is scoped to the shell.
-**Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control, or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`.
+**App frame** — Composes left and right Panel around the sheet (`.app-frame`). Drawers and resize come from Panel; backdrop is scoped to the frame. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
+**Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 
 **Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.
 

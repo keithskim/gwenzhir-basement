@@ -1,10 +1,10 @@
 /**
- * Multi-pane tool shell — sheet layout helpers and exclusive panel drawers.
+ * Multi-pane app frame — sheet layout helpers and exclusive panel drawers.
  * Left/right pane chrome (panel / drawer / resize) is owned by BasementPanel.
  */
 (function () {
   function leftPanel(root) {
-    return root.querySelector('.panel--left, .app-shell-side');
+    return root.querySelector('.panel--left, .app-frame-side');
   }
 
   function rightPanel(root) {
@@ -23,8 +23,8 @@
   }
 
   function init(root) {
-    if (!root || root.__basementShell) return;
-    root.__basementShell = true;
+    if (!root || root.__basementFrame) return;
+    root.__basementFrame = true;
     root.classList.add('panel-host');
 
     var left = leftPanel(root);
@@ -52,7 +52,7 @@
       (right && !right.hasAttribute('hidden'));
     root.classList.toggle('is-detail-available', !!hasRight);
 
-    root._basementShellApi = {
+    root._basementFrameApi = {
       closeDrawers: function () {
         closeDrawers(root);
       },
@@ -65,24 +65,24 @@
     };
   }
 
-  window.BasementShell = {
+  window.BasementFrame = {
     init: init,
     closeDrawers: function (root) {
-      closeDrawers(root || document.querySelector('.app-shell'));
+      closeDrawers(root || document.querySelector('.app-frame'));
     },
     closeLeft: function (root) {
-      closePanel(leftPanel(root || document.querySelector('.app-shell')));
+      closePanel(leftPanel(root || document.querySelector('.app-frame')));
     },
     closeRight: function (root) {
-      closePanel(rightPanel(root || document.querySelector('.app-shell')));
+      closePanel(rightPanel(root || document.querySelector('.app-frame')));
     },
   };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.app-shell').forEach(init);
+      document.querySelectorAll('.app-frame').forEach(init);
     });
   } else {
-    document.querySelectorAll('.app-shell').forEach(init);
+    document.querySelectorAll('.app-frame').forEach(init);
   }
 })();

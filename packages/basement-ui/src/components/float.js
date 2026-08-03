@@ -1,6 +1,7 @@
 /**
  * Overflow-safe floating panels — portal to body with flip/shift placement.
- * Dialog mode locks scroll parents; tooltip mode closes on scroll.
+ * Dialog mode locks nested scroll parents and re-places on page scroll/resize;
+ * tooltip mode closes on scroll.
  */
 (function () {
   var floatState = new WeakMap();
@@ -42,18 +43,42 @@
     panel.style.visibility = 'hidden';
     panel.style.left = '0';
     panel.style.top = '0';
+    // Measure natural size, then shrink to the side that keeps the panel
+    // adjacent to the anchor (never slide over the trigger when space tightens).
+    panel.style.maxHeight = '';
+    panel.style.overflowY = '';
     var ar = anchor.getBoundingClientRect();
     var pr = panel.getBoundingClientRect();
     var pw = pr.width;
-    var ph = pr.height;
+    var naturalH = Math.max(pr.height, panel.scrollHeight);
     var box = clampBox(anchor);
-    var top = ar.bottom + FLOAT_GAP;
-    if (top + ph > box.bottom && ar.top - FLOAT_GAP - ph >= box.top) {
-      top = ar.top - FLOAT_GAP - ph;
+    var spaceBelow = Math.max(0, box.bottom - (ar.bottom + FLOAT_GAP));
+    var spaceAbove = Math.max(0, ar.top - FLOAT_GAP - box.top);
+    var placeBelow = true;
+    if (naturalH <= spaceBelow) {
+      placeBelow = true;
+    } else if (naturalH <= spaceAbove) {
+      placeBelow = false;
     } else {
-      top = Math.min(top, box.bottom - ph);
-      top = Math.max(box.top, top);
+      placeBelow = spaceBelow >= spaceAbove;
     }
+    var avail = placeBelow ? spaceBelow : spaceAbove;
+    // Only menus shrink+scroll. Fixed-layout popups (datetime) flip/shift instead —
+    // max-height + overflow breaks their grids.
+    var shrinkable = panel.classList.contains('menu');
+    if (shrinkable && avail > 0 && naturalH > avail) {
+      panel.style.maxHeight = Math.floor(avail) + 'px';
+      panel.style.overflowY = 'auto';
+      pr = panel.getBoundingClientRect();
+      pw = pr.width;
+    }
+    var ph = shrinkable ? panel.getBoundingClientRect().height : naturalH;
+    if (!shrinkable && naturalH > avail && avail > 0) {
+      // Still prefer the roomier side; allow painting past the boundary edge
+      // rather than covering the anchor or crushing the layout.
+      ph = naturalH;
+    }
+    var top = placeBelow ? ar.bottom + FLOAT_GAP : ar.top - FLOAT_GAP - ph;
     var left = ar.left;
     left = Math.min(left, box.right - pw);
     left = Math.max(box.left, left);
@@ -61,6 +86,14 @@
     panel.style.left = left + 'px';
     panel.style.zIndex = '1000';
     panel.style.visibility = '';
+  }
+
+  function schedulePlace(state, anchor, panel) {
+    if (state._placeRaf) return;
+    state._placeRaf = requestAnimationFrame(function () {
+      state._placeRaf = 0;
+      if (floatState.has(panel)) place(anchor, panel);
+    });
   }
 
   function open(opts) {
@@ -80,12 +113,18 @@
       onScroll: null,
       onResize: null,
       onClose: onClose,
+      _placeRaf: 0,
     };
     document.body.appendChild(panel);
     panel.hidden = false;
     panel.classList.add('is-float-open');
+    floatState.set(panel, state);
+    openFloatPanels.add(panel);
     place(anchor, panel);
     if (mode === 'dialog') {
+      // Lock nested scrollers so the anchor doesn’t drift under a clipped pane.
+      // Document/window scroll is left alone — re-place instead so the panel
+      // stays glued to the trigger (Tabs overflow menus, long reference pages).
       scrollParents(anchor).forEach(function (sp) {
         state.locked.push({
           el: sp,
@@ -97,6 +136,13 @@
         sp.style.overflowY = 'hidden';
         sp.style.overflowX = 'hidden';
       });
+      state.onScroll = function (event) {
+        if (!floatState.has(panel)) return;
+        // Ignore scrolling inside the panel itself (e.g. tall menus).
+        if (event && event.target && panel.contains(event.target)) return;
+        schedulePlace(state, anchor, panel);
+      };
+      window.addEventListener('scroll', state.onScroll, true);
     } else {
       state.onScroll = function () {
         close(panel);
@@ -104,11 +150,9 @@
       window.addEventListener('scroll', state.onScroll, true);
     }
     state.onResize = function () {
-      if (floatState.has(panel)) place(anchor, panel);
+      schedulePlace(state, anchor, panel);
     };
     window.addEventListener('resize', state.onResize);
-    floatState.set(panel, state);
-    openFloatPanels.add(panel);
   }
 
   function close(panel) {
@@ -116,6 +160,10 @@
     if (!state) return;
     floatState.delete(panel);
     openFloatPanels.delete(panel);
+    if (state._placeRaf) {
+      cancelAnimationFrame(state._placeRaf);
+      state._placeRaf = 0;
+    }
     state.locked.forEach(function (L) {
       L.el.style.overflow = L.overflow;
       L.el.style.overflowY = L.overflowY;
@@ -129,6 +177,8 @@
     panel.style.left = '';
     panel.style.zIndex = '';
     panel.style.visibility = '';
+    panel.style.maxHeight = '';
+    panel.style.overflowY = '';
     if (state.parent) {
       if (state.next && state.next.parentNode === state.parent) {
         state.parent.insertBefore(panel, state.next);
