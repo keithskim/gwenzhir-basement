@@ -1,6 +1,5 @@
-/* Horizontal edge fade — width-clipped scrollers (tables, graph canvases).
-   Tabs overflow via stack/dropdown, never scroll+fade — keep masks off `.tabs`. */
-.edge-fade:not(.tabs) {
+/* Horizontal edge fade — width-clipped scrollers (tables, graph canvases) */
+.edge-fade {
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0,
@@ -23,15 +22,6 @@
 
 .edge-fade.fade-r {
   --fade-r: 1.5rem;
-}
-
-.tabs.edge-fade,
-.tabs.fade-l,
-.tabs.fade-r,
-/* Wrapper whose only child is Tabs — still not a scroll+fade surface */
-.edge-fade:has(> .tabs:only-child) {
-  -webkit-mask-image: none;
-  mask-image: none;
 }
 
 /* Vertical edge fade — height-clipped scrollers (sidebar nav) */
