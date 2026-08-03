@@ -126,8 +126,33 @@
   color: var(--theme-fg);
 }
 
-/* Header under-scroll fade (sticky title inside scroller) */
-.app-shell .panel--right .panel-title-row::after {
+/* Sticky chrome: title + optional Tabs stay above the under-fade.
+   Prefer wrapping both in .panel-sticky so scroll masks never wash tab ends. */
+.app-shell .panel--right .panel-body > .panel-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  margin: 0 calc(var(--spacing-m) * -1);
+  padding: 0 var(--spacing-m);
+  background: var(--theme-bg);
+}
+
+.app-shell .panel--right .panel-body > .panel-sticky > .panel-title-row {
+  position: static;
+  margin: 0 calc(var(--spacing-m) * -1);
+  padding: var(--spacing-s) var(--spacing-m);
+}
+
+.app-shell .panel--right .panel-body > .panel-sticky > .tabs {
+  align-self: flex-start;
+}
+
+/* Header under-scroll fade (sticky chrome inside scroller) */
+.app-shell .panel--right .panel-body > .panel-sticky::after,
+.app-shell .panel--right .panel-body > .panel-title-row::after {
   content: '';
   position: absolute;
   left: 0;
@@ -140,8 +165,15 @@
   background: linear-gradient(var(--theme-bg), transparent);
 }
 
-.app-shell .panel--right .panel-body.scrolled .panel-title-row::after {
+.app-shell .panel--right .panel-body.scrolled > .panel-sticky::after,
+.app-shell .panel--right .panel-body.scrolled > .panel-title-row::after {
   opacity: 1;
+}
+
+/* Title-only sticky: suppress under-fade when Tabs are the next sibling
+   (fade would wash tab ends — use .panel-sticky for title+tabs instead). */
+.app-shell .panel--right .panel-body.scrolled > .panel-title-row:has(+ .tabs)::after {
+  opacity: 0;
 }
 
 .app-shell .panel--right[hidden] {

@@ -2538,12 +2538,13 @@
     <!-- ── Tabs ── -->
     <section class="section section--component" id="tabs">
       <h2 class="section-label">Tabs</h2>
+      <p class="type-paragraph">Grouped page controls. When labels exceed the available width, pages stack vertically or collapse into a Dropdown — not a horizontal scroller with edge fades.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
         <div class="type-sample-list">
           <div class="type-sample-item">
-            <div class="box sample-box">
+            <div class="box box--resizable sample-box" data-box-min-width="8rem" data-box-max-width="100%" style="width: 100%;">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs" role="tablist" aria-label="Project pages">
                   <button type="button" class="tab is-active" id="tab-overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
@@ -2560,42 +2561,15 @@
                   Project preferences and access.
                 </div>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Content width · Stacks when needed · Selected page outlined</span>
+              <span class="sample-meta-detail">Resize to stack · Selected page outlined</span>
             </div>
           </div>
           <div class="type-sample-item">
-            <div class="box sample-box">
-              <div class="tabs-demo" data-tabs-demo>
-                <div class="tabs" role="tablist" aria-label="Billing pages" style="max-width: 18rem;">
-                  <button type="button" class="tab is-active" id="tab-dues" role="tab" aria-selected="true" aria-controls="panel-dues">월 회비 (운영자)</button>
-                  <button type="button" class="tab" id="tab-usage" role="tab" aria-selected="false" aria-controls="panel-usage" tabindex="-1">월 이용료 (멤버)</button>
-                  <button type="button" class="tab" id="tab-fixed" role="tab" aria-selected="false" aria-controls="panel-fixed" tabindex="-1">고정 지출</button>
-                  <button type="button" class="tab" id="tab-rent" role="tab" aria-selected="false" aria-controls="panel-rent" tabindex="-1">월세 계산</button>
-                </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-dues" role="tabpanel" aria-labelledby="tab-dues" tabindex="0">
-                  Operator monthly dues.
-                </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-usage" role="tabpanel" aria-labelledby="tab-usage" tabindex="0" hidden>
-                  Member monthly usage fees.
-                </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-fixed" role="tabpanel" aria-labelledby="tab-fixed" tabindex="0" hidden>
-                  Fixed recurring expenses.
-                </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-rent" role="tabpanel" aria-labelledby="tab-rent" tabindex="0" hidden>
-                  Monthly rent calculation.
-                </div>
-              </div>
-            </div>
-            <div class="sample-meta">
-              <span class="sample-meta-label">Overflow</span>
-              <span class="sample-meta-detail">Long labels · Collapse into a vertical list</span>
-            </div>
-          </div>
-          <div class="type-sample-item">
-            <div class="box sample-box">
+            <div class="box box--resizable sample-box" data-box-min-width="8rem" data-box-max-width="100%" style="width: 100%;">
               <div class="tabs-demo" data-tabs-demo>
                 <div class="tabs tabs--underline" role="tablist" aria-label="Record pages">
                   <button type="button" class="tab is-active" id="tab-details" role="tab" aria-selected="true" aria-controls="panel-details">Details</button>
@@ -2612,10 +2586,11 @@
                   Changes made to this record.
                 </div>
               </div>
+              <button type="button" class="box-resize-handle" aria-label="Resize"></button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Underline</span>
-              <span class="sample-meta-detail">Content width · Selected page underlined</span>
+              <span class="sample-meta-detail">Resize to stack · Selected page underlined</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -2720,24 +2695,25 @@
         <h3 class="subsection-label">Overflow</h3>
         <p class="type-paragraph">When labels exceed available width, tabs can stack vertically or collapse into a Dropdown.</p>
 
-        <div class="pattern-stage pattern-stage--intrinsic">
-          <div class="pattern-tabs-row">
+        <div class="pattern-stage pattern-stage--flush pattern-stage--fill">
+          <div class="pattern-tabs-row pattern-tabs-row--stack">
             <div class="pattern-tabs-demo">
-              <div class="pattern-panel--tabs">
+              <div class="box box--resizable pattern-panel--tabs" data-box-min-width="10rem" data-box-max-width="100%" style="width: 100%;">
                 <div class="tabs" role="tablist">
                   <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
                   <button type="button" class="tab" role="tab">Activity</button>
                   <button type="button" class="tab" role="tab">Members</button>
                   <button type="button" class="tab" role="tab">Settings</button>
                 </div>
+                <button type="button" class="box-resize-handle" aria-label="Resize"></button>
               </div>
               <div class="sample-meta">
                 <span class="sample-meta-label">Stack</span>
-                <span class="sample-meta-detail">Default · Parent width measure</span>
+                <span class="sample-meta-detail">Default · Drag narrower to collapse into a list</span>
               </div>
             </div>
             <div class="pattern-tabs-demo">
-              <div class="pattern-panel--tabs-wide">
+              <div class="box box--resizable pattern-panel--tabs-wide" data-box-min-width="10rem" data-box-max-width="100%" style="width: 100%;">
                 <div class="tabs" data-tabs-overflow="dropdown" role="tablist">
                   <button type="button" class="tab is-active" role="tab" aria-selected="true">All accounts</button>
                   <button type="button" class="tab" role="tab">Operating</button>
@@ -2745,10 +2721,11 @@
                   <button type="button" class="tab" role="tab">Credit</button>
                   <button type="button" class="tab" role="tab">Investments</button>
                 </div>
+                <button type="button" class="box-resize-handle" aria-label="Resize"></button>
               </div>
               <div class="sample-meta">
                 <span class="sample-meta-label">Dropdown</span>
-                <span class="sample-meta-detail">Sheet-header style · Menu mirrors tabs</span>
+                <span class="sample-meta-detail">Drag narrower into a menu · Menu mirrors tabs</span>
               </div>
             </div>
           </div>
@@ -6199,21 +6176,23 @@ console.log(label);</code></pre>
               </div>
               <aside class="panel panel--right panel--drawer panel--resizable" id="patternShellDetail" style="--panel-width: 34%; --panel-min-width: 16rem;">
                 <div class="panel-body">
-                  <div class="panel-title-row">
-                    <h2>North studio</h2>
-                    <div class="panel-title-actions">
-                      <span class="status-chip">Open</span>
-                      <div class="tooltip tooltip--bottom">
-                        <button type="button" class="tooltip-trigger btn btn--ghost btn--icon btn--xs" aria-label="About this panel"><i class="ph ph-info icon--m" aria-hidden="true"></i></button>
-                        <div class="tooltip-content" role="tooltip">Detail pane for the selected row. Scrolls independently of the sheet body.</div>
+                  <div class="panel-sticky">
+                    <div class="panel-title-row">
+                      <h2>North studio</h2>
+                      <div class="panel-title-actions">
+                        <span class="status-chip">Open</span>
+                        <div class="tooltip tooltip--bottom">
+                          <button type="button" class="tooltip-trigger btn btn--ghost btn--icon btn--xs" aria-label="About this panel"><i class="ph ph-info icon--m" aria-hidden="true"></i></button>
+                          <div class="tooltip-content" role="tooltip">Detail pane for the selected row. Scrolls independently of the sheet body.</div>
+                        </div>
+                        <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
                       </div>
-                      <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close detail"><i class="ph ph-x" aria-hidden="true"></i></button>
                     </div>
-                  </div>
-                  <div class="tabs" role="tablist">
-                    <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
-                    <button type="button" class="tab" role="tab">History</button>
-                    <button type="button" class="tab" role="tab">Files</button>
+                    <div class="tabs" role="tablist">
+                      <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                      <button type="button" class="tab" role="tab">History</button>
+                      <button type="button" class="tab" role="tab">Files</button>
+                    </div>
                   </div>
                   <div class="box pairs pairs--boxed">
                     <dl class="pairs-body">
@@ -6223,7 +6202,7 @@ console.log(label);</code></pre>
                       <div class="pair"><dt class="pair-key">Account</dt><dd class="pair-value">Operating</dd></div>
                     </dl>
                   </div>
-                  <p class="type-paragraph">Optional sections stack below the sticky title. On narrow screens this panel becomes a right drawer with a backdrop.</p>
+                  <p class="type-paragraph">Optional sections stack below the sticky title and tabs. On narrow screens this panel becomes a right drawer with a backdrop.</p>
                 </div>
                 <button type="button" class="panel-resize-handle" aria-label="Resize detail"></button>
               </aside>
@@ -6234,7 +6213,7 @@ console.log(label);</code></pre>
         </div>
         <div class="sample-meta">
           <span class="sample-meta-label sample-meta-label--wide">Three panes</span>
-          <span class="sample-meta-detail">Left and right Panel · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
+          <span class="sample-meta-detail">Left and right Panel · Sticky title and tabs · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
         </div>
       </div>
     </section>
@@ -6242,7 +6221,7 @@ console.log(label);</code></pre>
     
     <section class="section section--component" id="edge-fade">
       <h2 class="section-label">Edge fade</h2>
-      <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting.</p>
+      <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting. Use on table and graph scrollers, not on Tabs — tab overflow stacks or collapses into a Dropdown.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Horizontal</h3>
