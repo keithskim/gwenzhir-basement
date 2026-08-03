@@ -69,7 +69,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 |---|---|---|
 | `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark` |
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
-| `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
+| `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks (load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; wires nav edge fade |
 | `float.js` | `BasementFloat` | Portals Datetime / Tooltip out of overflow parents |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
@@ -83,8 +83,8 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; optional `.panel--resizable` with an edge drag handle. Host with `.panel-host` (App shell is also a host).
 
-**App shell** — Composes left and right Panel around the sheet. Drawers and resize come from Panel; backdrop is scoped to the shell. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
-**Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control, or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
+**App shell** — Composes left and right Panel around the sheet. Drawers and resize come from Panel; backdrop is scoped to the shell.
+**Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control, or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`.
 
 **Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.
 

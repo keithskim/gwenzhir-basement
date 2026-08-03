@@ -7,8 +7,6 @@
   align-items: center;
   justify-content: center;
   gap: var(--btn-gap);
-  box-sizing: border-box;
-  min-width: min-content;
   padding-block: var(--btn-pad-block);
   padding-inline-start: var(--btn-pad-inline);
   padding-inline-end: var(--btn-pad-inline);

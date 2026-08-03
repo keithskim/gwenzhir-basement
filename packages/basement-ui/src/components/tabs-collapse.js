@@ -111,54 +111,19 @@
   }
 
   function availableWidth(tabsEl) {
-    // Use the parent's content box — not the tabs' shrink-wrapped self width
-    // (that false-stacks) and not a % width stretch inside fit-content hosts
-    // (that locks dropdown collapsed: avail ≈ need on first paint).
-    var parent = tabsEl.parentElement;
-    if (!parent) return tabsEl.clientWidth;
-
-    var pcs = window.getComputedStyle(parent);
-    var parentW =
-      parent.clientWidth -
-      (parseFloat(pcs.paddingLeft) || 0) -
-      (parseFloat(pcs.paddingRight) || 0);
-
-    // Honor absolute inline max-width only (ignore max-width: 100%).
-    var maxRaw = tabsEl.style.maxWidth;
-    if (maxRaw && maxRaw !== 'none' && !/%\s*$/.test(maxRaw)) {
-      var probe = document.createElement('div');
-      probe.style.cssText =
-        'position:absolute;visibility:hidden;pointer-events:none;width:' + maxRaw;
-      parent.appendChild(probe);
-      var maxPx = probe.offsetWidth;
-      parent.removeChild(probe);
-      if (maxPx > 0) return parentW > 0 ? Math.min(parentW, maxPx) : maxPx;
-    }
-
-    return parentW || tabsEl.clientWidth;
-  }
-
-  function intrinsicTabsWidth(tabsEl) {
-    // scrollWidth is unreliable with overflow:visible — sum tab boxes instead.
-    // Subtract shared negative margins so need matches the shrink-wrapped row.
-    var tabs = tabsEl.querySelectorAll(':scope > button.tab');
-    var total = 0;
-    var overlap = 0;
-    for (var i = 0; i < tabs.length; i++) {
-      total += tabs[i].offsetWidth;
-      if (i > 0 && !tabsEl.classList.contains('tabs--underline')) {
-        var cs = window.getComputedStyle(tabs[i]);
-        overlap += Math.abs(parseFloat(cs.marginLeft) || 0);
-      }
-    }
-    if (!total) return tabsEl.scrollWidth;
-    return Math.max(0, total - overlap);
+    var parentW = tabsEl.parentElement ? tabsEl.parentElement.clientWidth : 0;
+    var selfW = tabsEl.clientWidth;
+    // Use the tighter bound. Parent width catches un-capped growth;
+    // self width catches max-width constraints (content can still paint
+    // outside when overflow is visible).
+    if (!parentW) return selfW;
+    if (!selfW) return parentW;
+    return Math.min(parentW, selfW);
   }
 
   function syncTabsCollapse(tabsEl) {
     if (
       !tabsEl ||
-      tabsEl.__tabsSyncing ||
       tabsEl.classList.contains('tabs--full') ||
       tabsEl.classList.contains('tabs--icon')
     ) {
@@ -168,22 +133,16 @@
     var mode = overflowMode(tabsEl);
     if (mode === 'off') return;
 
-    tabsEl.__tabsSyncing = true;
-    try {
-      tabsEl.classList.remove('tabs--stacked', 'tabs--dropdown');
-      syncTabsDropdown(tabsEl, false);
+    tabsEl.classList.remove('tabs--stacked', 'tabs--dropdown');
+    syncTabsDropdown(tabsEl, false);
 
-      var avail = availableWidth(tabsEl);
-      var need = Math.max(tabsEl.scrollWidth, intrinsicTabsWidth(tabsEl));
-      var overflowing = need > avail + 1;
+    var avail = availableWidth(tabsEl);
+    var overflowing = tabsEl.scrollWidth > avail + 1;
 
-      if (mode === 'dropdown') {
-        if (overflowing) syncTabsDropdown(tabsEl, true);
-      } else {
-        tabsEl.classList.toggle('tabs--stacked', overflowing);
-      }
-    } finally {
-      tabsEl.__tabsSyncing = false;
+    if (mode === 'dropdown') {
+      if (overflowing) syncTabsDropdown(tabsEl, true);
+    } else {
+      tabsEl.classList.toggle('tabs--stacked', overflowing);
     }
   }
 
