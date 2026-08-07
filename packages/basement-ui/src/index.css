@@ -28,6 +28,7 @@
 @import url('./components/popup.css');
 @import url('./components/datetime.css');
 @import url('./components/prompt.css');
+@import url('./components/dialog.css');
 @import url('./components/alert.css');
 @import url('./components/table.css');
 @import url('./components/timeline.css');

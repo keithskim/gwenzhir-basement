@@ -652,6 +652,45 @@ html.is-sidebar-locked {
   line-height: var(--line-height-2xs);
 }
 
+.home-preview-dialog {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 12rem;
+  min-height: 4.5rem;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+}
+
+.home-preview-dialog-scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--theme-bg) 52%, transparent);
+  backdrop-filter: blur(0.25rem);
+  -webkit-backdrop-filter: blur(0.25rem);
+}
+
+.home-preview-dialog-panel {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  padding: var(--spacing-xs);
+  gap: var(--spacing-xs);
+  box-shadow: var(--shadow-s);
+}
+
+.home-preview-dialog-panel .dialog-description {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
+.home-preview-dialog-panel .dialog-actions {
+  justify-content: flex-end;
+}
+
 .home-preview-alert {
   width: 100%;
   max-width: 12rem;
@@ -2068,6 +2107,46 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 #panel .pattern-demo {
   grid-column: 1 / -1;
+}
+
+#dialog .pattern-stage--dialog {
+  position: relative;
+  height: 16rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+#dialog .dialog-demo-chrome {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: var(--spacing-s);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-s);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--theme-bg-subtle) 80%, transparent),
+      var(--theme-bg)
+    );
+}
+
+#dialog .dialog-host--demo {
+  z-index: 2;
+}
+
+#dialog .pattern-demo {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #dialog .border-group:first-of-type .pattern-demo-list > .pattern-demo {
+    grid-column: span 4;
+  }
 }
 
 .home-preview-panel {

@@ -1,5 +1,5 @@
 /* Basement UI typefaces.
-   Sans:  Inter over Pretendard.
+   Sans:  Inter over Pretendard (Pretendard slightly larger via size-adjust so Hangul matches Latin/numerals).
    Serif: Source Han Serif (slightly smaller than Sans via size-adjust).
    Mono:  Roboto Mono over Pretendard (slightly smaller via size-adjust).
    Emoji: Noto Emoji (unicode-range subsets; used for emoji codepoints).
@@ -37,6 +37,8 @@
   font-style: normal;
   font-weight: 45 920;
   font-display: block;
+  /* Pretendard Hangul runs small vs Inter caps/figures in mixed runs (e.g. 3억, 59.5m²). */
+  size-adjust: 103%;
   src: local('Pretendard Variable'),
        local('Pretendard'),
        url('https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/woff2/PretendardVariable.woff2') format('woff2-variations');

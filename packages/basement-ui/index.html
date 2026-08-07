@@ -82,6 +82,7 @@
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="panel">Panel</button>
+        <button type="button" class="sidebar-item" data-section="dialog">Dialog</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
         <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
@@ -357,6 +358,22 @@
                   <span class="home-preview-panel-side"></span>
                   <span class="home-preview-panel-main"></span>
                   <span class="home-preview-panel-side home-preview-panel-side--right"></span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="dialog">
+              <span class="home-card-title">Dialog</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-dialog">
+                  <span class="home-preview-dialog-scrim"></span>
+                  <span class="dialog home-preview-dialog-panel">
+                    <span class="dialog-body">
+                      <span class="dialog-description">Confirm this action?</span>
+                    </span>
+                    <span class="dialog-actions">
+                      <span class="btn btn--2xs btn--accent">Confirm</span>
+                    </span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -3856,7 +3873,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Inline</span>
-              <span class="sample-meta-detail">Mono · Subtle fill · Outline · Inherits surrounding size</span>
+              <span class="sample-meta-detail">Mono · Transparent · Outline · Secondary text · Inherits surrounding size</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -3886,7 +3903,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Block</span>
-              <span class="sample-meta-detail">XS · Mono · Subtle fill · Horizontal scroll</span>
+              <span class="sample-meta-detail">XS · Mono · Transparent · Secondary text · Horizontal scroll</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -3896,7 +3913,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Block</span>
-              <span class="sample-meta-detail">S · Mono · Subtle fill · Horizontal scroll</span>
+              <span class="sample-meta-detail">S · Mono · Transparent · Secondary text · Horizontal scroll</span>
             </div>
           </div>
         </div>
@@ -6160,6 +6177,101 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+    <!-- ── Dialog ── -->
+    <section class="section section--component" id="dialog">
+      <h2 class="section-label">Dialog</h2>
+      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default; omit it when the panel should float alone.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog">
+              <div class="dialog-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Workspace overview and recent activity sit behind the dialog.</p>
+                <p class="type-caption" style="margin: 0;">North studio · Open</p>
+              </div>
+              <div class="dialog-host dialog-host--demo is-dialog-open" data-dialog-static>
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTypeDefaultTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogTypeDefaultTitle">Delete project?</h2>
+                    <p class="dialog-description">This removes the project and its history. You can’t undo this.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default">Cancel</button>
+                    <button type="button" class="btn btn--xs btn--accent">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Blurry overlay · Title · Actions</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog">
+              <div class="dialog-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Workspace overview and recent activity sit behind the dialog.</p>
+                <p class="type-caption" style="margin: 0;">North studio · Open</p>
+              </div>
+              <div class="dialog-host dialog-host--demo dialog-host--plain is-dialog-open" data-dialog-static>
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTypePlainTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogTypePlainTitle">Invite teammate</h2>
+                    <p class="dialog-description">Send an invite to join this workspace. They’ll get access once they accept.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default">Cancel</button>
+                    <button type="button" class="btn btn--xs btn--accent">Invite</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">No overlay</span>
+              <span class="sample-meta-detail">Panel only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Open and dismiss</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog">
+              <div class="dialog-demo-chrome">
+                <p class="type-paragraph" style="margin: 0;">Open the dialog from the sheet, then dismiss with Escape or the overlay.</p>
+                <button type="button" class="btn btn--xs btn--default" data-dialog-open="dialogLiveDemo">
+                  Open dialog
+                </button>
+              </div>
+              <div class="dialog-host dialog-host--demo" id="dialogLiveDemo">
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogLiveTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogLiveTitle">Save draft?</h2>
+                    <p class="dialog-description">Keep your changes before leaving this page.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default" data-dialog-close>Discard</button>
+                    <button type="button" class="btn btn--xs btn--accent" data-dialog-close>Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Interactive</span>
+              <span class="sample-meta-detail">Blurry overlay · Dismiss on Escape</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Prompt ── -->
     <section class="section section--component" id="prompt">
       <h2 class="section-label">Prompt</h2>
@@ -6598,6 +6710,7 @@ console.log(label);</code></pre>
   <script src="src/components/box-resize.js" defer></script>
   <script src="src/components/edge-fade.js" defer></script>
   <script src="src/components/panel.js" defer></script>
+  <script src="src/components/dialog.js" defer></script>
   <script src="src/components/float.js" defer></script>
   <script src="src/components/datetime.js" defer></script>
   <script src="src/components/tooltip.js" defer></script>

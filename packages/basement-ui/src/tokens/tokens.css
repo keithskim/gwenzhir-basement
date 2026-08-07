@@ -131,7 +131,8 @@
   --font-emoji-family: 'Noto Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
   --font-base-weight: 500;
   --font-serif-weight: 600;
-  /* Serif / Mono faces load with size-adjust so the same rem steps read slightly smaller than Sans. */
+  /* Face size-adjust values (set on @font-face in vendor/source-han/fonts.css). */
+  --font-sans-hangul-size-adjust: 103%;
   --font-serif-size-adjust: 94%;
   --font-mono-size-adjust: 97%;
   --font-mono-letter-spacing: -0.01em;

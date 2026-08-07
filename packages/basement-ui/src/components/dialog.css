@@ -1,0 +1,100 @@
+/* Dialog — centered modal. Default: app-wide blurry overlay. Plain: panel only. */
+
+.dialog-host {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--spacing-m);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.dialog-host.is-dialog-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dialog-host--demo {
+  position: absolute;
+}
+
+.dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: color-mix(in srgb, var(--theme-bg) 52%, transparent);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+}
+
+.dialog-host--plain .dialog-backdrop {
+  display: none;
+}
+
+.dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-s);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0;
+  padding: var(--spacing-m);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-bg);
+  box-shadow: var(--shadow-l);
+  text-align: left;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.dialog-title {
+  margin: 0;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  letter-spacing: -0.01em;
+  color: var(--theme-fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dialog-description {
+  margin: 0;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.dialog-actions .btn {
+  box-sizing: border-box;
+  min-width: 5rem;
+}

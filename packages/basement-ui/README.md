@@ -56,6 +56,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 <script src="path/to/basement-ui/src/components/box-resize.js" defer></script>
 <script src="path/to/basement-ui/src/components/edge-fade.js" defer></script>
 <script src="path/to/basement-ui/src/components/panel.js" defer></script>
+<script src="path/to/basement-ui/src/components/dialog.js" defer></script>
 <script src="path/to/basement-ui/src/components/float.js" defer></script>
 <script src="path/to/basement-ui/src/components/datetime.js" defer></script>
 <script src="path/to/basement-ui/src/components/tooltip.js" defer></script>
@@ -71,6 +72,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; wires nav edge fade |
+| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss |
 | `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Tabs menus out of overflow parents; dialog re-places on page scroll |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
@@ -88,7 +90,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.
 
-**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Emoji is Noto Emoji (`type-emoji`): monochrome and tintable with text color. `.type-emoji` sets `font-variant-emoji: text`; avoid `U+FE0F` in content (use `U+FE0E` or bare codepoints) or browsers will prefer system color emoji. Noto Emoji is also listed after each family so emoji codepoints resolve there via unicode-range subsets. Load `vendor/source-han/fonts.css` in every project so the faces resolve; it declares faces with absolute CDN URLs and `font-display: block` (no nested `@import`, no fallback flash). Preload Inter and Pretendard WOFF2s in `<head>` when possible. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
+**Typefaces** — Base text is Inter over Pretendard at weight 500. Pretendard Hangul loads slightly larger (`size-adjust: 103%`) so it optically matches Inter Latin/numerals in mixed runs. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Emoji is Noto Emoji (`type-emoji`): monochrome and tintable with text color. `.type-emoji` sets `font-variant-emoji: text`; avoid `U+FE0F` in content (use `U+FE0E` or bare codepoints) or browsers will prefer system color emoji. Noto Emoji is also listed after each family so emoji codepoints resolve there via unicode-range subsets. Load `vendor/source-han/fonts.css` in every project so the faces resolve; it declares faces with absolute CDN URLs and `font-display: block` (no nested `@import`, no fallback flash). Preload Inter and Pretendard WOFF2s in `<head>` when possible. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
 
 ### Palette audit
 
