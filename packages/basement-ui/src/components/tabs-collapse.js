@@ -235,6 +235,10 @@
 
     tabsEl.__tabsSyncing = true;
     try {
+      // Measure in the horizontal (un-collapsed) layout. Clearing overflow
+      // classes changes this element's size — watch() must not ResizeObserver
+      // the tabs el itself or we stack↔unstack forever. Keep the guard through
+      // rAF so any leftover observer callbacks from the parent are ignored too.
       tabsEl.classList.remove('tabs--stacked', 'tabs--dropdown');
       syncTabsDropdown(tabsEl, false);
 
@@ -248,7 +252,9 @@
         tabsEl.classList.toggle('tabs--stacked', overflowing);
       }
     } finally {
-      tabsEl.__tabsSyncing = false;
+      requestAnimationFrame(function () {
+        tabsEl.__tabsSyncing = false;
+      });
     }
   }
 
@@ -260,7 +266,8 @@
 
     if (typeof ResizeObserver !== 'undefined') {
       var observer = new ResizeObserver(sync);
-      observer.observe(tabsEl);
+      // Parent capacity is what overflow cares about. Observing the tabs el
+      // re-enters on our own stacked/dropdown toggles and freezes the UI.
       if (tabsEl.parentElement) observer.observe(tabsEl.parentElement);
     }
 
