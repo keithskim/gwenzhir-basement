@@ -32,6 +32,8 @@
 .sidebar-title .ph {
   display: block;
   line-height: 1;
+  /* Default title mark size matches icon--2xl */
+  font-size: 2.25rem;
 }
 
 .sidebar-title.is-active {
