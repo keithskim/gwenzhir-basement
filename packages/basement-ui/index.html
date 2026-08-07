@@ -103,14 +103,18 @@
       </div>
     </nav>
     <div class="sidebar-footer">
-      <label class="dev-toggle">
-        <input class="toggle-switch" type="checkbox" role="switch" id="darkModeToggle">
-        Dark mode
-      </label>
-      <label class="dev-toggle">
-        <input class="toggle-switch" type="checkbox" role="switch" id="columnOverlayToggle">
-        Show columns
-      </label>
+      <span class="tooltip tooltip--top">
+        <button type="button" class="tooltip-trigger btn btn--xs btn--default btn--icon" id="darkModeToggle" aria-label="Dark mode" aria-describedby="darkModeTooltip" aria-pressed="false">
+          <i class="ph ph-moon icon--m" aria-hidden="true"></i>
+        </button>
+        <span class="tooltip-content" id="darkModeTooltip" role="tooltip">Dark mode</span>
+      </span>
+      <span class="tooltip tooltip--top">
+        <button type="button" class="tooltip-trigger btn btn--xs btn--default btn--icon" id="columnOverlayToggle" aria-label="Show columns" aria-describedby="columnOverlayTooltip" aria-pressed="false">
+          <i class="ph ph-square-split-horizontal icon--m" aria-hidden="true"></i>
+        </button>
+        <span class="tooltip-content" id="columnOverlayTooltip" role="tooltip">Show columns</span>
+      </span>
     </div>
   </aside>
 

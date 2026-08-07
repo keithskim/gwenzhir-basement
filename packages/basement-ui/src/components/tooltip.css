@@ -42,7 +42,7 @@
 }
 
 .tooltip:hover .tooltip-content,
-.tooltip:focus-within .tooltip-content,
+.tooltip:has(:focus-visible) .tooltip-content,
 .tooltip.is-open .tooltip-content {
   opacity: 1;
   visibility: visible;
@@ -97,32 +97,32 @@
 }
 
 .tooltip--top:hover .tooltip-content,
-.tooltip--top:focus-within .tooltip-content,
+.tooltip--top:has(:focus-visible) .tooltip-content,
 .tooltip--top.is-open .tooltip-content {
   transform: translate(-50%, 0);
 }
 
 .tooltip--right:hover .tooltip-content,
-.tooltip--right:focus-within .tooltip-content,
+.tooltip--right:has(:focus-visible) .tooltip-content,
 .tooltip--right.is-open .tooltip-content {
   transform: translate(0, -50%);
 }
 
 .tooltip--bottom:hover .tooltip-content,
-.tooltip--bottom:focus-within .tooltip-content,
+.tooltip--bottom:has(:focus-visible) .tooltip-content,
 .tooltip--bottom.is-open .tooltip-content {
   transform: translate(-50%, 0);
 }
 
 .tooltip--left:hover .tooltip-content,
-.tooltip--left:focus-within .tooltip-content,
+.tooltip--left:has(:focus-visible) .tooltip-content,
 .tooltip--left.is-open .tooltip-content {
   transform: translate(0, -50%);
 }
 
 /* Wired tooltips are shown only via BasementFloat, not CSS :hover */
 .tooltip[data-basement-float='tooltip']:hover .tooltip-content,
-.tooltip[data-basement-float='tooltip']:focus-within .tooltip-content {
+.tooltip[data-basement-float='tooltip']:has(:focus-visible) .tooltip-content {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

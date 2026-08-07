@@ -1,5 +1,6 @@
 /**
- * Wire `.tooltip` triggers through BasementFloat (hover / focus / Escape).
+ * Wire `.tooltip` triggers through BasementFloat (hover / keyboard focus / Escape).
+ * Pointer click focus does not keep the tip open — only :hover and :focus-visible do.
  * Marks wired roots with data-basement-float="tooltip" so CSS hover does not double-show.
  */
 (function () {
@@ -35,23 +36,38 @@
       window.BasementFloat.close(content);
     };
 
+    var shouldStayOpen = function () {
+      return (
+        trigger.matches(':hover') ||
+        content.matches(':hover') ||
+        trigger.matches(':focus-visible') ||
+        (content.contains(document.activeElement) &&
+          document.activeElement &&
+          document.activeElement.matches(':focus-visible'))
+      );
+    };
+
     var scheduleHide = function () {
       clearTimeout(hideTimer);
       hideTimer = setTimeout(function () {
-        if (
-          trigger.matches(':hover') ||
-          content.matches(':hover') ||
-          trigger === document.activeElement ||
-          content.contains(document.activeElement)
-        ) {
-          return;
-        }
+        if (shouldStayOpen()) return;
         hide();
       }, 80);
     };
 
     trigger.addEventListener('mouseenter', show);
-    trigger.addEventListener('focus', show);
+    trigger.addEventListener('focus', function () {
+      // Defer so :focus-visible is resolved (skip click-induced focus).
+      requestAnimationFrame(function () {
+        if (trigger.matches(':focus-visible')) show();
+      });
+    });
+    trigger.addEventListener('click', function () {
+      // Selected / pressed toggles keep focus; dismiss tip for pointer users.
+      requestAnimationFrame(function () {
+        if (!trigger.matches(':focus-visible')) hide();
+      });
+    });
     content.addEventListener('mouseenter', function () {
       clearTimeout(hideTimer);
     });

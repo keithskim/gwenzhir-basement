@@ -342,7 +342,16 @@ const darkModeToggle = document.getElementById('darkModeToggle');
 
 function setDarkMode(enabled) {
   document.documentElement.classList.toggle('is-dark', enabled);
-  darkModeToggle.checked = enabled;
+  const label = enabled ? 'Light mode' : 'Dark mode';
+  darkModeToggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  darkModeToggle.setAttribute('aria-label', label);
+  const tip = document.getElementById('darkModeTooltip');
+  if (tip) tip.textContent = label;
+  const icon = darkModeToggle.querySelector('.ph');
+  if (icon) {
+    icon.classList.toggle('ph-moon', !enabled);
+    icon.classList.toggle('ph-sun', enabled);
+  }
   syncAllColorChipBorders();
   syncTokenValues();
 }
@@ -354,8 +363,8 @@ function syncTokenValues() {
   });
 }
 
-darkModeToggle.addEventListener('change', () => {
-  const enabled = darkModeToggle.checked;
+darkModeToggle.addEventListener('click', () => {
+  const enabled = darkModeToggle.getAttribute('aria-pressed') !== 'true';
   setDarkMode(enabled);
   localStorage.setItem(DARK_MODE_STORAGE_KEY, enabled ? '1' : '0');
 });
@@ -366,9 +375,7 @@ if (storedDark === '1') {
 } else if (storedDark === '0') {
   setDarkMode(false);
 } else if (document.documentElement.classList.contains('is-dark')) {
-  darkModeToggle.checked = true;
-  syncAllColorChipBorders();
-  syncTokenValues();
+  setDarkMode(true);
 } else {
   syncAllColorChipBorders();
   syncTokenValues();
@@ -386,11 +393,15 @@ function syncColumnOverlay() {
 
 function setColumnOverlayVisible(visible) {
   columnOverlay.classList.toggle('is-hidden', !visible);
-  columnOverlayToggle.checked = visible;
+  const label = visible ? 'Hide columns' : 'Show columns';
+  columnOverlayToggle.setAttribute('aria-pressed', visible ? 'true' : 'false');
+  columnOverlayToggle.setAttribute('aria-label', label);
+  const tip = document.getElementById('columnOverlayTooltip');
+  if (tip) tip.textContent = label;
 }
 
-columnOverlayToggle.addEventListener('change', () => {
-  const visible = columnOverlayToggle.checked;
+columnOverlayToggle.addEventListener('click', () => {
+  const visible = columnOverlayToggle.getAttribute('aria-pressed') !== 'true';
   setColumnOverlayVisible(visible);
   localStorage.setItem(COLUMN_OVERLAY_STORAGE_KEY, visible ? '1' : '');
 });

@@ -78,24 +78,6 @@
 }
 
 /* ── Sidebar toggle (narrow viewport) ── */
-.dev-toggle {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-base-family);
-  font-weight: var(--font-base-weight);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--theme-fg-secondary);
-  cursor: pointer;
-  -webkit-font-smoothing: antialiased;
-}
-
-.dev-toggle input {
-  margin: 0;
-  accent-color: var(--theme-accent);
-}
-
 .sidebar-toggle {
   position: fixed;
   top: var(--page-padding-block);
@@ -1856,10 +1838,6 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 #progress .progress:has(.progress-status) {
   max-width: 24rem;
-}
-
-#progress .sample-box:has(.progress-status) {
-  justify-content: flex-start;
 }
 
 #graph .type-sample-item {
