@@ -1843,18 +1843,23 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 #progress .sample-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-block: var(--spacing-m);
   padding-inline: var(--spacing-s);
 }
 
-#progress .sample-box > * {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 #progress .progress {
   max-width: 16rem;
+}
+
+#progress .progress:has(.progress-status) {
+  max-width: 24rem;
+}
+
+#progress .sample-box:has(.progress-status) {
+  justify-content: flex-start;
 }
 
 #graph .type-sample-item {

@@ -38,3 +38,35 @@
   -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums;
 }
+
+/* Longer status under the track; value stays on the track row, centered. */
+.progress:has(.progress-status) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--spacing-xs);
+  row-gap: 0.25rem;
+  align-items: center;
+}
+
+.progress:has(.progress-status) .progress-track {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+}
+
+.progress:has(.progress-status) .progress-value {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.progress-status {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+  color: var(--theme-fg-secondary);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: calc(1em + 0.25rem);
+  -webkit-font-smoothing: antialiased;
+}
