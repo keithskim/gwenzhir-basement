@@ -93,6 +93,13 @@
   font-weight: var(--font-serif-weight);
 }
 
+.type-emoji {
+  font-family: var(--font-emoji-family);
+  font-weight: var(--font-base-weight);
+  /* Monochrome: prefer text style. Explicit U+FE0F still forces color emoji. */
+  font-variant-emoji: text;
+}
+
 /* ── Links ── */
 .link {
   color: inherit;

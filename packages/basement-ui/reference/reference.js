@@ -492,6 +492,202 @@ function initPatternEdgeFades() {
 
 initPatternEdgeFades();
 
+// ── App Icon builder ──
+const APP_ICON_DEFAULT = 'ph-bounding-box';
+const APP_ICON_STORAGE_KEY = 'basement-ui-app-icon';
+let currentAppIcon = APP_ICON_DEFAULT;
+
+function appIconPhClass(iconName) {
+  return iconName.startsWith('ph-') ? iconName : `ph-${iconName}`;
+}
+
+function parsePseudoContent(value) {
+  if (!value || value === 'none') return '';
+  let raw = value.trim();
+  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
+    raw = raw.slice(1, -1);
+  }
+  return raw.replace(/\\([0-9a-fA-F]{1,6})\s?/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/\\(.)/g, '$1');
+}
+
+function glyphForPhClass(phClass) {
+  const probe = document.createElement('i');
+  probe.className = `ph ${phClass}`;
+  probe.setAttribute('aria-hidden', 'true');
+  probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;pointer-events:none;';
+  document.body.appendChild(probe);
+  const glyph = parsePseudoContent(getComputedStyle(probe, '::before').content);
+  probe.remove();
+  return glyph;
+}
+
+function tokenColor(name, fallback) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+}
+
+function roundRectPath(ctx, x, y, size, radius) {
+  const r = Math.min(radius, size / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + size, y, x + size, y + size, r);
+  ctx.arcTo(x + size, y + size, x, y + size, r);
+  ctx.arcTo(x, y + size, x, y, r);
+  ctx.arcTo(x, y, x + size, y, r);
+  ctx.closePath();
+}
+
+async function renderAppIconCanvas(phClass, size, scheme = 'dark') {
+  await document.fonts.load(`${Math.round(size * 0.55)}px Phosphor`);
+  await document.fonts.ready;
+  const glyph = glyphForPhClass(phClass);
+  if (!glyph) throw new Error(`Missing glyph for ${phClass}`);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const black = tokenColor('--color-black', '#131410');
+  const white = tokenColor('--color-white', '#FFFFF9');
+  const lightGray = tokenColor('--color-light-gray', '#DEDFD8');
+  const dark = scheme !== 'light';
+  const radius = size * 0.125;
+
+  ctx.clearRect(0, 0, size, size);
+  ctx.fillStyle = dark ? black : white;
+  roundRectPath(ctx, 0, 0, size, radius);
+  ctx.fill();
+
+  if (!dark) {
+    ctx.strokeStyle = lightGray;
+    ctx.lineWidth = Math.max(1, size * (1 / 64));
+    roundRectPath(ctx, 0, 0, size, radius);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = dark ? white : black;
+  ctx.font = `${size * 0.55}px Phosphor`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Optical center: Phosphor glyphs sit slightly high with alphabetic metrics.
+  ctx.fillText(glyph, size / 2, size / 2 + size * 0.02);
+  return canvas;
+}
+
+function downloadCanvas(canvas, filename) {
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+}
+
+function slugFromPhClass(phClass) {
+  return phClass.replace(/^ph-/, '');
+}
+
+function currentAppIconScheme() {
+  const checked = document.querySelector('input[name="app-icon-scheme"]:checked');
+  return checked?.value === 'light' ? 'light' : 'dark';
+}
+
+function setAppIconSelection(phClass, { persist = true } = {}) {
+  const className = appIconPhClass(phClass);
+  currentAppIcon = className;
+  document.querySelectorAll('[data-app-icon-preview] .ph').forEach(icon => {
+    icon.className = `ph ${className}`;
+  });
+  document.querySelectorAll('#appIconPicker .app-icon-picker-item').forEach(item => {
+    const selected = item.dataset.icon === className;
+    item.classList.toggle('is-selected', selected);
+    item.setAttribute('aria-selected', selected ? 'true' : 'false');
+  });
+  if (persist) localStorage.setItem(APP_ICON_STORAGE_KEY, className);
+}
+
+async function applyAppIconFavicon(phClass, scheme = 'dark') {
+  const canvas = await renderAppIconCanvas(phClass, 32, scheme);
+  let link = document.querySelector('link[data-app-icon-favicon]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    link.dataset.appIconFavicon = '';
+    document.head.appendChild(link);
+  }
+  link.href = canvas.toDataURL('image/png');
+}
+
+function initAppIconBuilder() {
+  const picker = document.getElementById('appIconPicker');
+  if (!picker) return;
+
+  const catalog = document.querySelectorAll('#icons .col-row--icons > div');
+  const seen = new Set();
+  catalog.forEach(cell => {
+    const icon = cell.querySelector('.ph');
+    const label = cell.querySelector('.token-name')?.textContent.trim();
+    if (!icon || !label) return;
+    const phClass = [...icon.classList].find(c => c.startsWith('ph-'));
+    if (!phClass || seen.has(phClass)) return;
+    seen.add(phClass);
+
+    const item = document.createElement('div');
+    item.className = 'app-icon-picker-item';
+    item.dataset.icon = phClass;
+    item.setAttribute('role', 'option');
+    item.setAttribute('aria-selected', 'false');
+    item.tabIndex = 0;
+    item.innerHTML = `
+      <div class="icon-face icon-face--l"><i class="ph ${phClass}" aria-hidden="true"></i></div>
+      <div class="token-name">${label}</div>
+    `;
+    const choose = () => setAppIconSelection(phClass);
+    item.addEventListener('click', choose);
+    item.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        choose();
+      }
+    });
+    picker.appendChild(item);
+  });
+
+  const stored = localStorage.getItem(APP_ICON_STORAGE_KEY);
+  const initial = stored && seen.has(stored) ? stored : APP_ICON_DEFAULT;
+  setAppIconSelection(initial);
+
+  document.querySelectorAll('[data-app-icon-download]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const size = Number(btn.dataset.appIconDownload) || 512;
+      const scheme = currentAppIconScheme();
+      try {
+        const canvas = await renderAppIconCanvas(currentAppIcon, size, scheme);
+        const kind = size >= 256 ? 'app-icon' : 'favicon';
+        downloadCanvas(canvas, `${kind}-${scheme}-${slugFromPhClass(currentAppIcon)}-${size}.png`);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  });
+
+  const applyBtn = document.getElementById('appIconApplyFavicon');
+  applyBtn?.addEventListener('click', async () => {
+    try {
+      await applyAppIconFavicon(currentAppIcon, currentAppIconScheme());
+    } catch (err) {
+      console.error(err);
+    }
+  });
+}
+
+initAppIconBuilder();
+
 const initialSection = sectionFromHash()
   || localStorage.getItem(SECTION_STORAGE_KEY)
   || DEFAULT_SECTION;

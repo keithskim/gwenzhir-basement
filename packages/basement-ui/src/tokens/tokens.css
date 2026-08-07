@@ -125,9 +125,10 @@
   --alert-destructive-fg: var(--theme-fg-destructive);
   --alert-destructive-icon: var(--color-red);
 
-  --font-base-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono-family: 'Roboto Mono', 'Pretendard', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-serif-family: 'Source Han Serif', 'Noto Serif KR', Georgia, 'Times New Roman', serif;
+  --font-base-family: 'Inter', 'Pretendard', 'Noto Emoji', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono-family: 'Roboto Mono', 'Pretendard', 'Noto Emoji', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif-family: 'Source Han Serif', 'Noto Serif KR', 'Noto Emoji', Georgia, 'Times New Roman', serif;
+  --font-emoji-family: 'Noto Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
   --font-base-weight: 500;
   --font-serif-weight: 600;
   /* Serif / Mono faces load with size-adjust so the same rem steps read slightly smaller than Sans. */

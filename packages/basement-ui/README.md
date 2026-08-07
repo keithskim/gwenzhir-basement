@@ -6,14 +6,14 @@ Design system and component library for Gwenzhir projects.
 
 - `src/tokens/` — Design tokens (colors, typography, measure, layout)
 - `src/base/` — Reset and base element styles
-- `src/typography/` — Heading, body, caption, mono, serif, link, and tabular-numeral styles
+- `src/typography/` — Heading, body, caption, mono, serif, emoji, link, and tabular-numeral styles
 - `src/icons/` — Phosphor icon size utilities
 - `src/components/` — Reusable UI component styles and optional JS helpers
 - `src/patterns/` — Composition patterns (App frame, Edge fade) built on tokens and components
 - `src/index.css` — Full library entry (imports all of the above)
 - `reference/` — Reference page chrome (sidebar, demos, dev toggles); not part of the published package
 - `index.html` — Live token and component reference
-- `vendor/source-han/` — Typeface loading CSS: Inter, Pretendard, Source Han Serif, Roboto Mono (OFL)
+- `vendor/source-han/` — Typeface loading CSS: Inter, Pretendard, Source Han Serif, Roboto Mono, Noto Emoji (OFL)
 - `vendor/phosphor/` — Phosphor Icons regular weight (MIT)
 
 ## Usage
@@ -88,7 +88,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.
 
-**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Load `vendor/source-han/fonts.css` in every project so the faces resolve; it declares faces with absolute CDN URLs and `font-display: block` (no nested `@import`, no fallback flash). Preload Inter and Pretendard WOFF2s in `<head>` when possible. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
+**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Emoji is Noto Emoji (`type-emoji`): monochrome and tintable with text color. `.type-emoji` sets `font-variant-emoji: text`; avoid `U+FE0F` in content (use `U+FE0E` or bare codepoints) or browsers will prefer system color emoji. Noto Emoji is also listed after each family so emoji codepoints resolve there via unicode-range subsets. Load `vendor/source-han/fonts.css` in every project so the faces resolve; it declares faces with absolute CDN URLs and `font-display: block` (no nested `@import`, no fallback flash). Preload Inter and Pretendard WOFF2s in `<head>` when possible. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
 
 ### Palette audit
 
@@ -111,4 +111,4 @@ Import tokens and components into any Gwenzhir app or internal tool. Do not add 
 
 ## License
 
-ISC for Basement UI. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono); see `vendor/source-han/NOTICE`. [Phosphor Icons](https://phosphoricons.com/) are MIT; see `vendor/phosphor/NOTICE`.
+ISC for Basement UI. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono, Noto Emoji); see `vendor/source-han/NOTICE`. [Phosphor Icons](https://phosphoricons.com/) are MIT; see `vendor/phosphor/NOTICE`.

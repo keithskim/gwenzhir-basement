@@ -812,14 +812,16 @@ html.is-sidebar-locked {
 .col-row--7 > * { grid-column: span 1; min-width: 0; }
 
 #icons .col-row--icons > *,
-#icons .col-row--icon-sizes > * {
+#icons .col-row--icon-sizes > *,
+#app-icon .col-row--icons > * {
   grid-column: span 2;
   min-width: 0;
 }
 
 @media (min-width: 80rem) {
   #icons .col-row--icons > *,
-  #icons .col-row--icon-sizes > * {
+  #icons .col-row--icon-sizes > *,
+  #app-icon .col-row--icons > * {
     grid-column: span 1;
   }
 }
@@ -885,7 +887,7 @@ html.is-sidebar-locked {
   overflow: visible;
 }
 
-#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .type-mono, .type-serif, .link-sample, .control-row) {
+#typography .sample-box > :where(.font-size-sample, .type-h1, .type-h2, .type-h3, .type-h4, .type-paragraph, .type-paragraph--m, .type-caption, .type-quote, .type-quote--m, .type-mono, .type-serif, .type-emoji, .link-sample, .control-row) {
   grid-column: 1 / -1;
 }
 
@@ -1042,6 +1044,54 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 .icon-face--l .ph { font-size: 1.25rem; }
 .icon-face--xl .ph { font-size: 1.5rem; }
 .icon-face--2xl .ph { font-size: 2.25rem; }
+
+/* ── App Icon builder (reference) ── */
+.app-icon-builder {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: var(--spacing-s);
+}
+
+.app-icon-builder-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.app-icon-picker {
+  grid-column: 1 / -1;
+}
+
+.app-icon-picker-item {
+  min-width: 0;
+}
+
+.app-icon-picker-item > .icon-face {
+  cursor: pointer;
+  transition: outline-color 120ms ease;
+}
+
+.app-icon-picker-item > .icon-face:hover {
+  outline: 2px solid var(--color-dark-gray);
+  outline-offset: 1px;
+}
+
+.app-icon-picker-item.is-selected > .icon-face {
+  outline: 2px solid var(--theme-fg);
+  outline-offset: 1px;
+}
+
+.app-icon-picker-item:focus-visible {
+  outline: none;
+}
+
+.app-icon-picker-item:focus-visible > .icon-face {
+  outline: 2px solid var(--theme-fg);
+  outline-offset: 1px;
+}
 
 .icon-group + .icon-group {
   margin-top: var(--spacing-m);
@@ -1401,18 +1451,18 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-width: 0;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner) .sample-box {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .sample-box {
   place-items: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner) .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .sample-box > * {
   /* Span the full subgrid so justify-self centers in the box, not column 1 */
   grid-column: 1 / -1;
   justify-self: center;
   align-self: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar) .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #app-icon) .sample-box > * {
   /* Intrinsic demos: avoid stretching. Spinner keeps its fixed size tokens. */
   width: auto;
   min-width: auto;
@@ -1575,7 +1625,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   }
 }
 
-:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-item {
+:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
@@ -1586,7 +1636,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner) .type-sample-item {
+  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
     grid-column: span 2;
   }
 }
@@ -1653,24 +1703,24 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   }
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-list--sizes .sample-box {
   padding-block: var(--spacing-m);
   place-items: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-list--sizes .sample-box > * {
   grid-column: 1 / -1;
   justify-self: center;
   align-self: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar) .type-sample-list--sizes .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #app-icon) .type-sample-list--sizes .sample-box > * {
   width: auto;
   min-width: auto;
 }
 
 @media (min-width: 80rem) {
-  :is(#tag, #status-chip, #mention, #avatar, #spinner) .type-sample-list--sizes .sample-box {
+  :is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-list--sizes .sample-box {
     aspect-ratio: 2 / 1;
     padding-block: 0;
   }
