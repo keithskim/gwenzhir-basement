@@ -53,6 +53,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 ```html
 <script src="path/to/basement-ui/src/components/theme.js"></script> <!-- early in <head> to avoid FOUC -->
 …
+<script src="path/to/basement-ui/src/components/keyboard.js" defer></script>
 <script src="path/to/basement-ui/src/components/box-resize.js" defer></script>
 <script src="path/to/basement-ui/src/components/edge-fade.js" defer></script>
 <script src="path/to/basement-ui/src/components/panel.js" defer></script>
@@ -69,6 +70,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | Script | API | Role |
 |---|---|---|
 | `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark` |
+| `keyboard.js` | `BasementKeyboard` | Return activates checkboxes, radios, and switches (Tab focus ring ships in the CSS bundle) |
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; wires nav edge fade |

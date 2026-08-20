@@ -350,8 +350,8 @@ html.is-sidebar-locked {
 }
 
 .home-card:focus-visible {
-  outline: 2px solid var(--theme-fg);
-  outline-offset: 2px;
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: 0.125rem;
 }
 
 .home-card-title {
@@ -814,6 +814,18 @@ html.is-sidebar-locked {
   white-space: nowrap;
 }
 
+.home-preview-keyboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-s);
+}
+
+.home-preview-keyboard .link {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
 .subsection-label + .type-paragraph {
   margin-top: calc(-1 * var(--spacing-xs));
 }
@@ -1110,8 +1122,8 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 .app-icon-picker-item:focus-visible > .icon-face {
-  outline: 2px solid var(--theme-fg);
-  outline-offset: 1px;
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: 0.125rem;
 }
 
 .icon-group + .icon-group {
@@ -1495,12 +1507,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-width: 0;
 }
 
-.section--component .type-sample-list:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip),
-.section--component .type-sample-item:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip) {
+.section--component .type-sample-list:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select),
+.section--component .type-sample-item:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select) {
   overflow: visible;
 }
 
-.section--component .sample-box:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip) {
+.section--component .sample-box:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select) {
   overflow: visible;
 }
 
@@ -2728,10 +2740,11 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   background: var(--theme-surface);
 }
 
-/* Tabs overflow dropdown menus portal via Float — keep the box clipped.
-   Tall enough that the menu can open below the trigger and stay in frame. */
+/* Overflow demos: fixed window so stacking does not grow the box or the gap below.
+   Dropdown is tall enough that the menu can open below the trigger and stay in frame. */
+.pattern-panel--tabs.box--resizable,
 .pattern-panel--tabs-wide.box--resizable[data-float-boundary] {
-  min-height: 14rem;
+  height: 14rem;
   overflow: hidden;
 }
 
@@ -2746,7 +2759,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 .pattern-tabs-row--stack {
   flex-direction: column;
   align-items: stretch;
-  gap: var(--spacing-l);
+  gap: var(--spacing-m);
 }
 
 .pattern-tabs-demo {

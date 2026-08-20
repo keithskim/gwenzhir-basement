@@ -100,6 +100,7 @@
         <button type="button" class="sidebar-item" data-section="app-frame">App frame</button>
         <button type="button" class="sidebar-item" data-section="edge-fade">Edge fade</button>
         <button type="button" class="sidebar-item" data-section="float">Float</button>
+        <button type="button" class="sidebar-item" data-section="keyboard">Keyboard</button>
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -550,6 +551,16 @@
                     </span>
                   </span>
                   <span class="home-preview-float-tip">Tip</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="keyboard">
+              <span class="home-card-title">Keyboard</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-keyboard">
+                  <span class="btn btn--2xs btn--default">Save</span>
+                  <span class="toggle-switch home-preview-toggle"></span>
+                  <span class="link">Docs</span>
                 </span>
               </span>
             </button>
@@ -2639,13 +2650,13 @@
                   <button type="button" class="tab" id="tab-activity" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Activity</button>
                   <button type="button" class="tab" id="tab-settings" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Settings</button>
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+                <div class="tab-panel tabs-demo-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
                   Project summary and recent progress.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden>
                   Recent updates from your team.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
                   Project preferences and access.
                 </div>
               </div>
@@ -2664,13 +2675,13 @@
                   <button type="button" class="tab" id="tab-notes" role="tab" aria-selected="false" aria-controls="panel-notes" tabindex="-1">Notes</button>
                   <button type="button" class="tab" id="tab-history" role="tab" aria-selected="false" aria-controls="panel-history" tabindex="-1">History</button>
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-details" role="tabpanel" aria-labelledby="tab-details" tabindex="0">
+                <div class="tab-panel tabs-demo-panel" id="panel-details" role="tabpanel" aria-labelledby="tab-details">
                   Core information for this record.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" hidden>
                   Notes shared by your team.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
                   Changes made to this record.
                 </div>
               </div>
@@ -2689,13 +2700,13 @@
                   <button type="button" class="tab" id="tab-list" role="tab" aria-selected="false" aria-controls="panel-list" tabindex="-1">List</button>
                   <button type="button" class="tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="panel-calendar" tabindex="-1">Calendar</button>
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-board" role="tabpanel" aria-labelledby="tab-board" tabindex="0">
+                <div class="tab-panel tabs-demo-panel" id="panel-board" role="tabpanel" aria-labelledby="tab-board">
                   Work organized across a visual board.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-list" role="tabpanel" aria-labelledby="tab-list" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-list" role="tabpanel" aria-labelledby="tab-list" hidden>
                   Work organized in a compact list.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-calendar" role="tabpanel" aria-labelledby="tab-calendar" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-calendar" role="tabpanel" aria-labelledby="tab-calendar" hidden>
                   Work organized by date.
                 </div>
               </div>
@@ -2757,16 +2768,16 @@
                     <span class="tab-label">Settings</span>
                   </button>
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-icon-home" role="tabpanel" aria-labelledby="tab-icon-home" tabindex="0">
+                <div class="tab-panel tabs-demo-panel" id="panel-icon-home" role="tabpanel" aria-labelledby="tab-icon-home">
                   Home overview and shortcuts.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-icon-search" role="tabpanel" aria-labelledby="tab-icon-search" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-icon-search" role="tabpanel" aria-labelledby="tab-icon-search" hidden>
                   Search and jump to your latest items.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-icon-calendar" role="tabpanel" aria-labelledby="tab-icon-calendar" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-icon-calendar" role="tabpanel" aria-labelledby="tab-icon-calendar" hidden>
                   Plan and review events at a glance.
                 </div>
-                <div class="tab-panel tabs-demo-panel" id="panel-icon-settings" role="tabpanel" aria-labelledby="tab-icon-settings" tabindex="0" hidden>
+                <div class="tab-panel tabs-demo-panel" id="panel-icon-settings" role="tabpanel" aria-labelledby="tab-icon-settings" hidden>
                   Personalize your preferences and access.
                 </div>
               </div>
@@ -6726,14 +6737,41 @@ console.log(label);</code></pre>
       </div>
     </section>
 
-    
-    
+    <section class="section section--component" id="keyboard">
+      <h2 class="section-label">Keyboard</h2>
+      <p class="type-paragraph">Tab moves focus across interactive controls. Return clicks a focused button or toggles a switch. The focus ring appears for keyboard focus, not for pointer clicks.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Tab and Return</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="variant-row">
+                <button type="button" class="btn btn--xs btn--default">Save</button>
+                <label class="toggle-control">
+                  <input class="toggle-switch" type="checkbox" role="switch">
+                  Notify
+                </label>
+                <a class="link" href="#keyboard">Docs</a>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Button · Toggle · Link</span>
+              <span class="sample-meta-detail">Tab moves focus · Return clicks or toggles · Ring only for keyboard focus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+       
     
 
 
     </main>
   </div>
 
+  <script src="src/components/keyboard.js" defer></script>
   <script src="src/components/box-resize.js" defer></script>
   <script src="src/components/edge-fade.js" defer></script>
   <script src="src/components/panel.js" defer></script>

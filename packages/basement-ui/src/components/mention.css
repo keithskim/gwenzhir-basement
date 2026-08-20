@@ -22,11 +22,6 @@ a.mention:hover {
   border-color: var(--theme-fg);
 }
 
-a.mention:focus-visible {
-  outline: 2px solid var(--theme-fg);
-  outline-offset: 2px;
-}
-
 .mention-label {
   min-width: 0;
 }

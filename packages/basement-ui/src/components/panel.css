@@ -159,11 +159,6 @@
   height: 2rem;
 }
 
-.panel-resize-handle:focus-visible {
-  outline: 0.125rem solid var(--theme-fg);
-  outline-offset: -0.125rem;
-}
-
 .panel--resizable.is-resizing {
   user-select: none;
 }

@@ -1,0 +1,50 @@
+/* Keyboard layer — :focus-visible rings. Import after components.
+   Inset by default so overflow parents (sidebar, menus, panels) do not clip.
+   Buttons, toggles, and segmented select sit flush to the control. */
+
+:is(
+  .menu-item,
+  .sidebar-item,
+  .sidebar-title,
+  .table-sort,
+  a.mention,
+  .datetime-day,
+  .datetime-month
+):focus-visible {
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: -0.125rem;
+}
+
+:is(.link, .table-sort, .sidebar-title, .tab):focus-visible {
+  border-radius: var(--border-radius-s);
+}
+
+.btn:focus-visible,
+.link:focus-visible,
+:is(
+  .switch,
+  .toggle-switch,
+  .toggle-checkbox,
+  .toggle-radio,
+  .checkbox,
+  .radio
+):focus-visible,
+.segmented-select-input:focus-visible + .segmented-select-label {
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: 0;
+}
+
+.tab:focus-visible {
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: -0.0625rem;
+}
+
+.segmented-select-input:focus-visible + .segmented-select-label {
+  border-radius: var(--border-radius-s);
+}
+
+.box-resize-handle:focus-visible,
+.panel-resize-handle:focus-visible {
+  outline: 0.125rem solid var(--color-light-gray-a);
+  outline-offset: -0.125rem;
+}
