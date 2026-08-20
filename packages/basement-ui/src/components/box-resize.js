@@ -38,6 +38,33 @@
     return Math.max(min, Math.min(max, widthPx));
   }
 
+  function keyStepPx() {
+    var root = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    return root / 2;
+  }
+
+  function syncResizeAria(el, handle) {
+    if (!handle) return;
+    var base = parentWidth(el);
+    var min = parseLength(el.getAttribute('data-box-min-width') || '16rem', base);
+    var max = parseLength(el.getAttribute('data-box-max-width') || '100%', base);
+    if (min == null) min = 0;
+    if (max == null) max = base;
+    max = Math.min(max, base);
+    handle.setAttribute('role', 'separator');
+    handle.setAttribute('aria-orientation', 'vertical');
+    handle.setAttribute('aria-valuemin', String(Math.round(min)));
+    handle.setAttribute('aria-valuemax', String(Math.round(max)));
+    handle.setAttribute('aria-valuenow', String(Math.round(el.getBoundingClientRect().width)));
+  }
+
+  function setBoxWidth(el, handle, widthPx) {
+    var next = clampWidth(el, widthPx);
+    el.style.width = next + 'px';
+    syncResizeAria(el, handle);
+    return next;
+  }
+
   function ensureHandle(el) {
     var handle = el.querySelector(':scope > .box-resize-handle');
     if (handle) return handle;
@@ -54,6 +81,7 @@
     el.__basementBoxResize = true;
     el.classList.add('box--resizable');
     var handle = ensureHandle(el);
+    syncResizeAria(el, handle);
 
     handle.addEventListener('pointerdown', function (event) {
       if (event.button != null && event.button !== 0) return;
@@ -64,8 +92,7 @@
       handle.setPointerCapture(event.pointerId);
 
       var onMove = function (ev) {
-        var next = clampWidth(el, startW + (ev.clientX - startX));
-        el.style.width = next + 'px';
+        setBoxWidth(el, handle, startW + (ev.clientX - startX));
       };
       var onUp = function (ev) {
         el.classList.remove('is-resizing');
@@ -82,6 +109,15 @@
       handle.addEventListener('pointermove', onMove);
       handle.addEventListener('pointerup', onUp);
       handle.addEventListener('pointercancel', onUp);
+    });
+
+    handle.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      var step = keyStepPx();
+      var current = el.getBoundingClientRect().width;
+      var delta = event.key === 'ArrowRight' ? step : -step;
+      setBoxWidth(el, handle, current + delta);
     });
   }
 

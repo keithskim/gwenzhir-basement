@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basement UI</title>
   <script src="src/components/theme.js"></script>
-  <script>
-    (function () {
-      var v = localStorage.getItem('basement-ui-dark-mode');
-      if (v === '1') document.documentElement.classList.add('is-dark');
-      else if (v === '0') document.documentElement.classList.remove('is-dark');
-    })();
-  </script>
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.2.5/files/inter-latin-wght-normal.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -105,8 +98,9 @@
     </nav>
     <div class="sidebar-footer">
       <span class="tooltip tooltip--top">
-        <button type="button" class="tooltip-trigger btn btn--xs btn--default btn--icon" id="darkModeToggle" aria-label="Dark mode" aria-describedby="darkModeTooltip" aria-pressed="false">
+        <button type="button" class="tooltip-trigger btn btn--xs btn--default btn--icon" id="darkModeToggle" data-theme-toggle aria-label="Dark mode" aria-describedby="darkModeTooltip" aria-pressed="false">
           <i class="ph ph-moon icon--m" aria-hidden="true"></i>
+          <i class="ph ph-sun icon--m" aria-hidden="true"></i>
         </button>
         <span class="tooltip-content" id="darkModeTooltip" role="tooltip">Dark mode</span>
       </span>
@@ -2506,6 +2500,18 @@
             <div class="sample-meta">
               <span class="sample-meta-label">With icon</span>
               <span class="sample-meta-detail">Gap 0.375rem · Tighter padding beside leading or trailing icon</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="btn btn--xs btn--default btn--icon" data-theme-toggle aria-label="Dark mode" aria-pressed="false">
+                <i class="ph ph-moon icon--m" aria-hidden="true"></i>
+                <i class="ph ph-sun icon--m" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Theme</span>
+              <span class="sample-meta-detail">Moon in light · Sun in dark · Pressed when dark</span>
             </div>
           </div>
         </div>
@@ -6739,7 +6745,7 @@ console.log(label);</code></pre>
 
     <section class="section section--component" id="keyboard">
       <h2 class="section-label">Keyboard</h2>
-      <p class="type-paragraph">Tab moves focus across interactive controls. Return clicks a focused button or toggles a switch. The focus ring appears for keyboard focus, not for pointer clicks.</p>
+      <p class="type-paragraph">Tab moves focus across interactive controls. Return clicks a focused button or toggles a switch. Arrow keys move a focused resize handle. The focus ring appears for keyboard focus, not for pointer clicks.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Tab and Return</h3>
@@ -6757,7 +6763,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Button · Toggle · Link</span>
-              <span class="sample-meta-detail">Tab moves focus · Return clicks or toggles · Ring only for keyboard focus</span>
+              <span class="sample-meta-detail">Tab moves focus · Return clicks or toggles · Arrows move resize handles · Ring only for keyboard focus</span>
             </div>
           </div>
         </div>

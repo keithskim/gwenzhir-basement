@@ -57,11 +57,38 @@
     });
   }
 
+  function syncDialogInert(host, on) {
+    if (!host) return;
+    var enable = !!(on && !isPlain(host));
+    var stopAt = host.classList.contains('dialog-host--demo')
+      ? host.parentElement
+      : document.body;
+    var el = host;
+    while (el && el !== stopAt) {
+      var parent = el.parentElement;
+      if (!parent) break;
+      Array.prototype.forEach.call(parent.children, function (child) {
+        if (child === el) return;
+        if (enable) {
+          child.setAttribute('inert', '');
+          child.setAttribute('data-basement-dialog-inert', '');
+        } else if (child.hasAttribute('data-basement-dialog-inert')) {
+          child.removeAttribute('inert');
+          child.removeAttribute('data-basement-dialog-inert');
+        }
+      });
+      if (parent === stopAt || parent === document.documentElement) break;
+      el = parent;
+    }
+  }
+
   function open(hostOrDialog) {
     var host = hostFor(hostOrDialog) || hostOrDialog;
     if (!host || !host.classList.contains('dialog-host')) return;
+    host.__basementDialogOpener = document.activeElement;
     host.classList.add('is-dialog-open');
     syncAria(host);
+    if (!isPlain(host)) syncDialogInert(host, true);
     var dialog = dialogFor(host);
     if (dialog && typeof dialog.focus === 'function') {
       if (!dialog.hasAttribute('tabindex')) dialog.setAttribute('tabindex', '-1');
@@ -79,6 +106,16 @@
     if (isStatic(host)) return;
     host.classList.remove('is-dialog-open');
     syncAria(host);
+    syncDialogInert(host, false);
+    var opener = host.__basementDialogOpener;
+    host.__basementDialogOpener = null;
+    if (opener && typeof opener.focus === 'function' && document.contains(opener)) {
+      try {
+        opener.focus({ preventScroll: true });
+      } catch (e) {
+        opener.focus();
+      }
+    }
   }
 
   function toggle(hostOrDialog) {
@@ -132,6 +169,9 @@
       if (host.__basementDialogWired) return;
       host.__basementDialogWired = true;
       syncAria(host);
+      if (host.classList.contains('is-dialog-open') && !isPlain(host)) {
+        syncDialogInert(host, true);
+      }
 
       var backdrop = host.querySelector(':scope > .dialog-backdrop');
       if (backdrop && !backdrop.__basementDialogBackdrop) {

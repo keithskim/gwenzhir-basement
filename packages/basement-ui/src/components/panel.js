@@ -96,24 +96,156 @@
     });
   }
 
+  function setOverlayInert(el, on) {
+    if (!el || el.nodeType !== 1) return;
+    if (on) {
+      el.setAttribute('inert', '');
+      el.setAttribute('data-basement-overlay-inert', '');
+    } else if (el.hasAttribute('data-basement-overlay-inert')) {
+      el.removeAttribute('data-basement-overlay-inert');
+      if (!(el.classList.contains('panel--drawer') && isDrawerClosed(el))) {
+        el.removeAttribute('inert');
+      }
+    }
+  }
+
+  function clearOverlayInert(host) {
+    if (!host) return;
+    host.querySelectorAll('[data-basement-overlay-inert]').forEach(function (el) {
+      setOverlayInert(el, false);
+    });
+  }
+
+  function overlayKeepers(host, openPanels) {
+    var keepers = openPanels.slice();
+    host.querySelectorAll('.panel-toggle').forEach(function (btn) {
+      if (getComputedStyle(btn).display === 'none') return;
+      keepers.push(btn);
+    });
+    var backdrop = host.querySelector(':scope > .panel-backdrop');
+    if (backdrop) keepers.push(backdrop);
+    return keepers;
+  }
+
+  function nodeContainsKeeper(node, keepers) {
+    for (var i = 0; i < keepers.length; i++) {
+      if (node === keepers[i] || node.contains(keepers[i])) return true;
+    }
+    return false;
+  }
+
+  function inertNonKeepers(node, keepers) {
+    if (!node || node.nodeType !== 1) return;
+    if (keepers.indexOf(node) !== -1) return;
+    if (nodeContainsKeeper(node, keepers)) {
+      Array.prototype.forEach.call(node.children, function (child) {
+        inertNonKeepers(child, keepers);
+      });
+      return;
+    }
+    setOverlayInert(node, true);
+  }
+
+  function syncOverlayInert(host) {
+    if (!host) return;
+    clearOverlayInert(host);
+    var openPanels = panelsForHost(host).filter(function (panel) {
+      return panel.classList.contains('is-open') && isDrawerWidth(panel);
+    });
+    if (!openPanels.length) return;
+    var keepers = overlayKeepers(host, openPanels);
+    Array.prototype.forEach.call(host.children, function (child) {
+      inertNonKeepers(child, keepers);
+    });
+    var active = document.activeElement;
+    if (!active || !host.contains(active) || !active.closest('[inert]')) return;
+    var panel = openPanels[0];
+    var next =
+      (panel && panel.querySelector('.panel-close')) ||
+      keepers.filter(function (el) {
+        return el.classList && el.classList.contains('panel-toggle');
+      })[0] ||
+      panel;
+    if (next && typeof next.focus === 'function') {
+      try {
+        next.focus({ preventScroll: true });
+      } catch (err) {
+        next.focus();
+      }
+    }
+  }
+
   function syncHostOpen(host) {
     if (!host) return;
     var anyOpen = panelsForHost(host).some(function (panel) {
       return panel.classList.contains('is-open');
     });
     host.classList.toggle('is-panel-open', anyOpen);
+    syncOverlayInert(host);
+  }
+
+  function toggleFor(panel) {
+    var id = panel && panel.id;
+    if (!id) return null;
+    var found = null;
+    document.querySelectorAll('[data-panel-toggle]').forEach(function (btn) {
+      var target = btn.getAttribute('data-panel-toggle') || btn.getAttribute('aria-controls');
+      if (!target) return;
+      target = target.replace(/^#/, '');
+      if (target === id) found = btn;
+    });
+    return found;
+  }
+
+  function isDrawerClosed(panel) {
+    return (
+      panel.classList.contains('panel--drawer') &&
+      isDrawerWidth(panel) &&
+      !panel.classList.contains('is-open')
+    );
+  }
+
+  function syncDrawerInert(panel) {
+    if (!panel || !panel.classList.contains('panel--drawer')) return;
+    if (isDrawerClosed(panel)) {
+      panel.setAttribute('inert', '');
+      panel.setAttribute('aria-hidden', 'true');
+    } else {
+      panel.removeAttribute('inert');
+      panel.removeAttribute('aria-hidden');
+    }
+  }
+
+  function restoreFocusIfInside(panel) {
+    var active = document.activeElement;
+    if (!active || !panel.contains(active)) return;
+    var toggle = toggleFor(panel);
+    if (toggle && toggle.getClientRects().length) {
+      toggle.focus();
+      return;
+    }
+    if (typeof active.blur === 'function') active.blur();
   }
 
   function open(panel) {
     if (!panel) return;
     panel.classList.add('is-open');
+    syncDrawerInert(panel);
     syncToggleAria(panel);
     syncHostOpen(hostFor(panel));
   }
 
   function close(panel) {
     if (!panel) return;
+    if (
+      panel.classList.contains('panel--drawer') &&
+      panel.classList.contains('is-open') &&
+      isDrawerWidth(panel)
+    ) {
+      restoreFocusIfInside(panel);
+    }
     panel.classList.remove('is-open');
+    syncDrawerInert(panel);
     syncToggleAria(panel);
     syncHostOpen(hostFor(panel));
   }
@@ -122,6 +254,43 @@
     if (!panel) return;
     if (panel.classList.contains('is-open')) close(panel);
     else open(panel);
+  }
+
+  function resizeLimits(panel) {
+    var hostW = hostFor(panel).getBoundingClientRect().width;
+    var cs = getComputedStyle(panel);
+    var min = parseCssLength(cs.getPropertyValue('--panel-min-width'), hostW);
+    var max = parseCssLength(cs.getPropertyValue('--panel-max-width'), hostW);
+    if (min == null) min = 0;
+    if (max == null) max = Infinity;
+    max = Math.min(max, hostW);
+    return { min: min, max: max };
+  }
+
+  function keyStepPx() {
+    var root = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    return root / 2;
+  }
+
+  function setPanelWidth(panel, handle, widthPx) {
+    var next = clampPanelWidth(panel, widthPx);
+    panel.style.width = next + 'px';
+    syncResizeAria(panel, handle);
+    return next;
+  }
+
+  function syncResizeAria(panel, handle) {
+    if (!handle) return;
+    var limits = resizeLimits(panel);
+    handle.setAttribute('role', 'separator');
+    handle.setAttribute('aria-orientation', 'vertical');
+    handle.setAttribute('aria-valuemin', String(Math.round(limits.min)));
+    handle.setAttribute('aria-valuemax', String(Math.round(limits.max)));
+    handle.setAttribute('aria-valuenow', String(Math.round(panel.getBoundingClientRect().width)));
+  }
+
+  function canResize(panel) {
+    return !(panel.classList.contains('panel--drawer') && isDrawerWidth(panel));
   }
 
   function ensureResizeHandle(panel) {
@@ -142,11 +311,12 @@
     panel.__basementPanelResize = true;
     var handle = ensureResizeHandle(panel);
     var right = isRight(panel);
+    syncResizeAria(panel, handle);
 
     handle.addEventListener('pointerdown', function (event) {
       if (event.button != null && event.button !== 0) return;
       /* Only block resize when this panel is actually in drawer mode */
-      if (panel.classList.contains('panel--drawer') && isDrawerWidth(panel)) return;
+      if (!canResize(panel)) return;
       event.preventDefault();
       var startX = event.clientX;
       var startW = panel.getBoundingClientRect().width;
@@ -155,8 +325,7 @@
 
       var onMove = function (ev) {
         var delta = ev.clientX - startX;
-        var next = clampPanelWidth(panel, startW + (right ? -delta : delta));
-        panel.style.width = next + 'px';
+        setPanelWidth(panel, handle, startW + (right ? -delta : delta));
       };
       var onUp = function (ev) {
         panel.classList.remove('is-resizing');
@@ -174,6 +343,16 @@
       handle.addEventListener('pointerup', onUp);
       handle.addEventListener('pointercancel', onUp);
     });
+
+    handle.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      if (!canResize(panel)) return;
+      event.preventDefault();
+      var step = keyStepPx();
+      var current = panel.getBoundingClientRect().width;
+      var delta = event.key === 'ArrowRight' ? step : -step;
+      setPanelWidth(panel, handle, current + (right ? -delta : delta));
+    });
   }
 
   function wireDrawer(panel) {
@@ -186,6 +365,7 @@
 
     function syncWide() {
       if (!isDrawerWidth(panel)) close(panel);
+      else syncDrawerInert(panel);
     }
 
     if (typeof ResizeObserver !== 'undefined') {

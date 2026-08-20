@@ -195,12 +195,15 @@
     min-width: 0;
     max-width: none;
     transform: translateX(-100%);
-    transition: transform 0.22s ease;
+    visibility: hidden;
+    transition: transform 0.22s ease, visibility 0s linear 0.22s;
   }
 
   .panel--left.panel--drawer.is-open {
     transform: none;
+    visibility: visible;
     box-shadow: var(--shadow-l);
+    transition: transform 0.22s ease, visibility 0s linear 0s;
   }
 
   .panel--left.panel--drawer.panel--drawer-full {
@@ -229,12 +232,15 @@
     min-width: 0;
     max-width: none;
     transform: translateX(100%);
-    transition: transform 0.22s ease;
+    visibility: hidden;
+    transition: transform 0.22s ease, visibility 0s linear 0.22s;
   }
 
   .panel--right.panel--drawer.is-open {
     transform: none;
+    visibility: visible;
     box-shadow: var(--shadow-l);
+    transition: transform 0.22s ease, visibility 0s linear 0s;
   }
 
   .panel--right.panel--drawer.panel--drawer-full {

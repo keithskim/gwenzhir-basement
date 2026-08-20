@@ -1,6 +1,6 @@
 /* Keyboard layer — :focus-visible rings. Import after components.
    Inset by default so overflow parents (sidebar, menus, panels) do not clip.
-   Buttons, toggles, and segmented select sit flush to the control. */
+   Buttons, inputs, toggles, and segmented select sit flush to the control. */
 
 :is(
   .menu-item,
@@ -21,6 +21,9 @@
 
 .btn:focus-visible,
 .link:focus-visible,
+.input:focus-visible,
+.textarea:focus-visible,
+.text-input:has(.input:focus-visible),
 :is(
   .switch,
   .toggle-switch,
@@ -34,9 +37,21 @@
   outline-offset: 0;
 }
 
+.text-input .input:focus-visible {
+  outline: none;
+}
+
 .tab:focus-visible {
+  position: relative;
+  z-index: 3;
   outline: 0.125rem solid var(--color-light-gray-a);
-  outline-offset: -0.0625rem;
+  outline-offset: -0.125rem;
+}
+
+.tabs .tab.is-active:focus-visible,
+.tabs .tab[aria-selected='true']:focus-visible {
+  z-index: 3;
+  outline-offset: 0;
 }
 
 .segmented-select-input:focus-visible + .segmented-select-label {
@@ -47,4 +62,44 @@
 .panel-resize-handle:focus-visible {
   outline: 0.125rem solid var(--color-light-gray-a);
   outline-offset: -0.125rem;
+}
+
+/* Sticky header/footer paint above an inset outline; overlay sits above them.
+   A sticky first child stays on the scrollport; ::before on the wrap does not. */
+.table-wrap:focus-visible {
+  outline: none;
+}
+
+.table-focus-ring {
+  position: sticky;
+  top: 0;
+  left: calc(-1 * var(--table-ring-inline, var(--table-row-bleed, 0px)));
+  z-index: 3;
+  pointer-events: none;
+  width: calc(100% + 2 * var(--table-ring-inline, var(--table-row-bleed, 0px)));
+  height: var(--table-scrollport-height, 100%);
+  margin-inline: calc(-1 * var(--table-ring-inline, var(--table-row-bleed, 0px)));
+  margin-bottom: calc(-1 * var(--table-scrollport-height, 0px));
+  background-image:
+    linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
+    linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
+    linear-gradient(to top, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
+    linear-gradient(to top, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px);
+  background-repeat: no-repeat;
+  background-size:
+    var(--table-ring-inline, 0px) var(--table-sticky-head, 0px),
+    var(--table-ring-inline, 0px) var(--table-sticky-head, 0px),
+    var(--table-ring-inline, 0px) var(--table-sticky-foot, 0px),
+    var(--table-ring-inline, 0px) var(--table-sticky-foot, 0px);
+  background-position:
+    left top,
+    right top,
+    left bottom,
+    right bottom;
+}
+
+.table-wrap:focus-visible > .table-focus-ring {
+  z-index: 3;
+  border-radius: var(--border-radius-s);
+  box-shadow: inset 0 0 0 0.125rem var(--color-light-gray-a);
 }

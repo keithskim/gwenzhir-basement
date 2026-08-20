@@ -188,3 +188,15 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
 html.is-dark .btn--accent .tag.tag--filled {
   color: var(--color-black);
 }
+
+.btn[data-theme-toggle] .ph-sun {
+  display: none;
+}
+
+html.is-dark .btn[data-theme-toggle] .ph-moon {
+  display: none;
+}
+
+html.is-dark .btn[data-theme-toggle] .ph-sun {
+  display: inline-flex;
+}

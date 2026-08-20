@@ -1,6 +1,7 @@
 /**
  * Keyboard layer — Return activates checkboxes, radios, and switches.
  * Tab order and button/link Enter stay native.
+ * Table wraps get a sticky focus ring that stays on the scrollport.
  */
 (function () {
   var EDITABLE_TYPES = {
@@ -23,6 +24,7 @@
   };
 
   var wired = false;
+  var tableRingResizeObs = null;
 
   function isDisabled(el) {
     if (!el) return true;
@@ -73,10 +75,57 @@
     el.click();
   }
 
+  function syncTableScrollport(wrap) {
+    wrap.style.setProperty('--table-scrollport-height', wrap.clientHeight + 'px');
+    wrap.style.setProperty(
+      '--table-ring-inline',
+      getComputedStyle(wrap).paddingInlineStart
+    );
+    var sticky = wrap.querySelector(':scope > .table--sticky');
+    var head = sticky && sticky.tHead;
+    var foot = sticky && sticky.tFoot;
+    wrap.style.setProperty('--table-sticky-head', head ? head.offsetHeight + 'px' : '0px');
+    wrap.style.setProperty('--table-sticky-foot', foot ? foot.offsetHeight + 'px' : '0px');
+  }
+
+  function ensureTableFocusRing(wrap) {
+    if (!wrap || !wrap.querySelector) return;
+    if (!wrap.querySelector(':scope > .table-focus-ring')) {
+      var ring = document.createElement('div');
+      ring.className = 'table-focus-ring';
+      ring.setAttribute('aria-hidden', 'true');
+      wrap.insertBefore(ring, wrap.firstChild);
+    }
+    syncTableScrollport(wrap);
+    if (wrap.__basementTableRingObserved || typeof ResizeObserver !== 'function') return;
+    wrap.__basementTableRingObserved = true;
+    if (!tableRingResizeObs) {
+      tableRingResizeObs = new ResizeObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          syncTableScrollport(entries[i].target);
+        }
+      });
+    }
+    tableRingResizeObs.observe(wrap);
+  }
+
+  function wireTableWraps(root) {
+    var wraps = (root || document).querySelectorAll('.table-wrap');
+    for (var i = 0; i < wraps.length; i++) ensureTableFocusRing(wraps[i]);
+  }
+
+  function onFocusIn(event) {
+    var t = event.target;
+    if (!t || !t.classList || !t.classList.contains('table-wrap')) return;
+    ensureTableFocusRing(t);
+  }
+
   function init() {
     if (wired) return;
     wired = true;
     document.addEventListener('keydown', onKeydown);
+    document.addEventListener('focusin', onFocusIn);
+    wireTableWraps(document);
   }
 
   window.BasementKeyboard = { init: init };

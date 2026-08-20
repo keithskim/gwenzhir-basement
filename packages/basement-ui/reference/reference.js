@@ -1,5 +1,4 @@
 const SECTION_STORAGE_KEY = 'basement-ui-section';
-const DARK_MODE_STORAGE_KEY = 'basement-ui-dark-mode';
 const COLUMN_OVERLAY_STORAGE_KEY = 'basement-ui-show-columns';
 const DEFAULT_SECTION = 'home';
 
@@ -338,23 +337,6 @@ document.querySelectorAll('.dropdown-demo').forEach(demo => {
 // ── Column overlay ──
 const columnOverlay = document.getElementById('columnOverlay');
 const columnOverlayToggle = document.getElementById('columnOverlayToggle');
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-function setDarkMode(enabled) {
-  document.documentElement.classList.toggle('is-dark', enabled);
-  const label = enabled ? 'Light mode' : 'Dark mode';
-  darkModeToggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-  darkModeToggle.setAttribute('aria-label', label);
-  const tip = document.getElementById('darkModeTooltip');
-  if (tip) tip.textContent = label;
-  const icon = darkModeToggle.querySelector('.ph');
-  if (icon) {
-    icon.classList.toggle('ph-moon', !enabled);
-    icon.classList.toggle('ph-sun', enabled);
-  }
-  syncAllColorChipBorders();
-  syncTokenValues();
-}
 
 function syncTokenValues() {
   const styles = getComputedStyle(document.documentElement);
@@ -363,23 +345,13 @@ function syncTokenValues() {
   });
 }
 
-darkModeToggle.addEventListener('click', () => {
-  const enabled = darkModeToggle.getAttribute('aria-pressed') !== 'true';
-  setDarkMode(enabled);
-  localStorage.setItem(DARK_MODE_STORAGE_KEY, enabled ? '1' : '0');
-});
-
-const storedDark = localStorage.getItem(DARK_MODE_STORAGE_KEY);
-if (storedDark === '1') {
-  setDarkMode(true);
-} else if (storedDark === '0') {
-  setDarkMode(false);
-} else if (document.documentElement.classList.contains('is-dark')) {
-  setDarkMode(true);
-} else {
+function syncThemeDependentChrome() {
   syncAllColorChipBorders();
   syncTokenValues();
 }
+
+syncThemeDependentChrome();
+document.documentElement.addEventListener('basement-theme', syncThemeDependentChrome);
 
 function syncColumnOverlay() {
   const columns = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--columns'), 10);

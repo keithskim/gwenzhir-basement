@@ -1,4 +1,5 @@
 .table-wrap {
+  position: relative;
   width: 100%;
   overflow-x: auto;
 }
@@ -121,8 +122,9 @@
 
 .table-wrap:has(> .table--striped:not(.table--full-page)),
 .table-wrap:has(> .table--selectable:not(.table--full-page)) {
-  padding-inline: var(--table-row-bleed, var(--spacing-xs));
-  margin-inline: calc(-1 * var(--table-row-bleed, var(--spacing-xs)));
+  --table-row-bleed: var(--spacing-xs);
+  padding-inline: var(--table-row-bleed);
+  margin-inline: calc(-1 * var(--table-row-bleed));
 }
 
 .table--striped:not(.table--full-page) tbody tr:nth-child(even) {

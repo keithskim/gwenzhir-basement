@@ -69,12 +69,12 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 | Script | API | Role |
 |---|---|---|
-| `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark` |
-| `keyboard.js` | `BasementKeyboard` | Return activates checkboxes, radios, and switches (Tab focus ring ships in the CSS bundle) |
+| `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark`; wires `[data-theme-toggle]` and persists the choice |
+| `keyboard.js` | `BasementKeyboard` | Return activates checkboxes, radios, and switches; pins the table wrap focus ring to the scrollport (other Tab rings ship in the CSS bundle) |
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
-| `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; wires nav edge fade |
-| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss |
+| `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; closed drawers and blurred overlay UI are skipped in the tab order |
+| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
 | `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Tabs menus out of overflow parents; dialog re-places on page scroll |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
@@ -83,9 +83,11 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `timeline-axis.js` | `BasementTimeline` | Skip/span axis labels |
 | `graph-density.js` | `BasementGraphDensity` | Compact labels + horizontal scroll for dense lines |
 
-**Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
+**Theme** — Load `theme.js` in `<head>`. Put `data-theme-toggle` on an icon button with Moon and Sun icons (see Button in the reference). Toggles `html.is-dark`, shows Moon in light and Sun in dark, and remembers the choice; until then it follows `prefers-color-scheme`.
 
-**Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; optional `.panel--resizable` with an edge drag handle. Host with `.panel-host` (App frame is also a host).
+**Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
+
+**Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
 
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Drawers and resize come from Panel; backdrop is scoped to the frame. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
