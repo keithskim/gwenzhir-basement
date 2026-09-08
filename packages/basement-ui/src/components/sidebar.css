@@ -7,11 +7,11 @@
   --sidebar-icon-gap: var(--spacing-xs);
 }
 
-/* Default items are S type (1.5rem line); icons match that measure. Compact keeps the smaller pair. */
+/* Default items are S type; icons are L. Compact keeps the smaller pair. */
 .sidebar,
 .sidebar-demo {
-  --sidebar-icon-size: var(--line-height-s);
-  --sidebar-icon-font-size: var(--line-height-s);
+  --sidebar-icon-size: 1.25rem;
+  --sidebar-icon-font-size: 1.25rem;
 }
 
 .sidebar {
@@ -135,9 +135,9 @@
 }
 
 .sidebar-item:has(.sidebar-item-icon) .sidebar-item-icon {
-  flex: 0 0 var(--sidebar-icon-size, var(--line-height-s));
-  width: var(--sidebar-icon-size, var(--line-height-s));
-  height: var(--sidebar-icon-size, var(--line-height-s));
+  flex: 0 0 var(--sidebar-icon-size, 1.25rem);
+  width: var(--sidebar-icon-size, 1.25rem);
+  height: var(--sidebar-icon-size, 1.25rem);
 }
 
 .sidebar-item:hover {
@@ -208,7 +208,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--sidebar-icon-font-size, var(--sidebar-icon-size, var(--line-height-s)));
+  font-size: var(--sidebar-icon-font-size, var(--sidebar-icon-size, 1.25rem));
   line-height: 1;
   color: inherit;
 }
