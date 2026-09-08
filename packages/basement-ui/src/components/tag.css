@@ -186,7 +186,7 @@
   padding-inline: 0.5rem;
 }
 
-/* Compact count — Gray fill; square for one digit, wider when extra digits. */
+/* Compact count — Gray fill; circle for one digit, pill when extra digits. */
 .tag.tag--counter {
   --tag-counter-size: 1.4em;
   box-sizing: border-box;
@@ -194,6 +194,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border-radius: 9999rem;
   background: var(--color-gray);
   border-color: var(--color-gray);
   color: var(--color-white);

@@ -122,6 +122,10 @@
   flex-direction: column;
 }
 
+.app-frame--nav:has(.panel--left) {
+  --panel-width: 14.5rem;
+}
+
 /* Close-only title row is hidden until drawer; keep items off the top edge. */
 .app-frame--nav .panel--left .sidebar-nav--flush {
   margin-top: var(--spacing-s);
@@ -131,6 +135,39 @@
   flex: 0 0 auto;
   min-width: 0;
   z-index: 3;
+}
+
+/* Docked left Panel: brand over the sidebar, primary items with the sheet. */
+@container app-frame (min-width: 37.5625rem) {
+  .app-frame--nav:has(.panel--left) > .navbar {
+    display: grid;
+    grid-template-columns: var(--panel-width, 14.5rem) minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 0;
+    gap: 0;
+    padding-inline: 0;
+  }
+
+  .app-frame--nav:has(.panel--left) > .navbar .navbar-brand {
+    margin-inline-end: 0;
+    padding-inline-start: calc(var(--spacing-s) + var(--spacing-xs));
+    min-width: 0;
+  }
+
+  .app-frame--nav:has(.panel--left) > .navbar .navbar-nav {
+    /* Sheet inset minus item padding so labels, not hit areas, line up. */
+    padding-inline-start: calc(var(--spacing-s) - 0.5rem);
+    min-width: 0;
+  }
+
+  .app-frame--nav:has(.panel--left) > .navbar .navbar-end {
+    margin-inline-start: 0;
+    padding-inline-end: var(--spacing-s);
+  }
+}
+
+.app-frame--nav .app-frame-panes > .panel--left {
+  --panel-width: inherit;
 }
 
 .app-frame-panes {

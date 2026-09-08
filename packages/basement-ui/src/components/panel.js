@@ -275,6 +275,10 @@
   function setPanelWidth(panel, handle, widthPx) {
     var next = clampPanelWidth(panel, widthPx);
     panel.style.width = next + 'px';
+    if (!isRight(panel)) {
+      var frame = panel.closest('.app-frame--nav');
+      if (frame) frame.style.setProperty('--panel-width', next + 'px');
+    }
     syncResizeAria(panel, handle);
     return next;
   }
