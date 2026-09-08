@@ -130,6 +130,27 @@
   max-width: none;
 }
 
+.navbar--compact {
+  min-height: 0;
+  padding: var(--spacing-xs) var(--spacing-s);
+  gap: var(--spacing-xs);
+}
+
+.navbar--compact .navbar-brand {
+  margin-inline-end: var(--spacing-s);
+}
+
+.navbar--compact .navbar-item {
+  padding-block: 0.125rem;
+  padding-inline: 0.375rem;
+}
+
+.navbar--compact .navbar-item--icon {
+  padding: 0.125rem;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
 @container navbar (max-width: 36rem) {
   .navbar-end .navbar-item-label {
     display: none;

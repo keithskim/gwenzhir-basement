@@ -3752,6 +3752,7 @@
     <!-- ── Tag ── -->
     <section class="section section--component" id="tag">
       <h2 class="section-label">Tag</h2>
+      <p class="type-paragraph">Status labels in outline, filled, split, and compact forms, plus a circular filled counter for counts.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -3796,6 +3797,15 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Compact</span>
               <span class="sample-meta-detail">Tighter padding and height</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tag tag--xs tag--counter">3</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Counter</span>
+              <span class="sample-meta-detail">Circle · Compact · Filled</span>
             </div>
           </div>
         </div>
@@ -3894,6 +3904,72 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Short text</span>
               <span class="sample-meta-detail">Compact · At least square for single characters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Counter</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="variant-row">
+                <span class="tag tag--xs tag--counter">3</span>
+                <span class="tag tag--xs tag--counter">12</span>
+                <span class="tag tag--xs tag--counter">99+</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Digits</span>
+              <span class="sample-meta-detail">Circle for one digit · Pill when wider</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="variant-row">
+                <span class="tag tag--xs tag--counter tag--affirm">3</span>
+                <span class="tag tag--xs tag--counter tag--warn">3</span>
+                <span class="tag tag--xs tag--counter tag--destructive">3</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Colors</span>
+              <span class="sample-meta-detail">Affirm · Warn · Destructive · Filled</span>
+            </div>
+          </div>
+        </div>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tag tag--2xs tag--counter">3</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">2XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tag tag--xs tag--counter">3</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tag tag--s tag--counter">3</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tag tag--m tag--counter">3</span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
             </div>
           </div>
         </div>
@@ -5139,6 +5215,80 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
               <span class="sample-meta-detail">Brand · Primary items · Search · Notifications · Account</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <nav class="navbar navbar--compact" aria-label="Compact product">
+                <a class="navbar-brand" href="#navbar">
+                  <i class="ph ph-bounding-box" aria-hidden="true"></i>
+                  <span class="navbar-brand-name">Basement</span>
+                </a>
+                <div class="navbar-nav">
+                  <a class="navbar-item is-active" href="#navbar">Overview</a>
+                  <div class="dropdown">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      Solutions
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">Enterprises</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Startups</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Billing</a>
+                    </div>
+                  </div>
+                  <a class="navbar-item" href="#navbar">Docs</a>
+                </div>
+                <div class="navbar-end">
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Search">
+                      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Jump to…</button>
+                      <button type="button" class="menu-item" role="menuitem">Recent</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Search settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Notifications">
+                      <i class="ph ph-bell" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Mentions</button>
+                      <button type="button" class="menu-item" role="menuitem">Deployments</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Notification settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Account">
+                      <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                      <span class="navbar-item-label">gwenzhir</span>
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">
+                        <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                        <span class="menu-item-text">
+                          <span class="menu-item-label">gwenzhir</span>
+                        </span>
+                      </a>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Sign out</button>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Compact</span>
+              <span class="sample-meta-detail">Tighter inset · Same items</span>
             </div>
           </div>
           <div class="type-sample-item">

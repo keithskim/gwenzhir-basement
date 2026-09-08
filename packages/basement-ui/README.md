@@ -87,6 +87,8 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Theme** — Load `theme.js` in `<head>`. Put `data-theme-toggle` on an icon button with Moon and Sun icons (see Button in the reference). Toggles `html.is-dark`, shows Moon in light and Sun in dark, and remembers the choice; until then it follows `prefers-color-scheme`.
 
+**Tag** — Outline, filled, split, and compact labels. `.tag--counter` is a circular compact count, filled by default (grows into a pill for extra digits). Pair with a size class.
+
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
 **Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
@@ -99,7 +101,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
 
-**Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster.
+**Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster. `.navbar--compact` tightens bar and item padding.
 
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 
