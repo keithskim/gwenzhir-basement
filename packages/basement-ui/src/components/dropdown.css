@@ -52,6 +52,7 @@
   left: 0;
   z-index: 1;
   display: none;
+  box-shadow: var(--shadow-m);
 }
 
 :is(.dropdown, .dropdown-demo).is-open .menu {

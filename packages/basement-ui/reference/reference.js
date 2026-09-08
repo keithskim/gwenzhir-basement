@@ -64,6 +64,7 @@ const SECTION_ALIASES = {
   'timeline-axis': 'timeline',
   'graph-density': 'graph',
   'mega-menu': 'menu',
+  'nav-bar': 'navbar',
 };
 
 function resolveSectionId(sectionId) {

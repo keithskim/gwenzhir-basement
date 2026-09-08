@@ -117,6 +117,16 @@
   color: inherit;
 }
 
+.menu-item > .avatar {
+  flex-shrink: 0;
+}
+
+.menu-item:has(> .avatar) .menu-item-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .menu-divider {
   height: 1px;
   background: var(--theme-border);
