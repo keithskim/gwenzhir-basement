@@ -235,7 +235,11 @@ function setFieldValue(field, state, date) {
 }
 
 function closeAllDropdowns() {
-  document.querySelectorAll('.dropdown-demo.is-open').forEach(demo => {
+  if (window.BasementDropdown) {
+    window.BasementDropdown.closeAll();
+    return;
+  }
+  document.querySelectorAll('.dropdown.is-open, .dropdown-demo.is-open').forEach(demo => {
     demo.classList.remove('is-open');
     const trigger = demo.querySelector('.dropdown-trigger');
     const menu = demo.querySelector('.menu');

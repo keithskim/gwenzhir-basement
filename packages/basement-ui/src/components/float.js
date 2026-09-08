@@ -63,7 +63,7 @@
       placeBelow = spaceBelow >= spaceAbove;
     }
     var avail = placeBelow ? spaceBelow : spaceAbove;
-    // Only menus shrink+scroll. Fixed-layout popups (datetime) flip/shift instead —
+    // Menus shrink+scroll. Fixed-layout popups (datetime) flip/shift instead —
     // max-height + overflow breaks their grids.
     var shrinkable = panel.classList.contains('menu');
     if (shrinkable && avail > 0 && naturalH > avail) {
@@ -79,7 +79,14 @@
       ph = naturalH;
     }
     var top = placeBelow ? ar.bottom + FLOAT_GAP : ar.top - FLOAT_GAP - ph;
+    var state = floatState.get(panel);
+    var align = (state && state.align) || 'start';
     var left = ar.left;
+    if (align === 'end') {
+      left = ar.right - pw;
+    } else if (align === 'center') {
+      left = ar.left + ar.width / 2 - pw / 2;
+    }
     left = Math.min(left, box.right - pw);
     left = Math.max(box.left, left);
     panel.style.top = top + 'px';
@@ -113,6 +120,7 @@
       onScroll: null,
       onResize: null,
       onClose: onClose,
+      align: opts.align || 'start',
       _placeRaf: 0,
     };
     document.body.appendChild(panel);

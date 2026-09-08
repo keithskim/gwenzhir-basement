@@ -1,5 +1,6 @@
 .popup-panel,
 .datetime-popup,
+.dropdown .menu,
 .dropdown-demo .menu {
   box-shadow: var(--shadow-m);
 }

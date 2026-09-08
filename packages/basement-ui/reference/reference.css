@@ -1507,22 +1507,22 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-width: 0;
 }
 
-.section--component .type-sample-list:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select),
-.section--component .type-sample-item:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select) {
+.section--component .type-sample-list:has(.dropdown, .dropdown-demo, .datetime, .menu-demo, .menu--mega, .sidebar-demo, .tooltip, .segmented-select),
+.section--component .type-sample-item:has(.dropdown, .dropdown-demo, .datetime, .menu-demo, .menu--mega, .sidebar-demo, .tooltip, .segmented-select) {
   overflow: visible;
 }
 
-.section--component .sample-box:has(.dropdown-demo, .datetime, .menu-demo, .sidebar-demo, .tooltip, .segmented-select) {
+.section--component .sample-box:has(.dropdown, .dropdown-demo, .datetime, .menu-demo, .menu--mega, .sidebar-demo, .tooltip, .segmented-select) {
   overflow: visible;
 }
 
-.section--component .sample-box:has(.dropdown-demo, .datetime, .tooltip) > * {
+.section--component .sample-box:has(.dropdown, .dropdown-demo, .datetime, .tooltip) > * {
   align-self: start;
 }
 
-.section--component .sample-box:has(.dropdown-demo) {
+.section--component .sample-box:has(.dropdown, .dropdown-demo) {
   align-items: start;
-  min-height: 15rem;
+  min-height: 8rem;
 }
 
 .section--component .sample-box:has(.datetime) {
@@ -2019,6 +2019,31 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 .menu-demo .menu {
   width: 100%;
+}
+
+#menu .type-sample-list--organized > .type-sample-item {
+  grid-column: 1 / -1;
+}
+
+#menu .sample-box > .menu--mega {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+#menu .sample-box > .dropdown {
+  width: auto;
+}
+
+#menu .sample-box > .dropdown--end {
+  justify-self: end;
+}
+
+@media (min-width: 40rem) {
+  #menu .type-sample-list--dropdown > .type-sample-item,
+  #menu .type-sample-list--items:has(.menu--mega) > .type-sample-item {
+    grid-column: span 2;
+  }
 }
 
 #dropdown .type-sample-item {

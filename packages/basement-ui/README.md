@@ -59,6 +59,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 <script src="path/to/basement-ui/src/components/panel.js" defer></script>
 <script src="path/to/basement-ui/src/components/dialog.js" defer></script>
 <script src="path/to/basement-ui/src/components/float.js" defer></script>
+<script src="path/to/basement-ui/src/components/dropdown.js" defer></script>
 <script src="path/to/basement-ui/src/components/datetime.js" defer></script>
 <script src="path/to/basement-ui/src/components/tooltip.js" defer></script>
 <script src="path/to/basement-ui/src/components/tabs-collapse.js" defer></script>
@@ -75,7 +76,8 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; closed drawers and blurred overlay UI are skipped in the tab order |
 | `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
-| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Tabs menus out of overflow parents; dialog re-places on page scroll |
+| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center` |
+| `dropdown.js` | `BasementDropdown` | Trigger + Menu: `aria-expanded`, Escape, click-outside, arrow keys; uses Float when present |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
 | `tabs-collapse.js` | `BasementTabs` | Stack or Dropdown overflow (`data-tabs-overflow`; dropdown uses Float when present) |
@@ -90,6 +92,11 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 **Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
 
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Drawers and resize come from Panel; backdrop is scoped to the frame. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
+
+**Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Tabs overflow builds its own control and is not auto-wired.
+
+**Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, and external mark. Open either from a Dropdown.
+
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 
 **Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.

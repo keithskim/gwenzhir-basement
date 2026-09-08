@@ -113,7 +113,7 @@
     if (!tabs.length) return;
     if (!control) {
       control = document.createElement('div');
-      control.className = 'dropdown-demo tabs-dropdown-control';
+      control.className = 'dropdown tabs-dropdown-control';
       var trigger = document.createElement('button');
       trigger.type = 'button';
       trigger.className = 'btn btn--default btn--xs dropdown-trigger';

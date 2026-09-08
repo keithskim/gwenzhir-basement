@@ -63,6 +63,7 @@ const SECTION_ALIASES = {
   'tabs-overflow': 'tabs',
   'timeline-axis': 'timeline',
   'graph-density': 'graph',
+  'mega-menu': 'menu',
 };
 
 function resolveSectionId(sectionId) {
@@ -301,37 +302,6 @@ document.addEventListener('click', e => {
   }
   document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
   activeBtn = null;
-  if (!e.target.closest('.dropdown-demo')) {
-    closeAllDropdowns();
-  }
-});
-
-// ── Dropdown ──
-function closeAllDropdowns() {
-  document.querySelectorAll('.dropdown-demo.is-open').forEach(demo => {
-    demo.classList.remove('is-open');
-    const trigger = demo.querySelector('.dropdown-trigger');
-    const menu = demo.querySelector('.menu');
-    trigger.setAttribute('aria-expanded', 'false');
-    menu.hidden = true;
-  });
-}
-
-document.querySelectorAll('.dropdown-demo').forEach(demo => {
-  const trigger = demo.querySelector('.dropdown-trigger');
-  const menu = demo.querySelector('.menu');
-
-  trigger.addEventListener('click', e => {
-    e.stopPropagation();
-    const isOpen = demo.classList.contains('is-open');
-    closeAllDropdowns();
-    if (!isOpen) {
-      demo.classList.add('is-open');
-      trigger.setAttribute('aria-expanded', 'true');
-      menu.hidden = false;
-    }
-  });
-
 });
 
 // ── Column overlay ──
