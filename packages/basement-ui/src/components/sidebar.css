@@ -300,7 +300,8 @@
 .sidebar-item .dropdown-caret {
   flex-shrink: 0;
   margin-inline-start: auto;
-  font-size: 0.75rem;
+  font-size: 0.625rem;
+  color: var(--color-gray);
 }
 
 .sidebar-item:has(.sidebar-item-meta) .dropdown-caret {

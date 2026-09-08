@@ -113,7 +113,8 @@
 }
 
 .navbar-item .dropdown-caret {
-  font-size: 0.75rem;
+  font-size: 0.625rem;
+  color: var(--color-gray);
   margin-inline-start: -0.0625rem;
 }
 

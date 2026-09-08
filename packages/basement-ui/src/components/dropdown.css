@@ -30,6 +30,11 @@
   line-height: 1;
 }
 
+.dropdown-trigger .dropdown-caret {
+  font-size: 0.625rem;
+  color: var(--color-gray);
+}
+
 .dropdown-trigger .dropdown-caret--down {
   display: inline-flex;
 }

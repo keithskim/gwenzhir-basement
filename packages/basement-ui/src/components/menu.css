@@ -199,9 +199,9 @@
 .menu-heading {
   padding-block: 0.125rem;
   padding-inline: var(--spacing-xs);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--theme-fg-secondary);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--color-gray);
 }
 
 .menu-item:has(.menu-item-description) {
@@ -237,11 +237,7 @@
   overflow: hidden;
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
-  color: var(--theme-fg-secondary);
-}
-
-.menu-item:hover .menu-item-description {
-  color: var(--theme-fg-body);
+  color: var(--color-gray);
 }
 
 .menu-item-external {
