@@ -6254,6 +6254,7 @@ console.log(label);</code></pre>
     <!-- ── Sidebar ── -->
     <section class="section section--component" id="sidebar">
       <h2 class="section-label">Sidebar</h2>
+      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -6368,6 +6369,34 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
               <span class="sample-meta-detail">Label only</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo sidebar-demo--items">
+                <nav class="sidebar-nav sidebar-nav--flush">
+                  <div class="sidebar-group">
+                    <button type="button" class="sidebar-item is-active">Overview</button>
+                    <div class="dropdown">
+                      <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="sidebar-item-label">Projects</span>
+                        <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                      </button>
+                      <div class="menu" role="menu" hidden>
+                        <button type="button" class="menu-item" role="menuitem">Active</button>
+                        <button type="button" class="menu-item" role="menuitem">Archived</button>
+                        <button type="button" class="menu-item" role="menuitem">Templates</button>
+                      </div>
+                    </div>
+                    <button type="button" class="sidebar-item">Team</button>
+                    <button type="button" class="sidebar-item">Settings</button>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With dropdown</span>
+              <span class="sample-meta-detail">Item opens a Menu beside the list</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -6504,7 +6533,17 @@ console.log(label);</code></pre>
                   <nav class="sidebar-nav sidebar-nav--flush">
                     <div class="sidebar-group">
                       <button type="button" class="sidebar-item is-active">Inbox</button>
-                      <button type="button" class="sidebar-item">Archive</button>
+                      <div class="dropdown">
+                        <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="sidebar-item-label">Archive</span>
+                          <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                        </button>
+                        <div class="menu" role="menu" hidden>
+                          <button type="button" class="menu-item" role="menuitem">This month</button>
+                          <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                          <button type="button" class="menu-item" role="menuitem">All mail</button>
+                        </div>
+                      </div>
                       <button type="button" class="sidebar-item">Drafts</button>
                     </div>
                     <div class="sidebar-group sidebar-group--bottom">
@@ -6569,7 +6608,17 @@ console.log(label);</code></pre>
                   <nav class="sidebar-nav sidebar-nav--flush">
                     <div class="sidebar-group">
                       <button type="button" class="sidebar-item is-active">Inbox</button>
-                      <button type="button" class="sidebar-item">Archive</button>
+                      <div class="dropdown">
+                        <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="sidebar-item-label">Archive</span>
+                          <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                        </button>
+                        <div class="menu" role="menu" hidden>
+                          <button type="button" class="menu-item" role="menuitem">This month</button>
+                          <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                          <button type="button" class="menu-item" role="menuitem">All mail</button>
+                        </div>
+                      </div>
                       <button type="button" class="sidebar-item">Drafts</button>
                     </div>
                   </nav>
@@ -6630,7 +6679,17 @@ console.log(label);</code></pre>
                   <nav class="sidebar-nav sidebar-nav--flush">
                     <div class="sidebar-group">
                       <button type="button" class="sidebar-item is-active">Inbox</button>
-                      <button type="button" class="sidebar-item">Archive</button>
+                      <div class="dropdown">
+                        <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="sidebar-item-label">Archive</span>
+                          <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                        </button>
+                        <div class="menu" role="menu" hidden>
+                          <button type="button" class="menu-item" role="menuitem">This month</button>
+                          <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                          <button type="button" class="menu-item" role="menuitem">All mail</button>
+                        </div>
+                      </div>
                       <button type="button" class="sidebar-item">Drafts</button>
                     </div>
                   </nav>
@@ -6660,7 +6719,17 @@ console.log(label);</code></pre>
                   <nav class="sidebar-nav sidebar-nav--flush">
                     <div class="sidebar-group">
                       <button type="button" class="sidebar-item is-active">Inbox</button>
-                      <button type="button" class="sidebar-item">Archive</button>
+                      <div class="dropdown">
+                        <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="sidebar-item-label">Archive</span>
+                          <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                        </button>
+                        <div class="menu" role="menu" hidden>
+                          <button type="button" class="menu-item" role="menuitem">This month</button>
+                          <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                          <button type="button" class="menu-item" role="menuitem">All mail</button>
+                        </div>
+                      </div>
                       <button type="button" class="sidebar-item">Drafts</button>
                     </div>
                   </nav>
@@ -6988,7 +7057,17 @@ console.log(label);</code></pre>
               <nav class="sidebar-nav sidebar-nav--flush">
                 <div class="sidebar-group">
                   <button type="button" class="sidebar-item is-active">Inbox</button>
-                  <button type="button" class="sidebar-item">Archive</button>
+                  <div class="dropdown">
+                    <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      <span class="sidebar-item-label">Archive</span>
+                      <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">This month</button>
+                      <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                      <button type="button" class="menu-item" role="menuitem">All mail</button>
+                    </div>
+                  </div>
                   <button type="button" class="sidebar-item">Drafts</button>
                 </div>
                 <div class="sidebar-group sidebar-group--bottom">
@@ -7154,7 +7233,17 @@ console.log(label);</code></pre>
                 <nav class="sidebar-nav sidebar-nav--flush">
                   <div class="sidebar-group">
                     <button type="button" class="sidebar-item is-active">Inbox</button>
-                    <button type="button" class="sidebar-item">Archive</button>
+                    <div class="dropdown">
+                      <button type="button" class="sidebar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="sidebar-item-label">Archive</span>
+                        <i class="ph ph-caret-right dropdown-caret" aria-hidden="true"></i>
+                      </button>
+                      <div class="menu" role="menu" hidden>
+                        <button type="button" class="menu-item" role="menuitem">This month</button>
+                        <button type="button" class="menu-item" role="menuitem">Last quarter</button>
+                        <button type="button" class="menu-item" role="menuitem">All mail</button>
+                      </div>
+                    </div>
                     <button type="button" class="sidebar-item">Drafts</button>
                   </div>
                   <div class="sidebar-group sidebar-group--bottom">

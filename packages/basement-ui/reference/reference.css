@@ -2041,6 +2041,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 #sidebar .sample-box > * {
   display: flex;
   align-items: stretch;
+  align-self: stretch;
   width: 100%;
 }
 

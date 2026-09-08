@@ -68,3 +68,15 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.dropdown--side .menu,
+[data-dropdown-placement='end'] .menu {
+  top: 0;
+  left: calc(100% + var(--spacing-xs));
+}
+
+[data-dropdown-placement='start'] .menu {
+  top: 0;
+  left: auto;
+  right: calc(100% + var(--spacing-xs));
+}

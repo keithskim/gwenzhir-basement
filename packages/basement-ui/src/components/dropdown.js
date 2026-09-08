@@ -12,6 +12,7 @@
  *   </div>
  *
  * Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align="end|center"`.
+ * Side flyout: `dropdown--side` or `data-dropdown-placement="end|start"` (sidebar items default to end).
  * Opt out of auto-init with `data-dropdown="off"`. Tabs overflow owns its own control.
  * Uses BasementFloat when present (boundary via data-float-boundary).
  */
@@ -55,6 +56,14 @@
     if (root.classList.contains('dropdown--end')) return 'end';
     if (root.classList.contains('dropdown--center')) return 'center';
     return 'start';
+  }
+
+  function placementOf(root) {
+    var data = root.getAttribute('data-dropdown-placement');
+    if (data === 'end' || data === 'start' || data === 'bottom') return data;
+    if (root.classList.contains('dropdown--side')) return 'end';
+    if (root.closest('.sidebar-nav, .sidebar, .sidebar-demo')) return 'end';
+    return 'bottom';
   }
 
   function popupType() {
@@ -183,6 +192,7 @@
         panel: panel,
         mode: 'dialog',
         align: alignOf(root),
+        placement: placementOf(root),
         onClose: function () {
           var restore = !!root._dropdownRestoreFocus;
           root._dropdownRestoreFocus = false;

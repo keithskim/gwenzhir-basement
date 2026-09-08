@@ -76,7 +76,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; closed drawers and blurred overlay UI are skipped in the tab order |
 | `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
-| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center` |
+| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center`; `placement` is `bottom` (default), `end`, or `start` |
 | `dropdown.js` | `BasementDropdown` | Trigger + Menu: `aria-expanded`, Escape, click-outside, arrow keys; uses Float when present |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
@@ -93,7 +93,9 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Optional `.app-frame--nav` with `.app-frame-panes` puts a Nav bar above the panes so drawers stay under the bar. Drawers and resize come from Panel; backdrop is scoped to the pane host. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
 
-**Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Tabs overflow builds its own control and is not auto-wired.
+**Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Side flyout: `dropdown--side` or `data-dropdown-placement="end"|"start"`. Sidebar items default to a side flyout. Tabs overflow builds its own control and is not auto-wired.
+
+**Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip.
 
 **Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
 

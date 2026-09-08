@@ -1,5 +1,6 @@
 /**
  * Overflow-safe floating panels — portal to body with flip/shift placement.
+ * `placement` is `bottom` (default), `end`, or `start`.
  * Dialog mode locks nested scroll parents and re-places on page scroll/resize;
  * tooltip mode closes on scroll.
  */
@@ -52,6 +53,53 @@
     var pw = pr.width;
     var naturalH = Math.max(pr.height, panel.scrollHeight);
     var box = clampBox(anchor);
+    var state = floatState.get(panel);
+    var align = (state && state.align) || 'start';
+    var placement = (state && state.placement) || 'bottom';
+    var shrinkable = panel.classList.contains('menu');
+
+    if (placement === 'end' || placement === 'start') {
+      var rtl = getComputedStyle(anchor).direction === 'rtl';
+      var preferEnd = placement === 'end';
+      if (rtl) preferEnd = !preferEnd;
+      var spaceEnd = Math.max(0, box.right - (ar.right + FLOAT_GAP));
+      var spaceStart = Math.max(0, ar.left - FLOAT_GAP - box.left);
+      var useEnd;
+      if (preferEnd) {
+        if (pw <= spaceEnd) useEnd = true;
+        else if (pw <= spaceStart) useEnd = false;
+        else useEnd = spaceEnd >= spaceStart;
+      } else if (pw <= spaceStart) {
+        useEnd = false;
+      } else if (pw <= spaceEnd) {
+        useEnd = true;
+      } else {
+        useEnd = spaceEnd >= spaceStart;
+      }
+      var availH = Math.max(0, box.bottom - box.top);
+      if (shrinkable && availH > 0 && naturalH > availH) {
+        panel.style.maxHeight = Math.floor(availH) + 'px';
+        panel.style.overflowY = 'auto';
+        pr = panel.getBoundingClientRect();
+        pw = pr.width;
+        naturalH = pr.height;
+      }
+      var ph = shrinkable ? panel.getBoundingClientRect().height : naturalH;
+      var left = useEnd ? ar.right + FLOAT_GAP : ar.left - FLOAT_GAP - pw;
+      left = Math.min(left, box.right - pw);
+      left = Math.max(box.left, left);
+      var top = ar.top;
+      if (align === 'end') top = ar.bottom - ph;
+      else if (align === 'center') top = ar.top + ar.height / 2 - ph / 2;
+      if (top + ph > box.bottom) top = box.bottom - ph;
+      if (top < box.top) top = box.top;
+      panel.style.top = top + 'px';
+      panel.style.left = left + 'px';
+      panel.style.zIndex = '1000';
+      panel.style.visibility = '';
+      return;
+    }
+
     var spaceBelow = Math.max(0, box.bottom - (ar.bottom + FLOAT_GAP));
     var spaceAbove = Math.max(0, ar.top - FLOAT_GAP - box.top);
     var placeBelow = true;
@@ -65,7 +113,6 @@
     var avail = placeBelow ? spaceBelow : spaceAbove;
     // Menus shrink+scroll. Fixed-layout popups (datetime) flip/shift instead —
     // max-height + overflow breaks their grids.
-    var shrinkable = panel.classList.contains('menu');
     if (shrinkable && avail > 0 && naturalH > avail) {
       panel.style.maxHeight = Math.floor(avail) + 'px';
       panel.style.overflowY = 'auto';
@@ -79,8 +126,6 @@
       ph = naturalH;
     }
     var top = placeBelow ? ar.bottom + FLOAT_GAP : ar.top - FLOAT_GAP - ph;
-    var state = floatState.get(panel);
-    var align = (state && state.align) || 'start';
     var left = ar.left;
     if (align === 'end') {
       left = ar.right - pw;
@@ -121,6 +166,7 @@
       onResize: null,
       onClose: onClose,
       align: opts.align || 'start',
+      placement: opts.placement || 'bottom',
       _placeRaf: 0,
     };
     document.body.appendChild(panel);
