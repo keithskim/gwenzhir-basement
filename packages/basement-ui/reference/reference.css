@@ -1308,6 +1308,10 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   row-gap: var(--spacing-m);
 }
 
+.type-sample-list + .type-sample-list {
+  margin-top: var(--spacing-m);
+}
+
 .type-sample-item {
   grid-column: 1 / -1;
   display: grid;
@@ -1529,6 +1533,13 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-width: 0;
 }
 
+#tag .sample-box > .tag--counter {
+  min-width: var(--tag-counter-size);
+  width: auto;
+  height: var(--tag-counter-size);
+  max-width: none;
+}
+
 :is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .sample-box {
   place-items: center;
 }
@@ -1540,8 +1551,9 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   align-self: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #app-icon) .sample-box > * {
-  /* Intrinsic demos: avoid stretching. Spinner keeps its fixed size tokens. */
+:is(#tag, #status-chip, #mention, #avatar, #app-icon) .sample-box > :not(.tag--counter) {
+  /* Intrinsic demos: avoid stretching. Spinner keeps its fixed size tokens.
+     Counters keep a square box for one digit. */
   width: auto;
   min-width: auto;
 }
@@ -1792,7 +1804,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   align-self: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #app-icon) .type-sample-list--sizes .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #app-icon) .type-sample-list--sizes .sample-box > :not(.tag--counter) {
   width: auto;
   min-width: auto;
 }

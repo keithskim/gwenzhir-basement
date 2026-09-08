@@ -87,7 +87,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Theme** — Load `theme.js` in `<head>`. Put `data-theme-toggle` on an icon button with Moon and Sun icons (see Button in the reference). Toggles `html.is-dark`, shows Moon in light and Sun in dark, and remembers the choice; until then it follows `prefers-color-scheme`.
 
-**Tag** — Outline, filled, split, and compact labels. `.tag--counter` is a circular compact count, filled by default (grows into a pill for extra digits). Pair with a size class.
+**Tag** — Outline, filled, split, and compact labels. `.tag--counter` is a compact Gray count. One digit is square (Radius S) at every size; extra digits grow wider. Uses lining proportional digits. Defaults to 2XS; pair with a size class to scale.
 
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
@@ -101,7 +101,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
 
-**Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster. `.navbar--compact` tightens bar and item padding.
+**Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster. `.navbar--compact` tightens bar and item padding; its start inset matches a left Panel sidebar so brand and items line up.
 
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 

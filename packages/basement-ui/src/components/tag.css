@@ -186,44 +186,48 @@
   padding-inline: 0.5rem;
 }
 
-/* Circular compact count — filled by default; grows into a pill for extra digits. */
-.tag--counter {
-  border-radius: 9999px;
-  background: var(--theme-fg);
-  border-color: var(--theme-fg);
-  color: var(--theme-bg);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum';
-  line-height: 1.2;
-  font-size: var(--font-size-xs);
-  min-width: calc(var(--font-size-xs) + 0.25rem);
-  min-height: calc(var(--font-size-xs) + 0.25rem);
-  padding-block: 0.0625rem;
-  padding-inline: 0.125rem;
+/* Compact count — Gray fill; square for one digit, wider when extra digits. */
+.tag.tag--counter {
+  --tag-counter-size: 1.4em;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--color-gray);
+  border-color: var(--color-gray);
+  color: var(--color-white);
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: 'lnum', 'pnum';
+  font-size: var(--font-size-2xs);
+  line-height: 1;
+  height: var(--tag-counter-size);
+  min-height: var(--tag-counter-size);
+  width: auto;
+  min-width: var(--tag-counter-size);
+  max-width: none;
+  padding-block: 0.125em;
+  padding-inline: 0.15em;
+}
+
+html.is-dark .tag.tag--counter {
+  color: var(--color-black);
 }
 
 .tag--counter.tag--2xs {
   font-size: var(--font-size-2xs);
-  min-width: calc(var(--font-size-2xs) + 0.25rem);
-  min-height: calc(var(--font-size-2xs) + 0.25rem);
-  padding-block: 0.0625rem;
-  padding-inline: 0.125rem;
+}
+
+.tag--counter.tag--xs {
+  font-size: var(--font-size-xs);
 }
 
 .tag--counter.tag--s {
   font-size: var(--font-size-s);
-  min-width: calc(var(--font-size-s) + 0.375rem);
-  min-height: calc(var(--font-size-s) + 0.375rem);
-  padding-block: 0.125rem;
-  padding-inline: 0.25rem;
 }
 
 .tag--counter.tag--m {
   font-size: var(--font-size-m);
-  min-width: calc(var(--font-size-m) + 0.375rem);
-  min-height: calc(var(--font-size-m) + 0.375rem);
-  padding-block: 0.125rem;
-  padding-inline: 0.25rem;
 }
 
 .tag--counter.tag--affirm {

@@ -132,7 +132,10 @@
 
 .navbar--compact {
   min-height: 0;
-  padding: var(--spacing-xs) var(--spacing-s);
+  padding-block: var(--spacing-xs);
+  padding-inline-end: var(--spacing-s);
+  /* Match left Panel inset + sidebar item bleed so brand lines up with items. */
+  padding-inline-start: calc(var(--spacing-s) + var(--spacing-xs));
   gap: var(--spacing-xs);
 }
 
