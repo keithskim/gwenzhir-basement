@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--btn-gap);
+  box-sizing: border-box;
+  min-width: min-content;
   padding-block: var(--btn-pad-block);
   padding-inline-start: var(--btn-pad-inline);
   padding-inline-end: var(--btn-pad-inline);
@@ -185,4 +187,16 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
 
 html.is-dark .btn--accent .tag.tag--filled {
   color: var(--color-black);
+}
+
+.btn[data-theme-toggle] .ph-sun {
+  display: none;
+}
+
+html.is-dark .btn[data-theme-toggle] .ph-moon {
+  display: none;
+}
+
+html.is-dark .btn[data-theme-toggle] .ph-sun {
+  display: inline-flex;
 }

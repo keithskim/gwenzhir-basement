@@ -74,6 +74,13 @@
   color: var(--theme-fg-destructive);
 }
 
+/* Tabular numerals — equal-width digits in the base face (not Mono).
+   Prefer on dense numeric UI: table amounts, graph values, counts, ISO dates. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
 /* ── Family styles ── */
 .type-mono {
   font-family: var(--font-mono-family);
@@ -84,6 +91,13 @@
 .type-serif {
   font-family: var(--font-serif-family);
   font-weight: var(--font-serif-weight);
+}
+
+.type-emoji {
+  font-family: var(--font-emoji-family);
+  font-weight: var(--font-base-weight);
+  /* Monochrome: prefer text style. Explicit U+FE0F still forces color emoji. */
+  font-variant-emoji: text;
 }
 
 /* ── Links ── */

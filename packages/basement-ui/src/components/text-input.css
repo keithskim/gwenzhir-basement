@@ -72,9 +72,7 @@
 .textarea:focus {
   position: relative;
   z-index: 1;
-  border-color: var(--theme-fg);
-  outline: none;
-  box-shadow: inset 0 0 0 0.0625rem var(--theme-fg);
+  border-color: var(--color-gray);
 }
 
 .textarea {
@@ -128,9 +126,7 @@
 .text-input:focus-within {
   position: relative;
   z-index: 1;
-  border-color: var(--theme-fg);
-  outline: none;
-  box-shadow: inset 0 0 0 0.0625rem var(--theme-fg);
+  border-color: var(--color-gray);
 }
 
 .text-input .input:focus {

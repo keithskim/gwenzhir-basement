@@ -30,8 +30,8 @@ Open http://localhost:5173 for the token and component reference.
 
 Subset exports (`tokens`, `components`, `typography`, `fonts`) and optional scripts are documented in the [package README](packages/basement-ui/README.md).
 
-Base type is Inter over Pretendard at weight 500; Serif is Source Han Serif (slightly smaller than Sans); Mono is Roboto Mono over Pretendard. All load from `vendor/source-han/fonts.css`.
+Base type is Inter over Pretendard at weight 500; Serif is Source Han Serif (slightly smaller than Sans); Mono is Roboto Mono over Pretendard; Emoji is Noto Emoji. All load from `vendor/source-han/fonts.css`.
 
 ## License
 
-ISC. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono). Icons are [Phosphor](https://phosphoricons.com/) (MIT), vendored under `packages/basement-ui/vendor/phosphor/`.
+ISC. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono, Noto Emoji). Icons are [Phosphor](https://phosphoricons.com/) (MIT), vendored under `packages/basement-ui/vendor/phosphor/`.

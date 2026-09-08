@@ -1,0 +1,57 @@
+/* App mark. Size via font-size on the root (1em box).
+   Default / Dark: White on Black. Light: Black on White. */
+.app-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  aspect-ratio: 1;
+  font-size: 2rem;
+  border-radius: 0.125em;
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.app-icon--dark {
+  background: var(--color-black);
+  color: var(--color-white);
+  box-shadow: none;
+}
+
+.app-icon--light {
+  background: var(--color-white);
+  color: var(--color-black);
+  /* Hairline so the mark reads on White page surfaces. */
+  box-shadow: inset 0 0 0 1px var(--color-light-gray);
+}
+
+.app-icon .ph {
+  font-size: 0.55em;
+  line-height: 1;
+  color: inherit;
+}
+
+.app-icon--favicon {
+  font-size: 1rem;
+}
+
+.app-icon--s {
+  font-size: 2rem;
+}
+
+.app-icon--m {
+  font-size: 3rem;
+}
+
+.app-icon--l {
+  font-size: 4rem;
+}
+
+.app-icon--xl {
+  font-size: 8rem;
+}

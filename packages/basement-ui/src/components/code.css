@@ -6,8 +6,8 @@
   padding: 0.1em 0.35em;
   border-radius: var(--border-radius-s);
   border: 1px solid var(--theme-border);
-  background: var(--theme-bg-subtle);
-  color: var(--theme-fg);
+  background: transparent;
+  color: var(--theme-fg-secondary);
   font-family: var(--font-mono-family);
   font-weight: var(--font-base-weight);
   font-size: 0.875em;
@@ -33,11 +33,11 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  padding: var(--spacing-s);
+  padding: var(--spacing-xs) var(--spacing-s);
   border-radius: var(--border-radius-s);
   border: 1px solid var(--theme-border);
-  background: var(--theme-bg-subtle);
-  color: var(--theme-fg);
+  background: transparent;
+  color: var(--theme-fg-secondary);
   font-family: var(--font-mono-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-xs);

@@ -6,13 +6,14 @@ Design system and component library for Gwenzhir projects.
 
 - `src/tokens/` — Design tokens (colors, typography, measure, layout)
 - `src/base/` — Reset and base element styles
-- `src/typography/` — Heading, body, caption, mono, serif, and link styles
+- `src/typography/` — Heading, body, caption, mono, serif, emoji, link, and tabular-numeral styles
 - `src/icons/` — Phosphor icon size utilities
-- `src/components/` — Reusable UI component styles (Button, Tabs, Toggle, Text Input, Form, Graph, Tag, Code, Status Chip, Pairs, Content Block, Progress, Spinner, Player, Avatar, Menu, Dropdown, Tooltip, Datetime, Sidebar, Prompt, Alert, Table, Timeline, Calendar)
+- `src/components/` — Reusable UI component styles and optional JS helpers
+- `src/patterns/` — Composition patterns (App frame, Edge fade) built on tokens and components
 - `src/index.css` — Full library entry (imports all of the above)
 - `reference/` — Reference page chrome (sidebar, demos, dev toggles); not part of the published package
 - `index.html` — Live token and component reference
-- `vendor/source-han/` — Typeface loading CSS: Inter, Pretendard, Source Han Serif, Roboto Mono (OFL)
+- `vendor/source-han/` — Typeface loading CSS: Inter, Pretendard, Source Han Serif, Roboto Mono, Noto Emoji (OFL)
 - `vendor/phosphor/` — Phosphor Icons regular weight (MIT)
 
 ## Usage
@@ -45,15 +46,62 @@ Or import subsets via package exports:
 <link rel="stylesheet" href="path/to/basement-ui/src/components/index.css">
 ```
 
-For Tabs that should collapse into a vertical list when labels exceed the container:
+### Scripts
+
+Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for float consumers:
 
 ```html
+<script src="path/to/basement-ui/src/components/theme.js"></script> <!-- early in <head> to avoid FOUC -->
+…
+<script src="path/to/basement-ui/src/components/keyboard.js" defer></script>
+<script src="path/to/basement-ui/src/components/box-resize.js" defer></script>
+<script src="path/to/basement-ui/src/components/edge-fade.js" defer></script>
+<script src="path/to/basement-ui/src/components/panel.js" defer></script>
+<script src="path/to/basement-ui/src/components/dialog.js" defer></script>
+<script src="path/to/basement-ui/src/components/float.js" defer></script>
+<script src="path/to/basement-ui/src/components/dropdown.js" defer></script>
+<script src="path/to/basement-ui/src/components/datetime.js" defer></script>
+<script src="path/to/basement-ui/src/components/tooltip.js" defer></script>
 <script src="path/to/basement-ui/src/components/tabs-collapse.js" defer></script>
+<script src="path/to/basement-ui/src/patterns/app-frame.js" defer></script>
+<script src="path/to/basement-ui/src/components/timeline-axis.js" defer></script>
+<script src="path/to/basement-ui/src/components/graph-density.js" defer></script>
 ```
 
-Force stacked with `tabs--stacked`, or opt out with `data-tabs-collapse="off"`.
+| Script | API | Role |
+|---|---|---|
+| `theme.js` | `BasementTheme` | Mirrors `prefers-color-scheme` onto `html.is-dark`; wires `[data-theme-toggle]` and persists the choice |
+| `keyboard.js` | `BasementKeyboard` | Return activates checkboxes, radios, and switches; pins the table wrap focus ring to the scrollport (other Tab rings ship in the CSS bundle) |
+| `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
+| `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
+| `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; closed drawers and blurred overlay UI are skipped in the tab order |
+| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
+| `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center` |
+| `dropdown.js` | `BasementDropdown` | Trigger + Menu: `aria-expanded`, Escape, click-outside, arrow keys; uses Float when present |
+| `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
+| `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
+| `tabs-collapse.js` | `BasementTabs` | Stack or Dropdown overflow (`data-tabs-overflow`; dropdown uses Float when present) |
+| `app-frame.js` | `BasementFrame` | Sheet layout helpers; exclusive left/right Panel drawers |
+| `timeline-axis.js` | `BasementTimeline` | Skip/span axis labels |
+| `graph-density.js` | `BasementGraphDensity` | Compact labels + horizontal scroll for dense lines |
 
-**Typefaces** — Base text is Inter over Pretendard at weight 500. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Load `vendor/source-han/fonts.css` in every project so the faces resolve. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
+**Theme** — Load `theme.js` in `<head>`. Put `data-theme-toggle` on an icon button with Moon and Sun icons (see Button in the reference). Toggles `html.is-dark`, shows Moon in light and Sun in dark, and remembers the choice; until then it follows `prefers-color-scheme`.
+
+**Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
+
+**Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
+
+**App frame** — Composes left and right Panel around the sheet (`.app-frame`). Drawers and resize come from Panel; backdrop is scoped to the frame. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
+
+**Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Tabs overflow builds its own control and is not auto-wired.
+
+**Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, and external mark. Open either from a Dropdown.
+
+**Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
+
+**Tabular numerals** — add `.tnum` on the base face for equal-width digits (amounts, ISO dates, counts). Prefer this over Mono for dense numeric UI.
+
+**Typefaces** — Base text is Inter over Pretendard at weight 500. Pretendard Hangul loads slightly larger (`size-adjust: 103%`) so it optically matches Inter Latin/numerals in mixed runs. Serif is Source Han Serif at 600 (`type-serif`), loaded slightly smaller than Sans (`size-adjust: 94%`). Mono is Roboto Mono over Pretendard (`type-mono`), slightly smaller (`size-adjust: 97%`) with letter spacing −0.01em. Emoji is Noto Emoji (`type-emoji`): monochrome and tintable with text color. `.type-emoji` sets `font-variant-emoji: text`; avoid `U+FE0F` in content (use `U+FE0E` or bare codepoints) or browsers will prefer system color emoji. Noto Emoji is also listed after each family so emoji codepoints resolve there via unicode-range subsets. Load `vendor/source-han/fonts.css` in every project so the faces resolve; it declares faces with absolute CDN URLs and `font-display: block` (no nested `@import`, no fallback flash). Preload Inter and Pretendard WOFF2s in `<head>` when possible. Phosphor regular weight is vendored as WOFF2 at `vendor/phosphor/regular/`.
 
 ### Palette audit
 
@@ -76,4 +124,4 @@ Import tokens and components into any Gwenzhir app or internal tool. Do not add 
 
 ## License
 
-ISC for Basement UI. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono); see `vendor/source-han/NOTICE`. [Phosphor Icons](https://phosphoricons.com/) are MIT; see `vendor/phosphor/NOTICE`.
+ISC for Basement UI. Typefaces are SIL OFL 1.1 (Inter, Pretendard, Source Han Serif, Roboto Mono, Noto Emoji); see `vendor/source-han/NOTICE`. [Phosphor Icons](https://phosphoricons.com/) are MIT; see `vendor/phosphor/NOTICE`.

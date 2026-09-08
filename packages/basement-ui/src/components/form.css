@@ -89,12 +89,6 @@
   opacity: 1;
 }
 
-.checkbox:focus-visible,
-.radio:focus-visible {
-  outline: 0.125rem solid var(--theme-fg);
-  outline-offset: 0.125rem;
-}
-
 .checkbox:disabled,
 .radio:disabled {
   opacity: 0.5;

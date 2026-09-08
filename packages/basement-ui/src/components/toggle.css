@@ -29,13 +29,6 @@
   cursor: pointer;
 }
 
-.toggle-switch:focus-visible,
-.toggle-checkbox:focus-visible,
-.toggle-radio:focus-visible {
-  outline: 0.125rem solid var(--theme-fg);
-  outline-offset: 0.125rem;
-}
-
 .toggle-switch:disabled,
 .toggle-checkbox:disabled,
 .toggle-radio:disabled {
@@ -137,7 +130,7 @@
   min-inline-size: 0;
   margin: 0;
   padding: 0;
-  overflow-x: auto;
+  overflow: visible;
   border: 0.0625rem solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: transparent;
@@ -200,11 +193,6 @@
   color: var(--theme-fg);
   background: var(--theme-bg-subtle);
   box-shadow: none;
-}
-
-.segmented-select-input:focus-visible + .segmented-select-label {
-  outline: 0.125rem solid var(--theme-fg);
-  outline-offset: -0.0625rem;
 }
 
 .segmented-select-option:has(.segmented-select-input:disabled) {

@@ -1,5 +1,4 @@
 const SECTION_STORAGE_KEY = 'basement-ui-section';
-const DARK_MODE_STORAGE_KEY = 'basement-ui-dark-mode';
 const COLUMN_OVERLAY_STORAGE_KEY = 'basement-ui-show-columns';
 const DEFAULT_SECTION = 'home';
 
@@ -7,8 +6,7 @@ const DEFAULT_SECTION = 'home';
 const navItems = document.querySelectorAll('.sidebar-item[data-section]');
 const sections = document.querySelectorAll('.section');
 const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+const appSidebar = document.getElementById('appSidebar');
 const page = document.querySelector('.page');
 const narrowMedia = window.matchMedia('(max-width: 43.9375rem)');
 
@@ -16,51 +14,38 @@ function isNarrowViewport() {
   return narrowMedia.matches;
 }
 
-function syncSidebarToggleVisibility() {
-  if (!sidebarToggle) return;
-  if (isNarrowViewport()) {
-    sidebarToggle.hidden = false;
-  } else {
-    sidebarToggle.hidden = true;
-    setSidebarOpen(false);
-  }
-}
-
 function setSidebarOpen(open) {
-  if (!page) return;
-  page.classList.toggle('is-sidebar-open', open);
-  if (sidebarToggle) {
-    sidebarToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    sidebarToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if (!appSidebar) return;
+  if (window.BasementPanel) {
+    if (open) window.BasementPanel.open(appSidebar);
+    else window.BasementPanel.close(appSidebar);
+  } else {
+    appSidebar.classList.toggle('is-open', open);
   }
-  if (sidebarBackdrop) {
-    sidebarBackdrop.hidden = !open;
-  }
-  document.documentElement.classList.toggle('is-sidebar-locked', open && isNarrowViewport());
+  syncSidebarLock();
 }
 
 function closeSidebar() {
   setSidebarOpen(false);
 }
 
-if (sidebarToggle) {
-  sidebarToggle.addEventListener('click', () => {
-    setSidebarOpen(!page.classList.contains('is-sidebar-open'));
+function syncSidebarLock() {
+  const open = !!appSidebar?.classList.contains('is-open');
+  document.documentElement.classList.toggle('is-sidebar-locked', open && isNarrowViewport());
+}
+
+if (appSidebar) {
+  new MutationObserver(syncSidebarLock).observe(appSidebar, {
+    attributes: true,
+    attributeFilter: ['class'],
   });
 }
 
-if (sidebarBackdrop) {
-  sidebarBackdrop.addEventListener('click', closeSidebar);
-}
-
-narrowMedia.addEventListener('change', syncSidebarToggleVisibility);
-syncSidebarToggleVisibility();
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && page?.classList.contains('is-sidebar-open')) {
-    closeSidebar();
-  }
+narrowMedia.addEventListener('change', () => {
+  if (!isNarrowViewport()) closeSidebar();
+  syncSidebarLock();
 });
+syncSidebarLock();
 
 function sectionHash(sectionId) {
   return sectionId === DEFAULT_SECTION ? '#home' : `#${sectionId}`;
@@ -68,14 +53,29 @@ function sectionHash(sectionId) {
 
 function sectionFromHash() {
   const id = window.location.hash.slice(1);
-  if (id && document.getElementById(id)) return id;
+  const resolved = resolveSectionId(id);
+  if (resolved && document.getElementById(resolved)) return resolved;
   if (!window.location.hash) return DEFAULT_SECTION;
   return null;
 }
 
+const SECTION_ALIASES = {
+  'tabs-overflow': 'tabs',
+  'timeline-axis': 'timeline',
+  'graph-density': 'graph',
+  'mega-menu': 'menu',
+};
+
+function resolveSectionId(sectionId) {
+  if (!sectionId) return sectionId;
+  return SECTION_ALIASES[sectionId] || sectionId;
+}
+
 function activateSection(sectionId) {
+  sectionId = resolveSectionId(sectionId);
   const section = document.getElementById(sectionId);
   if (!section) return false;
+  if (window.BasementFloat) window.BasementFloat.closeAll();
   navItems.forEach(n => n.classList.toggle('is-active', n.dataset.section === sectionId));
   if (sidebarHomeBtn) {
     sidebarHomeBtn.classList.toggle('is-active', sectionId === DEFAULT_SECTION);
@@ -88,6 +88,7 @@ function activateSection(sectionId) {
 }
 
 function navigateToSection(sectionId, { replace = false } = {}) {
+  sectionId = resolveSectionId(sectionId);
   if (!activateSection(sectionId)) return;
   closeSidebar();
   const hash = sectionHash(sectionId);
@@ -301,50 +302,11 @@ document.addEventListener('click', e => {
   }
   document.querySelectorAll('.scheme-picker').forEach(p => p.classList.remove('is-open'));
   activeBtn = null;
-  if (!e.target.closest('.dropdown-demo')) {
-    closeAllDropdowns();
-  }
-});
-
-// ── Dropdown ──
-function closeAllDropdowns() {
-  document.querySelectorAll('.dropdown-demo.is-open').forEach(demo => {
-    demo.classList.remove('is-open');
-    const trigger = demo.querySelector('.dropdown-trigger');
-    const menu = demo.querySelector('.menu');
-    trigger.setAttribute('aria-expanded', 'false');
-    menu.hidden = true;
-  });
-}
-
-document.querySelectorAll('.dropdown-demo').forEach(demo => {
-  const trigger = demo.querySelector('.dropdown-trigger');
-  const menu = demo.querySelector('.menu');
-
-  trigger.addEventListener('click', e => {
-    e.stopPropagation();
-    const isOpen = demo.classList.contains('is-open');
-    closeAllDropdowns();
-    if (!isOpen) {
-      demo.classList.add('is-open');
-      trigger.setAttribute('aria-expanded', 'true');
-      menu.hidden = false;
-    }
-  });
-
 });
 
 // ── Column overlay ──
 const columnOverlay = document.getElementById('columnOverlay');
 const columnOverlayToggle = document.getElementById('columnOverlayToggle');
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-function setDarkMode(enabled) {
-  document.documentElement.classList.toggle('is-dark', enabled);
-  darkModeToggle.checked = enabled;
-  syncAllColorChipBorders();
-  syncTokenValues();
-}
 
 function syncTokenValues() {
   const styles = getComputedStyle(document.documentElement);
@@ -353,18 +315,13 @@ function syncTokenValues() {
   });
 }
 
-darkModeToggle.addEventListener('change', () => {
-  const enabled = darkModeToggle.checked;
-  setDarkMode(enabled);
-  localStorage.setItem(DARK_MODE_STORAGE_KEY, enabled ? '1' : '');
-});
-
-if (localStorage.getItem(DARK_MODE_STORAGE_KEY) === '1') {
-  setDarkMode(true);
-} else {
+function syncThemeDependentChrome() {
   syncAllColorChipBorders();
   syncTokenValues();
 }
+
+syncThemeDependentChrome();
+document.documentElement.addEventListener('basement-theme', syncThemeDependentChrome);
 
 function syncColumnOverlay() {
   const columns = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--columns'), 10);
@@ -378,11 +335,15 @@ function syncColumnOverlay() {
 
 function setColumnOverlayVisible(visible) {
   columnOverlay.classList.toggle('is-hidden', !visible);
-  columnOverlayToggle.checked = visible;
+  const label = visible ? 'Hide columns' : 'Show columns';
+  columnOverlayToggle.setAttribute('aria-pressed', visible ? 'true' : 'false');
+  columnOverlayToggle.setAttribute('aria-label', label);
+  const tip = document.getElementById('columnOverlayTooltip');
+  if (tip) tip.textContent = label;
 }
 
-columnOverlayToggle.addEventListener('change', () => {
-  const visible = columnOverlayToggle.checked;
+columnOverlayToggle.addEventListener('click', () => {
+  const visible = columnOverlayToggle.getAttribute('aria-pressed') !== 'true';
   setColumnOverlayVisible(visible);
   localStorage.setItem(COLUMN_OVERLAY_STORAGE_KEY, visible ? '1' : '');
 });
@@ -467,6 +428,218 @@ function initTableSelection() {
 }
 
 initTableSelection();
+
+// ── Pattern demos: edge fades ──
+function initPatternEdgeFades() {
+  if (!window.BasementEdgeFade) return;
+  document.querySelectorAll('.pattern-fade-x').forEach(el => {
+    window.BasementEdgeFade.wire(el, 'x');
+  });
+  document.querySelectorAll('.pattern-fade-y').forEach(el => {
+    window.BasementEdgeFade.wire(el, 'y');
+  });
+  document.querySelectorAll('.pattern-header-fade').forEach(el => {
+    window.BasementEdgeFade.wireHeader(el);
+  });
+}
+
+initPatternEdgeFades();
+
+// ── App Icon builder ──
+const APP_ICON_DEFAULT = 'ph-bounding-box';
+const APP_ICON_STORAGE_KEY = 'basement-ui-app-icon';
+let currentAppIcon = APP_ICON_DEFAULT;
+
+function appIconPhClass(iconName) {
+  return iconName.startsWith('ph-') ? iconName : `ph-${iconName}`;
+}
+
+function parsePseudoContent(value) {
+  if (!value || value === 'none') return '';
+  let raw = value.trim();
+  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
+    raw = raw.slice(1, -1);
+  }
+  return raw.replace(/\\([0-9a-fA-F]{1,6})\s?/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/\\(.)/g, '$1');
+}
+
+function glyphForPhClass(phClass) {
+  const probe = document.createElement('i');
+  probe.className = `ph ${phClass}`;
+  probe.setAttribute('aria-hidden', 'true');
+  probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;pointer-events:none;';
+  document.body.appendChild(probe);
+  const glyph = parsePseudoContent(getComputedStyle(probe, '::before').content);
+  probe.remove();
+  return glyph;
+}
+
+function tokenColor(name, fallback) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+}
+
+function roundRectPath(ctx, x, y, size, radius) {
+  const r = Math.min(radius, size / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + size, y, x + size, y + size, r);
+  ctx.arcTo(x + size, y + size, x, y + size, r);
+  ctx.arcTo(x, y + size, x, y, r);
+  ctx.arcTo(x, y, x + size, y, r);
+  ctx.closePath();
+}
+
+async function renderAppIconCanvas(phClass, size, scheme = 'dark') {
+  await document.fonts.load(`${Math.round(size * 0.55)}px Phosphor`);
+  await document.fonts.ready;
+  const glyph = glyphForPhClass(phClass);
+  if (!glyph) throw new Error(`Missing glyph for ${phClass}`);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const black = tokenColor('--color-black', '#131410');
+  const white = tokenColor('--color-white', '#FFFFF9');
+  const lightGray = tokenColor('--color-light-gray', '#DEDFD8');
+  const dark = scheme !== 'light';
+  const radius = size * 0.125;
+
+  ctx.clearRect(0, 0, size, size);
+  ctx.fillStyle = dark ? black : white;
+  roundRectPath(ctx, 0, 0, size, radius);
+  ctx.fill();
+
+  if (!dark) {
+    ctx.strokeStyle = lightGray;
+    ctx.lineWidth = Math.max(1, size * (1 / 64));
+    roundRectPath(ctx, 0, 0, size, radius);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = dark ? white : black;
+  ctx.font = `${size * 0.55}px Phosphor`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Optical center: Phosphor glyphs sit slightly high with alphabetic metrics.
+  ctx.fillText(glyph, size / 2, size / 2 + size * 0.02);
+  return canvas;
+}
+
+function downloadCanvas(canvas, filename) {
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+}
+
+function slugFromPhClass(phClass) {
+  return phClass.replace(/^ph-/, '');
+}
+
+function currentAppIconScheme() {
+  const checked = document.querySelector('input[name="app-icon-scheme"]:checked');
+  return checked?.value === 'light' ? 'light' : 'dark';
+}
+
+function setAppIconSelection(phClass, { persist = true } = {}) {
+  const className = appIconPhClass(phClass);
+  currentAppIcon = className;
+  document.querySelectorAll('[data-app-icon-preview] .ph').forEach(icon => {
+    icon.className = `ph ${className}`;
+  });
+  document.querySelectorAll('#appIconPicker .app-icon-picker-item').forEach(item => {
+    const selected = item.dataset.icon === className;
+    item.classList.toggle('is-selected', selected);
+    item.setAttribute('aria-selected', selected ? 'true' : 'false');
+  });
+  if (persist) localStorage.setItem(APP_ICON_STORAGE_KEY, className);
+}
+
+async function applyAppIconFavicon(phClass, scheme = 'dark') {
+  const canvas = await renderAppIconCanvas(phClass, 32, scheme);
+  let link = document.querySelector('link[data-app-icon-favicon]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    link.dataset.appIconFavicon = '';
+    document.head.appendChild(link);
+  }
+  link.href = canvas.toDataURL('image/png');
+}
+
+function initAppIconBuilder() {
+  const picker = document.getElementById('appIconPicker');
+  if (!picker) return;
+
+  const catalog = document.querySelectorAll('#icons .col-row--icons > div');
+  const seen = new Set();
+  catalog.forEach(cell => {
+    const icon = cell.querySelector('.ph');
+    const label = cell.querySelector('.token-name')?.textContent.trim();
+    if (!icon || !label) return;
+    const phClass = [...icon.classList].find(c => c.startsWith('ph-'));
+    if (!phClass || seen.has(phClass)) return;
+    seen.add(phClass);
+
+    const item = document.createElement('div');
+    item.className = 'app-icon-picker-item';
+    item.dataset.icon = phClass;
+    item.setAttribute('role', 'option');
+    item.setAttribute('aria-selected', 'false');
+    item.tabIndex = 0;
+    item.innerHTML = `
+      <div class="icon-face icon-face--l"><i class="ph ${phClass}" aria-hidden="true"></i></div>
+      <div class="token-name">${label}</div>
+    `;
+    const choose = () => setAppIconSelection(phClass);
+    item.addEventListener('click', choose);
+    item.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        choose();
+      }
+    });
+    picker.appendChild(item);
+  });
+
+  const stored = localStorage.getItem(APP_ICON_STORAGE_KEY);
+  const initial = stored && seen.has(stored) ? stored : APP_ICON_DEFAULT;
+  setAppIconSelection(initial);
+
+  document.querySelectorAll('[data-app-icon-download]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const size = Number(btn.dataset.appIconDownload) || 512;
+      const scheme = currentAppIconScheme();
+      try {
+        const canvas = await renderAppIconCanvas(currentAppIcon, size, scheme);
+        const kind = size >= 256 ? 'app-icon' : 'favicon';
+        downloadCanvas(canvas, `${kind}-${scheme}-${slugFromPhClass(currentAppIcon)}-${size}.png`);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  });
+
+  const applyBtn = document.getElementById('appIconApplyFavicon');
+  applyBtn?.addEventListener('click', async () => {
+    try {
+      await applyAppIconFavicon(currentAppIcon, currentAppIconScheme());
+    } catch (err) {
+      console.error(err);
+    }
+  });
+}
+
+initAppIconBuilder();
 
 const initialSection = sectionFromHash()
   || localStorage.getItem(SECTION_STORAGE_KEY)

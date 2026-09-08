@@ -17,8 +17,10 @@
     ".": "./src/index.css",
     "./tokens": "./src/tokens/tokens.css",
     "./components": "./src/components/index.css",
+    "./patterns": "./src/patterns/index.css",
     "./typography": "./src/typography/typography.css",
-    "./fonts": "./vendor/source-han/fonts.css"
+    "./fonts": "./vendor/source-han/fonts.css",
+    "./keyboard": "./src/components/keyboard.css"
   },
   "files": [
     "src/",

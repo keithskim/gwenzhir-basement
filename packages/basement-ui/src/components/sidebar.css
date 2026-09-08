@@ -18,6 +18,7 @@
   all: unset;
   display: block;
   flex-shrink: 0;
+  padding-inline: var(--sidebar-item-bleed);
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   font-size: var(--font-size-m);
@@ -29,6 +30,13 @@
   text-align: left;
 }
 
+.sidebar-title .ph {
+  display: block;
+  line-height: 1;
+  /* Default title mark size matches icon--2xl */
+  font-size: 2.25rem;
+}
+
 .sidebar-title.is-active {
   color: var(--theme-fg);
 }
@@ -36,6 +44,7 @@
 .sidebar-byline {
   flex-shrink: 0;
   margin-top: var(--spacing-xs);
+  padding-inline: var(--sidebar-item-bleed);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   color: var(--theme-fg-secondary);
@@ -43,13 +52,11 @@
 
 .sidebar-nav {
   margin-top: var(--spacing-m);
-  margin-inline: calc(-1 * var(--sidebar-item-bleed));
   display: flex;
   flex-direction: column;
   gap: 0;
   flex: 1 1 auto;
   min-height: 0;
-  padding-inline: var(--sidebar-item-bleed);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -69,7 +76,17 @@
   margin-top: var(--spacing-m);
 }
 
+.sidebar-group--bottom {
+  margin-top: auto;
+  padding-top: var(--spacing-m);
+}
+
+.sidebar-group + .sidebar-group--bottom {
+  margin-top: auto;
+}
+
 .sidebar-group-label {
+  padding-inline: var(--sidebar-item-bleed);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   color: var(--theme-fg-secondary);
@@ -86,7 +103,7 @@
   isolation: isolate;
   width: 100%;
   padding-block: 0.125rem;
-  padding-inline: 0;
+  padding-inline: var(--sidebar-item-bleed);
   border-radius: var(--border-radius-s);
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
@@ -102,8 +119,7 @@
   content: '';
   position: absolute;
   z-index: -1;
-  inset-block: 0;
-  inset-inline: calc(-1 * var(--sidebar-item-bleed));
+  inset: 0;
   border-radius: var(--border-radius-s);
   transition: background-color 0.15s ease;
 }
@@ -194,8 +210,11 @@
 .sidebar-footer {
   flex-shrink: 0;
   padding-top: var(--spacing-m);
+  padding-inline: var(--sidebar-item-bleed);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   gap: var(--spacing-xs);
 }
 
@@ -231,4 +250,15 @@
 .sidebar--compact .sidebar-item-meta {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
+}
+
+/* Sidebar nav fills a Panel when composed */
+.panel .sidebar-title {
+  color: var(--theme-fg);
+}
+
+.panel .sidebar-nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
