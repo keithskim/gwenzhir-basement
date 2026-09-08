@@ -6974,9 +6974,10 @@ console.log(label);</code></pre>
 
     <section class="section section--component" id="app-frame">
       <h2 class="section-label">App frame</h2>
-      <p class="type-paragraph">Fixed-height three-pane frame for local tools: left Panel, sheet body, and optional right Panel. Narrow the example box to turn side panes into drawers.</p>
+      <p class="type-paragraph">Fixed-height frame for local tools: left Panel, sheet body, and optional right Panel — or a Nav bar over a left Panel and sheet. Narrow the example box to turn side panes into drawers.</p>
 
       <div class="border-group">
+        <h3 class="subsection-label">Three panes</h3>
         <div class="box box--resizable pattern-app-frame" data-box-min-width="20rem" data-box-max-width="100%">
           <div class="app-frame panel-host is-detail-available" id="patternFrameDemo">
             <aside class="panel panel--left panel--drawer panel--resizable app-frame-side" id="patternFrameSide" style="--panel-width: 12rem;">
@@ -7084,6 +7085,131 @@ console.log(label);</code></pre>
         <div class="sample-meta">
           <span class="sample-meta-label sample-meta-label--wide">Three panes</span>
           <span class="sample-meta-detail">Left and right Panel · Sticky title and tabs · Drawers below 56.25 / 37.5 rem · Sheet bar</span>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">With nav bar</h3>
+        <div class="box box--resizable pattern-app-frame" data-box-min-width="20rem" data-box-max-width="100%">
+          <div class="app-frame app-frame--nav" id="patternFrameNavDemo">
+            <nav class="navbar" aria-label="Sample tool">
+              <a class="navbar-brand" href="#app-frame">
+                <i class="ph ph-bounding-box" aria-hidden="true"></i>
+                <span class="navbar-brand-name">Basement</span>
+              </a>
+              <div class="navbar-nav">
+                <a class="navbar-item is-active" href="#app-frame">Overview</a>
+                <a class="navbar-item" href="#app-frame">Docs</a>
+              </div>
+              <div class="navbar-end">
+                <div class="dropdown dropdown--end">
+                  <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Search">
+                    <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Jump to…</button>
+                    <button type="button" class="menu-item" role="menuitem">Recent</button>
+                    <div class="menu-divider" role="separator"></div>
+                    <button type="button" class="menu-item" role="menuitem">Search settings</button>
+                  </div>
+                </div>
+                <div class="dropdown dropdown--end">
+                  <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Notifications">
+                    <i class="ph ph-bell" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Mentions</button>
+                    <button type="button" class="menu-item" role="menuitem">Deployments</button>
+                    <div class="menu-divider" role="separator"></div>
+                    <button type="button" class="menu-item" role="menuitem">Notification settings</button>
+                  </div>
+                </div>
+                <div class="dropdown dropdown--end">
+                  <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Account">
+                    <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                    <span class="navbar-item-label">gwenzhir</span>
+                    <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                    <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <a class="menu-item" href="#app-frame" role="menuitem">
+                      <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                      <span class="menu-item-text">
+                        <span class="menu-item-label">gwenzhir</span>
+                      </span>
+                    </a>
+                    <div class="menu-divider" role="separator"></div>
+                    <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                    <div class="menu-divider" role="separator"></div>
+                    <button type="button" class="menu-item" role="menuitem">Sign out</button>
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <div class="app-frame-panes panel-host">
+              <aside class="panel panel--left panel--drawer panel--resizable app-frame-side" id="patternFrameNavSide" style="--panel-width: 12rem;">
+                <div class="panel-title-row">
+                  <button type="button" class="btn btn--subtle btn--icon btn--xs panel-close" aria-label="Close sidebar"><i class="ph ph-x" aria-hidden="true"></i></button>
+                </div>
+                <nav class="sidebar-nav sidebar-nav--flush">
+                  <div class="sidebar-group">
+                    <button type="button" class="sidebar-item is-active">Inbox</button>
+                    <button type="button" class="sidebar-item">Archive</button>
+                    <button type="button" class="sidebar-item">Drafts</button>
+                  </div>
+                  <div class="sidebar-group sidebar-group--bottom">
+                    <button type="button" class="sidebar-item">Settings</button>
+                  </div>
+                </nav>
+                <button type="button" class="panel-resize-handle" aria-label="Resize sidebar"></button>
+              </aside>
+              <main class="app-frame-main">
+                <div class="app-frame-maincol">
+                  <header class="sheet-bar">
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs panel-toggle panel-toggle--left" data-panel-toggle="patternFrameNavSide" aria-controls="patternFrameNavSide" aria-expanded="false" aria-label="Open sidebar"><i class="ph ph-list" aria-hidden="true"></i></button>
+                    <h2 class="sheet-title">Inbox</h2>
+                    <span class="sheet-meta"><span class="status-chip">12 open</span></span>
+                    <span class="sheet-spacer"></span>
+                    <div class="sheet-actions">
+                      <button type="button" class="btn btn--xs btn--default">New</button>
+                    </div>
+                  </header>
+                  <div class="app-frame-body">
+                    <div class="table-wrap">
+                      <table class="table table--sticky table--striped">
+                        <thead>
+                          <tr>
+                            <th>Item</th>
+                            <th class="col-narrow">Status</th>
+                            <th class="num">Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>North studio lease</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−1,240</td></tr>
+                          <tr><td>Vendor credit</td><td class="col-narrow"><span class="tag tag--xs">Done</span></td><td class="num num--pos tnum">+380</td></tr>
+                          <tr><td>Utilities Q2</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−96</td></tr>
+                          <tr><td>Refund batch</td><td class="col-narrow"><span class="tag tag--xs">Done</span></td><td class="num num--pos tnum">+54</td></tr>
+                          <tr><td>Parking permit</td><td class="col-narrow"><span class="tag tag--xs tag--filled">Open</span></td><td class="num num--neg tnum">−45</td></tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th colspan="2">Total</th>
+                            <td class="num foot-meta tnum">5 rows</td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </main>
+              <div class="panel-backdrop" aria-hidden="true"></div>
+            </div>
+          </div>
+          <button type="button" class="box-resize-handle" aria-label="Resize example"></button>
+        </div>
+        <div class="sample-meta">
+          <span class="sample-meta-label sample-meta-label--wide">Nav bar · Left Panel · Sheet</span>
+          <span class="sample-meta-detail">Drawers stay under the bar · Search and account on the Nav bar</span>
         </div>
       </div>
     </section>

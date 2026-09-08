@@ -9,8 +9,7 @@
   width: 100%;
   min-width: 0;
   min-height: 2.5rem;
-  padding-block: var(--spacing-xs);
-  padding-inline: var(--spacing-s);
+  padding: var(--spacing-s) calc(var(--spacing-s) + var(--spacing-xs));
   background: var(--theme-bg);
   border-bottom: 1px solid var(--theme-border);
   container-type: inline-size;
@@ -117,9 +116,13 @@
 
 .navbar-item--icon {
   padding: 0.25rem;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2rem;
+  height: 2rem;
   justify-content: center;
+}
+
+.navbar-item--icon .ph {
+  font-size: 1.25rem;
 }
 
 .navbar .dropdown {

@@ -87,6 +87,12 @@
   gap: var(--spacing-xs);
 }
 
+/* Close-only row: no chrome until the drawer close is shown */
+.panel-title-row:not(:has(.sidebar-title, h1, h2, h3, .panel-title-actions)) {
+  display: none;
+  justify-content: flex-end;
+}
+
 .panel-body {
   flex: 1;
   min-width: 0;
@@ -213,6 +219,10 @@
   .panel--left.panel--drawer .panel-close,
   .panel-toggle--left {
     display: inline-flex;
+  }
+
+  .panel--left.panel--drawer .panel-title-row:not(:has(.sidebar-title, h1, h2, h3, .panel-title-actions)) {
+    display: flex;
   }
 
   .panel--left.panel--drawer .panel-resize-handle {
