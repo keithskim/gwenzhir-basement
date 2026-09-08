@@ -1,4 +1,5 @@
 /* Fixed-height multi-pane app frame: left panel | sheet | optional right panel.
+   Optional .app-frame--nav stacks a Nav bar above .app-frame-panes so drawers stay under the bar.
    Pane chrome (border, drawer, resize) comes from Panel; this file owns sheet layout. */
 
 .app-frame {
@@ -114,6 +115,29 @@
 
 .app-frame .panel--left .sidebar-nav--flush {
   margin-top: 0;
+}
+
+/* Top Nav bar + panes (left Panel, sheet, optional right Panel) */
+.app-frame--nav {
+  flex-direction: column;
+}
+
+.app-frame--nav > .navbar {
+  flex: 0 0 auto;
+  min-width: 0;
+  z-index: 3;
+}
+
+.app-frame-panes {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+  container-name: app-frame panel-host;
 }
 
 /* Detail content helpers inside right Panel */

@@ -85,8 +85,8 @@
   background-image:
     linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
     linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
-    linear-gradient(to top, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
-    linear-gradient(to top, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px);
+    linear-gradient(var(--theme-bg), var(--theme-bg)),
+    linear-gradient(var(--theme-bg), var(--theme-bg));
   background-repeat: no-repeat;
   background-size:
     var(--table-ring-inline, 0px) var(--table-sticky-head, 0px),

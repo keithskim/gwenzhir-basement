@@ -3,6 +3,10 @@
  * Left/right pane chrome (panel / drawer / resize) is owned by BasementPanel.
  */
 (function () {
+  function panes(root) {
+    return (root && root.querySelector && root.querySelector(':scope > .app-frame-panes')) || root;
+  }
+
   function leftPanel(root) {
     return root.querySelector('.panel--left, .app-frame-side');
   }
@@ -25,7 +29,7 @@
   function init(root) {
     if (!root || root.__basementFrame) return;
     root.__basementFrame = true;
-    root.classList.add('panel-host');
+    panes(root).classList.add('panel-host');
 
     var left = leftPanel(root);
     var right = rightPanel(root);
