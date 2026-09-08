@@ -4,6 +4,8 @@
 
 :is(
   .menu-item,
+  .navbar-item,
+  .navbar-brand,
   .sidebar-item,
   .sidebar-title,
   .table-sort,
@@ -15,7 +17,7 @@
   outline-offset: -0.125rem;
 }
 
-:is(.link, .table-sort, .sidebar-title, .tab):focus-visible {
+:is(.link, .table-sort, .sidebar-title, .tab, .navbar-item, .navbar-brand):focus-visible {
   border-radius: var(--border-radius-s);
 }
 

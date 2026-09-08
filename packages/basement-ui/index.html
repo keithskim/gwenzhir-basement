@@ -71,6 +71,7 @@
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
+        <button type="button" class="sidebar-item" data-section="navbar">Nav bar</button>
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
@@ -319,6 +320,26 @@
                   <span class="menu home-preview-dropdown-menu">
                     <span class="menu-item">Profile</span>
                     <span class="menu-item">Sign out</span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="navbar">
+              <span class="home-card-title">Nav bar</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="navbar home-preview-navbar">
+                  <span class="navbar-brand">
+                    <i class="ph ph-bounding-box" aria-hidden="true"></i>
+                    <span class="navbar-brand-name">Basement</span>
+                  </span>
+                  <span class="navbar-nav">
+                    <span class="navbar-item is-active">Overview</span>
+                    <span class="navbar-item">Docs</span>
+                  </span>
+                  <span class="navbar-end">
+                    <span class="navbar-item navbar-item--icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
+                    <span class="navbar-item navbar-item--icon"><i class="ph ph-bell" aria-hidden="true"></i></span>
+                    <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
                   </span>
                 </span>
               </span>
@@ -4593,7 +4614,7 @@ console.log(label);</code></pre>
     <!-- ── Menu ── -->
     <section class="section section--component" id="menu">
       <h2 class="section-label">Menu</h2>
-      <p class="type-paragraph">Compact action lists, or a wide organized panel with section headings, short descriptions, and two- or three-column layout. Open either from a Dropdown trigger.</p>
+      <p class="type-paragraph">Compact action lists, or a wide organized panel with section headings, short descriptions, and two- or three-column layout. Account rows use an avatar and username in place of a regular item. Open either from a Dropdown trigger.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Menu items</h3>
@@ -4717,6 +4738,28 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">With icon, count, and tag</span>
               <span class="sample-meta-detail">Leading icon · Label · Optional tag · Optional tally</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="menu-demo menu-demo--items">
+                <div class="menu" role="menu">
+                  <button type="button" class="menu-item" role="menuitem">
+                    <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                    <span class="menu-item-text">
+                      <span class="menu-item-label">gwenzhir</span>
+                    </span>
+                  </button>
+                  <button type="button" class="menu-item" role="menuitem">View profile</button>
+                  <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                  <div class="menu-divider" role="separator"></div>
+                  <button type="button" class="menu-item" role="menuitem">Sign out</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">My menu</span>
+              <span class="sample-meta-detail">Avatar · Username</span>
             </div>
           </div>
         </div>
@@ -5011,6 +5054,187 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">With divider</span>
               <span class="sample-meta-detail">Grouped items · Separator line</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Nav bar ── -->
+    <section class="section section--component" id="navbar">
+      <h2 class="section-label">Nav bar</h2>
+      <p class="type-paragraph">Top bar for product chrome: a brand, primary destinations with optional menus, and actions on the end — search, notifications, and account.</p>
+
+      <div class="border-group">
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <nav class="navbar" aria-label="Product">
+                <a class="navbar-brand" href="#navbar">
+                  <i class="ph ph-bounding-box" aria-hidden="true"></i>
+                  <span class="navbar-brand-name">Basement</span>
+                </a>
+                <div class="navbar-nav">
+                  <a class="navbar-item is-active" href="#navbar">Overview</a>
+                  <div class="dropdown">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      Solutions
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">Enterprises</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Startups</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Billing</a>
+                    </div>
+                  </div>
+                  <a class="navbar-item" href="#navbar">Docs</a>
+                </div>
+                <div class="navbar-end">
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Search">
+                      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Jump to…</button>
+                      <button type="button" class="menu-item" role="menuitem">Recent</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Search settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Notifications">
+                      <i class="ph ph-bell" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Mentions</button>
+                      <button type="button" class="menu-item" role="menuitem">Deployments</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Notification settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Account">
+                      <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                      <span class="navbar-item-label">gwenzhir</span>
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">
+                        <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                        <span class="menu-item-text">
+                          <span class="menu-item-label">gwenzhir</span>
+                        </span>
+                      </a>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Sign out</button>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Brand · Primary items · Search · Notifications · Account</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <nav class="navbar" aria-label="Product with item menus">
+                <a class="navbar-brand" href="#navbar">
+                  <i class="ph ph-bounding-box" aria-hidden="true"></i>
+                  <span class="navbar-brand-name">Basement</span>
+                </a>
+                <div class="navbar-nav">
+                  <a class="navbar-item is-active" href="#navbar">Overview</a>
+                  <div class="dropdown">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      Products
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">Checkout</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Billing</a>
+                      <a class="menu-item" href="#navbar" role="menuitem">Connect</a>
+                    </div>
+                  </div>
+                  <div class="dropdown">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      Solutions
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu menu--mega menu--m" role="menu" hidden>
+                      <div class="menu-grid menu-grid--2">
+                        <div class="menu-section">
+                          <div class="menu-heading">By stage</div>
+                          <a class="menu-item" href="#navbar" role="menuitem">Enterprises</a>
+                          <a class="menu-item" href="#navbar" role="menuitem">Startups</a>
+                        </div>
+                        <div class="menu-section">
+                          <div class="menu-heading">By use case</div>
+                          <a class="menu-item" href="#navbar" role="menuitem">Billing</a>
+                          <a class="menu-item" href="#navbar" role="menuitem">Access control</a>
+                          <a class="menu-item" href="#navbar" role="menuitem">Reporting</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="navbar-item" href="#navbar">Docs</a>
+                </div>
+                <div class="navbar-end">
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Search">
+                      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Jump to…</button>
+                      <button type="button" class="menu-item" role="menuitem">Recent</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Search settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item navbar-item--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Notifications">
+                      <i class="ph ph-bell" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Mentions</button>
+                      <button type="button" class="menu-item" role="menuitem">Deployments</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Notification settings</button>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--end">
+                    <button type="button" class="navbar-item dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Account">
+                      <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                      <span class="navbar-item-label">gwenzhir</span>
+                      <i class="ph ph-caret-down dropdown-caret dropdown-caret--down" aria-hidden="true"></i>
+                      <i class="ph ph-caret-up dropdown-caret dropdown-caret--up" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <a class="menu-item" href="#navbar" role="menuitem">
+                        <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+                        <span class="menu-item-text">
+                          <span class="menu-item-label">gwenzhir</span>
+                        </span>
+                      </a>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Preferences</button>
+                      <div class="menu-divider" role="separator"></div>
+                      <button type="button" class="menu-item" role="menuitem">Sign out</button>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With secondary menus</span>
+              <span class="sample-meta-detail">Brand · Item menus · Organized panel · Search · Notifications · Account</span>
             </div>
           </div>
         </div>

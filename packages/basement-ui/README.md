@@ -95,7 +95,9 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Tabs overflow builds its own control and is not auto-wired.
 
-**Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, and external mark. Open either from a Dropdown.
+**Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
+
+**Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster.
 
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 

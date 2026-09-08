@@ -1,7 +1,8 @@
 .popup-panel,
 .datetime-popup,
 .dropdown .menu,
-.dropdown-demo .menu {
+.dropdown-demo .menu,
+.menu.is-float-open {
   box-shadow: var(--shadow-m);
 }
 
