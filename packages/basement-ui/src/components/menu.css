@@ -26,7 +26,7 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  padding-block: var(--spacing-xs);
+  padding-block: 0.125rem;
   padding-inline: var(--spacing-xs);
   border-radius: var(--border-radius-s);
   font-family: var(--font-base-family);
@@ -101,10 +101,11 @@
 .menu-item .tag {
   flex-shrink: 0;
   font-size: var(--font-size-2xs);
-  line-height: var(--line-height-2xs);
-  min-width: calc(var(--line-height-2xs) + 0.125rem);
-  min-height: var(--line-height-2xs);
-  padding: 0 0.25rem;
+  line-height: 1.2;
+  min-width: calc(var(--font-size-2xs) + 0.125rem);
+  min-height: calc(var(--font-size-2xs) + 0.25rem);
+  padding-block: 0.0625rem;
+  padding-inline: 0.125rem;
 }
 
 .menu-item-icon {
