@@ -2,6 +2,7 @@
 @import url('./box.css');
 @import url('./tabs.css');
 @import url('./toggle.css');
+@import url('./slider.css');
 @import url('./text-input.css');
 @import url('./form.css');
 @import url('./graph.css');
@@ -18,6 +19,7 @@
 @import url('./app-icon.css');
 @import url('./menu.css');
 @import url('./dropdown.css');
+@import url('./filter.css');
 @import url('./navbar.css');
 @import url('./tooltip.css');
 @import url('./popup.css');

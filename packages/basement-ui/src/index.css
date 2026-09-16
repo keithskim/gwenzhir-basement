@@ -8,6 +8,7 @@
 @import url('./components/box.css');
 @import url('./components/tabs.css');
 @import url('./components/toggle.css');
+@import url('./components/slider.css');
 @import url('./components/text-input.css');
 @import url('./components/form.css');
 @import url('./components/graph.css');
@@ -24,6 +25,7 @@
 @import url('./components/app-icon.css');
 @import url('./components/menu.css');
 @import url('./components/dropdown.css');
+@import url('./components/filter.css');
 @import url('./components/navbar.css');
 @import url('./components/tooltip.css');
 @import url('./components/popup.css');

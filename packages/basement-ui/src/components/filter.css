@@ -1,0 +1,214 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  min-width: 0;
+}
+
+.filter-rules {
+  display: contents;
+}
+
+.filter-rule {
+  width: auto;
+}
+
+.filter-rule-chip {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-s);
+  overflow: hidden;
+}
+
+.filter-rule-trigger {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+  max-width: 100%;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+}
+
+.filter-rule-property,
+.filter-rule-operator {
+  color: var(--theme-fg-secondary);
+}
+
+.filter-rule-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--theme-fg);
+}
+
+.filter-rule-value.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.filter-rule-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  margin: 0;
+  padding: 0;
+  color: var(--theme-fg-secondary);
+  background: transparent;
+  border: none;
+  border-inline-start: 1px solid var(--theme-border);
+  cursor: pointer;
+}
+
+.filter-rule-remove .ph {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.filter-rule-chip:hover,
+.filter-rule.is-open .filter-rule-chip,
+.filter-rule-chip:focus-within {
+  background: var(--color-light-gray-a);
+  border-color: var(--color-gray);
+}
+
+html.is-dark .filter-rule-chip:hover,
+html.is-dark .filter-rule.is-open .filter-rule-chip,
+html.is-dark .filter-rule-chip:focus-within {
+  background: var(--color-dark-gray-a);
+  border-color: var(--color-gray);
+}
+
+.filter-rule-remove:hover,
+.filter-rule-remove:focus-visible {
+  color: var(--theme-fg);
+  background: var(--theme-bg-subtle);
+}
+
+.filter:not(:has(.filter-rule)) .filter-add-icon--active,
+.filter:not(:has(.filter-rule)) .filter-add-label--active,
+.filter:not(:has(.filter-rule)) .filter-clear {
+  display: none;
+}
+
+.filter:has(.filter-rule) .filter-add-icon--empty,
+.filter:has(.filter-rule) .filter-add-label--empty {
+  display: none;
+}
+
+.filter-menu--range {
+  min-width: 16.5rem;
+  padding: var(--spacing-xs);
+}
+
+.filter-menu--dates {
+  min-width: 16.5rem;
+  padding: var(--spacing-xs);
+}
+
+.filter-range {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.filter-range-fields {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.filter-range-fields .input {
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-range-separator {
+  flex-shrink: 0;
+  color: var(--theme-fg-secondary);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
+.filter-menu--dates .datetime {
+  width: 100%;
+}
+
+.filter-menu--dates .datetime-range {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.filter-menu--dates .datetime-separator {
+  display: none;
+}
+
+.filter--list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.filter--list .filter-rules {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.filter-conjunction {
+  flex: 0 0 2.75rem;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.filter-row:first-child .filter-conjunction--and,
+.filter-row:not(:first-child) .filter-conjunction--where {
+  display: none;
+}
+
+.filter--list .filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-inline-start: calc(2.75rem + var(--spacing-xs));
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+  min-width: 0;
+}

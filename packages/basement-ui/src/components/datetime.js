@@ -234,12 +234,15 @@ function setFieldValue(field, state, date) {
   }
 }
 
-function closeAllDropdowns() {
+function closeAllDropdowns(exceptField) {
   if (window.BasementDropdown) {
-    window.BasementDropdown.closeAll();
+    window.BasementDropdown.closeAll(exceptField);
     return;
   }
   document.querySelectorAll('.dropdown.is-open, .dropdown-demo.is-open').forEach(demo => {
+    if (exceptField && (demo.contains(exceptField) || (demo._dropdownPanel && demo._dropdownPanel.contains(exceptField)))) {
+      return;
+    }
     demo.classList.remove('is-open');
     const trigger = demo.querySelector('.dropdown-trigger');
     const menu = demo.querySelector('.menu');
@@ -250,7 +253,7 @@ function closeAllDropdowns() {
 
 function openField(field, state) {
   closeAllDatetimes(field);
-  closeAllDropdowns();
+  closeAllDropdowns(field);
   field.classList.add('is-open');
   const input = field.querySelector('.datetime-input');
   const popup = getDatetimePopup(field);

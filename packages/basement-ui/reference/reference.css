@@ -1407,6 +1407,10 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #navbar .sample-meta-detail,
   #datetime .sample-meta-label,
   #datetime .sample-meta-detail,
+  #filter .sample-meta-label,
+  #filter .sample-meta-detail,
+  #slider .sample-meta-label,
+  #slider .sample-meta-detail,
   #menu .sample-meta-label,
   #menu .sample-meta-detail,
   #alert .sample-meta-label,
@@ -1918,6 +1922,64 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   max-width: 24rem;
 }
 
+#slider .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #slider .type-sample-list > .type-sample-item {
+    grid-column: span 2;
+  }
+}
+
+#slider .sample-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--spacing-m);
+  padding-inline: var(--spacing-s);
+}
+
+#slider .sample-box:has(.slider--labels) {
+  overflow: visible;
+}
+
+#slider .slider {
+  width: 100%;
+  max-width: 16rem;
+}
+
+.home-preview-slider {
+  --slider-thumb-size: 0.75rem;
+  width: 100%;
+  max-width: 8rem;
+  pointer-events: none;
+}
+
+.home-preview-slider .slider-track::before,
+.home-preview-slider .slider-track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-surface);
+  box-shadow: var(--shadow-s);
+  transform: translate(-50%, -50%);
+}
+
+.home-preview-slider .slider-track::before {
+  left: var(--slider-min);
+}
+
+.home-preview-slider .slider-track::after {
+  left: var(--slider-max);
+}
+
 #graph .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
@@ -2160,6 +2222,44 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 #datetime .sample-box > * {
   width: 100%;
+}
+
+#filter .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+#filter .sample-box {
+  min-height: 0;
+  align-items: start;
+}
+
+#filter .sample-box:has(.filter-rule.is-open) {
+  overflow: visible;
+}
+
+#filter .filter:has(.filter-rule.is-open) {
+  align-items: start;
+}
+
+#filter .filter-rule.is-open > .filter-menu {
+  position: static;
+  display: flex;
+  transform: none;
+}
+
+#filter .sample-box > * {
+  width: 100%;
+}
+
+.home-preview-filter {
+  box-shadow: none;
+}
+
+.home-preview-filter .filter-rule-trigger {
+  cursor: default;
+  padding-block: 0.125rem;
+  padding-inline: 0.5rem;
 }
 
 .sidebar-demo {

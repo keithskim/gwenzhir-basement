@@ -249,13 +249,22 @@
 
   document.addEventListener('pointerdown', function (event) {
     if (!openFloatPanels.size) return;
-    Array.from(openFloatPanels).forEach(function (panel) {
+    var panels = Array.from(openFloatPanels);
+    var hitIndex = -1;
+    panels.forEach(function (panel, i) {
       var state = floatState.get(panel);
-      if (!state || state.mode !== 'dialog') return;
-      if (panel.contains(event.target)) return;
-      if (state.anchor && (state.anchor === event.target || state.anchor.contains(event.target))) {
+      if (panel.contains(event.target)) {
+        hitIndex = i;
         return;
       }
+      if (state && state.anchor && (state.anchor === event.target || state.anchor.contains(event.target))) {
+        hitIndex = i;
+      }
+    });
+    panels.forEach(function (panel, i) {
+      var state = floatState.get(panel);
+      if (!state || state.mode !== 'dialog') return;
+      if (hitIndex >= 0 && i <= hitIndex) return;
       close(panel);
     });
   });

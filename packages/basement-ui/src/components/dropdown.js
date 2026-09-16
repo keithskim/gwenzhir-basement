@@ -119,9 +119,16 @@
     finishClose(root, panel, trigger, opts.restoreFocus);
   }
 
+  function ownsNode(root, node) {
+    if (!root || !node) return false;
+    if (root === node || root.contains(node)) return true;
+    var panel = getPanel(root);
+    return !!(panel && (panel === node || panel.contains(node)));
+  }
+
   function closeAll(except, opts) {
     Array.from(openRoots).forEach(function (root) {
-      if (root === except) return;
+      if (ownsNode(root, except)) return;
       close(root, opts);
     });
   }
@@ -337,6 +344,7 @@
         if (root.contains(active)) return;
         if (p && p.contains(active)) return;
         if (t && t.contains(active)) return;
+        if (active && active.closest && active.closest('.datetime-popup')) return;
         close(root);
       });
     });
@@ -355,6 +363,7 @@
       if (root.contains(event.target)) return;
       if (panel && panel.contains(event.target)) return;
       if (trigger && (trigger === event.target || trigger.contains(event.target))) return;
+      if (event.target.closest && event.target.closest('.datetime-popup')) return;
       close(root);
     });
   });

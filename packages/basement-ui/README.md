@@ -60,6 +60,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 <script src="path/to/basement-ui/src/components/dialog.js" defer></script>
 <script src="path/to/basement-ui/src/components/float.js" defer></script>
 <script src="path/to/basement-ui/src/components/dropdown.js" defer></script>
+<script src="path/to/basement-ui/src/components/slider.js" defer></script>
 <script src="path/to/basement-ui/src/components/datetime.js" defer></script>
 <script src="path/to/basement-ui/src/components/tooltip.js" defer></script>
 <script src="path/to/basement-ui/src/components/tabs-collapse.js" defer></script>
@@ -78,6 +79,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
 | `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center`; `placement` is `bottom` (default), `end`, or `start` |
 | `dropdown.js` | `BasementDropdown` | Trigger + Menu: `aria-expanded`, Escape, click-outside, arrow keys; uses Float when present |
+| `slider.js` | `BasementSlider` | Single or dual-thumb range; paints the fill and ticks; keeps paired number fields and optional value labels in sync |
 | `datetime.js` | `BasementDatetime` | Day and year-month pickers (uses Float when present) |
 | `tooltip.js` | `BasementTooltip` | Hover/focus tips via Float |
 | `tabs-collapse.js` | `BasementTabs` | Stack or Dropdown overflow (`data-tabs-overflow`; dropdown uses Float when present) |
@@ -96,6 +98,10 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Optional `.app-frame--nav` with `.app-frame-panes` puts a Nav bar above the panes so drawers stay under the bar. Drawers and resize come from Panel; backdrop is scoped to the pane host. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
 
 **Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Side flyout: `dropdown--side` or `data-dropdown-placement="end"|"start"`. Sidebar items default to a side flyout. Tabs overflow builds its own control and is not auto-wired.
+
+**Slider** — `.slider` is a track with a draggable thumb. Add a second `.slider-input` (and `.slider--range`) for a min–max span. `.slider--stepped` draws tick marks from the input’s `min` / `max` / `step`; add `.slider--labels` for a value under each stop. Optional `.slider-value` shows the live number at the end. Load `slider.js` to paint the fill, ticks, and values; keep thumbs from crossing; and sync number fields inside `.filter-range` (and the Filter chip label when the slider is in a criterion). Click the track to jump the nearest thumb.
+
+**Filter** — `.filter` is a wrapping row of criteria for lists and tables. Each `.filter-rule` is a Dropdown: property, operator, and value on the trigger, a trailing remove control, and a Menu to edit. Value menus can be a single option, checkboxes (`data-dropdown-keep-open` so the menu stays open), a `.filter-range` of Slider plus number inputs, or Datetime duration. Criteria combine with And. Empty state shows Filter; with rules it shows Add filter and Clear. `.filter--list` stacks rows with a leading Where / And. `.filter-group` stacks a Filter above a Table. Remove and Clear are for apps to wire.
 
 **Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip.
 

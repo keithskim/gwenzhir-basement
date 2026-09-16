@@ -430,6 +430,35 @@ function initTableSelection() {
 
 initTableSelection();
 
+// ── Filter remove / clear demo ──
+function initFilterDemo() {
+  document.querySelectorAll('.filter').forEach(filter => {
+    filter.addEventListener('click', event => {
+      const remove = event.target.closest('.filter-rule-remove');
+      if (remove && filter.contains(remove)) {
+        event.preventDefault();
+        const row = remove.closest('.filter-row');
+        const rule = remove.closest('.filter-rule');
+        const target = row || rule;
+        const dropdown = rule && rule.classList.contains('dropdown') ? rule : null;
+        if (dropdown && window.BasementDropdown) window.BasementDropdown.close(dropdown);
+        if (target) target.remove();
+        return;
+      }
+      const clear = event.target.closest('.filter-clear');
+      if (clear && filter.contains(clear)) {
+        event.preventDefault();
+        if (window.BasementDropdown) window.BasementDropdown.closeAll();
+        filter.querySelectorAll(':scope .filter-rules > .filter-row, :scope .filter-rules > .filter-rule').forEach(el => {
+          el.remove();
+        });
+      }
+    });
+  });
+}
+
+initFilterDemo();
+
 // ── Pattern demos: edge fades ──
 function initPatternEdgeFades() {
   if (!window.BasementEdgeFade) return;

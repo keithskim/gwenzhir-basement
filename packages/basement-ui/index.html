@@ -67,6 +67,7 @@
         <div class="sidebar-group-label">Interactivity</div>
         <button type="button" class="sidebar-item" data-section="tabs">Tabs</button>
         <button type="button" class="sidebar-item" data-section="toggle">Toggle</button>
+        <button type="button" class="sidebar-item" data-section="slider">Slider</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
@@ -74,6 +75,7 @@
         <button type="button" class="sidebar-item" data-section="navbar">Nav bar</button>
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
+        <button type="button" class="sidebar-item" data-section="filter">Filter</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="panel">Panel</button>
         <button type="button" class="sidebar-item" data-section="dialog">Dialog</button>
@@ -285,6 +287,14 @@
                 <span class="toggle-switch home-preview-toggle"></span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="slider">
+              <span class="home-card-title">Slider</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="slider home-preview-slider" style="--slider-min: 20%; --slider-max: 70%;">
+                  <span class="slider-track"><span class="slider-fill"></span></span>
+                </span>
+              </span>
+            </button>
             <button type="button" class="home-card" data-section="text-input">
               <span class="home-card-title">Text Input</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -359,6 +369,17 @@
                 <span class="datetime-input input home-preview-datetime">
                   <span class="datetime-placeholder">Jun 10, 2026</span>
                   <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="filter">
+              <span class="home-card-title">Filter</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="filter-rule-chip home-preview-filter">
+                  <span class="filter-rule-trigger">
+                    <span class="filter-rule-property">Status</span>
+                    <span class="filter-rule-value">Active</span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -2929,6 +2950,126 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Segmented select</span>
               <span class="sample-meta-detail">Choose one option in a compact group</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Slider ── -->
+    <section class="section section--component" id="slider">
+      <h2 class="section-label">Slider</h2>
+      <p class="type-paragraph">A track with one or two thumbs for picking a value or a span of values. Drag a thumb or click the track. Snap to stops, or show the live number beside the track or under each stop. Pair a range slider with number fields when exact values matter.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider" style="--slider-min: 0%; --slider-max: 40%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input" type="range" min="0" max="100" value="40" aria-label="Value">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">One thumb · Fill from the start</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider slider--range" style="--slider-min: 20%; --slider-max: 70%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input slider-input--min" type="range" min="0" max="100" value="20" aria-label="Minimum">
+                <input class="slider-input slider-input--max" type="range" min="0" max="100" value="70" aria-label="Maximum">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Range</span>
+              <span class="sample-meta-detail">Two thumbs · Fill between</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider slider--stepped" style="--slider-min: 0%; --slider-max: 50%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input" type="range" min="0" max="100" value="50" step="25" aria-label="Value">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Stepped</span>
+              <span class="sample-meta-detail">Stops on the track</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider slider--range" style="--slider-min: 20%; --slider-max: 70%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input slider-input--min" type="range" min="0" max="100" value="20" aria-label="Minimum" disabled>
+                <input class="slider-input slider-input--max" type="range" min="0" max="100" value="70" aria-label="Maximum" disabled>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Disabled</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">With value</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider" style="--slider-min: 0%; --slider-max: 40%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input" type="range" min="0" max="100" value="40" aria-label="Value">
+                <span class="slider-value tnum">40</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Number</span>
+              <span class="sample-meta-detail">Live value at the end</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider slider--range" style="--slider-min: 20%; --slider-max: 70%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input slider-input--min" type="range" min="0" max="100" value="20" aria-label="Minimum">
+                <input class="slider-input slider-input--max" type="range" min="0" max="100" value="70" aria-label="Maximum">
+                <span class="slider-value tnum">20–70</span>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Range</span>
+              <span class="sample-meta-detail">Minimum and maximum at the end</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="slider slider--stepped slider--labels" style="--slider-min: 0%; --slider-max: 50%;">
+                <div class="slider-track" aria-hidden="true">
+                  <div class="slider-fill"></div>
+                </div>
+                <input class="slider-input" type="range" min="0" max="100" value="50" step="25" aria-label="Value">
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Stops</span>
+              <span class="sample-meta-detail">Value under each stop</span>
             </div>
           </div>
         </div>
@@ -5526,6 +5667,670 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+    <!-- ── Filter ── -->
+    <section class="section section--component" id="filter">
+      <h2 class="section-label">Filter</h2>
+      <p class="type-paragraph">A row of criteria for narrowing a list or table. Combine properties: a single value, several values, a number range on a slider, or a date range. Criteria join with And. Each criterion opens a menu to edit; the trailing control removes it.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Filters">
+                <div class="filter-rules"></div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Status</button>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Empty</span>
+              <span class="sample-meta-detail">Funnel · Filter</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Filters">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Owner</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value">gwenzhir</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Owner filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="true">
+                        <i class="ph ph-check menu-item-icon" aria-hidden="true"></i>
+                        <span class="menu-item-label">gwenzhir</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">mina</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">jun</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Status</span>
+                        <span class="filter-rule-operator">is any of</span>
+                        <span class="filter-rule-value">In progress, Done</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu" role="menu" hidden>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox" checked>
+                        <span class="menu-item-label">In progress</span>
+                      </label>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox" checked>
+                        <span class="menu-item-label">Done</span>
+                      </label>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox">
+                        <span class="menu-item-label">Paused</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Estimate</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value tnum">1–8</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Estimate filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu filter-menu filter-menu--range" role="dialog" aria-label="Estimate range" hidden>
+                      <div class="filter-range">
+                        <div class="slider slider--range" style="--slider-min: 7.69%; --slider-max: 61.54%;">
+                          <div class="slider-track" aria-hidden="true">
+                            <div class="slider-fill"></div>
+                          </div>
+                          <input class="slider-input slider-input--min" type="range" min="0" max="13" value="1" step="1" aria-label="Minimum estimate">
+                          <input class="slider-input slider-input--max" type="range" min="0" max="13" value="8" step="1" aria-label="Maximum estimate">
+                        </div>
+                        <div class="filter-range-fields">
+                          <input class="input tnum" type="number" value="1" min="0" max="13" aria-label="Minimum estimate">
+                          <span class="filter-range-separator" aria-hidden="true">–</span>
+                          <input class="input tnum" type="number" value="8" min="0" max="13" aria-label="Maximum estimate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Updated</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value">Jun 1 – Jun 10</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Updated filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu filter-menu filter-menu--dates" role="dialog" aria-label="Updated range" hidden>
+                      <div class="datetime datetime--duration">
+                        <div class="datetime-range">
+                          <div class="datetime-field" data-value="2026-06-01">
+                            <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose start date">
+                              <span class="datetime-value"></span>
+                              <span class="datetime-placeholder">Start date</span>
+                              <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="datetime-popup" role="dialog" aria-label="Choose start date" hidden></div>
+                          </div>
+                          <span class="datetime-separator" aria-hidden="true">–</span>
+                          <div class="datetime-field" data-value="2026-06-10">
+                            <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose end date">
+                              <span class="datetime-value"></span>
+                              <span class="datetime-placeholder">End date</span>
+                              <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="datetime-popup" role="dialog" aria-label="Choose end date" hidden></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Team</button>
+                    <button type="button" class="menu-item" role="menuitem">Priority</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Single · Multiple · Number range with slider · Date range · Add filter · Clear</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Owner filter">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Owner</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value">gwenzhir</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Owner filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="true">
+                        <i class="ph ph-check menu-item-icon" aria-hidden="true"></i>
+                        <span class="menu-item-label">gwenzhir</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">mina</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">jun</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Status</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Single value</span>
+              <span class="sample-meta-detail">One option · Check mark</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Status filter">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Status</span>
+                        <span class="filter-rule-operator">is any of</span>
+                        <span class="filter-rule-value">In progress, Done</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu" role="menu" hidden>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox" checked>
+                        <span class="menu-item-label">In progress</span>
+                      </label>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox" checked>
+                        <span class="menu-item-label">Done</span>
+                      </label>
+                      <label class="menu-item" data-dropdown-keep-open>
+                        <input class="checkbox" type="checkbox">
+                        <span class="menu-item-label">Paused</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Multiple values</span>
+              <span class="sample-meta-detail">Any of · Checkboxes</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Estimate filter">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule is-open" data-dropdown="off">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="true" aria-haspopup="menu">
+                        <span class="filter-rule-property">Estimate</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value tnum">1–8</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Estimate filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu filter-menu filter-menu--range" role="dialog" aria-label="Estimate range">
+                      <div class="filter-range">
+                        <div class="slider slider--range" style="--slider-min: 7.69%; --slider-max: 61.54%;">
+                          <div class="slider-track" aria-hidden="true">
+                            <div class="slider-fill"></div>
+                          </div>
+                          <input class="slider-input slider-input--min" type="range" min="0" max="13" value="1" step="1" aria-label="Minimum estimate">
+                          <input class="slider-input slider-input--max" type="range" min="0" max="13" value="8" step="1" aria-label="Maximum estimate">
+                        </div>
+                        <div class="filter-range-fields">
+                          <input class="input tnum" type="number" value="1" min="0" max="13" aria-label="Minimum estimate">
+                          <span class="filter-range-separator" aria-hidden="true">–</span>
+                          <input class="input tnum" type="number" value="8" min="0" max="13" aria-label="Maximum estimate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Status</button>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Number range</span>
+              <span class="sample-meta-detail">Slider · Minimum and maximum</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Updated filter">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Updated</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value">Jun 1 – Jun 10</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Updated filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu filter-menu filter-menu--dates" role="dialog" aria-label="Updated range" hidden>
+                      <div class="datetime datetime--duration">
+                        <div class="datetime-range">
+                          <div class="datetime-field" data-value="2026-06-01">
+                            <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose start date">
+                              <span class="datetime-value"></span>
+                              <span class="datetime-placeholder">Start date</span>
+                              <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="datetime-popup" role="dialog" aria-label="Choose start date" hidden></div>
+                          </div>
+                          <span class="datetime-separator" aria-hidden="true">–</span>
+                          <div class="datetime-field" data-value="2026-06-10">
+                            <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose end date">
+                              <span class="datetime-value"></span>
+                              <span class="datetime-placeholder">End date</span>
+                              <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="datetime-popup" role="dialog" aria-label="Choose end date" hidden></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Status</button>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Date range</span>
+              <span class="sample-meta-detail">Start and end · Each opens its own calendar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Layout</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter filter--list" role="toolbar" aria-label="Filters">
+                <div class="filter-rules">
+                  <div class="filter-row">
+                    <span class="filter-conjunction">
+                      <span class="filter-conjunction--where">Where</span>
+                      <span class="filter-conjunction--and">And</span>
+                    </span>
+                    <div class="dropdown filter-rule">
+                      <div class="filter-rule-chip">
+                        <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="filter-rule-property">Status</span>
+                          <span class="filter-rule-operator">is any of</span>
+                          <span class="filter-rule-value">In progress, Done</span>
+                        </button>
+                        <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
+                          <i class="ph ph-x" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="menu" role="menu" hidden>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox" checked>
+                          <span class="menu-item-label">In progress</span>
+                        </label>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox" checked>
+                          <span class="menu-item-label">Done</span>
+                        </label>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox">
+                          <span class="menu-item-label">Paused</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="filter-row">
+                    <span class="filter-conjunction">
+                      <span class="filter-conjunction--where">Where</span>
+                      <span class="filter-conjunction--and">And</span>
+                    </span>
+                    <div class="dropdown filter-rule">
+                      <div class="filter-rule-chip">
+                        <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="filter-rule-property">Estimate</span>
+                          <span class="filter-rule-operator">is</span>
+                          <span class="filter-rule-value tnum">1–8</span>
+                        </button>
+                        <button type="button" class="filter-rule-remove" aria-label="Remove Estimate filter">
+                          <i class="ph ph-x" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="menu filter-menu filter-menu--range" role="dialog" aria-label="Estimate range" hidden>
+                        <div class="filter-range">
+                          <div class="slider slider--range" style="--slider-min: 7.69%; --slider-max: 61.54%;">
+                            <div class="slider-track" aria-hidden="true">
+                              <div class="slider-fill"></div>
+                            </div>
+                            <input class="slider-input slider-input--min" type="range" min="0" max="13" value="1" step="1" aria-label="Minimum estimate">
+                            <input class="slider-input slider-input--max" type="range" min="0" max="13" value="8" step="1" aria-label="Maximum estimate">
+                          </div>
+                          <div class="filter-range-fields">
+                            <input class="input tnum" type="number" value="1" min="0" max="13" aria-label="Minimum estimate">
+                            <span class="filter-range-separator" aria-hidden="true">–</span>
+                            <input class="input tnum" type="number" value="8" min="0" max="13" aria-label="Maximum estimate">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="filter-row">
+                    <span class="filter-conjunction">
+                      <span class="filter-conjunction--where">Where</span>
+                      <span class="filter-conjunction--and">And</span>
+                    </span>
+                    <div class="dropdown filter-rule">
+                      <div class="filter-rule-chip">
+                        <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="filter-rule-property">Updated</span>
+                          <span class="filter-rule-operator">is</span>
+                          <span class="filter-rule-value">Jun 1 – Jun 10</span>
+                        </button>
+                        <button type="button" class="filter-rule-remove" aria-label="Remove Updated filter">
+                          <i class="ph ph-x" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="menu filter-menu filter-menu--dates" role="dialog" aria-label="Updated range" hidden>
+                        <div class="datetime datetime--duration">
+                          <div class="datetime-range">
+                            <div class="datetime-field" data-value="2026-06-01">
+                              <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose start date">
+                                <span class="datetime-value"></span>
+                                <span class="datetime-placeholder">Start date</span>
+                                <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                              </button>
+                              <div class="datetime-popup" role="dialog" aria-label="Choose start date" hidden></div>
+                            </div>
+                            <span class="datetime-separator" aria-hidden="true">–</span>
+                            <div class="datetime-field" data-value="2026-06-10">
+                              <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose end date">
+                                <span class="datetime-value"></span>
+                                <span class="datetime-placeholder">End date</span>
+                                <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                              </button>
+                              <div class="datetime-popup" role="dialog" aria-label="Choose end date" hidden></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-actions">
+                  <div class="dropdown filter-add">
+                    <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                      <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                      <span class="filter-add-label--empty">Filter</span>
+                      <span class="filter-add-label--active">Add filter</span>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Owner</button>
+                      <button type="button" class="menu-item" role="menuitem">Team</button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">List</span>
+              <span class="sample-meta-detail">Stacked rows · Where and And</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">With table</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter-group">
+                <div class="filter" role="toolbar" aria-label="Project filters">
+                  <div class="filter-rules">
+                    <div class="dropdown filter-rule">
+                      <div class="filter-rule-chip">
+                        <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="filter-rule-property">Status</span>
+                          <span class="filter-rule-operator">is any of</span>
+                          <span class="filter-rule-value">Active, Paused</span>
+                        </button>
+                        <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
+                          <i class="ph ph-x" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="menu" role="menu" hidden>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox" checked>
+                          <span class="menu-item-label">Active</span>
+                        </label>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox" checked>
+                          <span class="menu-item-label">Paused</span>
+                        </label>
+                        <label class="menu-item" data-dropdown-keep-open>
+                          <input class="checkbox" type="checkbox">
+                          <span class="menu-item-label">Done</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="dropdown filter-rule">
+                      <div class="filter-rule-chip">
+                        <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                          <span class="filter-rule-property">Updated</span>
+                          <span class="filter-rule-operator">is</span>
+                          <span class="filter-rule-value">May 1 – Jun 10</span>
+                        </button>
+                        <button type="button" class="filter-rule-remove" aria-label="Remove Updated filter">
+                          <i class="ph ph-x" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="menu filter-menu filter-menu--dates" role="dialog" aria-label="Updated range" hidden>
+                        <div class="datetime datetime--duration">
+                          <div class="datetime-range">
+                            <div class="datetime-field" data-value="2026-05-01">
+                              <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose start date">
+                                <span class="datetime-value"></span>
+                                <span class="datetime-placeholder">Start date</span>
+                                <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                              </button>
+                              <div class="datetime-popup" role="dialog" aria-label="Choose start date" hidden></div>
+                            </div>
+                            <span class="datetime-separator" aria-hidden="true">–</span>
+                            <div class="datetime-field" data-value="2026-06-10">
+                              <button type="button" class="datetime-input input" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose end date">
+                                <span class="datetime-value"></span>
+                                <span class="datetime-placeholder">End date</span>
+                                <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                              </button>
+                              <div class="datetime-popup" role="dialog" aria-label="Choose end date" hidden></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown filter-add">
+                    <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                      <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                      <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                      <span class="filter-add-label--empty">Filter</span>
+                      <span class="filter-add-label--active">Add filter</span>
+                    </button>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitem">Project</button>
+                      <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+                </div>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Project</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Updated</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Brand refresh</td>
+                        <td><span class="tag tag--xs tag--compact">Active</span></td>
+                        <td>Jun 1, 2026</td>
+                      </tr>
+                      <tr>
+                        <td>Platform migration</td>
+                        <td><span class="tag tag--xs tag--compact">Paused</span></td>
+                        <td>May 12, 2026</td>
+                      </tr>
+                      <tr>
+                        <td>Docs overhaul</td>
+                        <td><span class="tag tag--xs tag--compact">Active</span></td>
+                        <td>Jun 10, 2026</td>
+                      </tr>
+                      <tr>
+                        <td>Onboarding flow</td>
+                        <td><span class="tag tag--xs tag--compact">Active</span></td>
+                        <td>Jun 4, 2026</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Above a table</span>
+              <span class="sample-meta-detail">Filter bar · Table below</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Content Block ── -->
     <section class="section section--component" id="content-block">
       <h2 class="section-label">Content Block</h2>
@@ -7617,6 +8422,7 @@ console.log(label);</code></pre>
   <script src="src/components/dialog.js" defer></script>
   <script src="src/components/float.js" defer></script>
   <script src="src/components/dropdown.js" defer></script>
+  <script src="src/components/slider.js" defer></script>
   <script src="src/components/datetime.js" defer></script>
   <script src="src/components/tooltip.js" defer></script>
   <script src="src/components/tabs-collapse.js" defer></script>
