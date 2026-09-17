@@ -190,6 +190,41 @@ html.is-dark .btn[data-theme-toggle] .ph-sun {
   display: inline-flex;
 }
 
+/* Pinned filled action — opaque, above page chrome. */
+.btn--float {
+  position: fixed;
+  z-index: 1200;
+  inset-block-end: var(--spacing-s);
+  inset-inline-end: var(--spacing-s);
+  box-shadow: var(--shadow-m);
+}
+
+.btn--float:not(.btn--accent) {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-fg);
+}
+
+.btn--float:not(.btn--accent):is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+  background: var(--color-gray-extra-light);
+  border-color: var(--color-gray);
+}
+
+html.is-dark .btn--float:not(.btn--accent):is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+  background: var(--color-gray-extra-dark);
+  border-color: var(--color-gray);
+}
+
+.btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+  background: var(--color-gray-extra-dark);
+  color: var(--theme-bg);
+}
+
+html.is-dark .btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+  background: var(--color-gray-extra-light);
+  color: var(--color-black);
+}
+
 /* Joined row or column of buttons. Inner corners square; outer radius is shared. */
 .btn-group {
   display: inline-flex;

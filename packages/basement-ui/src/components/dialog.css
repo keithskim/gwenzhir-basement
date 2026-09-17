@@ -98,3 +98,64 @@
   box-sizing: border-box;
   min-width: 5rem;
 }
+
+.dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  width: 100%;
+}
+
+.dialog-heading .dialog-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dialog-heading .btn {
+  margin-block: -0.25rem;
+  margin-inline-end: -0.25rem;
+}
+
+/* Wider panel for onboarding or help: Tabs plus a scrolling rich body. */
+.dialog--guide {
+  max-width: 36rem;
+  max-height: 100%;
+  min-height: 0;
+  gap: var(--spacing-s);
+}
+
+.dialog--guide .dialog-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  gap: var(--spacing-s);
+}
+
+.dialog--guide .tabs {
+  flex: 0 0 auto;
+}
+
+.dialog--guide .tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1 1 auto;
+  min-height: 8rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dialog--guide .tab-panel[hidden] {
+  display: none;
+}
+
+/* One-time notice: close, with an option not to see it again. */
+.dialog--popup .dialog-actions {
+  justify-content: flex-end;
+}
+
+.dialog--popup .dialog-actions .control-row {
+  margin-inline-end: auto;
+}

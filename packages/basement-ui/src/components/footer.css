@@ -1,0 +1,51 @@
+/* Quiet page-end chrome: copyright and a row of links. */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem var(--spacing-s);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding-block: var(--spacing-s);
+  color: var(--theme-fg-secondary);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  -webkit-font-smoothing: antialiased;
+}
+
+.footer--border {
+  border-top: 1px solid var(--theme-border);
+}
+
+.footer--between {
+  justify-content: space-between;
+}
+
+.footer-copy {
+  margin: 0;
+  min-width: 0;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--theme-fg);
+}

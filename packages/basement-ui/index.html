@@ -74,6 +74,7 @@
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
         <button type="button" class="sidebar-item" data-section="navbar">Nav bar</button>
+        <button type="button" class="sidebar-item" data-section="footer">Footer</button>
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
         <button type="button" class="sidebar-item" data-section="filter">Filter</button>
@@ -364,6 +365,18 @@
                     <span class="navbar-item navbar-item--icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
                     <span class="navbar-item navbar-item--icon"><i class="ph ph-bell" aria-hidden="true"></i></span>
                     <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="footer">
+              <span class="home-card-title">Footer</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="footer home-preview-footer">
+                  <span class="footer-copy">© 2026 Basement</span>
+                  <span class="footer-nav">
+                    <span class="footer-link">Privacy</span>
+                    <span class="footer-link">Terms</span>
                   </span>
                 </span>
               </span>
@@ -2476,6 +2489,7 @@
 
     <section class="section section--component" id="button">
       <h2 class="section-label">Button</h2>
+      <p class="type-paragraph">Default, Subtle, Accent, and Ghost. Icon only and round. Floating sits above everything else and stays filled — not a wash of what’s behind it. Give it a label, or drop Accent for a filled surface.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -2583,6 +2597,49 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Theme</span>
               <span class="sample-meta-detail">Moon in light · Sun in dark · Pressed when dark</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-caption">Palette review</p>
+              <p class="type-caption">Studio</p>
+              <p class="type-caption">Mina</p>
+              <button type="button" class="btn btn--xs btn--accent btn--icon btn--round btn--float" aria-label="Add">
+                <i class="ph ph-plus icon--m" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Floating</span>
+              <span class="sample-meta-detail">Above everything · Filled · End corner</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-caption">Palette review</p>
+              <p class="type-caption">Studio</p>
+              <p class="type-caption">Mina</p>
+              <button type="button" class="btn btn--xs btn--accent btn--round btn--float">
+                <i class="ph ph-plus icon--m" aria-hidden="true"></i>
+                <span>Add</span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Label</span>
+              <span class="sample-meta-detail">Icon and text · Filled · End corner</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <p class="type-caption">Palette review</p>
+              <p class="type-caption">Studio</p>
+              <p class="type-caption">Mina</p>
+              <button type="button" class="btn btn--xs btn--default btn--icon btn--round btn--float" aria-label="Add">
+                <i class="ph ph-plus icon--m" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Surface</span>
+              <span class="sample-meta-detail">Filled Default · Not Accent · End corner</span>
             </div>
           </div>
         </div>
@@ -2927,7 +2984,7 @@
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Icon</span>
-              <span class="sample-meta-detail">Default outline · Icon above label · Equal pages · Min width</span>
+              <span class="sample-meta-detail">Default outline · Icon above label</span>
             </div>
           </div>
         </div>
@@ -5727,6 +5784,66 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+    <!-- ── Footer ── -->
+    <section class="section section--component" id="footer">
+      <h2 class="section-label">Footer</h2>
+      <p class="type-paragraph">A quiet bar at the end of a page. Copyright and a few links in one row. Secondary color, 2XS. Optional hairline on top, or links pushed to the end. Links have no underline.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--types">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <footer class="footer">
+                <p class="footer-copy">© 2026 Basement</p>
+                <nav class="footer-nav" aria-label="Footer">
+                  <a class="footer-link" href="#footer">Privacy</a>
+                  <a class="footer-link" href="#footer">Terms</a>
+                  <a class="footer-link" href="#footer">Docs</a>
+                </nav>
+              </footer>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Copyright · Links in a row · Gray D · 2XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <footer class="footer footer--border">
+                <p class="footer-copy">© 2026 Basement</p>
+                <nav class="footer-nav" aria-label="Footer">
+                  <a class="footer-link" href="#footer">Privacy</a>
+                  <a class="footer-link" href="#footer">Terms</a>
+                  <a class="footer-link" href="#footer">Docs</a>
+                </nav>
+              </footer>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Border</span>
+              <span class="sample-meta-detail">Hairline on top</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <footer class="footer footer--between">
+                <p class="footer-copy">© 2026 Basement</p>
+                <nav class="footer-nav" aria-label="Footer">
+                  <a class="footer-link" href="#footer">Privacy</a>
+                  <a class="footer-link" href="#footer">Terms</a>
+                  <a class="footer-link" href="#footer">Docs</a>
+                </nav>
+              </footer>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Between</span>
+              <span class="sample-meta-detail">Copyright on the start · Links on the end</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Tooltip ── -->
     <section class="section section--component" id="tooltip">
       <h2 class="section-label">Tooltip</h2>
@@ -8060,7 +8177,7 @@ console.log(label);</code></pre>
     <!-- ── Dialog ── -->
     <section class="section section--component" id="dialog">
       <h2 class="section-label">Dialog</h2>
-      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default; omit it when the panel should float alone.</p>
+      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default; omit it when the panel should float alone. Guide holds Tabs and a rich body for onboarding or help. Popup is a one-time notice that can be closed, with an option not to see it again.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -8113,6 +8230,86 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">No overlay</span>
               <span class="sample-meta-detail">Panel only</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog">
+              <div class="dialog-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Workspace overview and recent activity sit behind the dialog.</p>
+                <p class="type-caption" style="margin: 0;">North studio · Open</p>
+              </div>
+              <div class="dialog-host dialog-host--demo is-dialog-open" data-dialog-static>
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog dialog--guide" role="dialog" aria-modal="true" aria-labelledby="dialogGuideTitle" data-tabs-demo>
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogGuideTitle">Welcome to Basement</h2>
+                    <div class="tabs" role="tablist" aria-label="Guide">
+                      <button type="button" class="tab is-active" id="dialog-guide-tab-start" role="tab" aria-selected="true" aria-controls="dialog-guide-panel-start">Start</button>
+                      <button type="button" class="tab" id="dialog-guide-tab-rooms" role="tab" aria-selected="false" aria-controls="dialog-guide-panel-rooms" tabindex="-1">Rooms</button>
+                      <button type="button" class="tab" id="dialog-guide-tab-shortcuts" role="tab" aria-selected="false" aria-controls="dialog-guide-panel-shortcuts" tabindex="-1">Shortcuts</button>
+                    </div>
+                    <div class="tab-panel" id="dialog-guide-panel-start" role="tabpanel" aria-labelledby="dialog-guide-tab-start">
+                      <div class="content-block content-block--row content-block--s">
+                        <div class="content-block-media" aria-hidden="true"></div>
+                        <div class="content-block-body">
+                          <h3 class="content-block-title">Rooms and messages</h3>
+                          <p class="content-block-description">A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first.</p>
+                        </div>
+                      </div>
+                      <p class="dialog-description">Work through the pages, then continue. You can reopen this guide from Help.</p>
+                    </div>
+                    <div class="tab-panel" id="dialog-guide-panel-rooms" role="tabpanel" aria-labelledby="dialog-guide-tab-rooms" hidden>
+                      <p class="dialog-description">Star a conversation, select several with a checkbox, or group them under a label.</p>
+                      <p class="dialog-description">The current room and any selected rooms share the same highlight, so you can see what is in play at a glance.</p>
+                    </div>
+                    <div class="tab-panel" id="dialog-guide-panel-shortcuts" role="tabpanel" aria-labelledby="dialog-guide-tab-shortcuts" hidden>
+                      <p class="dialog-description">Return sends a message. Escape leaves the composer. Tab moves through the room list and the thread.</p>
+                      <p class="dialog-description">Use Help any time you want this walkthrough again.</p>
+                    </div>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--ghost">Skip</button>
+                    <button type="button" class="btn btn--xs btn--accent">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Guide</span>
+              <span class="sample-meta-detail">Tabs · Rich body · Onboarding or help</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog">
+              <div class="dialog-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Workspace overview and recent activity sit behind the dialog.</p>
+                <p class="type-caption" style="margin: 0;">North studio · Open</p>
+              </div>
+              <div class="dialog-host dialog-host--demo is-dialog-open" data-dialog-static>
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog dialog--popup" role="dialog" aria-modal="true" aria-labelledby="dialogPopupTitle">
+                  <div class="dialog-body">
+                    <div class="dialog-heading">
+                      <h2 class="dialog-title" id="dialogPopupTitle">New in Chat</h2>
+                      <button type="button" class="btn btn--subtle btn--icon btn--xs" aria-label="Close" data-dialog-close>
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <p class="dialog-description">Star a room, select several, or group them under a label. This note appears once per workspace.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <label class="control-row">
+                      <input class="checkbox" type="checkbox">
+                      Don’t show again
+                    </label>
+                    <button type="button" class="btn btn--xs btn--accent" data-dialog-close>Got it</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Popup</span>
+              <span class="sample-meta-detail">Once · Close · Don’t show again</span>
             </div>
           </div>
         </div>
@@ -8340,7 +8537,7 @@ console.log(label);</code></pre>
     <!-- ── Chat ── -->
     <section class="section section--component" id="chat">
       <h2 class="section-label">Chat</h2>
-      <p class="type-paragraph">Rooms and messages for a conversation. A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first. Bubble wraps every note in a surface. Pair a room list with a thread when several conversations share a frame. Apps own sending and delivery.</p>
+      <p class="type-paragraph">Rooms and messages for a conversation. A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first. Bubble wraps every note in a surface. Pair a room list with a thread when several conversations share a frame. In the list, star a room, select several with a checkbox, or group them under a label. A selected room uses the same highlight as the current one. Apps own sending and delivery.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -8501,6 +8698,91 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Rooms</span>
               <span class="sample-meta-detail">Portrait · Preview · Time · Optional unread</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <nav class="chat-rooms" aria-label="Rooms">
+                <div class="chat-room-group">
+                  <div class="chat-room-label">Starred</div>
+                  <div class="chat-room is-active" aria-current="true">
+                    <input class="checkbox" type="checkbox" checked aria-label="Select Palette review">
+                    <button type="button" class="chat-room-main">
+                      <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                      <span class="chat-room-body">
+                        <span class="chat-room-row">
+                          <span class="chat-room-name">Palette review</span>
+                          <span class="tag tag--counter" aria-label="2 unread">2</span>
+                          <time class="chat-room-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                        </span>
+                      </span>
+                    </button>
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Palette review">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="chat-room-group">
+                  <div class="chat-room-label">Design</div>
+                  <div class="chat-room">
+                    <input class="checkbox" type="checkbox" aria-label="Select Studio">
+                    <button type="button" class="chat-room-main">
+                      <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-chat-teardrop"></i></span>
+                      <span class="chat-room-body">
+                        <span class="chat-room-row">
+                          <span class="chat-room-name">Studio</span>
+                          <span class="tag tag--2xs">Work</span>
+                          <time class="chat-room-time" datetime="2026-09-14">Mon</time>
+                        </span>
+                      </span>
+                    </button>
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" aria-label="Star Studio">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="chat-room-group">
+                  <div class="chat-room-label">Direct</div>
+                  <div class="chat-room">
+                    <input class="checkbox" type="checkbox" checked aria-label="Select Mina">
+                    <button type="button" class="chat-room-main">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                      <span class="chat-room-body">
+                        <span class="chat-room-row">
+                          <span class="chat-room-name">Mina</span>
+                          <time class="chat-room-time" datetime="2026-09-15">Yesterday</time>
+                        </span>
+                      </span>
+                    </button>
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Mina">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                  <div class="chat-room">
+                    <input class="checkbox" type="checkbox" aria-label="Select Jun">
+                    <button type="button" class="chat-room-main">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                      <span class="chat-room-body">
+                        <span class="chat-room-row">
+                          <span class="chat-room-name">Jun</span>
+                          <time class="chat-room-time" datetime="2026-09-14">Mon</time>
+                        </span>
+                      </span>
+                    </button>
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" aria-label="Star Jun">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Organized</span>
+              <span class="sample-meta-detail">Labels · Optional star · Optional select</span>
             </div>
           </div>
           <div class="type-sample-item">

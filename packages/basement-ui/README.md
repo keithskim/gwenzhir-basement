@@ -76,7 +76,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 | `box-resize.js` | `BasementBox` | Drag handle for `.box--resizable` |
 | `edge-fade.js` | `BasementEdgeFade` | Scroll-aware edge masks for tables/graphs/nav (skips Tabs; load before Panel) |
 | `panel.js` | `BasementPanel` | Left/right panel resize + drawer toggle / close; closed drawers and blurred overlay UI are skipped in the tab order |
-| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Escape / backdrop dismiss; overlay UI is not focusable |
+| `dialog.js` | `BasementDialog` | Centered modal; blurry overlay by default, plain panel option; Guide type with Tabs and a rich body; Popup type for a one-time notice with close and Don’t show again; Escape / backdrop dismiss; overlay UI is not focusable |
 | `float.js` | `BasementFloat` | Portals Datetime / Tooltip / Dropdown / Tabs menus out of overflow parents; dialog re-places on page scroll; `align` is `start` (default), `end`, or `center`; `placement` is `bottom` (default), `end`, or `start` |
 | `dropdown.js` | `BasementDropdown` | Trigger + Menu: `aria-expanded`, Escape, click-outside, arrow keys; uses Float when present |
 | `slider.js` | `BasementSlider` | Single or dual-thumb range; paints the fill and ticks; keeps paired number fields and optional value labels in sync |
@@ -93,11 +93,15 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
+**Button** — `.btn` with size (`--2xs` / `--xs` / `--s`) and type (`--default` / `--subtle` / `--accent` / `--ghost`). `.btn--icon` is square; `.btn--round` is circular. `.btn--float` pins a filled control above everything else (`position: fixed`, end-bottom, `z-index` above Dialog). Add a text label beside the icon; omit `.btn--accent` for a filled Default surface. Hover stays opaque (Gray Extra Light / Extra Dark), never alpha.
+
 **Button group** — `.btn-group` joins buttons in a row; `.btn-group--column` stacks them. Shared outer radius, square inner corners, overlapping borders. Not a segmented choice — each control stays a Button.
 
 **Rating** — `.rating-star` is a Gray outline star that turns theme foreground and filled on hover, active, or selected. `.rating` is a row of five; fill runs through the chosen (or hovered) star. CSS only — checkbox for one star, radios for five.
 
 **Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
+
+**Dialog** — `.dialog-host` + `.dialog`. Default uses a blurry overlay; `.dialog-host--plain` is panel only. `.dialog--guide` is a wider panel with Tabs and a scrolling rich body (Content Block, copy) for onboarding or help. `.dialog--popup` is a one-time notice with a close control and a Don’t show again checkbox; apps persist the preference.
 
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Optional `.app-frame--nav` with `.app-frame-panes` puts a Nav bar above the panes so drawers stay under the bar. Drawers and resize come from Panel; backdrop is scoped to the pane host. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).
 
@@ -109,7 +113,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Filter** — `.filter` is a wrapping row of criteria for lists and tables. Each `.filter-rule` is a Dropdown: property, operator, and value on the trigger, a trailing remove control, and a Menu to edit. Omit `.filter-rule-remove` to keep a criterion; Clear leaves those in place and hides when nothing is removable. `.filter-rule--choices` lists options as joined buttons on the chip instead of a menu; the selected option uses `aria-pressed`. Value menus can be a single option, checkboxes (`data-dropdown-keep-open` so the menu stays open), a `.filter-range` of Slider plus number inputs, or Datetime duration. Criteria combine with And. Empty state shows Filter; with rules it shows Add filter and Clear. `.filter-add` with `.btn--icon` is a compact Add (Funnel when empty, Plus with rules). `.filter--list` stacks rows with a leading Where / And. `.filter-group` stacks a Filter above a Table. Remove and Clear are for apps to wire.
 
-**Chat** — `.chat` is a room: header, scrollable log, and composer (Text Input + Button). Messages use Avatar, name, time, and body; `.chat-message--follow` hides the portrait and name for a run from the same person; `.chat-message--self` marks yours. `.chat--bubble` wraps every note in a surface. `.chat-rooms` is the conversation list (portrait, name, preview, time, optional unread Tag). `.chat-frame` places rooms beside a thread. Chrome only — apps own delivery.
+**Chat** — `.chat` is a room: header, scrollable log, and composer (Text Input + Button). Messages use Avatar, name, time, and body; `.chat-message--follow` hides the portrait and name for a run from the same person; `.chat-message--self` marks yours. `.chat--bubble` wraps every note in a surface. `.chat-rooms` is the conversation list (portrait, name, preview, time, optional unread Tag). Optional `.chat-room-group` / `.chat-room-label` cluster rooms; a leading `.checkbox` selects, a `.rating-star` stars. A checked room uses the same highlight as `.is-active`. When a room has those controls, the row is a `div`, `.chat-room-main` opens the thread, and name, time, and tags sit on one line with the checkbox and star. `.chat-frame` places rooms beside a thread. Chrome only — apps own delivery.
 
 **Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip.
 
@@ -117,7 +121,9 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster. `.navbar--compact` tightens bar and item padding; its start inset matches a left Panel sidebar so brand and items line up.
 
-**Tabs** — `.tabs` / `.tab`. Default uses XS type to match Filter and Button. `.tabs--s` uses S type.
+**Footer** — Quiet page-end row (`.footer`): `.footer-copy` then `.footer-nav` links, sitting together. 2XS, secondary color. `.footer--border` adds a hairline on top; `.footer--between` puts copy on the start and links on the end. Links have no underline; they pick up the theme foreground on hover. CSS only.
+
+**Tabs** — `.tabs` / `.tab`. Default hugs its pages. `.tabs--full` is the full-width type: equal pages fill the available width. Default uses XS type to match Filter and Button. `.tabs--s` uses S type.
 
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 

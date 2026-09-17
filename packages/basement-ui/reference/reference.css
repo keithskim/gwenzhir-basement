@@ -555,6 +555,16 @@ html.is-sidebar-locked {
   font-size: 0.625rem;
 }
 
+.home-preview-footer {
+  padding-block: 0.25rem;
+  padding-inline: 0;
+  gap: 0.5rem;
+}
+
+.home-preview-footer .footer-nav {
+  gap: 0.5rem;
+}
+
 .home-preview-datetime {
   width: 100%;
   max-width: 10rem;
@@ -1425,6 +1435,8 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #dropdown .sample-meta-detail,
   #navbar .sample-meta-label,
   #navbar .sample-meta-detail,
+  #footer .sample-meta-label,
+  #footer .sample-meta-detail,
   #datetime .sample-meta-label,
   #datetime .sample-meta-detail,
   #filter .sample-meta-label,
@@ -1764,6 +1776,10 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #toggle .type-sample-item:has(.segmented-select) {
     grid-column: span 4;
   }
+
+  #button .type-sample-list--types > .type-sample-item:has(.btn--float) {
+    grid-column: span 4;
+  }
 }
 
 @media (min-width: 80rem) {
@@ -1857,6 +1873,16 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   justify-self: center;
   align-self: center;
   width: fit-content;
+}
+
+#button .sample-box:has(.btn--float) {
+  position: relative;
+  min-height: 8rem;
+  align-content: start;
+}
+
+#button .sample-box .btn--float {
+  position: absolute;
 }
 
 #button .type-sample-list--sizes .sample-box > .btn--icon {
@@ -2270,6 +2296,20 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   width: 100%;
 }
 
+#footer .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+#footer .sample-box {
+  min-height: 8rem;
+  align-items: end;
+}
+
+#footer .sample-box > .footer {
+  width: 100%;
+}
+
 #datetime .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
@@ -2418,6 +2458,14 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #dialog .border-group:first-of-type .pattern-demo-list > .pattern-demo {
     grid-column: span 4;
   }
+
+  #dialog .border-group:first-of-type .pattern-demo-list > .pattern-demo:has(.dialog--guide) {
+    grid-column: 1 / -1;
+  }
+}
+
+#dialog .pattern-stage--dialog:has(.dialog--guide) {
+  height: 22rem;
 }
 
 .home-preview-panel {

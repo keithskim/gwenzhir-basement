@@ -7,7 +7,10 @@
   flex-wrap: nowrap;
   align-items: stretch;
   align-content: flex-start;
+  align-self: start;
+  justify-self: start;
   gap: 0;
+  width: max-content;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -97,9 +100,11 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  width: 100%;
+  width: max-content;
   max-width: 100%;
   align-items: stretch;
+  align-self: start;
+  justify-self: start;
 }
 
 .tabs--stacked:not(.tabs--underline) .tab {
@@ -137,6 +142,8 @@
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
+  align-self: stretch;
+  justify-self: stretch;
   box-sizing: border-box;
 }
 
@@ -208,17 +215,16 @@
    Same chrome as default tabs; icon + label stack instead of text-only.
 */
 .tabs--icon {
-  display: flex;
+  display: inline-flex;
   flex-wrap: nowrap;
-  width: 100%;
-  min-width: 18rem;
+  width: max-content;
   max-width: 100%;
   align-items: stretch;
   overflow: visible;
 }
 
 .tabs--icon .tab {
-  flex: 1 0 0;
+  flex: 0 0 auto;
   min-width: 4rem;
   max-width: none;
   flex-direction: column;
@@ -249,10 +255,24 @@
   z-index: 2;
 }
 
+.tabs--full.tabs--icon {
+  display: flex;
+  width: 100%;
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.tabs--full.tabs--icon .tab {
+  flex: 1 1 0;
+}
+
 /* Overflow → Dropdown + Menu */
 .tabs.tabs--dropdown {
   display: block;
+  width: 100%;
   min-width: 0;
+  align-self: stretch;
+  justify-self: stretch;
   padding: 0;
   border: none;
   background: transparent;

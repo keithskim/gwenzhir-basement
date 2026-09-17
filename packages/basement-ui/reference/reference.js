@@ -483,7 +483,7 @@ initFilterChoices();
 // ── Chat room switching demo ──
 function initChatDemo() {
   function selectRoom(list, room) {
-    list.querySelectorAll(':scope > .chat-room').forEach(item => {
+    list.querySelectorAll('.chat-room').forEach(item => {
       const on = item === room;
       item.classList.toggle('is-active', on);
       if (on) item.setAttribute('aria-current', 'true');
@@ -491,16 +491,23 @@ function initChatDemo() {
     });
   }
 
+  function onRoomClick(event, list, room, onSelect) {
+    if (event.target.closest('.checkbox, .rating-star')) return;
+    onSelect(room);
+  }
+
   document.querySelectorAll('[data-chat-demo]').forEach(frame => {
     const list = frame.querySelector('.chat-rooms');
     const panes = [...frame.querySelectorAll('.chat[data-chat-pane]')];
     if (!list) return;
-    list.querySelectorAll(':scope > .chat-room[data-chat-room]').forEach(room => {
-      room.addEventListener('click', () => {
-        const id = room.getAttribute('data-chat-room');
-        selectRoom(list, room);
-        panes.forEach(pane => {
-          pane.hidden = pane.getAttribute('data-chat-pane') !== id;
+    list.querySelectorAll('.chat-room[data-chat-room]').forEach(room => {
+      room.addEventListener('click', event => {
+        onRoomClick(event, list, room, () => {
+          const id = room.getAttribute('data-chat-room');
+          selectRoom(list, room);
+          panes.forEach(pane => {
+            pane.hidden = pane.getAttribute('data-chat-pane') !== id;
+          });
         });
       });
     });
@@ -508,8 +515,10 @@ function initChatDemo() {
 
   document.querySelectorAll('.chat-rooms').forEach(list => {
     if (list.closest('[data-chat-demo]')) return;
-    list.querySelectorAll(':scope > .chat-room').forEach(room => {
-      room.addEventListener('click', () => selectRoom(list, room));
+    list.querySelectorAll('.chat-room').forEach(room => {
+      room.addEventListener('click', event => {
+        onRoomClick(event, list, room, () => selectRoom(list, room));
+      });
     });
   });
 }

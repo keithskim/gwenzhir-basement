@@ -14,18 +14,21 @@
   .datetime-month,
   .filter-rule-trigger,
   .filter-rule-choice,
-  .filter-rule-remove
+  .filter-rule-remove,
+  .chat-room,
+  .chat-room-main
 ):focus-visible {
   outline: 0.125rem solid var(--color-light-gray-a);
   outline-offset: -0.125rem;
 }
 
-:is(.link, .table-sort, .sidebar-title, .tab, .navbar-item, .navbar-brand):focus-visible {
+:is(.link, .table-sort, .sidebar-title, .tab, .navbar-item, .navbar-brand, .footer-link):focus-visible {
   border-radius: var(--border-radius-s);
 }
 
 .btn:focus-visible,
 .link:focus-visible,
+.footer-link:focus-visible,
 .input:focus-visible,
 .textarea:focus-visible,
 .text-input:has(.input:focus-visible),
