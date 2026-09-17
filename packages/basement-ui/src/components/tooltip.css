@@ -29,6 +29,61 @@
   pointer-events: none;
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
   white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.tooltip-content :is(b, strong) {
+  font-weight: 600;
+}
+
+.tooltip-content :is(i, em) {
+  font-style: italic;
+}
+
+.tooltip-content .code {
+  font-size: 1em;
+  color: var(--color-gray);
+  border-color: var(--color-light-gray);
+}
+
+.tooltip-content .tag {
+  color: var(--color-gray);
+  border-color: var(--color-light-gray);
+  background: transparent;
+}
+
+.tooltip-content :is(ul, ol) {
+  margin-block: 0.25rem;
+  padding-inline-start: 1.5em;
+}
+
+.tooltip-content :is(ul, ol):first-child {
+  margin-block-start: 0;
+}
+
+.tooltip-content :is(ul, ol):last-child {
+  margin-block-end: 0;
+}
+
+.tooltip-content ul {
+  list-style-type: disc;
+}
+
+.tooltip-content ol {
+  list-style-type: decimal;
+}
+
+.tooltip-content li + li {
+  margin-block-start: 0.125rem;
+}
+
+.tooltip-content p {
+  margin: 0;
+}
+
+.tooltip-content p + :is(ul, ol),
+.tooltip-content :is(ul, ol) + p {
+  margin-block-start: 0.25rem;
 }
 
 .tooltip-content::before {
@@ -46,6 +101,7 @@
 .tooltip.is-open .tooltip-content {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .tooltip--top .tooltip-content {

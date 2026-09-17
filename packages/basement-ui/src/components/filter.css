@@ -104,9 +104,74 @@ html.is-dark .filter-rule-chip:focus-within {
   background: var(--theme-bg-subtle);
 }
 
+.filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html.is-dark .filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+.filter-rule--choices .filter-rule-chip > .filter-rule-property {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  -webkit-font-smoothing: antialiased;
+}
+
+.filter-rule-choices {
+  display: inline-flex;
+  align-items: stretch;
+  isolation: isolate;
+  min-width: 0;
+}
+
+.filter-rule-choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg);
+  background: transparent;
+  border: none;
+  border-inline-start: 1px solid var(--theme-border);
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+
+.filter-rule-choice:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+  z-index: 1;
+  background: var(--color-light-gray-a);
+}
+
+html.is-dark .filter-rule-choice:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+  background: var(--color-dark-gray-a);
+}
+
+.filter-rule-chip > .filter-rule-choices:first-child > .filter-rule-choice:first-child {
+  border-inline-start: none;
+}
+
 .filter:not(:has(.filter-rule)) .filter-add-icon--active,
 .filter:not(:has(.filter-rule)) .filter-add-label--active,
-.filter:not(:has(.filter-rule)) .filter-clear {
+.filter:not(:has(.filter-rule-remove)) .filter-clear {
   display: none;
 }
 

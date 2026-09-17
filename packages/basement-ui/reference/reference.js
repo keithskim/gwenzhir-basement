@@ -450,6 +450,7 @@ function initFilterDemo() {
         event.preventDefault();
         if (window.BasementDropdown) window.BasementDropdown.closeAll();
         filter.querySelectorAll(':scope .filter-rules > .filter-row, :scope .filter-rules > .filter-rule').forEach(el => {
+          if (!el.querySelector('.filter-rule-remove')) return;
           el.remove();
         });
       }
@@ -458,6 +459,26 @@ function initFilterDemo() {
 }
 
 initFilterDemo();
+
+function initFilterChoices() {
+  document.querySelectorAll('.filter-rule--choices').forEach(rule => {
+    const multiple = rule.getAttribute('data-filter-choices') === 'multiple';
+    rule.addEventListener('click', event => {
+      const choice = event.target.closest('.filter-rule-choice');
+      if (!choice || !rule.contains(choice)) return;
+      if (multiple) {
+        const on = choice.getAttribute('aria-pressed') !== 'true';
+        choice.setAttribute('aria-pressed', on ? 'true' : 'false');
+        return;
+      }
+      rule.querySelectorAll('.filter-rule-choice').forEach(button => {
+        button.setAttribute('aria-pressed', button === choice ? 'true' : 'false');
+      });
+    });
+  });
+}
+
+initFilterChoices();
 
 // ── Chat room switching demo ──
 function initChatDemo() {

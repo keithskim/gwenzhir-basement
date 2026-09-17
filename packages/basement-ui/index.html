@@ -5730,6 +5730,7 @@ console.log(label);</code></pre>
     <!-- ── Tooltip ── -->
     <section class="section section--component" id="tooltip">
       <h2 class="section-label">Tooltip</h2>
+      <p class="type-paragraph">A short note on hover or keyboard focus. Place it above, below, or to either side. Copy can be plain, wrap to several lines, mix emphasis, inline code, and links, or a short bulleted list.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Placement</h3>
@@ -5784,6 +5785,42 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Long text</span>
               <span class="sample-meta-detail">Compact label with multi-line helper copy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--items">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--top">
+                <button type="button" class="tooltip-trigger btn btn--xs btn--default" aria-describedby="tooltip-formatted-demo">Shortcut</button>
+                <span class="tooltip-content" id="tooltip-formatted-demo" role="tooltip">Press <strong>Save</strong> or <span class="code">⌘S</span>. See <a class="link" href="#code">Code</a>.</span>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Formatted</span>
+              <span class="sample-meta-detail">Emphasis · Inline code · Link</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--top">
+                <button type="button" class="tooltip-trigger btn btn--xs btn--default" aria-describedby="tooltip-list-demo">Checks</button>
+                <div class="tooltip-content" id="tooltip-list-demo" role="tooltip">
+                  <ul>
+                    <li>Required fields</li>
+                    <li>Unique name</li>
+                    <li>Owner assigned</li>
+                  </ul>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">List</span>
+              <span class="sample-meta-detail">Bullets · Compact indent</span>
             </div>
           </div>
         </div>
@@ -5865,7 +5902,7 @@ console.log(label);</code></pre>
     <!-- ── Filter ── -->
     <section class="section section--component" id="filter">
       <h2 class="section-label">Filter</h2>
-      <p class="type-paragraph">A row of criteria for narrowing a list or table. Combine properties: a single value, several values, a number range on a slider, or a date range. Criteria join with And. Each criterion opens a menu to edit; the trailing control removes it.</p>
+      <p class="type-paragraph">A row of criteria for narrowing a list or table. Combine properties: a single value, several values, a joined row of choices, a number range on a slider, or a date range. Criteria join with And. A dropdown criterion opens a menu to edit; a choices criterion lists options in a joined row. The trailing control removes it, unless the criterion is fixed. Add filter can be a labeled control or an icon.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -5926,30 +5963,17 @@ console.log(label);</code></pre>
                       </button>
                     </div>
                   </div>
-                  <div class="dropdown filter-rule">
+                  <div class="filter-rule filter-rule--choices">
                     <div class="filter-rule-chip">
-                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
-                        <span class="filter-rule-property">Status</span>
-                        <span class="filter-rule-operator">is any of</span>
-                        <span class="filter-rule-value">In progress, Done</span>
-                      </button>
+                      <span class="filter-rule-property">Status</span>
+                      <div class="filter-rule-choices" role="group" aria-label="Status">
+                        <button type="button" class="filter-rule-choice" aria-pressed="true">In progress</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Done</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Paused</button>
+                      </div>
                       <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
                         <i class="ph ph-x" aria-hidden="true"></i>
                       </button>
-                    </div>
-                    <div class="menu" role="menu" hidden>
-                      <label class="menu-item" data-dropdown-keep-open>
-                        <input class="checkbox" type="checkbox" checked>
-                        <span class="menu-item-label">In progress</span>
-                      </label>
-                      <label class="menu-item" data-dropdown-keep-open>
-                        <input class="checkbox" type="checkbox" checked>
-                        <span class="menu-item-label">Done</span>
-                      </label>
-                      <label class="menu-item" data-dropdown-keep-open>
-                        <input class="checkbox" type="checkbox">
-                        <span class="menu-item-label">Paused</span>
-                      </label>
                     </div>
                   </div>
                   <div class="dropdown filter-rule">
@@ -6033,7 +6057,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Single · Multiple · Number range with slider · Date range · Add filter · Clear</span>
+              <span class="sample-meta-detail">Single · Choices · Number range with slider · Date range · Add filter · Clear</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -6138,6 +6162,131 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Multiple values</span>
               <span class="sample-meta-detail">Any of · Checkboxes</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Status choices">
+                <div class="filter-rules">
+                  <div class="filter-rule filter-rule--choices">
+                    <div class="filter-rule-chip">
+                      <span class="filter-rule-property">Status</span>
+                      <div class="filter-rule-choices" role="group" aria-label="Status">
+                        <button type="button" class="filter-rule-choice" aria-pressed="true">In progress</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Done</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Paused</button>
+                      </div>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Status filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Choices</span>
+              <span class="sample-meta-detail">Joined options · No menu</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Status filter">
+                <div class="filter-rules">
+                  <div class="filter-rule filter-rule--choices">
+                    <div class="filter-rule-chip">
+                      <span class="filter-rule-property">Status</span>
+                      <div class="filter-rule-choices" role="group" aria-label="Status">
+                        <button type="button" class="filter-rule-choice" aria-pressed="true">In progress</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Done</button>
+                        <button type="button" class="filter-rule-choice" aria-pressed="false">Paused</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                    <span class="filter-add-label--empty">Filter</span>
+                    <span class="filter-add-label--active">Add filter</span>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Owner</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Fixed</span>
+              <span class="sample-meta-detail">No remove · Always on</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="filter" role="toolbar" aria-label="Owner filter">
+                <div class="filter-rules">
+                  <div class="dropdown filter-rule">
+                    <div class="filter-rule-chip">
+                      <button type="button" class="filter-rule-trigger dropdown-trigger" aria-expanded="false" aria-haspopup="menu">
+                        <span class="filter-rule-property">Owner</span>
+                        <span class="filter-rule-operator">is</span>
+                        <span class="filter-rule-value">gwenzhir</span>
+                      </button>
+                      <button type="button" class="filter-rule-remove" aria-label="Remove Owner filter">
+                        <i class="ph ph-x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="menu" role="menu" hidden>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="true">
+                        <i class="ph ph-check menu-item-icon" aria-hidden="true"></i>
+                        <span class="menu-item-label">gwenzhir</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">mina</span>
+                      </button>
+                      <button type="button" class="menu-item" role="menuitemradio" aria-checked="false">
+                        <span class="menu-item-icon" aria-hidden="true"></span>
+                        <span class="menu-item-label">jun</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown filter-add">
+                  <button type="button" class="btn btn--xs btn--subtle btn--icon dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Add filter">
+                    <i class="ph ph-funnel filter-add-icon--empty" aria-hidden="true"></i>
+                    <i class="ph ph-plus filter-add-icon--active" aria-hidden="true"></i>
+                  </button>
+                  <div class="menu" role="menu" hidden>
+                    <button type="button" class="menu-item" role="menuitem">Status</button>
+                    <button type="button" class="menu-item" role="menuitem">Estimate</button>
+                    <button type="button" class="menu-item" role="menuitem">Updated</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--xs btn--ghost filter-clear">Clear</button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon add</span>
+              <span class="sample-meta-detail">Plus · No label</span>
             </div>
           </div>
           <div class="type-sample-item">

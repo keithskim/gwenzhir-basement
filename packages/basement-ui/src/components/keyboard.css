@@ -13,6 +13,7 @@
   .datetime-day,
   .datetime-month,
   .filter-rule-trigger,
+  .filter-rule-choice,
   .filter-rule-remove
 ):focus-visible {
   outline: 0.125rem solid var(--color-light-gray-a);
