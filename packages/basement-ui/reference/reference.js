@@ -459,6 +459,42 @@ function initFilterDemo() {
 
 initFilterDemo();
 
+// ── Chat room switching demo ──
+function initChatDemo() {
+  function selectRoom(list, room) {
+    list.querySelectorAll(':scope > .chat-room').forEach(item => {
+      const on = item === room;
+      item.classList.toggle('is-active', on);
+      if (on) item.setAttribute('aria-current', 'true');
+      else item.removeAttribute('aria-current');
+    });
+  }
+
+  document.querySelectorAll('[data-chat-demo]').forEach(frame => {
+    const list = frame.querySelector('.chat-rooms');
+    const panes = [...frame.querySelectorAll('.chat[data-chat-pane]')];
+    if (!list) return;
+    list.querySelectorAll(':scope > .chat-room[data-chat-room]').forEach(room => {
+      room.addEventListener('click', () => {
+        const id = room.getAttribute('data-chat-room');
+        selectRoom(list, room);
+        panes.forEach(pane => {
+          pane.hidden = pane.getAttribute('data-chat-pane') !== id;
+        });
+      });
+    });
+  });
+
+  document.querySelectorAll('.chat-rooms').forEach(list => {
+    if (list.closest('[data-chat-demo]')) return;
+    list.querySelectorAll(':scope > .chat-room').forEach(room => {
+      room.addEventListener('click', () => selectRoom(list, room));
+    });
+  });
+}
+
+initChatDemo();
+
 // ── Pattern demos: edge fades ──
 function initPatternEdgeFades() {
   if (!window.BasementEdgeFade) return;

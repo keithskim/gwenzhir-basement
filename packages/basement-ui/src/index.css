@@ -33,6 +33,7 @@
 @import url('./components/prompt.css');
 @import url('./components/dialog.css');
 @import url('./components/alert.css');
+@import url('./components/chat.css');
 @import url('./components/table.css');
 @import url('./components/timeline.css');
 @import url('./components/calendar.css');

@@ -116,7 +116,9 @@
       control.className = 'dropdown tabs-dropdown-control';
       var trigger = document.createElement('button');
       trigger.type = 'button';
-      trigger.className = 'btn btn--default btn--xs dropdown-trigger';
+      trigger.className = tabsEl.classList.contains('tabs--s')
+        ? 'btn btn--default btn--s dropdown-trigger'
+        : 'btn btn--default btn--xs dropdown-trigger';
       trigger.setAttribute('aria-haspopup', 'menu');
       trigger.setAttribute('aria-expanded', 'false');
       trigger.innerHTML =

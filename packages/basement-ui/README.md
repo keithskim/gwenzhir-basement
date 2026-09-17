@@ -103,11 +103,15 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Filter** — `.filter` is a wrapping row of criteria for lists and tables. Each `.filter-rule` is a Dropdown: property, operator, and value on the trigger, a trailing remove control, and a Menu to edit. Value menus can be a single option, checkboxes (`data-dropdown-keep-open` so the menu stays open), a `.filter-range` of Slider plus number inputs, or Datetime duration. Criteria combine with And. Empty state shows Filter; with rules it shows Add filter and Clear. `.filter--list` stacks rows with a leading Where / And. `.filter-group` stacks a Filter above a Table. Remove and Clear are for apps to wire.
 
+**Chat** — `.chat` is a room: header, scrollable log, and composer (Text Input + Button). Messages use Avatar, name, time, and body; `.chat-message--follow` hides the portrait and name for a run from the same person; `.chat-message--self` marks yours. `.chat--bubble` wraps every note in a surface. `.chat-rooms` is the conversation list (portrait, name, preview, time, optional unread Tag). `.chat-frame` places rooms beside a thread. Chrome only — apps own delivery.
+
 **Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip.
 
 **Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
 
 **Nav bar** — Horizontal product chrome (`.navbar`): `.navbar-brand` (Phosphor mark + name), `.navbar-nav` items, optional Dropdown + Menu per item, and `.navbar-end` for icon-only search and notifications plus the account cluster. `.navbar--compact` tightens bar and item padding; its start inset matches a left Panel sidebar so brand and items line up.
+
+**Tabs** — `.tabs` / `.tab`. Default uses XS type to match Filter and Button. `.tabs--s` uses S type.
 
 **Tabs overflow** — default stacks into a vertical list when labels exceed the parent width. Use `data-tabs-overflow="dropdown"` for a Dropdown + Menu control (uses Float when present; put `data-float-boundary` on a nearer frame to clamp there instead of the viewport), or `"off"` / `data-tabs-collapse="off"` to opt out. Force stacked with `tabs--stacked`. Do not put scroll edge fades on Tabs.
 

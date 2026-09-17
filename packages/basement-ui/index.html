@@ -82,6 +82,7 @@
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
         <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
+        <button type="button" class="sidebar-item" data-section="chat">Chat</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Visualization</div>
@@ -452,6 +453,21 @@
                 <span class="alert alert--affirm home-preview-alert">
                   <i class="ph ph-check-circle alert-icon" aria-hidden="true"></i>
                   <span class="alert-description">Changes saved.</span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="chat">
+              <span class="home-card-title">Chat</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="chat-log home-preview-chat">
+                  <span class="chat-message">
+                    <span class="avatar avatar--2xs"><span class="avatar-fallback">M</span></span>
+                    <span class="chat-message-text">Check the palette?</span>
+                  </span>
+                  <span class="chat-message">
+                    <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
+                    <span class="chat-message-text">On it.</span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -2685,7 +2701,7 @@
     <!-- ── Tabs ── -->
     <section class="section section--component" id="tabs">
       <h2 class="section-label">Tabs</h2>
-      <p class="type-paragraph">Grouped page controls. When labels exceed the available width, pages stack vertically or collapse into a Dropdown — not a horizontal scroller with edge fades.</p>
+      <p class="type-paragraph">Grouped page controls at Filter and Button size, with an S type for larger chrome. When labels exceed the available width, pages stack vertically or collapse into a Dropdown — not a horizontal scroller with edge fades.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -2833,6 +2849,40 @@
             <div class="sample-meta">
               <span class="sample-meta-label">Icon</span>
               <span class="sample-meta-detail">Default outline · Icon above label · Equal pages · Min width</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="tabs-demo" data-tabs-demo>
+                <div class="tabs" role="tablist" aria-label="Default size" data-tabs-collapse="off">
+                  <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                  <button type="button" class="tab" role="tab">Activity</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">XS · Matches Filter and Button</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="tabs-demo" data-tabs-demo>
+                <div class="tabs tabs--s" role="tablist" aria-label="S size" data-tabs-collapse="off">
+                  <button type="button" class="tab is-active" role="tab" aria-selected="true">Overview</button>
+                  <button type="button" class="tab" role="tab">Activity</button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail">S type · Matches Button S</span>
             </div>
           </div>
         </div>
@@ -7987,6 +8037,319 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Destructive</span>
               <span class="sample-meta-detail">Red tint · Hue dark text</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Chat ── -->
+    <section class="section section--component" id="chat">
+      <h2 class="section-label">Chat</h2>
+      <p class="type-paragraph">Rooms and messages for a conversation. A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first. Bubble wraps every note in a surface. Pair a room list with a thread when several conversations share a frame. Apps own sending and delivery.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--types">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <section class="chat" aria-label="Palette review">
+                <header class="chat-header">
+                  <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                  <div class="chat-header-body">
+                    <p class="chat-title">Palette review</p>
+                    <p class="chat-subtitle">Mina, Jun, you</p>
+                  </div>
+                </header>
+                <div class="chat-log">
+                  <div class="chat-day">Today</div>
+                  <article class="chat-message">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">Mina</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                      </div>
+                      <p class="chat-message-text">Can you check the palette?</p>
+                    </div>
+                  </article>
+                  <article class="chat-message chat-message--follow">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <p class="chat-message-text">Gray D still feels light on the chips.</p>
+                    </div>
+                  </article>
+                  <article class="chat-message chat-message--self">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">You</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:05">14:05</time>
+                      </div>
+                      <p class="chat-message-text">I’ll bump the contrast and send a pass.</p>
+                    </div>
+                  </article>
+                  <p class="chat-system">Jun joined</p>
+                  <article class="chat-message">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">Jun</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:08">14:08</time>
+                      </div>
+                      <p class="chat-message-text">That reads better against the table, <a href="#" class="mention mention--2xs"><span class="mention-label">@gwenzhir</span></a>.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="chat-composer">
+                  <div class="text-input-group">
+                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <button type="button" class="btn btn--xs btn--default">Send</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Header · Follow-on notes · Composer</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <section class="chat chat--bubble" aria-label="Palette review">
+                <header class="chat-header">
+                  <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                  <div class="chat-header-body">
+                    <p class="chat-title">Palette review</p>
+                    <p class="chat-subtitle">Mina, you</p>
+                  </div>
+                </header>
+                <div class="chat-log">
+                  <div class="chat-day">Today</div>
+                  <article class="chat-message">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">Mina</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                      </div>
+                      <p class="chat-message-text">Can you check the palette?</p>
+                    </div>
+                  </article>
+                  <article class="chat-message chat-message--follow">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <p class="chat-message-text">Gray D still feels light on the chips.</p>
+                    </div>
+                  </article>
+                  <article class="chat-message chat-message--self">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">You</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:05">14:05</time>
+                      </div>
+                      <p class="chat-message-text">On it — I’ll send a pass.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="chat-composer">
+                  <div class="text-input-group">
+                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <button type="button" class="btn btn--xs btn--default">Send</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Bubble</span>
+              <span class="sample-meta-detail">Surface on every note</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <nav class="chat-rooms" aria-label="Rooms">
+                <button type="button" class="chat-room is-active" aria-current="true">
+                  <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                  <span class="chat-room-body">
+                    <span class="chat-room-row">
+                      <span class="chat-room-name">Palette review</span>
+                      <time class="chat-room-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                    </span>
+                    <span class="chat-room-row">
+                      <span class="chat-room-preview">Can you check the palette?</span>
+                      <span class="tag tag--counter" aria-label="2 unread">2</span>
+                    </span>
+                  </span>
+                </button>
+                <button type="button" class="chat-room">
+                  <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                  <span class="chat-room-body">
+                    <span class="chat-room-row">
+                      <span class="chat-room-name">Mina</span>
+                      <time class="chat-room-time" datetime="2026-09-15">Yesterday</time>
+                    </span>
+                    <span class="chat-room-preview">Tokens shipped on main.</span>
+                  </span>
+                </button>
+                <button type="button" class="chat-room">
+                  <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                  <span class="chat-room-body">
+                    <span class="chat-room-row">
+                      <span class="chat-room-name">Jun</span>
+                      <time class="chat-room-time" datetime="2026-09-14">Mon</time>
+                    </span>
+                    <span class="chat-room-preview">I’ll take the table.</span>
+                  </span>
+                </button>
+              </nav>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Rooms</span>
+              <span class="sample-meta-detail">Portrait · Preview · Time · Optional unread</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <section class="chat" aria-label="Studio">
+                <header class="chat-header">
+                  <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-chat-teardrop"></i></span>
+                  <div class="chat-header-body">
+                    <p class="chat-title">Studio</p>
+                    <p class="chat-subtitle">No one else yet</p>
+                  </div>
+                </header>
+                <div class="chat-log">
+                  <p class="chat-empty">No messages yet</p>
+                </div>
+                <div class="chat-composer">
+                  <div class="text-input-group">
+                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <button type="button" class="btn btn--xs btn--default">Send</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Empty</span>
+              <span class="sample-meta-detail">Header · Quiet log · Composer</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="chat-frame" data-chat-demo>
+                <nav class="chat-rooms" aria-label="Rooms">
+                  <button type="button" class="chat-room is-active" aria-current="true" data-chat-room="palette">
+                    <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                    <span class="chat-room-body">
+                      <span class="chat-room-row">
+                        <span class="chat-room-name">Palette review</span>
+                        <time class="chat-room-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                      </span>
+                      <span class="chat-room-row">
+                        <span class="chat-room-preview">Can you check the palette?</span>
+                        <span class="tag tag--counter" aria-label="2 unread">2</span>
+                      </span>
+                    </span>
+                  </button>
+                  <button type="button" class="chat-room" data-chat-room="mina">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <span class="chat-room-body">
+                      <span class="chat-room-row">
+                        <span class="chat-room-name">Mina</span>
+                        <time class="chat-room-time" datetime="2026-09-15">Yesterday</time>
+                      </span>
+                      <span class="chat-room-preview">Tokens shipped on main.</span>
+                    </span>
+                  </button>
+                </nav>
+                <section class="chat" aria-label="Palette review" data-chat-pane="palette">
+                  <header class="chat-header">
+                    <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
+                    <div class="chat-header-body">
+                      <p class="chat-title">Palette review</p>
+                      <p class="chat-subtitle">Mina, Jun, you</p>
+                    </div>
+                  </header>
+                  <div class="chat-log">
+                    <div class="chat-day">Today</div>
+                    <article class="chat-message">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                      <div class="chat-message-body">
+                        <div class="chat-message-meta">
+                          <span class="chat-message-name">Mina</span>
+                          <time class="chat-message-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                        </div>
+                        <p class="chat-message-text">Can you check the palette?</p>
+                      </div>
+                    </article>
+                    <article class="chat-message chat-message--follow">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                      <div class="chat-message-body">
+                        <p class="chat-message-text">Gray D still feels light on the chips.</p>
+                      </div>
+                    </article>
+                    <article class="chat-message chat-message--self">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <div class="chat-message-body">
+                        <div class="chat-message-meta">
+                          <span class="chat-message-name">You</span>
+                          <time class="chat-message-time tnum" datetime="2026-09-16T14:05">14:05</time>
+                        </div>
+                        <p class="chat-message-text">I’ll bump the contrast and send a pass.</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="chat-composer">
+                    <div class="text-input-group">
+                      <input class="input" type="text" placeholder="Message" aria-label="Message">
+                      <button type="button" class="btn btn--xs btn--default">Send</button>
+                    </div>
+                  </div>
+                </section>
+                <section class="chat" aria-label="Mina" data-chat-pane="mina" hidden>
+                  <header class="chat-header">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-header-body">
+                      <p class="chat-title">Mina</p>
+                      <p class="chat-subtitle">Direct</p>
+                    </div>
+                  </header>
+                  <div class="chat-log">
+                    <div class="chat-day">Yesterday</div>
+                    <article class="chat-message">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                      <div class="chat-message-body">
+                        <div class="chat-message-meta">
+                          <span class="chat-message-name">Mina</span>
+                          <time class="chat-message-time tnum" datetime="2026-09-15T16:40">16:40</time>
+                        </div>
+                        <p class="chat-message-text">Tokens shipped on main.</p>
+                      </div>
+                    </article>
+                    <article class="chat-message chat-message--self">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <div class="chat-message-body">
+                        <div class="chat-message-meta">
+                          <span class="chat-message-name">You</span>
+                          <time class="chat-message-time tnum" datetime="2026-09-15T16:44">16:44</time>
+                        </div>
+                        <p class="chat-message-text">Nice — I’ll pull them in.</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="chat-composer">
+                    <div class="text-input-group">
+                      <input class="input" type="text" placeholder="Message" aria-label="Message">
+                      <button type="button" class="btn btn--xs btn--default">Send</button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With rooms</span>
+              <span class="sample-meta-detail">List beside a thread · Select a room</span>
             </div>
           </div>
         </div>
