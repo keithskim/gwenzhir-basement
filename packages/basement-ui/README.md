@@ -95,6 +95,8 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Button group** — `.btn-group` joins buttons in a row; `.btn-group--column` stacks them. Shared outer radius, square inner corners, overlapping borders. Not a segmented choice — each control stays a Button.
 
+**Rating** — `.rating-star` is a Gray outline star that turns theme foreground and filled on hover, active, or selected. `.rating` is a row of five; fill runs through the chosen (or hovered) star. CSS only — checkbox for one star, radios for five.
+
 **Panel** — Left or right side chrome (`.panel--left` / `.panel--right`): bordered surface, optional `.panel--drawer` (left below 37.5rem host, right below 56.25rem) sliding to a defined width with translucent backdrop; add `.panel--drawer-full` for a host-covering drawer. Toggle via `data-panel-toggle`; a closed drawer is skipped in the tab order until the toggle is activated. While a drawer overlay is up, blurred UI behind it is not focusable. Optional `.panel--resizable` with an edge drag handle (arrow keys move a focused handle). Host with `.panel-host` (App frame is also a host).
 
 **App frame** — Composes left and right Panel around the sheet (`.app-frame`). Optional `.app-frame--nav` with `.app-frame-panes` puts a Nav bar above the panes so drawers stay under the bar. Drawers and resize come from Panel; backdrop is scoped to the pane host. In the right detail pane, wrap the title row and Tabs in `.panel-sticky` so the header under-fade sits below tab chrome (Tabs overflow is stack/dropdown, not horizontal scroll + fade).

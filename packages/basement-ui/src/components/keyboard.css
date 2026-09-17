@@ -36,7 +36,9 @@
   .checkbox,
   .radio
 ):focus-visible,
-.segmented-select-input:focus-visible + .segmented-select-label {
+.segmented-select-input:focus-visible + .segmented-select-label,
+.rating-star:has(:focus-visible),
+.rating-star:focus-visible {
   outline: 0.125rem solid var(--color-light-gray-a);
   outline-offset: 0;
 }
@@ -58,7 +60,9 @@
   outline-offset: 0;
 }
 
-.segmented-select-input:focus-visible + .segmented-select-label {
+.segmented-select-input:focus-visible + .segmented-select-label,
+.rating-star:has(:focus-visible),
+.rating-star:focus-visible {
   border-radius: var(--border-radius-s);
 }
 

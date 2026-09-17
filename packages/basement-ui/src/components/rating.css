@@ -1,0 +1,90 @@
+/* Star: Gray outline at rest, theme foreground and filled when on. */
+.rating-star {
+  --rating-on: 0;
+  --rating-star-fill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23000' d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.76,55.08,59,4.76A16.46,16.46,0,0,1,234.29,114.85Z'/%3E%3C/svg%3E");
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-gray);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+label.rating-star {
+  cursor: pointer;
+}
+
+.rating-star-input {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rating-star-input:focus {
+  outline: none;
+}
+
+.rating-star .ph {
+  font-size: 1rem;
+  line-height: 1;
+  color: inherit;
+  opacity: calc(1 - var(--rating-on));
+  transition: opacity 0.15s ease;
+}
+
+.rating-star::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--theme-fg);
+  opacity: var(--rating-on);
+  pointer-events: none;
+  -webkit-mask: var(--rating-star-fill) center / contain no-repeat;
+  mask: var(--rating-star-fill) center / contain no-repeat;
+  transition: opacity 0.15s ease;
+}
+
+.rating-star--on,
+.rating-star[aria-pressed='true'],
+.rating-star:is(:hover, :active, :focus-within),
+.rating-star:has(:checked) {
+  --rating-on: 1;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* Interactive five: DOM is 5→1 so a checked/hovered star can fill the ones after it. */
+.rating:has(.rating-star-input[type='radio']) {
+  flex-direction: row-reverse;
+}
+
+.rating .rating-star:has(:checked) ~ .rating-star {
+  --rating-on: 1;
+}
+
+.rating:is(:hover, :focus-within) .rating-star:has(:checked),
+.rating:is(:hover, :focus-within) .rating-star:has(:checked) ~ .rating-star {
+  --rating-on: 0;
+}
+
+.rating:is(:hover, :focus-within) .rating-star:is(:hover, :focus-within),
+.rating:is(:hover, :focus-within) .rating-star:is(:hover, :focus-within) ~ .rating-star {
+  --rating-on: 1;
+}

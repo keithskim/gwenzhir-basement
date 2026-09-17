@@ -461,6 +461,10 @@ html.is-sidebar-locked {
   transform: translateX(0.75rem);
 }
 
+.home-card-preview .rating {
+  pointer-events: none;
+}
+
 .home-preview-menu {
   width: 100%;
   max-width: 10rem;
@@ -1562,11 +1566,11 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   max-width: none;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .sample-box {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon, #rating) .sample-box {
   place-items: center;
 }
 
-:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .sample-box > * {
+:is(#tag, #status-chip, #mention, #avatar, #spinner, #app-icon, #rating) .sample-box > * {
   /* Span the full subgrid so justify-self centers in the box, not column 1 */
   grid-column: 1 / -1;
   justify-self: center;
@@ -1742,7 +1746,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   }
 }
 
-:is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
+:is(#button, #toggle, #rating, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
@@ -1753,7 +1757,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 @media (min-width: 80rem) {
-  :is(#button, #toggle, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
+  :is(#button, #toggle, #rating, #form, #text-input, #tag, #status-chip, #mention, #avatar, #spinner, #app-icon) .type-sample-item {
     grid-column: span 2;
   }
 
