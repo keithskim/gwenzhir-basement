@@ -1855,7 +1855,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 #button .type-sample-list--sizes .sample-box > .btn,
 #button .type-sample-list--button-tags .sample-box > .btn {
   justify-self: center;
+  align-self: center;
   width: fit-content;
+}
+
+#button .type-sample-list--sizes .sample-box > .btn--icon {
+  width: var(--btn-size);
 }
 
 #button .type-sample-list--button-groups .sample-box > .btn-group {

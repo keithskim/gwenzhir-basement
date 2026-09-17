@@ -48,13 +48,8 @@
   line-height: var(--line-height-s);
 }
 
-.btn:not(.btn--icon):has(> .tag:last-child),
-.btn:not(.btn--icon):has(> .ph:last-child):not(:has(> .ph:first-child)) {
+.btn:not(.btn--icon):has(> .tag:last-child) {
   padding-inline-end: var(--btn-pad-inline-tight);
-}
-
-.btn:not(.btn--icon):has(> .ph:first-child):not(:has(> .ph:last-child)) {
-  padding-inline-start: var(--btn-pad-inline-tight);
 }
 
 .btn--accent {
@@ -123,28 +118,16 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
 }
 
 .btn--icon {
-  padding: 0;
+  --btn-size: calc(1lh + 2 * var(--btn-pad-block) + 2px);
+  width: var(--btn-size);
+  height: var(--btn-size);
+  padding-inline: var(--btn-pad-block);
+  min-width: 0;
   flex-shrink: 0;
-  aspect-ratio: 1 / 1;
 }
 
 .btn--round {
   border-radius: 9999px;
-}
-
-.btn--icon.btn--2xs {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.btn--icon.btn--xs {
-  width: 1.75rem;
-  height: 1.75rem;
-}
-
-.btn--icon.btn--s {
-  width: 2.125rem;
-  height: 2.125rem;
 }
 
 .btn .ph {
@@ -152,7 +135,13 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 1em;
+  height: 1em;
   line-height: 1;
+}
+
+.btn:not(.btn--icon) .ph {
+  translate: 0 0.0625rem;
 }
 
 .btn .tag {
