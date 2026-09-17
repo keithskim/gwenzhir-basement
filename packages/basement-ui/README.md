@@ -117,7 +117,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Activity** — `.activity` is a feed of events and notifications. Each `.activity-item` is a row: leading Avatar or `.activity-icon`, actor plus action, time, optional preview, optional unread dot. `.is-unread` uses the same highlight as a current Chat room. `.activity-group` / `.activity-group-label` cluster by day. `.activity--compact` tightens padding. Nested in a Menu (bell dropdown) the list drops its own frame. Chrome only — apps own delivery. Click-to-read is for apps to wire.
 
-**Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip. `.sidebar-item--fixed` is a child of `.sidebar` (not the scrolling nav): it floats above the list at the bottom, with Default button surface, border, and shadow.
+**Sidebar** — Vertical nav (`.sidebar` / `.sidebar-nav`). Wrap a `.sidebar-item` trigger in Dropdown for sub-menus; the Menu portals above the sidebar clip. `.sidebar-item--fixed` is a child of `.sidebar` (not the scrolling nav): it sits below the list at the bottom, with Default button surface, border, and shadow. Load `edge-fade.js` so the nav fades at clipped edges.
 
 **Menu** — Compact action list (`.menu` / `.menu-item`), or organized variant `.menu--mega` with `.menu-grid--2` / `--3`, `.menu-section` headings, and items that can take a short description, icon, external mark, or an avatar and username (My menu). Open either from a Dropdown.
 

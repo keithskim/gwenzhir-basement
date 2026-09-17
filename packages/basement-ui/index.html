@@ -64,25 +64,34 @@
         <button type="button" class="sidebar-item" data-section="spinner">Spinner</button>
       </div>
       <div class="sidebar-group">
-        <div class="sidebar-group-label">Interactivity</div>
+        <div class="sidebar-group-label">Controls</div>
         <button type="button" class="sidebar-item" data-section="tabs">Tabs</button>
         <button type="button" class="sidebar-item" data-section="toggle">Toggle</button>
         <button type="button" class="sidebar-item" data-section="rating">Rating</button>
         <button type="button" class="sidebar-item" data-section="slider">Slider</button>
         <button type="button" class="sidebar-item" data-section="text-input">Text Input</button>
         <button type="button" class="sidebar-item" data-section="form">Form</button>
+        <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
+        <button type="button" class="sidebar-item" data-section="filter">Filter</button>
+        <button type="button" class="sidebar-item" data-section="player">Player</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Navigation</div>
         <button type="button" class="sidebar-item" data-section="menu">Menu</button>
         <button type="button" class="sidebar-item" data-section="dropdown">Dropdown</button>
         <button type="button" class="sidebar-item" data-section="navbar">Nav bar</button>
-        <button type="button" class="sidebar-item" data-section="footer">Footer</button>
-        <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
-        <button type="button" class="sidebar-item" data-section="datetime">Datetime</button>
-        <button type="button" class="sidebar-item" data-section="filter">Filter</button>
         <button type="button" class="sidebar-item" data-section="sidebar">Sidebar</button>
         <button type="button" class="sidebar-item" data-section="panel">Panel</button>
+        <button type="button" class="sidebar-item" data-section="footer">Footer</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Overlay</div>
+        <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="dialog">Dialog</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
-        <button type="button" class="sidebar-item" data-section="player">Player</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Feedback</div>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
         <button type="button" class="sidebar-item" data-section="chat">Chat</button>
         <button type="button" class="sidebar-item" data-section="activity">Activity</button>
@@ -274,7 +283,7 @@
         </div>
 
         <div class="home-index-group">
-          <h3 class="home-index-label">Interactivity</h3>
+          <h3 class="home-index-label">Controls</h3>
           <div class="home-index-grid">
             <button type="button" class="home-card" data-section="tabs">
               <span class="home-card-title">Tabs</span>
@@ -329,6 +338,47 @@
                 </span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="datetime">
+              <span class="home-card-title">Datetime</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="datetime-input input home-preview-datetime">
+                  <span class="datetime-placeholder">Jun 10, 2026</span>
+                  <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="filter">
+              <span class="home-card-title">Filter</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="filter-rule-chip home-preview-filter">
+                  <span class="filter-rule-trigger">
+                    <span class="filter-rule-property">Status</span>
+                    <span class="filter-rule-value">Active</span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="player">
+              <span class="home-card-title">Player</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="player home-preview-player">
+                  <span class="btn btn--2xs btn--default btn--icon">
+                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
+                  </span>
+                  <span class="progress" style="--progress: 35%;">
+                    <span class="progress-track">
+                      <span class="progress-fill"></span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Navigation</h3>
+          <div class="home-index-grid">
             <button type="button" class="home-card" data-section="menu">
               <span class="home-card-title">Menu</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -370,47 +420,6 @@
                 </span>
               </span>
             </button>
-            <button type="button" class="home-card" data-section="footer">
-              <span class="home-card-title">Footer</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="footer home-preview-footer">
-                  <span class="footer-copy">© 2026 Basement</span>
-                  <span class="footer-nav">
-                    <span class="footer-link">Privacy</span>
-                    <span class="footer-link">Terms</span>
-                  </span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="tooltip">
-              <span class="home-card-title">Tooltip</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="tooltip tooltip--top home-preview-tooltip">
-                  <span class="btn btn--2xs btn--default">Hover</span>
-                  <span class="tooltip-content" role="tooltip">Helpful hint</span>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="datetime">
-              <span class="home-card-title">Datetime</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="datetime-input input home-preview-datetime">
-                  <span class="datetime-placeholder">Jun 10, 2026</span>
-                  <i class="ph ph-calendar datetime-icon" aria-hidden="true"></i>
-                </span>
-              </span>
-            </button>
-            <button type="button" class="home-card" data-section="filter">
-              <span class="home-card-title">Filter</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="filter-rule-chip home-preview-filter">
-                  <span class="filter-rule-trigger">
-                    <span class="filter-rule-property">Status</span>
-                    <span class="filter-rule-value">Active</span>
-                  </span>
-                </span>
-              </span>
-            </button>
             <button type="button" class="home-card" data-section="sidebar">
               <span class="home-card-title">Sidebar</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -427,6 +436,33 @@
                   <span class="home-preview-panel-side"></span>
                   <span class="home-preview-panel-main"></span>
                   <span class="home-preview-panel-side home-preview-panel-side--right"></span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="footer">
+              <span class="home-card-title">Footer</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="footer home-preview-footer">
+                  <span class="footer-copy">© 2026 Basement</span>
+                  <span class="footer-nav">
+                    <span class="footer-link">Privacy</span>
+                    <span class="footer-link">Terms</span>
+                  </span>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Overlay</h3>
+          <div class="home-index-grid">
+            <button type="button" class="home-card" data-section="tooltip">
+              <span class="home-card-title">Tooltip</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="tooltip tooltip--top home-preview-tooltip">
+                  <span class="btn btn--2xs btn--default">Hover</span>
+                  <span class="tooltip-content" role="tooltip">Helpful hint</span>
                 </span>
               </span>
             </button>
@@ -459,21 +495,12 @@
                 </span>
               </span>
             </button>
-            <button type="button" class="home-card" data-section="player">
-              <span class="home-card-title">Player</span>
-              <span class="home-card-preview" aria-hidden="true">
-                <span class="player home-preview-player">
-                  <span class="btn btn--2xs btn--default btn--icon">
-                    <i class="ph ph-play icon--s" aria-hidden="true"></i>
-                  </span>
-                  <span class="progress" style="--progress: 35%;">
-                    <span class="progress-track">
-                      <span class="progress-fill"></span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </button>
+          </div>
+        </div>
+
+        <div class="home-index-group">
+          <h3 class="home-index-label">Feedback</h3>
+          <div class="home-index-grid">
             <button type="button" class="home-card" data-section="alert">
               <span class="home-card-title">Alert</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -7708,7 +7735,7 @@ console.log(label);</code></pre>
     <!-- ── Sidebar ── -->
     <section class="section section--component" id="sidebar">
       <h2 class="section-label">Sidebar</h2>
-      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar. A fixed item floats above the list at the bottom of the sidebar, shaped like a button.</p>
+      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar. A fixed item sits below the list at the bottom of the sidebar, shaped like a button. The list fades at the clipped edges instead of hard-cutting.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -7836,7 +7863,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Fixed</span>
-              <span class="sample-meta-detail">Floating · Bottom · Button</span>
+              <span class="sample-meta-detail">Below the list · Bottom · Button</span>
             </div>
           </div>
         </div>
@@ -8024,7 +8051,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Fixed</span>
-              <span class="sample-meta-detail">Floating · Button shape · Bottom of sidebar</span>
+              <span class="sample-meta-detail">Below the list · Button shape</span>
             </div>
           </div>
         </div>

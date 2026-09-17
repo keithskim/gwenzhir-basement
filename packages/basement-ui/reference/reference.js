@@ -84,7 +84,14 @@ function activateSection(sectionId) {
   sections.forEach(s => s.classList.remove('is-active'));
   section.classList.add('is-active');
   window.scrollTo(0, 0);
-  requestAnimationFrame(syncColumnOverlay);
+  requestAnimationFrame(() => {
+    syncColumnOverlay();
+    if (window.BasementEdgeFade) {
+      section.querySelectorAll('.sidebar-nav').forEach(nav => {
+        window.BasementEdgeFade.wire(nav, 'y');
+      });
+    }
+  });
   return true;
 }
 

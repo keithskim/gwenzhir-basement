@@ -50,9 +50,22 @@
     sync();
   }
 
+  function init() {
+    document.querySelectorAll('.sidebar-nav').forEach(function (nav) {
+      wire(nav, 'y');
+    });
+  }
+
   window.BasementEdgeFade = {
     wire: wire,
     update: update,
     wireHeader: wireHeader,
+    init: init,
   };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
