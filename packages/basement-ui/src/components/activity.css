@@ -1,0 +1,191 @@
+/* Activity — notification and event feed. Chrome only; apps own delivery. */
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  min-height: 12rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-bg);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  -webkit-font-smoothing: antialiased;
+}
+
+.activity-group {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.activity-group + .activity-group {
+  margin-top: 0.25rem;
+}
+
+.activity-group-label {
+  padding: 0.5rem 0.75rem 0.25rem;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--theme-fg-secondary);
+}
+
+.activity-item {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  color: var(--theme-fg);
+  cursor: pointer;
+  text-align: left;
+}
+
+.activity-item:hover {
+  background: var(--theme-bg-subtle);
+}
+
+.activity-item.is-unread {
+  background: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
+}
+
+.activity-item.is-unread:hover {
+  background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
+}
+
+.activity-item .avatar {
+  margin-block-start: 0.125rem;
+}
+
+.activity-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-block-start: 0.125rem;
+  border-radius: 50%;
+  border: 1px solid var(--theme-border);
+  background: var(--theme-bg-subtle);
+  color: var(--theme-fg-secondary);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.activity-icon .ph {
+  font-size: inherit;
+  line-height: 1;
+}
+
+.activity-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.activity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.activity-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.activity-actor {
+  color: var(--theme-fg);
+}
+
+.activity-item.is-unread .activity-text {
+  color: var(--theme-fg);
+}
+
+.activity-time {
+  flex-shrink: 0;
+  margin-block-start: 0.125rem;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--theme-fg-secondary);
+}
+
+.activity-preview {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.activity-dot {
+  flex-shrink: 0;
+  align-self: flex-start;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin-block-start: calc((var(--line-height-xs) - 0.375rem) / 2);
+  border-radius: 9999px;
+  background: var(--theme-fg);
+}
+
+.activity-item:not(.is-unread) .activity-dot {
+  visibility: hidden;
+}
+
+.activity-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 8rem;
+  margin: 0;
+  padding: var(--spacing-s);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+  text-align: center;
+}
+
+.activity--compact .activity-item {
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+}
+
+.activity--compact .activity-group-label {
+  padding-block-start: 0.375rem;
+  padding-inline: 0.5rem;
+}
+
+/* Nested in a Menu — drop the extra frame so the panel is one surface. */
+.menu:has(> .activity) {
+  padding: 0;
+  min-width: 18rem;
+  max-width: 22rem;
+}
+
+.menu > .activity {
+  border: 0;
+  border-radius: 0;
+  min-height: 0;
+  max-height: 20rem;
+}

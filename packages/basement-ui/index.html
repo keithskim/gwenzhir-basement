@@ -85,6 +85,7 @@
         <button type="button" class="sidebar-item" data-section="player">Player</button>
         <button type="button" class="sidebar-item" data-section="alert">Alert</button>
         <button type="button" class="sidebar-item" data-section="chat">Chat</button>
+        <button type="button" class="sidebar-item" data-section="activity">Activity</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-group-label">Visualization</div>
@@ -493,6 +494,25 @@
                   <span class="chat-message">
                     <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
                     <span class="chat-message-text">On it.</span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="activity">
+              <span class="home-card-title">Activity</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="activity home-preview-activity">
+                  <span class="activity-item is-unread">
+                    <span class="avatar avatar--2xs"><span class="avatar-fallback">M</span></span>
+                    <span class="activity-body">
+                      <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you</span>
+                    </span>
+                  </span>
+                  <span class="activity-item">
+                    <span class="avatar avatar--2xs"><span class="avatar-fallback">J</span></span>
+                    <span class="activity-body">
+                      <span class="activity-text"><span class="activity-actor">Jun</span> commented</span>
+                    </span>
                   </span>
                 </span>
               </span>
@@ -6037,7 +6057,7 @@ console.log(label);</code></pre>
     <!-- ── Filter ── -->
     <section class="section section--component" id="filter">
       <h2 class="section-label">Filter</h2>
-      <p class="type-paragraph">A row of criteria for narrowing a list or table. Combine properties: a single value, several values, a joined row of choices, a number range on a slider, or a date range. Criteria join with And. A dropdown criterion opens a menu to edit; a choices criterion lists options in a joined row. The trailing control removes it, unless the criterion is fixed. Add filter can be a labeled control or an icon.</p>
+      <p class="type-paragraph">A row of criteria for narrowing a list or table. Combine properties: a single value, several values, a joined row of choices, a number range on a slider, or a date range. Criteria join with And. A dropdown criterion opens a menu to edit; a choices criterion lists options in a joined row. A small circular control inside the chip removes it, unless the criterion is fixed. Add filter can be a labeled control or an icon.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -7688,7 +7708,7 @@ console.log(label);</code></pre>
     <!-- ── Sidebar ── -->
     <section class="section section--component" id="sidebar">
       <h2 class="section-label">Sidebar</h2>
-      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar.</p>
+      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar. A fixed item floats above the list at the bottom of the sidebar, shaped like a button.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -7779,6 +7799,44 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Compact</span>
               <span class="sample-meta-detail">Tighter spacing · Smaller item text</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo">
+                <aside class="sidebar">
+                  <button type="button" class="sidebar-title is-active">Projects</button>
+                  <div class="sidebar-byline">@gwenzhir</div>
+                  <nav class="sidebar-nav">
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Workspace</div>
+                      <button type="button" class="sidebar-item is-active">Overview</button>
+                      <button type="button" class="sidebar-item">Projects</button>
+                      <button type="button" class="sidebar-item">Team</button>
+                      <button type="button" class="sidebar-item">Calendar</button>
+                      <button type="button" class="sidebar-item">Settings</button>
+                      <button type="button" class="sidebar-item">Reports</button>
+                      <button type="button" class="sidebar-item">Activity</button>
+                      <button type="button" class="sidebar-item">Archive</button>
+                    </div>
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Resources</div>
+                      <button type="button" class="sidebar-item">Documentation</button>
+                      <button type="button" class="sidebar-item">Support</button>
+                      <button type="button" class="sidebar-item">Changelog</button>
+                      <button type="button" class="sidebar-item">Status</button>
+                    </div>
+                  </nav>
+                  <button type="button" class="sidebar-item sidebar-item--fixed">
+                    <i class="ph ph-plus sidebar-item-icon" aria-hidden="true"></i>
+                    <span class="sidebar-item-label">New project</span>
+                  </button>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Fixed</span>
+              <span class="sample-meta-detail">Floating · Bottom · Button</span>
             </div>
           </div>
         </div>
@@ -7942,6 +8000,31 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">With icon, count, and tag</span>
               <span class="sample-meta-detail">Leading icon · Label · Optional tag · Optional tally</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo sidebar-demo--items">
+                <aside class="sidebar">
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">Overview</button>
+                      <button type="button" class="sidebar-item">Projects</button>
+                      <button type="button" class="sidebar-item">Team</button>
+                      <button type="button" class="sidebar-item">Calendar</button>
+                      <button type="button" class="sidebar-item">Settings</button>
+                    </div>
+                  </nav>
+                  <button type="button" class="sidebar-item sidebar-item--fixed">
+                    <i class="ph ph-plus sidebar-item-icon" aria-hidden="true"></i>
+                    <span class="sidebar-item-label">New project</span>
+                  </button>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Fixed</span>
+              <span class="sample-meta-detail">Floating · Button shape · Bottom of sidebar</span>
             </div>
           </div>
         </div>
@@ -8955,6 +9038,308 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+
+    <!-- ── Activity ── -->
+    <section class="section section--component" id="activity">
+      <h2 class="section-label">Activity</h2>
+      <p class="type-paragraph">A feed of things that happened: mentions, comments, assignments, and system events. Unread items are notifications — they highlight like the current chat room and show a trailing dot. Group by day. Lead with a portrait or an icon. An optional preview line sits under the action. Open the list from the bell as a dropdown.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--types">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity" aria-label="Activity">
+                <div class="activity-group">
+                  <div class="activity-group-label">Today</div>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you in Palette review</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T14:02">14:02</time>
+                      </span>
+                      <span class="activity-preview">Can you check the palette?</span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text"><span class="activity-actor">Jun</span> commented on Tokens shipped</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T11:40">11:40</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">You were assigned Brand refresh</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T09:12">09:12</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="activity-group">
+                  <div class="activity-group-label">Yesterday</div>
+                  <button type="button" class="activity-item">
+                    <span class="activity-icon" aria-hidden="true"><i class="ph ph-rocket-launch"></i></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">Deploy succeeded on main</span>
+                        <time class="activity-time">Yesterday</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item">
+                    <span class="activity-icon" aria-hidden="true"><i class="ph ph-export"></i></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">Export ready · 24 rows</span>
+                        <time class="activity-time">Yesterday</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Grouped by day · Unread and read · Portrait or icon</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity" aria-label="Notifications">
+                <div class="activity-group">
+                  <div class="activity-group-label">Unread</div>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you in Palette review</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T14:02">14:02</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text"><span class="activity-actor">Jun</span> commented on Tokens shipped</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T11:40">11:40</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">You were assigned Brand refresh</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T09:12">09:12</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Unread</span>
+              <span class="sample-meta-detail">Highlight · Trailing dot · Notifications</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity" aria-label="System activity">
+                <div class="activity-group">
+                  <div class="activity-group-label">System</div>
+                  <button type="button" class="activity-item is-unread">
+                    <span class="activity-icon" aria-hidden="true"><i class="ph ph-rocket-launch"></i></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">Deploy succeeded on main</span>
+                        <time class="activity-time tnum" datetime="2026-09-17T08:04">08:04</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item">
+                    <span class="activity-icon" aria-hidden="true"><i class="ph ph-export"></i></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">Export ready · 24 rows</span>
+                        <time class="activity-time">Yesterday</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="activity-item">
+                    <span class="activity-icon" aria-hidden="true"><i class="ph ph-warning"></i></span>
+                    <span class="activity-body">
+                      <span class="activity-row">
+                        <span class="activity-text">Build failed on tokens</span>
+                        <time class="activity-time">Mon</time>
+                      </span>
+                    </span>
+                    <span class="activity-dot" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Icon</span>
+              <span class="sample-meta-detail">System events · Leading icon instead of portrait</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity" aria-label="Activity">
+                <p class="activity-empty">No notifications</p>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Empty</span>
+              <span class="sample-meta-detail">Quiet empty state</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Options</h3>
+        <div class="type-sample-list">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity" aria-label="Comments">
+                <button type="button" class="activity-item is-unread">
+                  <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                  <span class="activity-body">
+                    <span class="activity-row">
+                      <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you in Palette review</span>
+                      <time class="activity-time tnum" datetime="2026-09-17T14:02">14:02</time>
+                    </span>
+                    <span class="activity-preview">Can you check the palette?</span>
+                  </span>
+                  <span class="activity-dot" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="activity-item">
+                  <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                  <span class="activity-body">
+                    <span class="activity-row">
+                      <span class="activity-text"><span class="activity-actor">Jun</span> commented on Tokens shipped</span>
+                      <time class="activity-time tnum" datetime="2026-09-17T11:40">11:40</time>
+                    </span>
+                    <span class="activity-preview">Gray D still feels light on the chips.</span>
+                  </span>
+                  <span class="activity-dot" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With preview</span>
+              <span class="sample-meta-detail">Action · Optional quote line</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="activity activity--compact" aria-label="Activity">
+                <button type="button" class="activity-item is-unread">
+                  <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                  <span class="activity-body">
+                    <span class="activity-row">
+                      <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you</span>
+                      <time class="activity-time tnum" datetime="2026-09-17T14:02">14:02</time>
+                    </span>
+                  </span>
+                  <span class="activity-dot" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="activity-item">
+                  <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                  <span class="activity-body">
+                    <span class="activity-row">
+                      <span class="activity-text"><span class="activity-actor">Jun</span> commented</span>
+                      <time class="activity-time tnum" datetime="2026-09-17T11:40">11:40</time>
+                    </span>
+                  </span>
+                  <span class="activity-dot" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="activity-item">
+                  <span class="activity-icon" aria-hidden="true"><i class="ph ph-rocket-launch"></i></span>
+                  <span class="activity-body">
+                    <span class="activity-row">
+                      <span class="activity-text">Deploy succeeded</span>
+                      <time class="activity-time">Yesterday</time>
+                    </span>
+                  </span>
+                  <span class="activity-dot" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Compact</span>
+              <span class="sample-meta-detail">Tighter padding</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="dropdown dropdown--end">
+                <button type="button" class="btn btn--xs btn--default dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-label="Notifications, 2">
+                  <i class="ph ph-bell" aria-hidden="true"></i>
+                  <span class="tag tag--counter">2</span>
+                </button>
+                <div class="menu" role="menu" hidden>
+                  <div class="activity" aria-label="Notifications">
+                    <button type="button" class="activity-item is-unread" role="menuitem">
+                      <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                      <span class="activity-body">
+                        <span class="activity-row">
+                          <span class="activity-text"><span class="activity-actor">Mina</span> mentioned you in Palette review</span>
+                          <time class="activity-time tnum" datetime="2026-09-17T14:02">14:02</time>
+                        </span>
+                      </span>
+                      <span class="activity-dot" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="activity-item is-unread" role="menuitem">
+                      <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">J</span></span>
+                      <span class="activity-body">
+                        <span class="activity-row">
+                          <span class="activity-text"><span class="activity-actor">Jun</span> commented on Tokens shipped</span>
+                          <time class="activity-time tnum" datetime="2026-09-17T11:40">11:40</time>
+                        </span>
+                      </span>
+                      <span class="activity-dot" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="activity-item" role="menuitem">
+                      <span class="activity-icon" aria-hidden="true"><i class="ph ph-rocket-launch"></i></span>
+                      <span class="activity-body">
+                        <span class="activity-row">
+                          <span class="activity-text">Deploy succeeded on main</span>
+                          <time class="activity-time">Yesterday</time>
+                        </span>
+                      </span>
+                      <span class="activity-dot" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">In a dropdown</span>
+              <span class="sample-meta-detail">Bell · Tally · List inside the menu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ── Patterns ── -->
 

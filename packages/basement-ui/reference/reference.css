@@ -758,6 +758,27 @@ html.is-sidebar-locked {
   line-height: var(--line-height-2xs);
 }
 
+.home-preview-activity {
+  min-height: 0;
+  width: 100%;
+  max-width: 10rem;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.home-preview-activity .activity-item {
+  padding: 0.125rem 0;
+  gap: 0.25rem;
+  background: transparent;
+}
+
+.home-preview-activity .activity-text {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
 .home-preview-app-frame {
   display: flex;
   width: 5.5rem;
@@ -1451,6 +1472,8 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #prompt .sample-meta-detail,
   #chat .sample-meta-label,
   #chat .sample-meta-detail,
+  #activity .sample-meta-label,
+  #activity .sample-meta-detail,
   #timeline .sample-meta-label,
   #timeline .sample-meta-detail {
     grid-column: span 2;
@@ -2164,6 +2187,36 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-height: 0;
 }
 
+#activity .type-sample-item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #activity .type-sample-item {
+    grid-column: span 4;
+  }
+}
+
+#activity .sample-box {
+  min-height: 16rem;
+  align-items: stretch;
+}
+
+#activity .sample-box > * {
+  width: 100%;
+  min-height: 0;
+}
+
+#activity .sample-box:has(.dropdown) {
+  min-height: 12rem;
+  align-items: flex-start;
+}
+
+#activity .sample-box:has(.dropdown) > * {
+  width: auto;
+}
+
 #timeline .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
@@ -2205,6 +2258,17 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 #sidebar .sample-box:has(.sidebar-demo--items) {
+  min-height: 14rem;
+}
+
+#sidebar .sample-box:has(.sidebar-item--fixed) {
+  height: 20rem;
+  min-height: 20rem;
+  overflow: hidden;
+}
+
+#sidebar .sample-box:has(.sidebar-demo--items):has(.sidebar-item--fixed) {
+  height: 14rem;
   min-height: 14rem;
 }
 
@@ -2373,7 +2437,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 .sidebar-demo .sidebar {
-  position: static;
+  position: relative;
   width: 100%;
   height: 100%;
   min-height: 18rem;
@@ -2382,6 +2446,11 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 .sidebar-demo--items {
   min-height: 12rem;
   overflow: visible;
+}
+
+.sidebar-demo--items .sidebar {
+  min-height: 0;
+  height: 100%;
 }
 
 #panel .pattern-stage--panel {

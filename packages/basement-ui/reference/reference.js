@@ -525,6 +525,17 @@ function initChatDemo() {
 
 initChatDemo();
 
+// ── Activity unread demo ──
+function initActivityDemo() {
+  document.querySelectorAll('#activity .activity-item.is-unread').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.remove('is-unread');
+    });
+  });
+}
+
+initActivityDemo();
+
 // ── Pattern demos: edge fades ──
 function initPatternEdgeFades() {
   if (!window.BasementEdgeFade) return;

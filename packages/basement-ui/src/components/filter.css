@@ -26,6 +26,18 @@
   overflow: hidden;
 }
 
+.filter-rule-chip:has(> .filter-rule-remove) {
+  padding-inline-end: 0.25rem;
+}
+
+.filter-rule-chip:has(> .filter-rule-remove) .filter-rule-trigger {
+  padding-inline-end: 0.25rem;
+}
+
+.filter-rule-chip:has(> .filter-rule-remove) .filter-rule-choice:last-child {
+  padding-inline-end: 0.375rem;
+}
+
 .filter-rule-trigger {
   display: inline-flex;
   flex-direction: row;
@@ -68,19 +80,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   flex-shrink: 0;
-  width: 1.75rem;
+  box-sizing: border-box;
+  width: 1.125rem;
+  height: 1.125rem;
   margin: 0;
   padding: 0;
   color: var(--theme-fg-secondary);
-  background: transparent;
-  border: none;
-  border-inline-start: 1px solid var(--theme-border);
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: 9999px;
   cursor: pointer;
 }
 
 .filter-rule-remove .ph {
-  font-size: 0.75rem;
+  font-size: 0.625rem;
   line-height: 1;
 }
 
@@ -101,7 +116,8 @@ html.is-dark .filter-rule-chip:focus-within {
 .filter-rule-remove:hover,
 .filter-rule-remove:focus-visible {
   color: var(--theme-fg);
-  background: var(--theme-bg-subtle);
+  background: var(--theme-surface);
+  border-color: var(--color-gray);
 }
 
 .filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {

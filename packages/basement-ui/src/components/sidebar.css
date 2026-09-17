@@ -20,6 +20,10 @@
   min-height: 0;
 }
 
+.sidebar:has(> .sidebar-item--fixed) {
+  position: relative;
+}
+
 .sidebar-title {
   all: unset;
   display: block;
@@ -259,6 +263,50 @@
 .sidebar--compact .sidebar-item-meta {
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
+}
+
+/* Floating item — overlays the list, Default button chrome, bottom of the sidebar. */
+.sidebar-item--fixed {
+  position: absolute;
+  z-index: 2;
+  inset-inline: var(--spacing-xs);
+  inset-block-end: var(--spacing-xs);
+  width: auto;
+  margin: 0;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  color: var(--theme-fg);
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  box-shadow: var(--shadow-s);
+}
+
+.sidebar-item--fixed::before {
+  content: none;
+}
+
+.sidebar-item--fixed:hover,
+.sidebar-item--fixed.is-active,
+.sidebar-item--fixed[aria-expanded='true'] {
+  color: var(--theme-fg);
+  background: var(--color-light-gray-a);
+  border-color: var(--color-gray);
+}
+
+html.is-dark .sidebar-item--fixed:hover,
+html.is-dark .sidebar-item--fixed.is-active,
+html.is-dark .sidebar-item--fixed[aria-expanded='true'] {
+  background: var(--color-dark-gray-a);
+  border-color: var(--color-gray);
+}
+
+.sidebar:has(> .sidebar-item--fixed) .sidebar-nav {
+  padding-block-end: calc(var(--line-height-xs) + 0.5rem + 2px + var(--spacing-s));
+}
+
+.sidebar--compact .sidebar-item--fixed {
+  margin-inline-start: 0;
+  width: auto;
 }
 
 /* Sidebar nav fills a Panel when composed */
