@@ -93,7 +93,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
-**Button** — `.btn` with size (`--2xs` / `--xs` / `--s`) and type (`--default` / `--subtle` / `--accent` / `--ghost`). `.btn--icon` is square; `.btn--round` is circular. `.btn--float` pins a filled control above everything else (`position: fixed`, end-bottom, `z-index` above Dialog). Add a text label beside the icon; omit `.btn--accent` for a filled Default surface. Hover stays opaque (Gray Extra Light / Extra Dark), never alpha.
+**Button** — `.btn` with size (`--3xs` / `--2xs` / `--xs` / `--s`) and type (`--default` / `--subtle` / `--accent` / `--ghost`). `.btn--icon` is square; `.btn--round` is circular. `.btn--float` pins a filled control above everything else (`position: fixed`, end-bottom, `z-index` above Dialog). Add a text label beside the icon; omit `.btn--accent` for a filled Default surface. Hover stays opaque (Gray Extra Light / Extra Dark), never alpha.
 
 **Button group** — `.btn-group` joins buttons in a row; `.btn-group--column` stacks them. Shared outer radius, square inner corners, overlapping borders. Not a segmented choice — each control stays a Button.
 

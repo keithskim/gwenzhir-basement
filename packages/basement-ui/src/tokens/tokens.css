@@ -137,6 +137,7 @@
   --font-mono-size-adjust: 97%;
   --font-mono-letter-spacing: -0.01em;
 
+  --font-size-3xs: 0.5rem;
   --font-size-2xs: 0.625rem;
   --font-size-xs:  0.75rem;
   --font-size-s:   1rem;
@@ -145,6 +146,7 @@
   --font-size-xl:  3rem;
   --font-size-2xl: 4rem;
 
+  --line-height-3xs: 0.875rem;
   --line-height-2xs: 1.125rem;
   --line-height-xs:  1.25rem;
   --line-height-s:   1.5rem;

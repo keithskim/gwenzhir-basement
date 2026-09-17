@@ -24,6 +24,15 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.btn--3xs {
+  --btn-gap: 0.25rem;
+  --btn-pad-block: 0.0625rem;
+  --btn-pad-inline: 0.25rem;
+  --btn-pad-inline-tight: 0.1875rem;
+  font-size: var(--font-size-3xs);
+  line-height: var(--line-height-3xs);
+}
+
 .btn--2xs {
   --btn-pad-block: 0.125rem;
   --btn-pad-inline: 0.375rem;
