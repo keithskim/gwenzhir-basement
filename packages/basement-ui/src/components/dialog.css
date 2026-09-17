@@ -38,6 +38,15 @@
   display: none;
 }
 
+/* Panel only: do not cover the page. Clicks pass through around the dialog. */
+.dialog-host--plain.is-dialog-open {
+  pointer-events: none;
+}
+
+.dialog-host--plain .dialog {
+  pointer-events: auto;
+}
+
 .dialog {
   position: relative;
   z-index: 1;
@@ -50,6 +59,7 @@
   max-width: 28rem;
   margin: 0;
   padding: var(--spacing-m);
+  overflow: visible;
   border: 1px solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
@@ -104,7 +114,10 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--spacing-s);
+  flex: 0 0 auto;
   width: 100%;
+  min-width: 0;
+  overflow: visible;
 }
 
 .dialog-heading .dialog-title {
@@ -113,8 +126,7 @@
 }
 
 .dialog-heading .btn {
-  margin-block: -0.25rem;
-  margin-inline-end: -0.25rem;
+  flex-shrink: 0;
 }
 
 /* Wider panel for onboarding or help: Tabs plus a scrolling rich body. */
@@ -128,7 +140,7 @@
 .dialog--guide .dialog-body {
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
   gap: var(--spacing-s);
 }
 

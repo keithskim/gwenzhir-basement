@@ -8195,7 +8195,7 @@ console.log(label);</code></pre>
     <!-- ── Dialog ── -->
     <section class="section section--component" id="dialog">
       <h2 class="section-label">Dialog</h2>
-      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default; omit it when the panel should float alone. Guide holds Tabs and a rich body for onboarding or help. Popup is a one-time notice that can be closed, with an option not to see it again.</p>
+      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default. Omit it when the panel should float without covering the page. Guide holds Tabs and a rich body for onboarding or help. Popup is a one-time notice that can be closed, with an option not to see it again.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -8233,7 +8233,7 @@ console.log(label);</code></pre>
               </div>
               <div class="dialog-host dialog-host--demo dialog-host--plain is-dialog-open" data-dialog-static>
                 <div class="dialog-backdrop" aria-hidden="true"></div>
-                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTypePlainTitle">
+                <div class="dialog" role="dialog" aria-modal="false" aria-labelledby="dialogTypePlainTitle">
                   <div class="dialog-body">
                     <h2 class="dialog-title" id="dialogTypePlainTitle">Invite teammate</h2>
                     <p class="dialog-description">Send an invite to join this workspace. They’ll get access once they accept.</p>
@@ -8247,7 +8247,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">No overlay</span>
-              <span class="sample-meta-detail">Panel only</span>
+              <span class="sample-meta-detail">Panel only · Page stays clear</span>
             </div>
           </div>
           <div class="pattern-demo">
@@ -8259,8 +8259,13 @@ console.log(label);</code></pre>
               <div class="dialog-host dialog-host--demo is-dialog-open" data-dialog-static>
                 <div class="dialog-backdrop" aria-hidden="true"></div>
                 <div class="dialog dialog--guide" role="dialog" aria-modal="true" aria-labelledby="dialogGuideTitle" data-tabs-demo>
-                  <div class="dialog-body">
+                  <div class="dialog-heading">
                     <h2 class="dialog-title" id="dialogGuideTitle">Welcome to Basement</h2>
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs" aria-label="Close">
+                      <i class="ph ph-x" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="dialog-body">
                     <div class="tabs" role="tablist" aria-label="Guide">
                       <button type="button" class="tab is-active" id="dialog-guide-tab-start" role="tab" aria-selected="true" aria-controls="dialog-guide-panel-start">Start</button>
                       <button type="button" class="tab" id="dialog-guide-tab-rooms" role="tab" aria-selected="false" aria-controls="dialog-guide-panel-rooms" tabindex="-1">Rooms</button>
@@ -8294,7 +8299,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Guide</span>
-              <span class="sample-meta-detail">Tabs · Rich body · Onboarding or help</span>
+              <span class="sample-meta-detail">Tabs · Rich body · Close · Onboarding or help</span>
             </div>
           </div>
           <div class="pattern-demo">
@@ -8306,13 +8311,13 @@ console.log(label);</code></pre>
               <div class="dialog-host dialog-host--demo is-dialog-open" data-dialog-static>
                 <div class="dialog-backdrop" aria-hidden="true"></div>
                 <div class="dialog dialog--popup" role="dialog" aria-modal="true" aria-labelledby="dialogPopupTitle">
+                  <div class="dialog-heading">
+                    <h2 class="dialog-title" id="dialogPopupTitle">New in Chat</h2>
+                    <button type="button" class="btn btn--subtle btn--icon btn--xs" aria-label="Close" data-dialog-close>
+                      <i class="ph ph-x" aria-hidden="true"></i>
+                    </button>
+                  </div>
                   <div class="dialog-body">
-                    <div class="dialog-heading">
-                      <h2 class="dialog-title" id="dialogPopupTitle">New in Chat</h2>
-                      <button type="button" class="btn btn--subtle btn--icon btn--xs" aria-label="Close" data-dialog-close>
-                        <i class="ph ph-x" aria-hidden="true"></i>
-                      </button>
-                    </div>
                     <p class="dialog-description">Star a room, select several, or group them under a label. This note appears once per workspace.</p>
                   </div>
                   <div class="dialog-actions">
@@ -8725,26 +8730,30 @@ console.log(label);</code></pre>
                   <div class="chat-room-label">Starred</div>
                   <div class="chat-room is-active" aria-current="true">
                     <input class="checkbox" type="checkbox" checked aria-label="Select Palette review">
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Palette review">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
                     <button type="button" class="chat-room-main">
                       <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-users"></i></span>
                       <span class="chat-room-body">
                         <span class="chat-room-row">
                           <span class="chat-room-name">Palette review</span>
-                          <span class="tag tag--counter" aria-label="2 unread">2</span>
                           <time class="chat-room-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                          <span class="tag tag--counter" aria-label="2 unread">2</span>
                         </span>
                       </span>
                     </button>
-                    <label class="rating-star">
-                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Palette review">
-                      <i class="ph ph-star" aria-hidden="true"></i>
-                    </label>
                   </div>
                 </div>
                 <div class="chat-room-group">
                   <div class="chat-room-label">Design</div>
                   <div class="chat-room">
                     <input class="checkbox" type="checkbox" aria-label="Select Studio">
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" aria-label="Star Studio">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
                     <button type="button" class="chat-room-main">
                       <span class="avatar avatar--m" aria-hidden="true"><i class="ph ph-chat-teardrop"></i></span>
                       <span class="chat-room-body">
@@ -8755,16 +8764,16 @@ console.log(label);</code></pre>
                         </span>
                       </span>
                     </button>
-                    <label class="rating-star">
-                      <input class="rating-star-input" type="checkbox" aria-label="Star Studio">
-                      <i class="ph ph-star" aria-hidden="true"></i>
-                    </label>
                   </div>
                 </div>
                 <div class="chat-room-group">
                   <div class="chat-room-label">Direct</div>
                   <div class="chat-room">
                     <input class="checkbox" type="checkbox" checked aria-label="Select Mina">
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Mina">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
                     <button type="button" class="chat-room-main">
                       <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
                       <span class="chat-room-body">
@@ -8774,13 +8783,13 @@ console.log(label);</code></pre>
                         </span>
                       </span>
                     </button>
-                    <label class="rating-star">
-                      <input class="rating-star-input" type="checkbox" checked aria-label="Star Mina">
-                      <i class="ph ph-star" aria-hidden="true"></i>
-                    </label>
                   </div>
                   <div class="chat-room">
                     <input class="checkbox" type="checkbox" aria-label="Select Jun">
+                    <label class="rating-star">
+                      <input class="rating-star-input" type="checkbox" aria-label="Star Jun">
+                      <i class="ph ph-star" aria-hidden="true"></i>
+                    </label>
                     <button type="button" class="chat-room-main">
                       <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">J</span></span>
                       <span class="chat-room-body">
@@ -8790,10 +8799,6 @@ console.log(label);</code></pre>
                         </span>
                       </span>
                     </button>
-                    <label class="rating-star">
-                      <input class="rating-star-input" type="checkbox" aria-label="Star Jun">
-                      <i class="ph ph-star" aria-hidden="true"></i>
-                    </label>
                   </div>
                 </div>
               </nav>

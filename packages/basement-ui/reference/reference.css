@@ -2465,7 +2465,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 #dialog .pattern-stage--dialog:has(.dialog--guide) {
-  height: 22rem;
+  height: 24rem;
 }
 
 .home-preview-panel {

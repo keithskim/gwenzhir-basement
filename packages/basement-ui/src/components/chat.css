@@ -133,6 +133,10 @@
   color: var(--theme-fg-secondary);
 }
 
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-name {
+  flex: 0 1 auto;
+}
+
 .chat-room:is(.is-active, :has(.tag--counter), :has(> .checkbox:checked)) .chat-room-name {
   color: var(--theme-fg);
 }
@@ -144,14 +148,18 @@
   color: var(--theme-fg-secondary);
 }
 
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-time {
+  margin-inline-start: auto;
+}
+
 .chat-room-preview {
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--font-size-2xs);
-  line-height: var(--line-height-2xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
   color: var(--theme-fg-secondary);
 }
 
@@ -199,6 +207,10 @@
 .chat-room > .rating-star {
   flex-shrink: 0;
   align-self: center;
+}
+
+.chat-room:has(> .checkbox, > .rating-star) {
+  gap: var(--spacing-xs);
 }
 
 .chat-room:has(> .checkbox, > .rating-star) .chat-room-body {

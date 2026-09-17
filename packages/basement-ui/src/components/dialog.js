@@ -17,9 +17,10 @@
  *   </div>
  *   <button type="button" data-dialog-open="confirm">Open</button>
  *
- * Add dialog-host--plain to omit the blurry overlay.
+ * Add dialog-host--plain to omit the overlay so the page stays visible and
+ * clickable around the panel.
  * Add dialog--guide on the panel for Tabs plus a rich scrolling body
- * (onboarding or help).
+ * (onboarding or help). Put Close on .dialog-heading, outside the body.
  * Add dialog--popup for a one-time notice with close and a Don’t show again
  * option (apps persist the preference).
  * Static demos: data-dialog-static (Escape / backdrop do not dismiss).
