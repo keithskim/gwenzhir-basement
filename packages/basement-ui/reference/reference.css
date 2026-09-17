@@ -1764,7 +1764,8 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 @media (min-width: 80rem) {
   #button .type-sample-list--sizes > .type-sample-item,
-  #button .type-sample-list--button-tags > .type-sample-item {
+  #button .type-sample-list--button-tags > .type-sample-item,
+  #button .type-sample-list--button-groups > .type-sample-item {
     grid-column: span 4;
   }
 }
@@ -1851,6 +1852,13 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 #button .type-sample-list--button-tags .sample-box > .btn {
   justify-self: center;
   width: fit-content;
+}
+
+#button .type-sample-list--button-groups .sample-box > .btn-group {
+  justify-self: center;
+  align-self: center;
+  width: max-content;
+  max-width: 100%;
 }
 
 #form .type-sample-list--compact .sample-box {
