@@ -1659,6 +1659,48 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   padding-block: var(--spacing-m);
 }
 
+#tooltip .type-sample-list--sizes .sample-box {
+  min-height: 12rem;
+  align-items: start;
+}
+
+#tooltip .type-sample-list--items .type-sample-item:last-child .sample-box {
+  min-height: 18rem;
+  align-items: start;
+}
+
+#tooltip .type-sample-list--items .type-sample-item:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 40rem) {
+  #tooltip .type-sample-list--sizes > .type-sample-item {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 80rem) {
+  #tooltip .type-sample-list--sizes > .type-sample-item {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 120rem) {
+  #tooltip .type-sample-list--sizes > .type-sample-item {
+    grid-column: span 5;
+  }
+}
+
+#tooltip .type-sample-list--sizes .tooltip,
+#tooltip .type-sample-list--items .type-sample-item:last-child .tooltip {
+  width: 100%;
+}
+
+#tooltip .type-sample-list--sizes .tooltip-content,
+#tooltip .type-sample-list--items .type-sample-item:last-child .tooltip-content {
+  max-width: min(var(--tooltip-max-width), 100%);
+}
+
 #tooltip .variant-row {
   flex-wrap: wrap;
   row-gap: var(--spacing-s);
@@ -2243,6 +2285,28 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   align-self: start;
 }
 
+#profile .type-sample-item {
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  #profile .type-sample-list--types .type-sample-item,
+  #profile .type-sample-list--sizes .type-sample-item {
+    grid-column: span 3;
+  }
+}
+
+#profile .sample-box {
+  min-height: 6rem;
+}
+
+#profile .sample-box > * {
+  width: 100%;
+  max-width: 16rem;
+  justify-self: center;
+  align-self: center;
+}
+
 #sidebar .type-sample-item {
   min-width: 0;
 }
@@ -2261,13 +2325,15 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   min-height: 14rem;
 }
 
-#sidebar .sample-box:has(.sidebar-item--fixed) {
+#sidebar .sample-box:has(.sidebar-item--fixed),
+#sidebar .sample-box:has(.sidebar-profile) {
   height: 20rem;
   min-height: 20rem;
   overflow: visible;
 }
 
-#sidebar .sample-box:has(.sidebar-demo--items):has(.sidebar-item--fixed) {
+#sidebar .sample-box:has(.sidebar-demo--items):has(.sidebar-item--fixed),
+#sidebar .sample-box:has(.sidebar-demo--items):has(.sidebar-profile) {
   height: 14rem;
   min-height: 14rem;
 }

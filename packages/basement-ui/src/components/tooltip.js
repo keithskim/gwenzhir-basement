@@ -12,6 +12,11 @@
     if (!window.BasementFloat) return;
 
     el.dataset.basementFloat = 'tooltip';
+    ['2xs', 'xs', 's', 'm', 'l'].forEach(function (size) {
+      if (el.classList.contains('tooltip--' + size)) {
+        content.classList.add('tooltip-content--' + size);
+      }
+    });
     var open = false;
     var hideTimer = 0;
 

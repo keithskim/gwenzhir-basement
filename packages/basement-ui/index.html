@@ -59,6 +59,7 @@
         <button type="button" class="sidebar-item" data-section="pairs">Pairs</button>
         <button type="button" class="sidebar-item" data-section="mention">Mention</button>
         <button type="button" class="sidebar-item" data-section="avatar">Avatar</button>
+        <button type="button" class="sidebar-item" data-section="profile">Profile</button>
         <button type="button" class="sidebar-item" data-section="app-icon">App Icon</button>
         <button type="button" class="sidebar-item" data-section="progress">Progress</button>
         <button type="button" class="sidebar-item" data-section="spinner">Spinner</button>
@@ -255,6 +256,17 @@
               <span class="home-card-title">Avatar</span>
               <span class="home-card-preview" aria-hidden="true">
                 <span class="avatar avatar--s"><span class="avatar-fallback">G</span></span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="profile">
+              <span class="home-card-title">Profile</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="profile-item profile-item--xs">
+                  <span class="avatar avatar--xs"><span class="avatar-fallback">G</span></span>
+                  <span class="profile-item-body">
+                    <span class="profile-item-name">gwenzhir</span>
+                  </span>
+                </span>
               </span>
             </button>
             <button type="button" class="home-card" data-section="app-icon">
@@ -4996,6 +5008,155 @@ console.log(label);</code></pre>
       </div>
     </section>
 
+    <!-- ── Profile ── -->
+    <section class="section section--component" id="profile">
+      <h2 class="section-label">Profile</h2>
+      <p class="type-paragraph">Avatar plus a name, with an optional second line of meta. Avatar size is independent of the item: keep XS type and use any Avatar. With meta or a Tag, default to a larger Avatar. A Tag on the meta line keeps the same line height as plain meta. Pin it in Sidebar inside a Box.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="type-sample-list type-sample-list--types">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--xs">
+                <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Default</span>
+              <span class="sample-meta-detail">Avatar · Name</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--xs">
+                <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Larger avatar</span>
+              <span class="sample-meta-detail">Same type · Bigger Avatar</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--xs">
+                <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With meta</span>
+              <span class="sample-meta-detail">Larger Avatar · Second line</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--xs">
+                <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                    <span class="tag">Pro</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With tag</span>
+              <span class="sample-meta-detail">Larger Avatar · Optional Tag</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--xs">
+                <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+              <span class="sample-meta-detail">Padding XS · Avatar XS</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--s">
+                <span class="avatar avatar--s" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail">Padding S · Avatar S</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--m">
+                <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail">Padding M · Avatar M</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <button type="button" class="profile-item profile-item--l">
+                <span class="avatar avatar--l" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                <span class="profile-item-body">
+                  <span class="profile-item-name">gwenzhir</span>
+                  <span class="profile-item-meta">
+                    <span class="profile-item-meta-text">Personal workspace</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail">Padding L · Avatar L</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── App Icon ── -->
     <section class="section section--component" id="app-icon">
       <h2 class="section-label">App Icon</h2>
@@ -5912,7 +6073,7 @@ console.log(label);</code></pre>
     <!-- ── Tooltip ── -->
     <section class="section section--component" id="tooltip">
       <h2 class="section-label">Tooltip</h2>
-      <p class="type-paragraph">A short note on hover or keyboard focus. Place it above, below, or to either side. Copy can be plain, wrap to several lines, mix emphasis, inline code, and links, or a short bulleted list.</p>
+      <p class="type-paragraph">A short note on hover or keyboard focus. Place it above, below, or to either side. Copy can be plain, wrap to several lines, mix emphasis, inline code, and links, a short bulleted list, or a longer readme-style note. Sizes run from 2XS to L. Larger notes use more padding and space between blocks.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Placement</h3>
@@ -6003,6 +6164,109 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">List</span>
               <span class="sample-meta-detail">Bullets · Compact indent</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--m is-open">
+                <button type="button" class="btn btn--xs btn--default">Guide</button>
+                <div class="tooltip-content" id="tooltip-note-demo" role="tooltip">
+                  <p><strong>Publish this draft</strong></p>
+                  <p>Sends the current revision live and notifies subscribers. The note stays until you move away, so you can follow a link inside it.</p>
+                  <p>Before you go live:</p>
+                  <ul>
+                    <li>Required fields are filled</li>
+                    <li>The name is unique</li>
+                    <li>An owner is assigned</li>
+                  </ul>
+                  <p>Press <strong>Save</strong> or <span class="code">⌘S</span>. See <a class="link" href="#code">Code</a> for inline snippets.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Note</span>
+              <span class="sample-meta-detail">Title · Paragraphs · List · M size</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Sizes</h3>
+        <div class="type-sample-list type-sample-list--sizes">
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--2xs is-open">
+                <button type="button" class="btn btn--xs btn--default">2XS</button>
+                <div class="tooltip-content" role="tooltip">
+                  <p>Sends this draft live.</p>
+                  <p>Notifies subscribers when it ships.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">2XS</span>
+              <span class="sample-meta-detail">Default · Tight padding</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--xs is-open">
+                <button type="button" class="btn btn--xs btn--default">XS</button>
+                <div class="tooltip-content" role="tooltip">
+                  <p>Sends this draft live.</p>
+                  <p>Notifies subscribers when it ships.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">XS</span>
+              <span class="sample-meta-detail">2XS type · Roomier padding</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--s is-open">
+                <button type="button" class="btn btn--xs btn--default">S</button>
+                <div class="tooltip-content" role="tooltip">
+                  <p>Sends this draft live.</p>
+                  <p>Notifies subscribers when it ships.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">S</span>
+              <span class="sample-meta-detail">XS type · Open stack</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--m is-open">
+                <button type="button" class="btn btn--xs btn--default">M</button>
+                <div class="tooltip-content" role="tooltip">
+                  <p>Sends this draft live.</p>
+                  <p>Notifies subscribers when it ships.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">M</span>
+              <span class="sample-meta-detail">XS type · Wider note</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <span class="tooltip tooltip--bottom tooltip--l is-open">
+                <button type="button" class="btn btn--xs btn--default">L</button>
+                <div class="tooltip-content" role="tooltip">
+                  <p>Sends this draft live.</p>
+                  <p>Notifies subscribers when it ships.</p>
+                </div>
+              </span>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">L</span>
+              <span class="sample-meta-detail">S type · Largest padding</span>
             </div>
           </div>
         </div>
@@ -7735,7 +7999,7 @@ console.log(label);</code></pre>
     <!-- ── Sidebar ── -->
     <section class="section section--component" id="sidebar">
       <h2 class="section-label">Sidebar</h2>
-      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar. A fixed item sits below the list at the bottom of the sidebar, shaped like a button. The list fades at the clipped edges instead of hard-cutting.</p>
+      <p class="type-paragraph">Vertical nav for tools: a title, grouped items, and optional dropdowns that open a Menu beside the list so the panel is not clipped by the sidebar. A fixed item sits below the list at the bottom of the sidebar, shaped like a button. My profile pins a Profile item in a Box above the menu groups (after the title). XS snaps to the items; larger sizes keep Profile spacing. The list fades at the clipped edges instead of hard-cutting.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -7900,6 +8164,163 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Fixed</span>
               <span class="sample-meta-detail">Below the list · Bottom · Button</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo">
+                <aside class="sidebar">
+                  <button type="button" class="sidebar-title is-active">Projects</button>
+                  <div class="box sidebar-profile">
+                    <button type="button" class="profile-item profile-item--xs">
+                      <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <span class="profile-item-body">
+                        <span class="profile-item-name">gwenzhir</span>
+                      </span>
+                    </button>
+                  </div>
+                  <nav class="sidebar-nav">
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Workspace</div>
+                      <button type="button" class="sidebar-item is-active">
+                        <i class="ph ph-squares-four sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Overview</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-folder sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Projects</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-users sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Team</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-calendar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Calendar</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-gear sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Settings</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-chart-bar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Reports</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-pulse sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Activity</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-archive sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Archive</span>
+                      </button>
+                    </div>
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Resources</div>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-book-open sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Documentation</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-question sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Support</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-note sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Changelog</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-circle sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Status</span>
+                      </button>
+                    </div>
+                  </nav>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">My profile</span>
+              <span class="sample-meta-detail">Profile XS · Snaps to items</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo">
+                <aside class="sidebar">
+                  <button type="button" class="sidebar-title is-active">Projects</button>
+                  <div class="box sidebar-profile">
+                    <button type="button" class="profile-item profile-item--m">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <span class="profile-item-body">
+                        <span class="profile-item-name">gwenzhir</span>
+                        <span class="profile-item-meta">
+                          <span class="profile-item-meta-text">Personal workspace</span>
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                  <nav class="sidebar-nav">
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Workspace</div>
+                      <button type="button" class="sidebar-item is-active">
+                        <i class="ph ph-squares-four sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Overview</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-folder sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Projects</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-users sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Team</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-calendar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Calendar</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-gear sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Settings</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-chart-bar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Reports</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-pulse sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Activity</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-archive sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Archive</span>
+                      </button>
+                    </div>
+                    <div class="sidebar-group">
+                      <div class="sidebar-group-label">Resources</div>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-book-open sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Documentation</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-question sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Support</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-note sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Changelog</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-circle sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Status</span>
+                      </button>
+                    </div>
+                  </nav>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">My profile M</span>
+              <span class="sample-meta-detail">Profile M · Meta line</span>
             </div>
           </div>
         </div>
@@ -8103,6 +8524,97 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Fixed</span>
               <span class="sample-meta-detail">Below the list · Button shape</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo sidebar-demo--items">
+                <aside class="sidebar">
+                  <div class="box sidebar-profile">
+                    <button type="button" class="profile-item profile-item--xs">
+                      <span class="avatar avatar--xs" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <span class="profile-item-body">
+                        <span class="profile-item-name">gwenzhir</span>
+                      </span>
+                    </button>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">
+                        <i class="ph ph-squares-four sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Overview</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-folder sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Projects</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-users sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Team</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-calendar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Calendar</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-gear sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Settings</span>
+                      </button>
+                    </div>
+                  </nav>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">My profile</span>
+              <span class="sample-meta-detail">Profile XS · Snaps to items</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="sidebar-demo sidebar-demo--items">
+                <aside class="sidebar">
+                  <div class="box sidebar-profile">
+                    <button type="button" class="profile-item profile-item--m">
+                      <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                      <span class="profile-item-body">
+                        <span class="profile-item-name">gwenzhir</span>
+                        <span class="profile-item-meta">
+                          <span class="profile-item-meta-text">Personal workspace</span>
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                  <nav class="sidebar-nav sidebar-nav--flush">
+                    <div class="sidebar-group">
+                      <button type="button" class="sidebar-item is-active">
+                        <i class="ph ph-squares-four sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Overview</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-folder sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Projects</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-users sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Team</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-calendar sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Calendar</span>
+                      </button>
+                      <button type="button" class="sidebar-item">
+                        <i class="ph ph-gear sidebar-item-icon" aria-hidden="true"></i>
+                        <span class="sidebar-item-label">Settings</span>
+                      </button>
+                    </div>
+                  </nav>
+                </aside>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">My profile M</span>
+              <span class="sample-meta-detail">Profile M · Meta line</span>
             </div>
           </div>
         </div>

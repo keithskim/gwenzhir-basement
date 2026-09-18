@@ -29,7 +29,10 @@
   display: block;
 }
 
-.datetime-popup.is-float-open,
-.tooltip-content.is-float-open {
+.datetime-popup.is-float-open {
   max-width: min(24rem, calc(100vw - 2rem));
+}
+
+.tooltip-content.is-float-open {
+  max-width: min(var(--tooltip-max-width, 16rem), calc(100vw - 2rem));
 }

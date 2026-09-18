@@ -20,7 +20,8 @@
   min-height: 0;
 }
 
-.sidebar:has(> .sidebar-item--fixed) {
+.sidebar:has(> .sidebar-item--fixed),
+.sidebar:has(> .sidebar-profile) {
   display: flex;
   flex-direction: column;
 }
@@ -135,7 +136,8 @@
   transition: background-color 0.15s ease;
 }
 
-.sidebar-item:has(.sidebar-item-icon) {
+.sidebar-item:has(.sidebar-item-icon),
+.sidebar-item:has(> .avatar) {
   gap: var(--sidebar-icon-gap);
 }
 
@@ -169,6 +171,16 @@
   flex: 1;
   min-width: 0;
   text-align: left;
+}
+
+.sidebar-item > .avatar {
+  flex-shrink: 0;
+}
+
+.sidebar-item:has(> .avatar) .sidebar-item-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar-item-text {
@@ -280,8 +292,7 @@
   color: var(--theme-fg);
   background: var(--theme-surface);
   border: 1px solid var(--theme-border);
-  box-shadow: var(--shadow-s);
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .sidebar-item--fixed::before {
@@ -308,6 +319,38 @@ html.is-dark .sidebar-item--fixed[aria-expanded='true'] {
   width: auto;
   padding-block: 0.25rem;
   padding-inline: calc(var(--sidebar-item-bleed) + var(--sidebar-item-indent, 0px));
+}
+
+/* Profile — simple Box chrome, above the scrolling nav by default. */
+.sidebar-profile {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: auto;
+}
+
+.sidebar-profile:first-child:not(:last-child) {
+  margin-block-end: var(--spacing-s);
+}
+
+.sidebar-profile:not(:first-child):not(:last-child) {
+  margin-block: var(--spacing-s);
+}
+
+.sidebar-profile:last-child {
+  margin-block-start: var(--spacing-s);
+}
+
+.sidebar-profile + .sidebar-nav {
+  margin-top: 0;
+}
+
+.sidebar-profile .profile-item {
+  width: 100%;
+  border-radius: 0;
+}
+
+.sidebar-profile .profile-item:not(.profile-item--s, .profile-item--m, .profile-item--l) {
+  padding-inline: calc(var(--sidebar-item-bleed) - 1px);
 }
 
 /* Sidebar nav fills a Panel when composed */
