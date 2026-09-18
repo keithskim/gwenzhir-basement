@@ -149,8 +149,8 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
   line-height: 1;
 }
 
-.btn:not(.btn--icon) .ph {
-  translate: 0 0.0625rem;
+.btn:not(.btn--icon) .ph:not(.dropdown-caret) {
+  font-size: 1em;
 }
 
 .btn .tag {

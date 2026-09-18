@@ -22,7 +22,6 @@
   background: var(--theme-surface);
   border: 1px solid var(--theme-border);
   border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-s);
   overflow: hidden;
 }
 
