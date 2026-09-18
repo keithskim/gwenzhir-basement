@@ -89,7 +89,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Theme** — Load `theme.js` in `<head>`. Put `data-theme-toggle` on an icon button with Moon and Sun icons (see Button in the reference). Toggles `html.is-dark`, shows Moon in light and Sun in dark, and remembers the choice; until then it follows `prefers-color-scheme`.
 
-**Tag** — Outline, filled, split, and compact labels. `.tag--counter` is a compact Gray count. One digit is square (Radius S) at every size; extra digits grow wider. Uses lining proportional digits. Defaults to 2XS; pair with a size class to scale.
+**Tag** — Outline, filled, split, and compact labels. `.tag--counter` is a compact Gray XD count. One digit is square (Radius S) at every size; extra digits grow wider. Uses lining proportional digits. Defaults to 2XS; pair with a size class to scale.
 
 **Box** — Lined panel (`.box`). Add `.box--resizable` plus a `.box-resize-handle` (or let `box-resize.js` inject one) to drag the end edge, or move a focused handle with the arrow keys. Clamps via `data-box-min-width` / `data-box-max-width` (`rem`, `px`, or `%` of the parent).
 
@@ -107,7 +107,7 @@ Optional IIFE helpers expose `window.Basement*` APIs. Load order matters for flo
 
 **Dropdown** — `.dropdown` wraps a `.dropdown-trigger` and a `.menu` panel. Load `dropdown.js` after `float.js`. Placement: `dropdown--end` / `dropdown--center`, or `data-dropdown-align`. Side flyout: `dropdown--side` or `data-dropdown-placement="end"|"start"`. Sidebar items default to a side flyout. Tabs overflow builds its own control and is not auto-wired.
 
-**Tooltip** — `.tooltip` with `.tooltip-content`. Placement: `.tooltip--top` / `--right` / `--bottom` / `--left`. Sizes `.tooltip--2xs` / `--xs` / `--s` / `--m` / `--l` (default 2XS) change type, padding, max width, and space between blocks. Copy may include `strong` / `em`, `.code`, `.link`, compact Tags, and `ul` / `ol` (use a `div` for the tip when it contains a list). A long note can mix a title, several paragraphs, and a list — pair it with S, M, or L. The tip stays black-on-white so nested chrome does not follow the page theme. Load `tooltip.js` after `float.js` so a formatted tip stays open while the pointer moves onto a link.
+**Tooltip** — `.tooltip` with `.tooltip-content`. Placement: `.tooltip--top` / `--right` / `--bottom` / `--left`. Sizes `.tooltip--2xs` / `--xs` / `--s` / `--m` / `--l` (default 2XS) change type, padding, max width, and space between blocks. Copy uses compact leading (`.type-compact`: size + 0.25rem). Copy may include `strong` / `em`, `.code`, `.link`, compact Tags, and `ul` / `ol` (use a `div` for the tip when it contains a list). A long note can mix a title, several paragraphs, and a list — pair it with S, M, or L. The tip stays black-on-white so nested chrome does not follow the page theme. Load `tooltip.js` after `float.js` so a formatted tip stays open while the pointer moves onto a link.
 
 **Slider** — `.slider` is a track with a draggable thumb. Add a second `.slider-input` (and `.slider--range`) for a min–max span. `.slider--stepped` draws tick marks from the input’s `min` / `max` / `step`; add `.slider--labels` for a value under each stop. Optional `.slider-value` shows the live number at the end. Load `slider.js` to paint the fill, ticks, and values; keep thumbs from crossing; and sync number fields inside `.filter-range` (and the Filter chip label when the slider is in a criterion). Click the track to jump the nearest thumb.
 

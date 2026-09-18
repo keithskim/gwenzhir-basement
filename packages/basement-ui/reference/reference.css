@@ -1660,12 +1660,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 #tooltip .type-sample-list--sizes .sample-box {
-  min-height: 12rem;
+  min-height: 16rem;
   align-items: start;
 }
 
 #tooltip .type-sample-list--items .type-sample-item:last-child .sample-box {
-  min-height: 18rem;
+  min-height: 24rem;
   align-items: start;
 }
 

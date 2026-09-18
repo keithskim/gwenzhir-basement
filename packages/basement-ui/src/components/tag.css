@@ -186,17 +186,17 @@
   padding-inline: 0.5rem;
 }
 
-/* Compact count — Gray fill; circle for one digit, pill when extra digits. */
+/* Compact count — Gray XD fill; circle for one digit, pill when extra digits. */
 .tag.tag--counter {
-  --tag-counter-size: 1.4em;
+  --tag-counter-size: 1.5em;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   border-radius: 9999rem;
-  background: var(--color-gray);
-  border-color: var(--color-gray);
+  background: var(--color-gray-extra-dark);
+  border-color: var(--color-gray-extra-dark);
   color: var(--color-white);
   font-variant-numeric: lining-nums proportional-nums;
   font-feature-settings: 'lnum', 'pnum';
@@ -208,11 +208,7 @@
   min-width: var(--tag-counter-size);
   max-width: none;
   padding-block: 0.125em;
-  padding-inline: 0.15em;
-}
-
-html.is-dark .tag.tag--counter {
-  color: var(--color-black);
+  padding-inline: 0.3em;
 }
 
 .tag--counter.tag--2xs {
