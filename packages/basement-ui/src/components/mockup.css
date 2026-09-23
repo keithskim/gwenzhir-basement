@@ -1,0 +1,123 @@
+/* Mockup — phone, tablet, or desktop frame. The screen lays out at a logical size. */
+
+.mockup {
+  --mockup-bezel: 0.375rem;
+  --mockup-chrome: 0rem;
+  --mockup-portrait-w: 23.4375rem;
+  --mockup-portrait-h: 50.75rem;
+  --mockup-screen-w: var(--mockup-portrait-w);
+  --mockup-screen-h: var(--mockup-portrait-h);
+  --mockup-outer-w: calc(var(--mockup-screen-w) + (var(--mockup-bezel) * 2) + 2px);
+  --mockup-outer-h: calc(var(--mockup-screen-h) + (var(--mockup-bezel) * 2) + var(--mockup-chrome) + 2px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: var(--mockup-outer-w);
+  margin: 0;
+  padding: var(--mockup-bezel);
+  overflow: hidden;
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-l);
+  background: var(--theme-bg);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  -webkit-font-smoothing: antialiased;
+  color: var(--theme-fg);
+}
+
+.mockup--phone {
+  --mockup-portrait-w: 23.4375rem;
+  --mockup-portrait-h: 50.75rem;
+}
+
+.mockup--tablet {
+  --mockup-portrait-w: 48rem;
+  --mockup-portrait-h: 64rem;
+}
+
+.mockup--desktop {
+  --mockup-portrait-w: 80rem;
+  --mockup-portrait-h: 45rem;
+  --mockup-bezel: 0rem;
+  --mockup-chrome: 2rem;
+  border-radius: var(--border-radius-m);
+}
+
+.mockup--landscape:not(.mockup--desktop) {
+  --mockup-screen-w: var(--mockup-portrait-h);
+  --mockup-screen-h: var(--mockup-portrait-w);
+}
+
+.mockup-bar {
+  display: none;
+  align-items: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  height: 2rem;
+  padding-inline: 0.75rem;
+  border-block-end: 1px solid var(--theme-border);
+}
+
+.mockup--desktop > .mockup-bar {
+  display: flex;
+}
+
+.mockup-title {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg);
+}
+
+.mockup-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: var(--mockup-screen-w);
+  height: var(--mockup-screen-h);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: calc(var(--border-radius-l) - 0.125rem);
+  background: var(--theme-bg);
+  color: var(--theme-fg);
+}
+
+.mockup--desktop .mockup-screen {
+  border-radius: 0;
+}
+
+.mockup-screen > .chat,
+.mockup-screen > .app-frame {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.mockup-stage {
+  container-type: size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mockup-stage > .mockup {
+  zoom: min(1, 100cqi / var(--mockup-outer-w), 100cqb / var(--mockup-outer-h));
+}

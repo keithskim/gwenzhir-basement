@@ -23,7 +23,9 @@
  * (onboarding or help). Put Close on .dialog-heading, outside the body.
  * Add dialog--popup for a one-time notice with close and a Don’t show again
  * option (apps persist the preference).
- * Static demos: data-dialog-static (Escape / backdrop do not dismiss).
+ * Dismissal: data-overlay-dismiss="both" (default), "escape", "backdrop", or "none".
+ * data-dialog-static is an alias of none and also keeps the demo from closing.
+ * Inside .overlay-root the host covers that box instead of the page.
  */
 (function () {
   function hostFor(el) {
@@ -39,6 +41,32 @@
 
   function isStatic(host) {
     return host && host.hasAttribute('data-dialog-static');
+  }
+
+  function dismissMode(host) {
+    if (!host) return 'both';
+    if (host.hasAttribute('data-dialog-static') || host.hasAttribute('data-sheet-static')) return 'none';
+    var raw = (host.getAttribute('data-overlay-dismiss') || 'both').toLowerCase().trim();
+    if (raw === 'none' || raw === 'escape' || raw === 'backdrop' || raw === 'both') return raw;
+    return 'both';
+  }
+
+  function allowsEscape(host) {
+    var mode = dismissMode(host);
+    return mode === 'both' || mode === 'escape';
+  }
+
+  function allowsBackdrop(host) {
+    var mode = dismissMode(host);
+    return mode === 'both' || mode === 'backdrop';
+  }
+
+  function releaseInert(el, attr) {
+    el.removeAttribute(attr);
+    if (el.hasAttribute('data-basement-dialog-inert')) return;
+    if (el.hasAttribute('data-basement-sheet-inert')) return;
+    if (el.hasAttribute('data-basement-overlay-inert')) return;
+    el.removeAttribute('inert');
   }
 
   function isPlain(host) {
@@ -65,9 +93,10 @@
   function syncDialogInert(host, on) {
     if (!host) return;
     var enable = !!(on && !isPlain(host));
-    var stopAt = host.classList.contains('dialog-host--demo')
-      ? host.parentElement
-      : document.body;
+    var root = host.closest ? host.closest('.overlay-root') : null;
+    var stopAt = root
+      ? root
+      : (host.classList.contains('dialog-host--demo') ? host.parentElement : document.body);
     var el = host;
     while (el && el !== stopAt) {
       var parent = el.parentElement;
@@ -78,8 +107,7 @@
           child.setAttribute('inert', '');
           child.setAttribute('data-basement-dialog-inert', '');
         } else if (child.hasAttribute('data-basement-dialog-inert')) {
-          child.removeAttribute('inert');
-          child.removeAttribute('data-basement-dialog-inert');
+          releaseInert(child, 'data-basement-dialog-inert');
         }
       });
       if (parent === stopAt || parent === document.documentElement) break;
@@ -90,6 +118,8 @@
   function open(hostOrDialog) {
     var host = hostFor(hostOrDialog) || hostOrDialog;
     if (!host || !host.classList.contains('dialog-host')) return;
+    if (host.hasAttribute('data-basement-sheet-inert')) releaseInert(host, 'data-basement-sheet-inert');
+    if (host.hasAttribute('data-basement-dialog-inert')) releaseInert(host, 'data-basement-dialog-inert');
     host.__basementDialogOpener = document.activeElement;
     host.classList.add('is-dialog-open');
     syncAria(host);
@@ -130,10 +160,24 @@
     else open(host);
   }
 
-  function openHosts() {
-    return Array.prototype.slice.call(
-      document.querySelectorAll('.dialog-host.is-dialog-open:not([data-dialog-static])')
-    );
+  function topmostEscapeHost() {
+    var active = document.activeElement;
+    var focusRoot = active && active.closest ? active.closest('.overlay-root') : null;
+    var nodes = document.querySelectorAll('.dialog-host.is-dialog-open, .sheet-host.is-sheet-open');
+    var inRoot = [];
+    var page = [];
+    var otherContained = [];
+    Array.prototype.forEach.call(nodes, function (host) {
+      if (!allowsEscape(host)) return;
+      var hostRoot = host.closest('.overlay-root');
+      if (hostRoot && focusRoot && hostRoot === focusRoot) inRoot.push(host);
+      else if (!hostRoot) page.push(host);
+      else otherContained.push(host);
+    });
+    if (inRoot.length) return inRoot[inRoot.length - 1];
+    if (page.length) return page[page.length - 1];
+    if (otherContained.length) return otherContained[otherContained.length - 1];
+    return null;
   }
 
   function wire(root) {
@@ -182,7 +226,7 @@
       if (backdrop && !backdrop.__basementDialogBackdrop) {
         backdrop.__basementDialogBackdrop = true;
         backdrop.addEventListener('click', function () {
-          if (isPlain(host) || isStatic(host)) return;
+          if (isPlain(host) || !allowsBackdrop(host)) return;
           close(host);
         });
       }
@@ -196,10 +240,11 @@
   if (!window.__basementDialogEsc) {
     window.__basementDialogEsc = true;
     document.addEventListener('keydown', function (event) {
-      if (event.key !== 'Escape') return;
-      var hosts = openHosts();
-      if (!hosts.length) return;
-      close(hosts[hosts.length - 1]);
+      if (event.key !== 'Escape' || event.defaultPrevented) return;
+      var host = topmostEscapeHost();
+      if (!host || !host.classList.contains('dialog-host')) return;
+      event.preventDefault();
+      close(host);
     });
   }
 

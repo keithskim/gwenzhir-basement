@@ -89,6 +89,8 @@
         <div class="sidebar-group-label">Overlay</div>
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="dialog">Dialog</button>
+        <button type="button" class="sidebar-item" data-section="sheet">Sheet</button>
+        <button type="button" class="sidebar-item" data-section="toast">Toast</button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
       </div>
       <div class="sidebar-group">
@@ -108,6 +110,7 @@
       <div class="sidebar-group">
         <div class="sidebar-group-label">Patterns</div>
         <button type="button" class="sidebar-item" data-section="app-frame">App frame</button>
+        <button type="button" class="sidebar-item" data-section="mockup">Mockup</button>
         <button type="button" class="sidebar-item" data-section="edge-fade">Edge fade</button>
         <button type="button" class="sidebar-item" data-section="float">Float</button>
         <button type="button" class="sidebar-item" data-section="keyboard">Keyboard</button>
@@ -494,6 +497,23 @@
                 </span>
               </span>
             </button>
+            <button type="button" class="home-card" data-section="sheet">
+              <span class="home-card-title">Sheet</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-sheet">
+                  <span class="home-preview-sheet-panel">
+                    <span class="home-preview-sheet-line"></span>
+                    <span class="home-preview-sheet-line home-preview-sheet-line--short"></span>
+                  </span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="toast">
+              <span class="home-card-title">Toast</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="toast home-preview-toast">Changes saved</span>
+              </span>
+            </button>
             <button type="button" class="home-card" data-section="prompt">
               <span class="home-card-title">Prompt</span>
               <span class="home-card-preview" aria-hidden="true">
@@ -530,7 +550,7 @@
                     <span class="avatar avatar--2xs"><span class="avatar-fallback">M</span></span>
                     <span class="chat-message-text">Check the palette?</span>
                   </span>
-                  <span class="chat-message">
+                  <span class="chat-message chat-message--self">
                     <span class="avatar avatar--2xs"><span class="avatar-fallback">G</span></span>
                     <span class="chat-message-text">On it.</span>
                   </span>
@@ -664,6 +684,16 @@
                     <span class="home-preview-app-frame-body"></span>
                   </span>
                   <span class="home-preview-app-frame-side home-preview-app-frame-side--right"></span>
+                </span>
+              </span>
+            </button>
+            <button type="button" class="home-card" data-section="mockup">
+              <span class="home-card-title">Mockup</span>
+              <span class="home-card-preview" aria-hidden="true">
+                <span class="home-preview-mockups">
+                  <span class="mockup mockup--phone home-preview-mockup"><span class="mockup-screen"></span></span>
+                  <span class="mockup mockup--tablet home-preview-mockup"><span class="mockup-screen"></span></span>
+                  <span class="mockup mockup--desktop home-preview-mockup"><span class="mockup-bar"></span><span class="mockup-screen"></span></span>
                 </span>
               </span>
             </button>
@@ -8868,7 +8898,7 @@ console.log(label);</code></pre>
     <!-- ── Dialog ── -->
     <section class="section section--component" id="dialog">
       <h2 class="section-label">Dialog</h2>
-      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default. Omit it when the panel should float without covering the page. Guide holds Tabs and a rich body for onboarding or help. Popup is a one-time notice that can be closed, with an option not to see it again.</p>
+      <p class="type-paragraph">Centered modal over the app. Blurry overlay is the default. Omit it when the panel should float without covering the page. Guide holds Tabs and a rich body for onboarding or help. Popup is a one-time notice that can be closed, with an option not to see it again. Place it in a region to cover only that region. Escape and the overlay both dismiss it, or keep just one of those, or leave closing to the app.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -9038,10 +9068,329 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Interactive</span>
-              <span class="sample-meta-detail">Blurry overlay · Dismiss on Escape</span>
+              <span class="sample-meta-detail">Blurry overlay · Escape or overlay</span>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">In a region</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog overlay-root">
+              <div class="dialog-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Notes in this region sit behind the dialog.</p>
+              </div>
+              <div class="dialog-host is-dialog-open" data-dialog-static>
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogRegionStillTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogRegionStillTitle">Keep this draft?</h2>
+                    <p class="dialog-description">The rest of the page stays available.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default">Cancel</button>
+                    <button type="button" class="btn btn--xs btn--default">Keep</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Contained</span>
+              <span class="sample-meta-detail">Covers this region · Page stays clear</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--dialog overlay-root">
+              <div class="dialog-demo-chrome">
+                <p class="type-paragraph" style="margin: 0;">Choose how this dialog closes.</p>
+                <button type="button" class="btn btn--xs btn--default" data-dialog-open="dialogRegionNone">App closes it</button>
+                <button type="button" class="btn btn--xs btn--default" data-dialog-open="dialogRegionEscape">Escape only</button>
+                <button type="button" class="btn btn--xs btn--default" data-dialog-open="dialogRegionBackdrop">Overlay only</button>
+              </div>
+              <div class="dialog-host" id="dialogRegionNone" data-overlay-dismiss="none">
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogRegionNoneTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogRegionNoneTitle">Leave this to the app</h2>
+                    <p class="dialog-description">Escape and the overlay do nothing.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default" data-dialog-close>Close</button>
+                  </div>
+                </div>
+              </div>
+              <div class="dialog-host" id="dialogRegionEscape" data-overlay-dismiss="escape">
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogRegionEscapeTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogRegionEscapeTitle">Escape closes this</h2>
+                    <p class="dialog-description">The overlay stays up if you click it.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default" data-dialog-close>Close</button>
+                  </div>
+                </div>
+              </div>
+              <div class="dialog-host" id="dialogRegionBackdrop" data-overlay-dismiss="backdrop">
+                <div class="dialog-backdrop" aria-hidden="true"></div>
+                <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogRegionBackdropTitle">
+                  <div class="dialog-body">
+                    <h2 class="dialog-title" id="dialogRegionBackdropTitle">Overlay closes this</h2>
+                    <p class="dialog-description">Escape leaves it open.</p>
+                  </div>
+                  <div class="dialog-actions">
+                    <button type="button" class="btn btn--xs btn--default" data-dialog-close>Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Dismissal</span>
+              <span class="sample-meta-detail">App · Escape · Overlay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Sheet ── -->
+    <section class="section section--component" id="sheet">
+      <h2 class="section-label">Sheet</h2>
+      <p class="type-paragraph">A panel anchored to the bottom, over a blurry overlay. Content height hugs what is inside and leaves a strip of the surface behind visible. Half height covers half the page, or half the region it sits in. The body scrolls. The heading and actions stay put. Closed, it takes no space in the layout. Escape and the overlay both dismiss it, or keep just one of those, or leave closing to the app. Place it in a region to cover only that region.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--sheet overlay-root">
+              <div class="sheet-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">A strip of this surface stays visible above the panel.</p>
+              </div>
+              <div class="sheet-host is-sheet-open" data-sheet-static data-overlay-dismiss="none">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetContentTitle">
+                  <div class="sheet-heading">
+                    <h2 class="sheet-title" id="sheetContentTitle">Choose a time</h2>
+                  </div>
+                  <div class="sheet-body">
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-content-time" checked> Morning</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-content-time"> Afternoon</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-content-time"> Evening</label>
+                  </div>
+                  <div class="sheet-actions">
+                    <button type="button" class="btn btn--xs btn--default">Cancel</button>
+                    <button type="button" class="btn btn--xs btn--default">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Content height</span>
+              <span class="sample-meta-detail">Hugs the content · Strip still visible · Pinned actions</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--sheet overlay-root">
+              <div class="sheet-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">Half the region stays available above the panel.</p>
+              </div>
+              <div class="sheet-host is-sheet-open" data-sheet-static data-overlay-dismiss="none">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet sheet--half" role="dialog" aria-modal="true" aria-labelledby="sheetHalfTitle">
+                  <div class="sheet-heading">
+                    <h2 class="sheet-title" id="sheetHalfTitle">Choose a time</h2>
+                  </div>
+                  <div class="sheet-body">
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time" checked> Morning</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Late morning</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Noon</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Afternoon</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Late afternoon</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Evening</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Night</label>
+                    <label class="control-row"><input class="radio" type="radio" name="sheet-half-time"> Late night</label>
+                  </div>
+                  <div class="sheet-actions">
+                    <button type="button" class="btn btn--xs btn--default">Cancel</button>
+                    <button type="button" class="btn btn--xs btn--default">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Half height</span>
+              <span class="sample-meta-detail">Scrolling body · Pinned actions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Open and dismiss</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--sheet overlay-root">
+              <div class="sheet-demo-chrome">
+                <p class="type-paragraph" style="margin: 0;">Open the panel, then dismiss with Escape or the overlay.</p>
+                <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetLive">Open sheet</button>
+              </div>
+              <div class="sheet-host" id="sheetLive">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetLiveTitle">
+                  <div class="sheet-heading">
+                    <h2 class="sheet-title" id="sheetLiveTitle">Rename item</h2>
+                  </div>
+                  <div class="sheet-body">
+                    <label class="field">
+                      <span class="field-label">Name</span>
+                      <input class="input" type="text" value="North studio" aria-label="Name">
+                    </label>
+                  </div>
+                  <div class="sheet-actions">
+                    <button type="button" class="btn btn--xs btn--default" data-sheet-close>Cancel</button>
+                    <button type="button" class="btn btn--xs btn--default" data-sheet-close>Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Interactive</span>
+              <span class="sample-meta-detail">Slides up · Escape or overlay</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--sheet overlay-root">
+              <div class="sheet-demo-chrome">
+                <p class="type-paragraph" style="margin: 0;">Choose how this panel closes.</p>
+                <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetRegionNone">App closes it</button>
+                <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetRegionEscape">Escape only</button>
+                <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetRegionBackdrop">Overlay only</button>
+              </div>
+              <div class="sheet-host" id="sheetRegionNone" data-overlay-dismiss="none">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetRegionNoneTitle">
+                  <div class="sheet-heading"><h2 class="sheet-title" id="sheetRegionNoneTitle">Leave this to the app</h2></div>
+                  <div class="sheet-body"><p class="dialog-description">Escape and the overlay do nothing.</p></div>
+                  <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+                </div>
+              </div>
+              <div class="sheet-host" id="sheetRegionEscape" data-overlay-dismiss="escape">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetRegionEscapeTitle">
+                  <div class="sheet-heading"><h2 class="sheet-title" id="sheetRegionEscapeTitle">Escape closes this</h2></div>
+                  <div class="sheet-body"><p class="dialog-description">The overlay stays up if you click it.</p></div>
+                  <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+                </div>
+              </div>
+              <div class="sheet-host" id="sheetRegionBackdrop" data-overlay-dismiss="backdrop">
+                <div class="sheet-backdrop" aria-hidden="true"></div>
+                <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetRegionBackdropTitle">
+                  <div class="sheet-heading"><h2 class="sheet-title" id="sheetRegionBackdropTitle">Overlay closes this</h2></div>
+                  <div class="sheet-body"><p class="dialog-description">Escape leaves it open.</p></div>
+                  <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">In a region</span>
+              <span class="sample-meta-detail">App · Escape · Overlay</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <p class="type-paragraph" style="margin: 0;">These cover the page.</p>
+              <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetPageNone">App closes it</button>
+              <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetPageEscape">Escape only</button>
+              <button type="button" class="btn btn--xs btn--default" data-sheet-open="sheetPageBackdrop">Overlay only</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Page</span>
+              <span class="sample-meta-detail">App · Escape · Overlay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-host" id="sheetPageNone" data-overlay-dismiss="none">
+        <div class="sheet-backdrop" aria-hidden="true"></div>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetPageNoneTitle">
+          <div class="sheet-heading"><h2 class="sheet-title" id="sheetPageNoneTitle">Leave this to the app</h2></div>
+          <div class="sheet-body"><p class="dialog-description">Escape and the overlay do nothing.</p></div>
+          <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+        </div>
+      </div>
+      <div class="sheet-host" id="sheetPageEscape" data-overlay-dismiss="escape">
+        <div class="sheet-backdrop" aria-hidden="true"></div>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetPageEscapeTitle">
+          <div class="sheet-heading"><h2 class="sheet-title" id="sheetPageEscapeTitle">Escape closes this</h2></div>
+          <div class="sheet-body"><p class="dialog-description">The overlay stays up if you click it.</p></div>
+          <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+        </div>
+      </div>
+      <div class="sheet-host" id="sheetPageBackdrop" data-overlay-dismiss="backdrop">
+        <div class="sheet-backdrop" aria-hidden="true"></div>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetPageBackdropTitle">
+          <div class="sheet-heading"><h2 class="sheet-title" id="sheetPageBackdropTitle">Overlay closes this</h2></div>
+          <div class="sheet-body"><p class="dialog-description">Escape leaves it open.</p></div>
+          <div class="sheet-actions"><button type="button" class="btn btn--xs btn--default" data-sheet-close>Close</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Toast ── -->
+    <section class="section section--component" id="toast">
+      <h2 class="section-label">Toast</h2>
+      <p class="type-paragraph">A brief status above the page. It does not sit in the flow, and the area around it stays clickable. Inside a region, it stays at the top of that region. It can disappear on its own, or stay until the app dismisses it.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--toast overlay-root">
+              <div class="toast-demo-chrome" aria-hidden="true">
+                <p class="type-paragraph" style="margin: 0;">The status sits above this region.</p>
+              </div>
+              <div class="toast-host is-toast-open" data-toast-duration="0" aria-live="polite">
+                <div class="toast" role="status">Changes saved</div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">In a region</span>
+              <span class="sample-meta-detail">Top of the region · Rest stays clickable</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <p class="type-paragraph" style="margin: 0;">Shows at the top of the page, then goes away.</p>
+              <button type="button" class="btn btn--xs btn--default" data-toast-open="toastPage">Show notice</button>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Page</span>
+              <span class="sample-meta-detail">Top of the page · Goes away on its own</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box pattern-stage pattern-stage--toast overlay-root">
+              <div class="toast-demo-chrome">
+                <p class="type-paragraph" style="margin: 0;">Stays until you dismiss it.</p>
+                <button type="button" class="btn btn--xs btn--default" data-toast-open="toastHold">Show notice</button>
+                <button type="button" class="btn btn--xs btn--default" data-toast-close="toastHold">Dismiss</button>
+              </div>
+              <div class="toast-host" id="toastHold" data-toast-duration="0" aria-live="polite">
+                <div class="toast" role="status">Kept until dismissed</div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Held</span>
+              <span class="sample-meta-detail">Stays until dismissed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast-host" id="toastPage" data-toast-duration="2400" aria-live="polite">
+        <div class="toast" role="status">Changes saved</div>
       </div>
     </section>
 
@@ -9233,7 +9582,7 @@ console.log(label);</code></pre>
     <!-- ── Chat ── -->
     <section class="section section--component" id="chat">
       <h2 class="section-label">Chat</h2>
-      <p class="type-paragraph">Rooms and messages for a conversation. A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first. Bubble wraps every note in a surface. Pair a room list with a thread when several conversations share a frame. In the list, star a room, select several with a checkbox, or group them under a label. A selected room uses the same highlight as the current one. Apps own sending and delivery.</p>
+      <p class="type-paragraph">Rooms and messages for a conversation. A room has a header, a scrolling log, and a composer. Consecutive notes from the same person tuck under the first. Your notes sit on the trailing side, portrait included. Bubble wraps every note in a surface, and yours uses a filled tone. A typing row shows someone composing. Pair a room list with a thread when several conversations share a frame. The list hugs its columns, with closer padding, instead of stretching across the pane. In the list, star a room, select several with a checkbox, or group them under a label. A selected room uses the same highlight as the current one. Apps own sending and delivery.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -9287,6 +9636,15 @@ console.log(label);</code></pre>
                       <p class="chat-message-text">That reads better against the table, <a href="#" class="mention mention--2xs"><span class="mention-label">@gwenzhir</span></a>.</p>
                     </div>
                   </article>
+                  <article class="chat-message chat-typing" aria-label="Mina is typing">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">Mina</span>
+                      </div>
+                      <p class="chat-typing-dots" aria-hidden="true"><span></span><span></span><span></span></p>
+                    </div>
+                  </article>
                 </div>
                 <div class="chat-composer">
                   <div class="text-input-group">
@@ -9298,7 +9656,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Default</span>
-              <span class="sample-meta-detail">Header · Follow-on notes · Composer</span>
+              <span class="sample-meta-detail">Header · Outgoing note · Typing · Composer</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -9339,6 +9697,12 @@ console.log(label);</code></pre>
                       <p class="chat-message-text">On it — I’ll send a pass.</p>
                     </div>
                   </article>
+                  <article class="chat-message chat-typing" aria-label="Mina is typing">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                    <div class="chat-message-body">
+                      <p class="chat-typing-dots" aria-hidden="true"><span></span><span></span><span></span></p>
+                    </div>
+                  </article>
                 </div>
                 <div class="chat-composer">
                   <div class="text-input-group">
@@ -9350,7 +9714,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Bubble</span>
-              <span class="sample-meta-detail">Surface on every note</span>
+              <span class="sample-meta-detail">Surface on every note · Filled outgoing · Typing</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -9393,7 +9757,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Rooms</span>
-              <span class="sample-meta-detail">Portrait · Preview · Time · Optional unread</span>
+              <span class="sample-meta-detail">Tight columns · Portrait · Preview · Time · Optional unread</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -9478,7 +9842,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Organized</span>
-              <span class="sample-meta-detail">Labels · Optional star · Optional select</span>
+              <span class="sample-meta-detail">Tight columns · Labels · Optional star · Optional select</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -10196,6 +10560,213 @@ console.log(label);</code></pre>
     </section>
 
     
+    <section class="section section--component" id="mockup">
+      <h2 class="section-label">Mockup</h2>
+      <p class="type-paragraph">A frame for a screen or an app at a known size. Phone, tablet, and desktop. Phone and tablet can turn sideways. Desktop adds a slim title bar. The screen lays out at that size, then the stage scales the frame down to fit. A sheet, dialog, or toast placed in the screen stays on the screen.</p>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Types</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--phone">
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Notes">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Notes</p>
+                          <p class="chat-subtitle">Mina, you</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <article class="chat-message">
+                          <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                          <div class="chat-message-body">
+                            <div class="chat-message-meta">
+                              <span class="chat-message-name">Mina</span>
+                              <time class="chat-message-time tnum" datetime="2026-09-16T14:02">14:02</time>
+                            </div>
+                            <p class="chat-message-text">Can you check the palette?</p>
+                          </div>
+                        </article>
+                        <article class="chat-message chat-message--self">
+                          <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                          <div class="chat-message-body">
+                            <div class="chat-message-meta">
+                              <span class="chat-message-name">You</span>
+                              <time class="chat-message-time tnum" datetime="2026-09-16T14:05">14:05</time>
+                            </div>
+                            <p class="chat-message-text">On it.</p>
+                          </div>
+                        </article>
+                      </div>
+                      <div class="chat-composer">
+                        <div class="text-input-group">
+                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <button type="button" class="btn btn--xs btn--default">Send</button>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Phone</span>
+              <span class="sample-meta-detail">Framed screen · Scaled to fit</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--tablet">
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Board">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Board</p>
+                          <p class="chat-subtitle">Today</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <p class="type-paragraph">Three items are waiting on review.</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Tablet</span>
+              <span class="sample-meta-detail">Larger screen · Same thin frame</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--desktop">
+                  <div class="mockup-bar">
+                    <p class="mockup-title">Studio</p>
+                  </div>
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Studio">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Studio</p>
+                          <p class="chat-subtitle">Overview</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <p class="type-paragraph">A window for an app, with a title bar and no extra chrome.</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Desktop</span>
+              <span class="sample-meta-detail">Title bar · Window</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--phone mockup--landscape">
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Notes sideways">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Notes</p>
+                          <p class="chat-subtitle">Sideways</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <p class="type-paragraph">The same phone, turned on its side.</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Landscape</span>
+              <span class="sample-meta-detail">Phone turned sideways</span>
+            </div>
+          </div>
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--phone">
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Schedule">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Schedule</p>
+                          <p class="chat-subtitle">Today</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <article class="chat-message">
+                          <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                          <div class="chat-message-body">
+                            <div class="chat-message-meta">
+                              <span class="chat-message-name">Mina</span>
+                            </div>
+                            <p class="chat-message-text">Which time works?</p>
+                          </div>
+                        </article>
+                      </div>
+                      <div class="chat-composer">
+                        <div class="text-input-group">
+                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <button type="button" class="btn btn--xs btn--default">Send</button>
+                        </div>
+                      </div>
+                    </section>
+                    <div class="sheet-host is-sheet-open" data-sheet-static data-overlay-dismiss="none">
+                      <div class="sheet-backdrop" aria-hidden="true"></div>
+                      <div class="sheet sheet--half" role="dialog" aria-modal="true" aria-labelledby="mockupSheetTitle">
+                        <div class="sheet-heading">
+                          <h2 class="sheet-title" id="mockupSheetTitle">Choose a time</h2>
+                        </div>
+                        <div class="sheet-body">
+                          <label class="control-row"><input class="radio" type="radio" name="mockup-sheet-time" checked> Morning</label>
+                          <label class="control-row"><input class="radio" type="radio" name="mockup-sheet-time"> Afternoon</label>
+                          <label class="control-row"><input class="radio" type="radio" name="mockup-sheet-time"> Evening</label>
+                        </div>
+                        <div class="sheet-actions">
+                          <button type="button" class="btn btn--xs btn--default" data-dialog-open="mockupPhoneDialog">Open dialog</button>
+                          <button type="button" class="btn btn--xs btn--default">Done</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dialog-host" id="mockupPhoneDialog" data-overlay-dismiss="both">
+                      <div class="dialog-backdrop" aria-hidden="true"></div>
+                      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="mockupDialogTitle">
+                        <div class="dialog-body">
+                          <h2 class="dialog-title" id="mockupDialogTitle">Keep this time?</h2>
+                          <p class="dialog-description">It stays on this screen.</p>
+                        </div>
+                        <div class="dialog-actions">
+                          <button type="button" class="btn btn--xs btn--default" data-dialog-close>Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">With overlays</span>
+              <span class="sample-meta-detail">Sheet and dialog stay on the screen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--component" id="edge-fade">
       <h2 class="section-label">Edge fade</h2>
       <p class="type-paragraph">Scroll-aware masks on clipped edges so content fades out instead of hard-cutting. Use on table and graph scrollers, not on Tabs — tab overflow stacks or collapses into a Dropdown.</p>
@@ -10357,6 +10928,8 @@ console.log(label);</code></pre>
   <script src="src/components/edge-fade.js" defer></script>
   <script src="src/components/panel.js" defer></script>
   <script src="src/components/dialog.js" defer></script>
+  <script src="src/components/sheet.js" defer></script>
+  <script src="src/components/toast.js" defer></script>
   <script src="src/components/float.js" defer></script>
   <script src="src/components/dropdown.js" defer></script>
   <script src="src/components/slider.js" defer></script>

@@ -1,0 +1,132 @@
+/* Sheet — bottom panel. Content height by default; half height covers half the root. */
+
+.sheet-host {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  box-sizing: border-box;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.sheet-host.is-sheet-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: color-mix(in srgb, var(--theme-bg) 52%, transparent);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+}
+
+.sheet {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-s);
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 0;
+  max-height: calc(100% - 2.5rem);
+  overflow: hidden;
+  margin: 0;
+  padding: var(--spacing-s);
+  border: 1px solid var(--theme-border);
+  border-block-end: 0;
+  border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
+  background: var(--theme-bg);
+  box-shadow: var(--shadow-l);
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+.sheet-host.is-sheet-open .sheet {
+  transform: translateY(0);
+}
+
+.sheet--half {
+  flex: 0 0 50%;
+  height: 50%;
+  max-height: 50%;
+}
+
+.sheet-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.sheet-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  letter-spacing: -0.01em;
+  color: var(--theme-fg);
+}
+
+.sheet-heading .btn {
+  flex-shrink: 0;
+}
+
+.sheet-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-xs);
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--theme-fg);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
+.sheet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex: 0 0 auto;
+}
+
+.sheet-actions .btn {
+  box-sizing: border-box;
+  min-width: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-host,
+  .sheet {
+    transition: none;
+  }
+}

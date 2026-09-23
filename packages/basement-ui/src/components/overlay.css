@@ -1,0 +1,24 @@
+/* Overlay root — a box the app sizes. Dialog, Sheet, and Toast cover only this box. */
+
+.overlay-root {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.overlay-root > .dialog-host,
+.overlay-root > .sheet-host {
+  position: absolute;
+  z-index: 20;
+}
+
+.overlay-root > .toast-host {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  transform: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--spacing-s);
+}
