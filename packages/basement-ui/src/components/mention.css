@@ -18,7 +18,7 @@ a.mention {
   cursor: pointer;
 }
 
-a.mention:hover {
+a.mention:is(:hover, [data-presentation-state="hover"]) {
   border-color: var(--theme-fg);
 }
 

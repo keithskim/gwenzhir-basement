@@ -50,7 +50,7 @@
   transition: background-color 0.15s ease, height 0.15s ease;
 }
 
-.box-resize-handle:hover::after,
+.box-resize-handle:is(:hover, [data-presentation-state="hover"])::after,
 .box-resize-handle:focus-visible::after,
 .box.is-resizing > .box-resize-handle::after {
   background: var(--theme-fg-secondary);

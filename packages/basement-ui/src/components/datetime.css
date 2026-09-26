@@ -142,8 +142,8 @@
   aspect-ratio: 1;
 }
 
-.datetime-day:hover,
-.datetime-month:hover {
+.datetime-day:is(:hover, [data-presentation-state="hover"]),
+.datetime-month:is(:hover, [data-presentation-state="hover"]) {
   background: var(--theme-bg-subtle);
 }
 

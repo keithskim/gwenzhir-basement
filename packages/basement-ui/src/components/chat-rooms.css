@@ -39,7 +39,7 @@
   text-align: left;
 }
 
-.chat-room:hover {
+.chat-room:is(:hover, [data-presentation-state="hover"]) {
   background: var(--theme-bg-subtle);
 }
 
@@ -47,7 +47,7 @@
   background: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
 }
 
-.chat-room:is(.is-active, :has(> .checkbox:checked)):hover {
+.chat-room:is(.is-active, :has(> .checkbox:checked)):is(:hover, [data-presentation-state="hover"]) {
   background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
 }
 

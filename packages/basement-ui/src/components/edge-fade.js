@@ -54,6 +54,9 @@
     document.querySelectorAll('.sidebar-nav').forEach(function (nav) {
       wire(nav, 'y');
     });
+    document.querySelectorAll('.chat-attachment-rail').forEach(function (rail) {
+      wire(rail, 'x');
+    });
   }
 
   window.BasementEdgeFade = {

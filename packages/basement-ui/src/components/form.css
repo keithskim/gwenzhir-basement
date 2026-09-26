@@ -89,6 +89,15 @@
   opacity: 1;
 }
 
+.checkbox:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"]):not(:disabled):not(:checked),
+.radio:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"]):not(:disabled):not(:checked) {
+  border-color: var(--color-gray);
+}
+
+.switch:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"]):not(:disabled):not(:checked) {
+  background: var(--color-gray);
+}
+
 .checkbox:disabled,
 .radio:disabled {
   opacity: 0.5;

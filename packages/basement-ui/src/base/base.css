@@ -17,3 +17,16 @@ body {
   word-break: keep-all;
   line-break: strict;
 }
+
+/* Placeholder photo — library gray, high contrast, faint on Gray L. */
+img.img-placeholder,
+.img-placeholder > img {
+  filter: grayscale(1) contrast(2.4);
+  opacity: 0.38;
+  mix-blend-mode: multiply;
+}
+
+:has(> img.img-placeholder),
+.img-placeholder {
+  background: var(--color-gray-extra-light);
+}

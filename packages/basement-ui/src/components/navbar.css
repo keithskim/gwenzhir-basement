@@ -82,13 +82,13 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.navbar-item:hover,
+.navbar-item:is(:hover, [data-presentation-state="hover"]),
 .navbar-item.is-active,
 .navbar-item[aria-expanded='true'] {
   color: var(--theme-fg);
 }
 
-.navbar-item:hover {
+.navbar-item:is(:hover, [data-presentation-state="hover"]) {
   background: var(--theme-bg-subtle);
 }
 

@@ -98,33 +98,33 @@
   line-height: 1;
 }
 
-.filter-rule-chip:hover,
+.filter-rule-chip:is(:hover, [data-presentation-state="hover"]),
 .filter-rule.is-open .filter-rule-chip,
 .filter-rule-chip:focus-within {
   background: var(--color-light-gray-a);
   border-color: var(--color-gray);
 }
 
-html.is-dark .filter-rule-chip:hover,
+html.is-dark .filter-rule-chip:is(:hover, [data-presentation-state="hover"]),
 html.is-dark .filter-rule.is-open .filter-rule-chip,
 html.is-dark .filter-rule-chip:focus-within {
   background: var(--color-dark-gray-a);
   border-color: var(--color-gray);
 }
 
-.filter-rule-remove:hover,
+.filter-rule-remove:is(:hover, [data-presentation-state="hover"]),
 .filter-rule-remove:focus-visible {
   color: var(--theme-fg);
   background: var(--theme-surface);
   border-color: var(--color-gray);
 }
 
-.filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
+.filter-rule--choices .filter-rule-chip:is(:hover, [data-presentation-state="hover"], :focus-within) {
   background: var(--theme-surface);
   border-color: var(--theme-border);
 }
 
-html.is-dark .filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
+html.is-dark .filter-rule--choices .filter-rule-chip:is(:hover, [data-presentation-state="hover"], :focus-within) {
   background: var(--theme-surface);
   border-color: var(--theme-border);
 }
@@ -171,12 +171,12 @@ html.is-dark .filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
   -webkit-font-smoothing: antialiased;
 }
 
-.filter-rule-choice:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+.filter-rule-choice:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus-visible, [aria-pressed="true"]):not(:disabled) {
   z-index: 1;
   background: var(--color-light-gray-a);
 }
 
-html.is-dark .filter-rule-choice:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+html.is-dark .filter-rule-choice:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus-visible, [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray-a);
 }
 

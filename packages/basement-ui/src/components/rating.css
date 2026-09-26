@@ -57,7 +57,7 @@ label.rating-star {
 
 .rating-star--on,
 .rating-star[aria-pressed='true'],
-.rating-star:is(:hover, :active, :focus-within),
+.rating-star:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus-within),
 .rating-star:has(:checked) {
   --rating-on: 1;
 }
@@ -79,12 +79,12 @@ label.rating-star {
   --rating-on: 1;
 }
 
-.rating:is(:hover, :focus-within) .rating-star:has(:checked),
-.rating:is(:hover, :focus-within) .rating-star:has(:checked) ~ .rating-star {
+.rating:is(:hover, [data-presentation-state="hover"], :focus-within) .rating-star:has(:checked),
+.rating:is(:hover, [data-presentation-state="hover"], :focus-within) .rating-star:has(:checked) ~ .rating-star {
   --rating-on: 0;
 }
 
-.rating:is(:hover, :focus-within) .rating-star:is(:hover, :focus-within),
-.rating:is(:hover, :focus-within) .rating-star:is(:hover, :focus-within) ~ .rating-star {
+.rating:is(:hover, [data-presentation-state="hover"], :focus-within) .rating-star:is(:hover, [data-presentation-state="hover"], :focus-within),
+.rating:is(:hover, [data-presentation-state="hover"], :focus-within) .rating-star:is(:hover, [data-presentation-state="hover"], :focus-within) ~ .rating-star {
   --rating-on: 1;
 }

@@ -29,6 +29,8 @@
 }
 
 .btn:focus-visible,
+.tag-button:focus-visible,
+.chat-choice:focus-visible,
 .link:focus-visible,
 .footer-link:focus-visible,
 .input:focus-visible,

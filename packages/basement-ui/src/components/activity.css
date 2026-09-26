@@ -49,7 +49,7 @@
   text-align: left;
 }
 
-.activity-item:hover {
+.activity-item:is(:hover, [data-presentation-state="hover"]) {
   background: var(--theme-bg-subtle);
 }
 
@@ -57,7 +57,7 @@
   background: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
 }
 
-.activity-item.is-unread:hover {
+.activity-item.is-unread:is(:hover, [data-presentation-state="hover"]) {
   background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
 }
 

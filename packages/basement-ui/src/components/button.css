@@ -67,11 +67,11 @@
   box-shadow: var(--shadow-s);
 }
 
-.btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+.btn--accent:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray-a);
 }
 
-html.is-dark .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+html.is-dark .btn--accent:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--color-light-gray-a);
   color: var(--color-black);
 }
@@ -82,12 +82,12 @@ html.is-dark .btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabl
   box-shadow: var(--shadow-s);
 }
 
-.btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+.btn--default:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--color-light-gray-a);
   border-color: var(--color-gray);
 }
 
-html.is-dark .btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+html.is-dark .btn--default:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray-a);
   border-color: var(--color-gray);
 }
@@ -97,23 +97,23 @@ html.is-dark .btn--default:is(:hover, :active, [aria-pressed="true"]):not(:disab
   border-color: var(--theme-border);
 }
 
-.btn--subtle:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+.btn--subtle:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: color-mix(in srgb, var(--theme-border) 18%, var(--theme-bg));
   border-color: var(--color-gray);
 }
 
-html.is-dark .btn--subtle:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+html.is-dark .btn--subtle:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: color-mix(in srgb, var(--theme-border) 22%, var(--theme-bg));
   border-color: var(--color-gray);
 }
 
 .btn--ghost { background: transparent; }
 
-.btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+.btn--ghost:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--theme-surface);
 }
 
-html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disabled) {
+html.is-dark .btn--ghost:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) {
   background: var(--color-dark-gray-a);
 }
 
@@ -163,7 +163,7 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
   padding-inline: 0.125rem;
 }
 
-.btn:is(:hover, :active, [aria-pressed="true"]):not(:disabled) .tag {
+.btn:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) .tag {
   border-color: var(--color-gray);
 }
 
@@ -173,7 +173,7 @@ html.is-dark .btn--ghost:is(:hover, :active, [aria-pressed="true"]):not(:disable
   background: transparent;
 }
 
-.btn--accent:is(:hover, :active, [aria-pressed="true"]):not(:disabled) .tag {
+.btn--accent:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed="true"]):not(:disabled) .tag {
   border-color: color-mix(in srgb, var(--theme-bg) 55%, transparent);
 }
 
@@ -214,22 +214,22 @@ html.is-dark .btn[data-theme-toggle] .ph-sun {
   color: var(--theme-fg);
 }
 
-.btn--float:not(.btn--accent):is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+.btn--float:not(.btn--accent):is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed='true']):not(:disabled) {
   background: var(--color-gray-extra-light);
   border-color: var(--color-gray);
 }
 
-html.is-dark .btn--float:not(.btn--accent):is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+html.is-dark .btn--float:not(.btn--accent):is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed='true']):not(:disabled) {
   background: var(--color-gray-extra-dark);
   border-color: var(--color-gray);
 }
 
-.btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+.btn--accent.btn--float:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed='true']):not(:disabled) {
   background: var(--color-gray-extra-dark);
   color: var(--theme-bg);
 }
 
-html.is-dark .btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):not(:disabled) {
+html.is-dark .btn--accent.btn--float:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], [aria-pressed='true']):not(:disabled) {
   background: var(--color-gray-extra-light);
   color: var(--color-black);
 }
@@ -257,7 +257,7 @@ html.is-dark .btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):
   box-shadow: none;
 }
 
-.btn-group > .btn:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+.btn-group > .btn:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus-visible, [aria-pressed="true"]):not(:disabled) {
   z-index: 1;
 }
 

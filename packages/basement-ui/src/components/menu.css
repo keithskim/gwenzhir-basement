@@ -60,11 +60,11 @@
   height: var(--menu-icon-size);
 }
 
-.menu-item:hover {
+.menu-item:is(:hover, [data-presentation-state="hover"]) {
   color: var(--theme-fg);
 }
 
-.menu-item:hover::before {
+.menu-item:is(:hover, [data-presentation-state="hover"])::before {
   background: var(--theme-bg-subtle);
 }
 

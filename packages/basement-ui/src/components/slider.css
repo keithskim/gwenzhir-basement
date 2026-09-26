@@ -75,7 +75,7 @@
   outline: none;
 }
 
-.slider-input:is(:hover, :active, :focus) {
+.slider-input:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus) {
   opacity: 1;
 }
 
@@ -128,20 +128,20 @@
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.slider-input:hover:not(:disabled)::-webkit-slider-thumb {
+.slider-input:is(:hover, [data-presentation-state="hover"]):not(:disabled)::-webkit-slider-thumb {
   border-color: var(--color-gray);
 }
 
-.slider-input:hover:not(:disabled)::-moz-range-thumb {
+.slider-input:is(:hover, [data-presentation-state="hover"]):not(:disabled)::-moz-range-thumb {
   border-color: var(--color-gray);
 }
 
-.slider-input:is(:active, :focus):not(:disabled)::-webkit-slider-thumb {
+.slider-input:is(:active, [data-presentation-state="active"], :focus):not(:disabled)::-webkit-slider-thumb {
   border-color: var(--theme-fg);
   box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--theme-fg) 28%, transparent);
 }
 
-.slider-input:is(:active, :focus):not(:disabled)::-moz-range-thumb {
+.slider-input:is(:active, [data-presentation-state="active"], :focus):not(:disabled)::-moz-range-thumb {
   border-color: var(--theme-fg);
   box-shadow: 0 0.125rem 0.5rem color-mix(in srgb, var(--theme-fg) 28%, transparent);
 }

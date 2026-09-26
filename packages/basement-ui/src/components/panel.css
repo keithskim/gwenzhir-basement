@@ -152,13 +152,13 @@
   transition: background-color 0.15s ease, height 0.15s ease, opacity 0.15s ease;
 }
 
-.panel--resizable:hover > .panel-resize-handle::after,
+.panel--resizable:is(:hover, [data-presentation-state="hover"]) > .panel-resize-handle::after,
 .panel-resize-handle:focus-visible::after,
 .panel--resizable.is-resizing > .panel-resize-handle::after {
   opacity: 1;
 }
 
-.panel-resize-handle:hover::after,
+.panel-resize-handle:is(:hover, [data-presentation-state="hover"])::after,
 .panel-resize-handle:focus-visible::after,
 .panel--resizable.is-resizing > .panel-resize-handle::after {
   background: var(--theme-fg-secondary);

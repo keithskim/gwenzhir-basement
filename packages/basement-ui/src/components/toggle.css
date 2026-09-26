@@ -184,7 +184,7 @@
   border-end-end-radius: calc(var(--border-radius-s) - 0.0625rem);
 }
 
-.segmented-select-option:hover .segmented-select-input:not(:checked):not(:disabled) + .segmented-select-label {
+.segmented-select-option:is(:hover, [data-presentation-state="hover"]) .segmented-select-input:not(:checked):not(:disabled) + .segmented-select-label {
   color: var(--theme-fg);
   background: color-mix(in srgb, var(--theme-border) 24%, transparent);
 }

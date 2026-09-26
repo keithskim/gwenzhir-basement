@@ -25,8 +25,8 @@ a.profile-item {
   cursor: pointer;
 }
 
-button.profile-item:hover,
-a.profile-item:hover {
+button.profile-item:is(:hover, [data-presentation-state="hover"]),
+a.profile-item:is(:hover, [data-presentation-state="hover"]) {
   background: var(--theme-bg-subtle);
 }
 

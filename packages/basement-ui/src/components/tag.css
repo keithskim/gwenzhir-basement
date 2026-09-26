@@ -244,3 +244,32 @@
   border-color: var(--theme-fg-destructive);
   color: var(--theme-bg);
 }
+
+/* Interactive tag. Static tags stay spans; this is a button that wears the tag. */
+.tag-button {
+  margin: 0;
+  appearance: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tag-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tag-button:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"]):not(:disabled) {
+  border-color: var(--color-gray);
+  color: var(--theme-fg);
+  background: var(--theme-bg-subtle);
+}
+
+.tag-button.tag--filled:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"]):not(:disabled) {
+  background: var(--color-dark-gray);
+  border-color: var(--color-dark-gray);
+  color: var(--color-white);
+}

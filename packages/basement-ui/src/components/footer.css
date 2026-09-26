@@ -46,6 +46,6 @@
   cursor: pointer;
 }
 
-.footer-link:hover {
+.footer-link:is(:hover, [data-presentation-state="hover"]) {
   color: var(--theme-fg);
 }

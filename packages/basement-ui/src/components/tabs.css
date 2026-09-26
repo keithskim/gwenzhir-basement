@@ -55,7 +55,7 @@
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.tab:not(.is-active):not([aria-selected='true']):hover:not(:disabled) {
+.tab:not(.is-active):not([aria-selected='true']):is(:hover, [data-presentation-state="hover"]):not(:disabled) {
   color: var(--theme-fg);
   background: color-mix(in srgb, var(--theme-border) 24%, transparent);
 }
@@ -186,7 +186,7 @@
   border-inline-start: var(--hairline) solid transparent;
 }
 
-.tabs--underline .tab:hover:not(:disabled) {
+.tabs--underline .tab:is(:hover, [data-presentation-state="hover"]):not(:disabled) {
   background: transparent;
 }
 
