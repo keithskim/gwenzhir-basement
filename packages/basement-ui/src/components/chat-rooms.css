@@ -95,7 +95,8 @@
   flex-shrink: 0;
   font-size: var(--font-size-2xs);
   line-height: var(--line-height-2xs);
-  color: var(--theme-fg-secondary);
+  /* Gray, a step lighter than secondary text, in both themes. */
+  color: var(--color-gray);
 }
 
 .chat-room:has(> .checkbox, > .rating-star) .chat-room-time {
