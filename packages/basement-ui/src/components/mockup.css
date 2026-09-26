@@ -27,11 +27,6 @@
   color: var(--theme-fg);
 }
 
-.mockup--phone {
-  --mockup-portrait-w: 20rem;
-  --mockup-portrait-h: 40rem;
-}
-
 .mockup--tablet {
   --mockup-portrait-w: 48rem;
   --mockup-portrait-h: 64rem;
@@ -80,9 +75,11 @@
 }
 
 .mockup-screen {
+  container-type: size;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  position: relative;
   box-sizing: border-box;
   width: var(--mockup-screen-w);
   height: var(--mockup-screen-h);
@@ -123,4 +120,85 @@
 
 .mockup-stage > .mockup {
   zoom: min(1, 100cqi / var(--mockup-outer-w), 100cqb / var(--mockup-outer-h));
+}
+
+/* Control markers — a tap or a drag on the screen.
+   --x and --y are 0–100 across and down the screen. Drag also sets --x2 and --y2. */
+
+.control-marker {
+  position: absolute;
+  z-index: 30;
+  left: calc(var(--x) * 1cqw);
+  top: calc(var(--y) * 1cqh);
+  box-sizing: border-box;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-gray-a);
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+.control-marker--tap {
+  animation: control-marker-tap 0.8s ease-out infinite;
+}
+
+.control-marker--drag {
+  --marker-dx: calc((var(--x2) - var(--x)) * 1cqw);
+  --marker-dy: calc((var(--y2) - var(--y)) * 1cqh);
+  animation: control-marker-drag 0.7s ease-in-out infinite;
+}
+
+@keyframes control-marker-tap {
+  0% {
+    scale: 0.7;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    scale: 1.15;
+    opacity: 0;
+  }
+}
+
+@keyframes control-marker-drag {
+  0% {
+    translate: -50% -50%;
+    scale: 0.7;
+    opacity: 0;
+    animation-timing-function: ease-out;
+  }
+
+  20% {
+    scale: 1;
+    opacity: 1;
+  }
+
+  92% {
+    translate: calc(var(--marker-dx) - 50%) calc(var(--marker-dy) - 50%);
+    scale: 1;
+    opacity: 1;
+  }
+
+  100% {
+    translate: calc(var(--marker-dx) - 50%) calc(var(--marker-dy) - 50%);
+    scale: 1;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control-marker--tap,
+  .control-marker--drag {
+    animation: none;
+    opacity: 1;
+    scale: 1;
+  }
 }

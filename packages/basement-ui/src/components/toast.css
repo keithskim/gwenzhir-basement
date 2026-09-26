@@ -3,7 +3,7 @@
 .toast-host {
   position: fixed;
   z-index: 1000;
-  top: var(--spacing-s);
+  bottom: var(--spacing-s);
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;

@@ -16,9 +16,11 @@
   position: absolute;
   inset: 0;
   z-index: 10;
+  width: auto;
+  max-width: none;
   transform: none;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   padding: var(--spacing-s);
 }

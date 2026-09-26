@@ -2745,11 +2745,24 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 #mockup .sample-box {
-  padding-inline: 0;
+  padding: var(--spacing-m);
+  justify-self: stretch;
+  width: auto;
+  max-width: none;
 }
 
 #mockup .pattern-demo:not(:has(.mockup--desktop)) .mockup-stage {
+  width: 100%;
   height: 36rem;
+}
+
+#mockup .pattern-demo:has(.mockup--landscape) > .sample-box {
+  container-type: inline-size;
+}
+
+#mockup .pattern-demo:has(.mockup--landscape) .mockup-stage {
+  width: 100%;
+  height: calc(100cqw * (23.4375rem + 0.75rem + 2px) / (50.75rem + (var(--spacing-s) * 2) + 2px));
 }
 
 .home-preview-sheet {

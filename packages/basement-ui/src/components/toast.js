@@ -7,6 +7,7 @@
  *   </div>
  *   <button type="button" data-toast-open="saved">Show</button>
  *
+ * Sits at the bottom center. Inside .chat it stays in that room.
  * data-toast-duration is milliseconds. 0, or omitting it, leaves the toast up
  * until the app closes it. Inside .overlay-root the host pins to that box.
  */

@@ -90,7 +90,7 @@
         <button type="button" class="sidebar-item" data-section="tooltip">Tooltip</button>
         <button type="button" class="sidebar-item" data-section="dialog">Dialog</button>
         <button type="button" class="sidebar-item" data-section="sheet">Sheet<span class="tag tag--counter" aria-label="New">N</span></button>
-        <button type="button" class="sidebar-item" data-section="toast">Toast</button>
+        <button type="button" class="sidebar-item" data-section="toast">Toast<span class="tag tag--counter" aria-label="New">N</span></button>
         <button type="button" class="sidebar-item" data-section="prompt">Prompt</button>
       </div>
       <div class="sidebar-group">
@@ -9437,7 +9437,7 @@ console.log(label);</code></pre>
     <!-- ── Toast ── -->
     <section class="section section--component" id="toast">
       <h2 class="section-label">Toast</h2>
-      <p class="type-paragraph">A brief status above the page. It does not sit in the flow, and the area around it stays clickable. Inside a region, it stays at the top of that region. It can disappear on its own, or stay until the app dismisses it.</p>
+      <p class="type-paragraph">A brief status at the bottom center. It does not sit in the flow, and the area around it stays clickable. Inside a region, it stays at the bottom center of that region. It can disappear on its own, or stay until the app dismisses it. In a chat room, it stays in that room.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -9445,7 +9445,7 @@ console.log(label);</code></pre>
           <div class="pattern-demo">
             <div class="box pattern-stage pattern-stage--toast overlay-root">
               <div class="toast-demo-chrome" aria-hidden="true">
-                <p class="type-paragraph" style="margin: 0;">The status sits above this region.</p>
+                <p class="type-paragraph" style="margin: 0;">The status sits at the bottom of this region.</p>
               </div>
               <div class="toast-host is-toast-open" data-toast-duration="0" aria-live="polite">
                 <div class="toast" role="status">Changes saved</div>
@@ -9453,17 +9453,17 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">In a region</span>
-              <span class="sample-meta-detail">Top of the region · Rest stays clickable</span>
+              <span class="sample-meta-detail">Bottom center of the region · Rest stays clickable</span>
             </div>
           </div>
           <div class="pattern-demo">
             <div class="box sample-box">
-              <p class="type-paragraph" style="margin: 0;">Shows at the top of the page, then goes away.</p>
+              <p class="type-paragraph" style="margin: 0;">Shows at the bottom center of the page, then goes away.</p>
               <button type="button" class="btn btn--xs btn--default" data-toast-open="toastPage">Show notice</button>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Page</span>
-              <span class="sample-meta-detail">Top of the page · Goes away on its own</span>
+              <span class="sample-meta-detail">Bottom center of the page · Goes away on its own</span>
             </div>
           </div>
           <div class="pattern-demo">
@@ -9818,7 +9818,7 @@ console.log(label);</code></pre>
     <!-- ── Messages ── -->
     <section class="section section--component" id="messages">
       <h2 class="section-label">Messages</h2>
-      <p class="type-paragraph">Notes in a thread. A header names the room. The log scrolls. Consecutive notes from the same person tuck under the first. Your notes sit on the trailing side, portrait included. Bubble wraps every note in a surface, and yours uses a filled tone. A typing row uses the dots spinner. An empty log stays quiet. A rich note is a card. A card leads with a picture or a centered mark, then a title, short copy, optional facts, and actions in a row or a stack. A menu is pinned to the bottom of the room. It is not a note from anyone. The list is full-width text, with no icons. The rich menu puts an icon over a label, in one or three columns and one or two rows. The toggle is a short bar with rounded corners; the room covers its sides and bottom. Collapsed, every menu leaves a full-width toggle labeled Menu.</p>
+      <p class="type-paragraph">Notes in a thread. A header names the room. The log scrolls. Consecutive notes from the same person tuck under the first. Your notes sit on the trailing side, portrait included. Bubble wraps every note in a surface, and yours uses a filled tone. A typing row uses the dots spinner. An empty log stays quiet. A rich note is a card. A card leads with a picture or a centered mark, then a title, short copy, optional facts, and actions in a row or a stack. A menu is pinned to the bottom of the room. It is not a note from anyone. The list is full-width text, with no icons. The rich menu puts an icon over a label, in one or three columns and one or two rows. The toggle is a short bar with rounded corners; the room covers its sides and bottom. Collapsed, every menu leaves a full-width toggle labeled Menu. A toast in the room sits at the bottom center, above the field or the menu.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -9959,6 +9959,44 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">Empty</span>
               <span class="sample-meta-detail">Header · Quiet log</span>
+            </div>
+          </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <section class="chat" aria-label="Notes">
+                <header class="chat-header">
+                  <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                  <div class="chat-header-body">
+                    <p class="chat-title">Notes</p>
+                    <p class="chat-subtitle">Mina, you</p>
+                  </div>
+                </header>
+                <div class="chat-log">
+                  <article class="chat-message chat-message--self">
+                    <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">G</span></span>
+                    <div class="chat-message-body">
+                      <div class="chat-message-meta">
+                        <span class="chat-message-name">You</span>
+                        <time class="chat-message-time tnum" datetime="2026-09-16T14:05">14:05</time>
+                      </div>
+                      <p class="chat-message-text">On it.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="toast-host is-toast-open" data-toast-duration="0" aria-live="polite">
+                  <div class="toast" role="status">Message sent</div>
+                </div>
+                <div class="chat-composer">
+                  <div class="text-input-group">
+                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <button type="button" class="btn btn--xs btn--default">Send</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Notice</span>
+              <span class="sample-meta-detail">Toast at the bottom center · Above the field</span>
             </div>
           </div>
         </div>
@@ -11048,7 +11086,7 @@ console.log(label);</code></pre>
     
     <section class="section section--component" id="mockup">
       <h2 class="section-label">Mockup</h2>
-      <p class="type-paragraph">A frame for a screen or an app at a known size. Phone, tablet, and desktop. Phone and tablet can turn sideways. Sideways, the screen keeps space at the sides. Desktop adds a slim title bar. The screen lays out at that size, then the stage scales the frame down to fit. A sheet, dialog, or toast placed in the screen stays on the screen.</p>
+      <p class="type-paragraph">A frame for a screen or an app at a known size. Phone, tablet, and desktop. Phone and tablet can turn sideways. Sideways, the screen keeps space at the sides. Desktop adds a slim title bar. The screen lays out at that size, then the stage scales the frame down to fit. A sheet, dialog, or toast placed in the screen stays on the screen. Markers on the screen show a tap or a drag.</p>
 
       <div class="border-group">
         <h3 class="subsection-label">Types</h3>
@@ -11247,6 +11285,53 @@ console.log(label);</code></pre>
             <div class="sample-meta">
               <span class="sample-meta-label">With overlays</span>
               <span class="sample-meta-detail">Sheet and dialog stay on the screen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-group">
+        <h3 class="subsection-label">Control markers</h3>
+        <div class="pattern-demo-list">
+          <div class="pattern-demo">
+            <div class="box sample-box">
+              <div class="mockup-stage">
+                <div class="mockup mockup--phone">
+                  <div class="mockup-screen overlay-root">
+                    <section class="chat" aria-label="Schedule">
+                      <header class="chat-header">
+                        <div class="chat-header-body">
+                          <p class="chat-title">Schedule</p>
+                          <p class="chat-subtitle">Today</p>
+                        </div>
+                      </header>
+                      <div class="chat-log">
+                        <article class="chat-message">
+                          <span class="avatar avatar--m" aria-hidden="true"><span class="avatar-fallback">M</span></span>
+                          <div class="chat-message-body">
+                            <div class="chat-message-meta">
+                              <span class="chat-message-name">Mina</span>
+                            </div>
+                            <p class="chat-message-text">Morning works.</p>
+                          </div>
+                        </article>
+                      </div>
+                      <div class="chat-composer">
+                        <div class="text-input-group">
+                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <button type="button" class="btn btn--xs btn--default">Send</button>
+                        </div>
+                      </div>
+                    </section>
+                    <span class="control-marker control-marker--drag" style="--x: 30; --y: 13; --x2: 82; --y2: 13" aria-label="Drag the note"></span>
+                    <span class="control-marker control-marker--tap" style="--x: 90; --y: 97" aria-label="Tap Send"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Tap and drag</span>
+              <span class="sample-meta-detail">The circle pulses · The same circle fades in, then travels along the drag</span>
             </div>
           </div>
         </div>
