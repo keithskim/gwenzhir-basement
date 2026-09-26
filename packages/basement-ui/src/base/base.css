@@ -30,3 +30,24 @@ img.img-placeholder,
 .img-placeholder {
   background: var(--color-gray-extra-light);
 }
+
+/* Dithered placeholder — two inks on a 4×4 ordered (Bayer) grid, pure CSS.
+   The tile holds each cell's threshold and the photo is added onto it. The filter
+   pushes each cell to black or white, then lifts black to --img-dither-level.
+   Multiply lets white take the surface color. Wrapper form only. */
+.img-placeholder--dither {
+  --img-dither-level: 0.54; /* Gray */
+  --img-dither-cell: 1px;
+  --img-dither-tone: 1.4;
+  --img-dither-k: calc((1 - var(--img-dither-level)) / (1 + var(--img-dither-level)));
+  overflow: hidden;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4' shape-rendering='crispEdges'><rect x='0' y='0' width='1' height='1' fill='%237c7c7c'/><rect x='1' y='0' width='1' height='1' fill='%233c3c3c'/><rect x='2' y='0' width='1' height='1' fill='%236c6c6c'/><rect x='3' y='0' width='1' height='1' fill='%232c2c2c'/><rect x='0' y='1' width='1' height='1' fill='%231c1c1c'/><rect x='1' y='1' width='1' height='1' fill='%235c5c5c'/><rect x='2' y='1' width='1' height='1' fill='%230c0c0c'/><rect x='3' y='1' width='1' height='1' fill='%234c4c4c'/><rect x='0' y='2' width='1' height='1' fill='%23646464'/><rect x='1' y='2' width='1' height='1' fill='%23242424'/><rect x='2' y='2' width='1' height='1' fill='%23747474'/><rect x='3' y='2' width='1' height='1' fill='%23343434'/><rect x='0' y='3' width='1' height='1' fill='%23040404'/><rect x='1' y='3' width='1' height='1' fill='%23444444'/><rect x='2' y='3' width='1' height='1' fill='%23141414'/><rect x='3' y='3' width='1' height='1' fill='%23545454'/></svg>") 0 0 / calc(var(--img-dither-cell) * 4) calc(var(--img-dither-cell) * 4);
+  filter: contrast(100) contrast(var(--img-dither-k)) brightness(calc(2 / (1 + var(--img-dither-k))));
+  mix-blend-mode: multiply;
+}
+
+.img-placeholder--dither > img {
+  filter: grayscale(1) contrast(var(--img-dither-tone)) brightness(0.5);
+  opacity: 1;
+  mix-blend-mode: plus-lighter;
+}

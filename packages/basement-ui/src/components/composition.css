@@ -72,3 +72,19 @@
 .chat-composer .text-input-group {
   width: 100%;
 }
+
+/* One line when empty; grows with each line up to --chat-composer-lines, then scrolls.
+   composer.js sizes the field where field-sizing is not supported. */
+.chat-composer {
+  --chat-composer-lines: 5;
+}
+
+.chat-composer textarea.input {
+  display: block;
+  flex: 1;
+  min-height: calc(var(--line-height-xs) + 0.5rem + var(--hairline) * 2);
+  max-height: calc(var(--line-height-xs) * var(--chat-composer-lines) + 0.5rem + var(--hairline) * 2);
+  overflow-y: auto;
+  resize: none;
+  field-sizing: content;
+}

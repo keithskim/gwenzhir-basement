@@ -2627,6 +2627,25 @@
               <span class="sample-meta-detail">Faint grayscale · High contrast · Pale gray</span>
             </div>
           </div>
+          <div class="type-sample-item">
+            <div class="box sample-box">
+              <div class="graphics-row">
+                <div class="graphics-frame img-placeholder img-placeholder--dither">
+                  <img src="reference/photos/fjord.jpg" alt="A cliff above a blue fjord, shown as a two-tone dithered stand-in">
+                </div>
+                <div class="graphics-frame img-placeholder img-placeholder--dither">
+                  <img src="reference/photos/hills.jpg" alt="Green hills and a road, shown as a two-tone dithered stand-in">
+                </div>
+                <div class="graphics-frame img-placeholder img-placeholder--dither">
+                  <img src="reference/photos/camp.jpg" alt="A yellow tent in snow, shown as a two-tone dithered stand-in">
+                </div>
+              </div>
+            </div>
+            <div class="sample-meta">
+              <span class="sample-meta-label">Dithered</span>
+              <span class="sample-meta-detail">4×4 ordered grid · Gray and surface · Pure CSS</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -10092,7 +10111,7 @@ console.log(label);</code></pre>
             </div>
             <div class="sample-meta">
               <span class="sample-meta-label">Beside</span>
-              <span class="sample-meta-detail">Time in its own column · Note stays capped · Gap before the time</span>
+              <span class="sample-meta-detail">Time in its own column · Note stays capped · Time before your note</span>
             </div>
           </div>
           <div class="type-sample-item">
@@ -10142,7 +10161,7 @@ console.log(label);</code></pre>
                 </div>
                 <div class="chat-composer">
                   <div class="text-input-group">
-                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                     <button type="button" class="btn btn--xs btn--default">Send</button>
                   </div>
                 </div>
@@ -10657,7 +10676,7 @@ console.log(label);</code></pre>
                 </div>
                 <div class="chat-composer">
                   <div class="text-input-group">
-                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                     <button type="button" class="btn btn--xs btn--default">Send</button>
                   </div>
                 </div>
@@ -10697,7 +10716,7 @@ console.log(label);</code></pre>
                     <button type="button" class="btn btn--2xs btn--subtle">Gray D is fine</button>
                   </div>
                   <div class="text-input-group">
-                    <input class="input" type="text" placeholder="Message" aria-label="Message">
+                    <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                     <button type="button" class="btn btn--xs btn--default">Send</button>
                   </div>
                 </div>
@@ -10779,7 +10798,7 @@ console.log(label);</code></pre>
                       <button type="button" class="btn btn--2xs btn--subtle">Sending a pass</button>
                     </div>
                     <div class="text-input-group">
-                      <input class="input" type="text" placeholder="Message" aria-label="Message">
+                      <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                       <button type="button" class="btn btn--xs btn--default">Send</button>
                     </div>
                   </div>
@@ -10821,7 +10840,7 @@ console.log(label);</code></pre>
                       <button type="button" class="btn btn--2xs btn--subtle">Pulling them in</button>
                     </div>
                     <div class="text-input-group">
-                      <input class="input" type="text" placeholder="Message" aria-label="Message">
+                      <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                       <button type="button" class="btn btn--xs btn--default">Send</button>
                     </div>
                   </div>
@@ -11455,7 +11474,7 @@ console.log(label);</code></pre>
                       </div>
                       <div class="chat-composer">
                         <div class="text-input-group">
-                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                           <button type="button" class="btn btn--xs btn--default">Send</button>
                         </div>
                       </div>
@@ -11586,7 +11605,7 @@ console.log(label);</code></pre>
                       </div>
                       <div class="chat-composer">
                         <div class="text-input-group">
-                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                           <button type="button" class="btn btn--xs btn--default">Send</button>
                         </div>
                       </div>
@@ -11667,7 +11686,7 @@ console.log(label);</code></pre>
                       </div>
                       <div class="chat-composer">
                         <div class="text-input-group">
-                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                           <button type="button" class="btn btn--xs btn--default">Send</button>
                         </div>
                       </div>
@@ -11722,7 +11741,7 @@ console.log(label);</code></pre>
                       </div>
                       <div class="chat-composer">
                         <div class="text-input-group">
-                          <input class="input" type="text" placeholder="Message" aria-label="Message">
+                          <textarea class="input" rows="1" placeholder="Message" aria-label="Message"></textarea>
                           <button type="button" class="btn btn--xs btn--default">Send</button>
                         </div>
                       </div>
@@ -11944,6 +11963,7 @@ console.log(label);</code></pre>
   <script src="src/components/keyboard.js" defer></script>
   <script src="src/components/box-resize.js" defer></script>
   <script src="src/components/edge-fade.js" defer></script>
+  <script src="src/components/composer.js" defer></script>
   <script src="src/components/panel.js" defer></script>
   <script src="src/components/dialog.js" defer></script>
   <script src="src/components/sheet.js" defer></script>

@@ -180,10 +180,11 @@
   color: var(--theme-fg-secondary);
 }
 
+/* Compact leading (.type-compact): size + 0.25rem. */
 .chat-message-text {
   margin: 0;
   font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  line-height: calc(1em + 0.25rem);
   color: var(--theme-fg);
   overflow-wrap: anywhere;
 }
@@ -263,6 +264,21 @@
   align-items: flex-end;
 }
 
+/* Yours, beside: no portrait or name unless .chat-message--identified asks for them. */
+.chat-message--self.chat-message--meta-inline:not(.chat-message--identified) > .avatar,
+.chat-message--self.chat-message--meta-inline:not(.chat-message--identified) .chat-message-meta {
+  display: none;
+}
+
+/* Yours: the time column leads, so it sits before the note. */
+.chat-message--self.chat-message--meta-inline .chat-message-row {
+  grid-template-columns: max-content fit-content(var(--chat-bubble-max));
+}
+
+.chat-message--self.chat-message--meta-inline .chat-message-time {
+  order: -1;
+}
+
 @supports (anchor-scope: --chat-bubble) {
   .chat--bubble .chat-message-body:has(.chat-message-text) {
     display: block;
@@ -272,6 +288,9 @@
     min-width: 0;
     box-sizing: border-box;
     padding: calc(var(--chat-bubble-pad-block) + var(--hairline)) calc(var(--chat-bubble-pad-inline) + var(--hairline));
+    /* The note is inline here, so the body's leading sets the line box. Match the note's compact leading. */
+    font-size: var(--font-size-xs);
+    line-height: calc(1em + 0.25rem);
     text-wrap: balance;
     anchor-scope: --chat-bubble;
   }

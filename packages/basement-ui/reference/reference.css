@@ -456,6 +456,10 @@ html.is-sidebar-locked {
   min-width: 0;
 }
 
+#graphics .sample-box {
+  padding: var(--spacing-s) var(--chart-inset);
+}
+
 .graphics-frame {
   flex: 1 1 12rem;
   min-width: 0;
