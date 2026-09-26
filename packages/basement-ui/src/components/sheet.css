@@ -32,6 +32,7 @@
 }
 
 .sheet {
+  --sheet-max-width: 23.4375rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -40,14 +41,15 @@
   gap: var(--spacing-s);
   box-sizing: border-box;
   flex: 0 1 auto;
-  width: 100%;
+  width: min(100%, var(--sheet-max-width));
   min-height: 0;
   max-height: calc(100% - 2.5rem);
   overflow: hidden;
   margin: 0;
+  margin-inline: auto;
+  margin-bottom: -1px;
   padding: var(--spacing-s);
   border: 1px solid var(--theme-border);
-  border-block-end: 0;
   border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
   background: var(--theme-bg);
   box-shadow: var(--shadow-l);
@@ -57,6 +59,22 @@
   font-weight: var(--font-base-weight);
   -webkit-font-smoothing: antialiased;
   text-align: left;
+}
+
+/* Fill a region and share its side edges. A flat scrim — blur feathers into the border. */
+.overlay-root > .sheet-host > .sheet-backdrop {
+  inset: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Full border and radius. The container clips the side and bottom edges, so only the top border shows. */
+.overlay-root > .sheet-host > .sheet {
+  width: calc(100% + 2px);
+  max-width: none;
+  margin-inline: -1px;
+  border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
+  box-shadow: none;
 }
 
 .sheet-host.is-sheet-open .sheet {
@@ -70,16 +88,19 @@
 }
 
 .sheet-heading {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: var(--spacing-s);
   flex: 0 0 auto;
   width: 100%;
   min-width: 0;
+  text-align: center;
 }
 
-.sheet-title {
+.sheet .sheet-title {
+  display: block;
   flex: 1 1 auto;
   min-width: 0;
   margin: 0;
@@ -89,10 +110,15 @@
   line-height: var(--line-height-s);
   letter-spacing: -0.01em;
   color: var(--theme-fg);
+  text-align: center;
 }
 
-.sheet-heading .btn {
+.sheet-heading > .btn {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
   flex-shrink: 0;
+  transform: translateY(-50%);
 }
 
 .sheet-body {
@@ -110,18 +136,62 @@
   line-height: var(--line-height-xs);
 }
 
-.sheet-actions {
+/* Full-width button group: equal actions, shared corners, one shared edge. */
+.sheet-actions,
+.sheet .btn-group {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-  gap: var(--spacing-xs);
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 0;
   flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  isolation: isolate;
+  border-radius: var(--border-radius-s);
 }
 
-.sheet-actions .btn {
+.sheet-actions:has(.btn--default, .btn--accent),
+.sheet .btn-group:has(.btn--default, .btn--accent) {
+  box-shadow: var(--shadow-s);
+}
+
+.sheet-actions > .btn,
+.sheet .btn-group > .btn {
+  position: relative;
   box-sizing: border-box;
-  min-width: 5rem;
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sheet-actions > .btn:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled),
+.sheet .btn-group > .btn:is(:hover, :active, :focus-visible, [aria-pressed="true"]):not(:disabled) {
+  z-index: 1;
+}
+
+.sheet-actions > .btn:first-child,
+.sheet .btn-group > .btn:first-child {
+  border-start-start-radius: var(--border-radius-s);
+  border-end-start-radius: var(--border-radius-s);
+}
+
+.sheet-actions > .btn:last-child,
+.sheet .btn-group > .btn:last-child {
+  border-start-end-radius: var(--border-radius-s);
+  border-end-end-radius: var(--border-radius-s);
+}
+
+.sheet-actions > .btn:only-child,
+.sheet .btn-group > .btn:only-child {
+  border-radius: var(--border-radius-s);
+}
+
+.sheet-actions > .btn + .btn,
+.sheet .btn-group > .btn + .btn {
+  margin-inline-start: -1px;
 }
 
 @media (prefers-reduced-motion: reduce) {

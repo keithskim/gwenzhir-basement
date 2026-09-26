@@ -70,3 +70,14 @@
   line-height: calc(1em + 0.25rem);
   -webkit-font-smoothing: antialiased;
 }
+
+/* Equal segments, like a shorts paginator. Set --progress on each track. */
+.progress--stepped {
+  gap: 0.25rem;
+  --progress-track-height: 0.125rem;
+}
+
+.progress--stepped:has(.progress-status) {
+  display: flex;
+  flex-wrap: wrap;
+}

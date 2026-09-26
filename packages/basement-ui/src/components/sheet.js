@@ -111,12 +111,34 @@
     }
   }
 
+  function isRegionSheet(host) {
+    return !!(host && host.closest && host.closest('.overlay-root'));
+  }
+
+  /* Page sheets leave the content stacking context so they cover the sidebar. */
+  function park(host) {
+    if (!host || isRegionSheet(host) || host.__basementSheetPark) return;
+    var marker = document.createComment('sheet-host');
+    if (host.parentNode) host.parentNode.insertBefore(marker, host);
+    host.__basementSheetPark = marker;
+    document.body.appendChild(host);
+  }
+
+  function unpark(host) {
+    var marker = host && host.__basementSheetPark;
+    host.__basementSheetPark = null;
+    if (!marker || !marker.parentNode) return;
+    marker.parentNode.insertBefore(host, marker);
+    marker.parentNode.removeChild(marker);
+  }
+
   function open(hostOrSheet) {
     var host = hostFor(hostOrSheet) || hostOrSheet;
     if (!host || !host.classList.contains('sheet-host')) return;
     if (host.hasAttribute('data-basement-dialog-inert')) releaseInert(host, 'data-basement-dialog-inert');
     if (host.hasAttribute('data-basement-sheet-inert')) releaseInert(host, 'data-basement-sheet-inert');
     host.__basementSheetOpener = document.activeElement;
+    park(host);
     host.classList.add('is-sheet-open');
     syncAria(host);
     syncInert(host, true);
@@ -130,6 +152,7 @@
     host.classList.remove('is-sheet-open');
     syncAria(host);
     syncInert(host, false);
+    unpark(host);
     var opener = host.__basementSheetOpener;
     host.__basementSheetOpener = null;
     if (opener && typeof opener.focus === 'function' && document.contains(opener)) {

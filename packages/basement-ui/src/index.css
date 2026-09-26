@@ -40,7 +40,9 @@
 @import url('./components/toast.css');
 @import url('./components/alert.css');
 @import url('./components/activity.css');
-@import url('./components/chat.css');
+@import url('./components/chat-rooms.css');
+@import url('./components/messages.css');
+@import url('./components/composition.css');
 @import url('./components/table.css');
 @import url('./components/timeline.css');
 @import url('./components/calendar.css');

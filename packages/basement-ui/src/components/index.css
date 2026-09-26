@@ -34,7 +34,9 @@
 @import url('./toast.css');
 @import url('./alert.css');
 @import url('./activity.css');
-@import url('./chat.css');
+@import url('./chat-rooms.css');
+@import url('./messages.css');
+@import url('./composition.css');
 @import url('./table.css');
 @import url('./timeline.css');
 @import url('./calendar.css');

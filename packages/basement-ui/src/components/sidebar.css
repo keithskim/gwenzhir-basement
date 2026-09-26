@@ -217,6 +217,21 @@
   padding-inline: 0.125rem;
 }
 
+.sidebar-item:has(> .tag) {
+  gap: 0.25rem;
+}
+
+.sidebar-item > .tag.tag--counter {
+  --tag-counter-size: 0.75rem;
+  font-size: var(--font-size-3xs);
+  line-height: 1;
+  width: var(--tag-counter-size);
+  min-width: var(--tag-counter-size);
+  min-height: var(--tag-counter-size);
+  height: var(--tag-counter-size);
+  padding: 0;
+}
+
 .sidebar-item.is-active .sidebar-item-meta {
   color: var(--theme-fg-secondary);
 }

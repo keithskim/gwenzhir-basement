@@ -1,0 +1,172 @@
+/* Chat rooms — conversation list. Chrome only; apps own delivery. */
+
+.chat-rooms {
+  --chat-avatar-gap: 0.75rem;
+  --chat-cell-pad-inline: var(--spacing-xs);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 16rem;
+  padding: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-bg);
+  font-family: var(--font-base-family);
+  font-weight: var(--font-base-weight);
+  -webkit-font-smoothing: antialiased;
+}
+
+.chat-room {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--chat-avatar-gap);
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 0.5rem var(--chat-cell-pad-inline);
+  border-radius: 0;
+  color: var(--theme-fg);
+  cursor: pointer;
+  text-align: left;
+}
+
+.chat-room:hover {
+  background: var(--theme-bg-subtle);
+}
+
+.chat-room:is(.is-active, :has(> .checkbox:checked)) {
+  background: color-mix(in srgb, var(--theme-border) 32%, var(--theme-bg));
+}
+
+.chat-room:is(.is-active, :has(> .checkbox:checked)):hover {
+  background: color-mix(in srgb, var(--theme-border) 40%, var(--theme-bg));
+}
+
+.chat-room .avatar .ph {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--theme-fg-secondary);
+}
+
+.chat-room-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.chat-room-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.chat-room-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-name {
+  flex: 0 1 auto;
+}
+
+.chat-room:is(.is-active, :has(.tag--counter), :has(> .checkbox:checked)) .chat-room-name {
+  color: var(--theme-fg);
+}
+
+.chat-room-time {
+  flex-shrink: 0;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--theme-fg-secondary);
+}
+
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-time {
+  margin-inline-start: auto;
+}
+
+.chat-room-preview {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  color: var(--theme-fg-secondary);
+}
+
+.chat-room-row .tag--counter {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.chat-room-row > .tag:not(.tag--counter) {
+  flex-shrink: 0;
+}
+
+.chat-room-group {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.chat-room-group + .chat-room-group {
+  margin-top: 0.25rem;
+}
+
+.chat-room-label {
+  padding: 0.5rem var(--chat-cell-pad-inline) 0.25rem;
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--theme-fg-secondary);
+}
+
+.chat-room-main {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--chat-avatar-gap);
+  flex: 1 1 auto;
+  min-width: 0;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.chat-room > .checkbox,
+.chat-room > .rating-star {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.chat-room:has(> .checkbox, > .rating-star) {
+  gap: var(--spacing-xs);
+}
+
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-body {
+  justify-content: center;
+}
+
+.chat-room:has(> .checkbox, > .rating-star) .chat-room-row:has(.chat-room-preview) {
+  display: none;
+}

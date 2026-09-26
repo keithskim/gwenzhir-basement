@@ -758,6 +758,53 @@ html.is-sidebar-locked {
   line-height: var(--line-height-2xs);
 }
 
+.home-preview-rooms {
+  min-height: 0;
+  height: auto;
+  width: 100%;
+  max-width: 10rem;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+
+.home-preview-rooms .chat-room {
+  padding-block: 0.125rem;
+  gap: 0.25rem;
+}
+
+.home-preview-rooms .chat-room-name,
+.home-preview-rooms .chat-room-preview {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
+.home-preview-composition {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 10rem;
+}
+
+.home-preview-composer {
+  width: 100%;
+  max-width: 10rem;
+}
+
+.home-preview-composer .input {
+  color: var(--theme-fg-secondary);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  padding-block: 0.125rem;
+}
+
+.home-preview-composer .btn {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+}
+
 .home-preview-activity {
   min-height: 0;
   width: 100%;
@@ -1470,8 +1517,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   #alert .sample-meta-detail,
   #prompt .sample-meta-label,
   #prompt .sample-meta-detail,
-  #chat .sample-meta-label,
-  #chat .sample-meta-detail,
+  #chat-rooms .sample-meta-label,
+  #chat-rooms .sample-meta-detail,
+  #messages .sample-meta-label,
+  #messages .sample-meta-detail,
+  #composition .sample-meta-label,
+  #composition .sample-meta-detail,
   #activity .sample-meta-label,
   #activity .sample-meta-detail,
   #timeline .sample-meta-label,
@@ -2203,34 +2254,46 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   }
 }
 
-#chat .type-sample-item {
+:is(#chat-rooms, #messages, #composition) .type-sample-item {
   grid-column: 1 / -1;
   min-width: 0;
 }
 
 @media (min-width: 40rem) {
-  #chat .type-sample-list--types > .type-sample-item {
+  :is(#chat-rooms, #messages, #composition) .type-sample-list--types > .type-sample-item {
     grid-column: span 4;
   }
 
-  #chat .type-sample-list--types > .type-sample-item:has(.chat-frame) {
+  #composition .type-sample-list--types > .type-sample-item:has(.chat-frame) {
     grid-column: 1 / -1;
   }
 }
 
-#chat .sample-box {
+:is(#chat-rooms, #messages, #composition) .sample-box {
   min-height: 20rem;
   align-items: stretch;
 }
 
-#chat .sample-box > .chat,
-#chat .sample-box > .chat-frame {
+:is(#messages, #composition) .sample-box > .chat,
+#composition .sample-box > .chat-frame {
   width: 100%;
   height: 100%;
   min-height: 0;
 }
 
-#chat .sample-box > .chat-rooms {
+#messages .type-sample-item:has(.chat-card) {
+  align-self: start;
+}
+
+#messages .sample-box:has(.chat-card) {
+  min-height: 0;
+}
+
+#messages .sample-box:has(.chat-card) > .chat {
+  height: auto;
+}
+
+#chat-rooms .sample-box > .chat-rooms {
   width: max-content;
   max-width: 100%;
   height: 100%;
@@ -2624,10 +2687,21 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   overflow: hidden;
 }
 
+#sheet .pattern-demo:has(.pattern-stage--sheet) {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 44rem) {
+  #sheet .pattern-demo:has(.pattern-stage--sheet) {
+    grid-column: span 4;
+  }
+}
+
 #sheet .pattern-stage--sheet {
-  width: min(100%, 23.4375rem);
+  width: 100%;
+  max-width: none;
   height: 32rem;
-  justify-self: center;
+  justify-self: stretch;
 }
 
 #sheet .pattern-demo:has(.pattern-stage--sheet) .sample-meta {
@@ -2635,9 +2709,20 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   justify-content: space-between;
   align-items: baseline;
   gap: var(--spacing-s);
-  width: min(100%, 23.4375rem);
-  margin-inline: auto;
-  justify-self: center;
+  width: 100%;
+  margin-inline: 0;
+  justify-self: stretch;
+}
+
+#sheet .pattern-demo > .sample-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+#sheet .pattern-demo > .sample-box > .type-paragraph {
+  flex-basis: 100%;
 }
 
 #sheet .pattern-demo:has(.pattern-stage--sheet) .sample-meta-detail {
@@ -2659,8 +2744,12 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
   }
 }
 
+#mockup .sample-box {
+  padding-inline: 0;
+}
+
 #mockup .pattern-demo:not(:has(.mockup--desktop)) .mockup-stage {
-  height: 42rem;
+  height: 36rem;
 }
 
 .home-preview-sheet {
