@@ -4,7 +4,7 @@
   gap: 0.25rem;
   box-sizing: border-box;
   border-radius: 9999px;
-  border: 1px solid transparent;
+  border: var(--hairline) solid transparent;
   background: var(--theme-bg-subtle);
   color: var(--theme-fg-secondary);
   font-family: var(--font-base-family);

@@ -9,7 +9,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
   font-family: var(--font-base-family);
@@ -74,7 +74,7 @@
   height: 1.25rem;
   margin-block-start: 0.125rem;
   border-radius: 50%;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: var(--theme-bg-subtle);
   color: var(--theme-fg-secondary);
   font-size: 0.75rem;

@@ -4,7 +4,7 @@
   justify-content: center;
   box-sizing: border-box;
   border-radius: var(--border-radius-s);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   color: var(--theme-fg-secondary);
   background: transparent;
   white-space: nowrap;
@@ -97,7 +97,7 @@
 }
 
 .tag--split .tag-label + .tag-label {
-  border-inline-start: 1px solid var(--theme-border);
+  border-inline-start: var(--hairline) solid var(--theme-border);
 }
 
 .tag--split.tag--filled .tag-label + .tag-label {

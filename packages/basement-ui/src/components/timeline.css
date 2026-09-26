@@ -26,9 +26,9 @@
 .timeline-track {
   position: relative;
   height: var(--line-height-s);
-  background-image: linear-gradient(to right, var(--timeline-grid-line) 1px, transparent 1px);
+  background-image: linear-gradient(to right, var(--timeline-grid-line) var(--hairline), transparent var(--hairline));
   background-size: calc(100% / var(--timeline-ticks)) 100%;
-  border-inline-end: 1px solid var(--timeline-grid-line);
+  border-inline-end: var(--hairline) solid var(--timeline-grid-line);
   box-sizing: border-box;
 }
 
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   border-radius: var(--border-radius-s);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: transparent;
   box-sizing: border-box;
   overflow: hidden;
@@ -85,7 +85,7 @@
   position: absolute;
   inset-inline: 0;
   top: 50%;
-  height: 1px;
+  height: var(--hairline);
   background: var(--timeline-bar-color);
   transform: translateY(-50%);
 }
@@ -96,7 +96,7 @@
   inset-inline: 0;
   top: 50%;
   height: 0.5rem;
-  border-inline: 1px solid var(--timeline-bar-color);
+  border-inline: var(--hairline) solid var(--timeline-bar-color);
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -114,7 +114,7 @@
   position: absolute;
   inset-block: 0;
   inset-inline-start: var(--marker-at, 0%);
-  width: 1px;
+  width: var(--hairline);
   background: var(--theme-fg-destructive);
   z-index: 1;
 }

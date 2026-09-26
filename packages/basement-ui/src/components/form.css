@@ -35,7 +35,7 @@
   width: var(--size-xs);
   height: var(--size-xs);
   margin: 0;
-  border: 0.0625rem solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: var(--theme-surface);
   cursor: pointer;
   position: relative;
@@ -53,8 +53,8 @@
   left: 0.3125rem;
   width: 0.25rem;
   height: 0.5rem;
-  border-right: 0.125rem solid var(--theme-bg);
-  border-bottom: 0.125rem solid var(--theme-bg);
+  border-right: max(0.125rem, var(--hairline)) solid var(--theme-bg);
+  border-bottom: max(0.125rem, var(--hairline)) solid var(--theme-bg);
   opacity: 0;
   transform: rotate(45deg);
 }

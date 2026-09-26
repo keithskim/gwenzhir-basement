@@ -16,7 +16,7 @@
   box-sizing: border-box;
   padding: 0;
   overflow: visible;
-  border: 0.0625rem solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: transparent;
   scrollbar-width: none;
@@ -68,7 +68,7 @@
 }
 
 .tabs:not(.tabs--underline) .tab {
-  border: 0.0625rem solid transparent;
+  border: var(--hairline) solid transparent;
   margin: -0.0625rem;
 }
 
@@ -161,14 +161,14 @@
   padding: 0;
   overflow: visible;
   border: 0;
-  border-bottom: 0.0625rem solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
   border-radius: 0;
   background: transparent;
 }
 
 .tabs--underline.tabs--stacked {
   border-bottom: 0;
-  border-inline-start: 0.0625rem solid var(--theme-border);
+  border-inline-start: var(--hairline) solid var(--theme-border);
 }
 
 .tabs--underline .tab {
@@ -176,14 +176,14 @@
   padding-block: calc(var(--tab-pad-block) + 0.125rem);
   padding-inline: calc(var(--tab-pad-inline) + 0.125rem);
   border: 0;
-  border-bottom: 0.0625rem solid transparent;
+  border-bottom: var(--hairline) solid transparent;
   border-radius: 0;
 }
 
 .tabs--underline.tabs--stacked .tab {
   margin: 0 0 0 -0.0625rem;
   border-bottom: 0;
-  border-inline-start: 0.0625rem solid transparent;
+  border-inline-start: var(--hairline) solid transparent;
 }
 
 .tabs--underline .tab:hover:not(:disabled) {

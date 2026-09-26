@@ -4,7 +4,7 @@
   gap: var(--spacing-xs);
   padding-block: var(--spacing-xs);
   padding-inline: var(--spacing-s);
-  border: 1px solid var(--alert-neutral-border);
+  border: var(--hairline) solid var(--alert-neutral-border);
   border-radius: var(--border-radius-s);
   background: var(--alert-neutral-bg);
 }

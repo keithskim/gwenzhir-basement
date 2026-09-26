@@ -11,7 +11,7 @@
   min-width: 0;
   min-height: 16rem;
   overflow: hidden;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
   font-family: var(--font-base-family);
@@ -25,7 +25,7 @@
   gap: var(--chat-avatar-gap);
   flex-shrink: 0;
   padding: 0.5rem 0.75rem;
-  border-block-end: 1px solid var(--theme-border);
+  border-block-end: var(--hairline) solid var(--theme-border);
 }
 
 .chat-header .avatar .ph {
@@ -109,7 +109,7 @@
   content: '';
   flex: 1 1 auto;
   min-width: 0;
-  border-block-start: 1px solid var(--theme-border);
+  border-block-start: var(--hairline) solid var(--theme-border);
 }
 
 .chat-system {
@@ -201,9 +201,9 @@
 }
 
 .chat--bubble .chat-message--self .chat-message-text {
-  background: var(--theme-fg);
-  border-color: var(--theme-fg);
-  color: var(--theme-bg);
+  background: var(--color-gray-extra-light);
+  border-color: var(--theme-border);
+  color: var(--color-black);
 }
 
 /* Typing row uses the dots spinner, aligned like an incoming note. */
@@ -216,12 +216,13 @@
   width: fit-content;
   min-height: 0;
   padding: 0.5rem 0.625rem;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-surface);
 }
 
-/* Bubble: every note sits in a surface, not only yours. */
+/* Bubble: every note sits in a surface, not only yours.
+   A wrapped note stays as wide as its longest line. */
 .chat--bubble .chat-message-body {
   flex: 0 1 auto;
   max-width: calc(100% - 2.75rem);
@@ -231,9 +232,67 @@
   width: fit-content;
   max-width: 100%;
   padding: 0.25rem 0.625rem;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-surface);
+}
+
+@supports (anchor-scope: --chat-bubble) {
+  .chat--bubble .chat-message-body:has(.chat-message-text) {
+    display: block;
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: calc(0.25rem + var(--hairline)) calc(0.625rem + var(--hairline));
+    text-wrap: balance;
+    anchor-scope: --chat-bubble;
+  }
+
+  .chat--bubble .chat-message-body:has(.chat-message-text) .chat-message-meta {
+    margin: calc(-0.25rem - var(--hairline)) calc(-0.625rem - var(--hairline)) 0.125rem;
+  }
+
+  .chat--bubble .chat-message--self .chat-message-body:has(.chat-message-text) {
+    text-align: end;
+  }
+
+  .chat--bubble .chat-message-text {
+    display: inline;
+    width: auto;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    anchor-name: --chat-bubble;
+  }
+
+  .chat--bubble .chat-message--self .chat-message-text {
+    background: transparent;
+    border-color: transparent;
+    color: var(--color-black);
+  }
+
+  .chat--bubble .chat-message-body:has(.chat-message-text)::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    position-anchor: --chat-bubble;
+    place-self: anchor-center;
+    box-sizing: border-box;
+    width: calc(anchor-size(width) + 1.25rem + (var(--hairline) * 2));
+    height: calc(anchor-size(height) + 0.5rem + (var(--hairline) * 2));
+    border: var(--hairline) solid var(--theme-border);
+    border-radius: var(--border-radius-s);
+    background: var(--theme-surface);
+    pointer-events: none;
+  }
+
+  .chat--bubble .chat-message--self .chat-message-body:has(.chat-message-text)::before {
+    background: var(--color-gray-extra-light);
+  }
 }
 
 /* Rich notes. A card is a picture or a mark, then title, copy, facts, and actions. */
@@ -245,7 +304,7 @@
   max-width: calc(100% - 1.5rem);
   min-width: 0;
   overflow: hidden;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
   color: var(--theme-fg);
@@ -364,10 +423,10 @@
   width: calc(100% + 2px);
   min-width: 0;
   margin-top: auto;
-  margin-inline: -1px;
-  margin-bottom: -1px;
+  margin-inline: calc(-1 * var(--hairline));
+  margin-bottom: calc(-1 * var(--hairline));
   overflow: hidden;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
   background: var(--theme-bg);
   color: var(--theme-fg);
@@ -397,7 +456,7 @@
 }
 
 .chat-menu:not(.is-collapsed) .chat-menu-toggle {
-  border-block-end: 1px solid var(--theme-border);
+  border-block-end: var(--hairline) solid var(--theme-border);
 }
 
 .chat-menu.is-collapsed {
@@ -457,7 +516,7 @@
 }
 
 .chat-menu-list .chat-menu-item + .chat-menu-item {
-  border-block-start: 1px solid var(--theme-border);
+  border-block-start: var(--hairline) solid var(--theme-border);
 }
 
 .chat-menu-grid {
@@ -476,15 +535,15 @@
 }
 
 .chat-menu-grid--1 .chat-menu-item + .chat-menu-item {
-  border-block-start: 1px solid var(--theme-border);
+  border-block-start: var(--hairline) solid var(--theme-border);
 }
 
 .chat-menu-grid:not(.chat-menu-grid--1) .chat-menu-item:not(:nth-child(3n)) {
-  border-inline-end: 1px solid var(--theme-border);
+  border-inline-end: var(--hairline) solid var(--theme-border);
 }
 
 .chat-menu-grid:not(.chat-menu-grid--1) .chat-menu-item:nth-child(n + 4) {
-  border-block-start: 1px solid var(--theme-border);
+  border-block-start: var(--hairline) solid var(--theme-border);
 }
 
 /* One or two rows. Anything past that is not part of the menu. */

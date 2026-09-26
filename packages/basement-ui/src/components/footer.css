@@ -19,7 +19,7 @@
 }
 
 .footer--border {
-  border-top: 1px solid var(--theme-border);
+  border-top: var(--hairline) solid var(--theme-border);
 }
 
 .footer--between {

@@ -7,7 +7,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--theme-bg-subtle);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   overflow: hidden;
   flex-shrink: 0;
 }

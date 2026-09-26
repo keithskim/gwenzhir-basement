@@ -9,7 +9,7 @@
   min-width: 10rem;
   padding: var(--spacing-xs);
   background: var(--theme-bg);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@
 }
 
 .menu-divider {
-  height: 1px;
+  height: var(--hairline);
   background: var(--theme-border);
   margin: 0.125rem 0;
 }

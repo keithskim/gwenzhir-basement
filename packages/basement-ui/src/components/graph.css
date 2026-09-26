@@ -168,12 +168,12 @@
 .graph--vertical .graph-grid {
   background-image: linear-gradient(
     to bottom,
-    var(--graph-grid-line) 1px,
-    transparent 1px
+    var(--graph-grid-line) var(--hairline),
+    transparent var(--hairline)
   );
   background-size: 100% calc(100% / var(--graph-ticks));
   background-position: left top;
-  border-block-end: 1px solid var(--graph-baseline);
+  border-block-end: var(--hairline) solid var(--graph-baseline);
 }
 
 .graph--vertical:not(.graph--bar-label-inside):not(.graph--line) .graph-plot {
@@ -281,7 +281,7 @@
 .graph--vertical.graph--signed .graph-zero {
   inset-inline: 0;
   bottom: var(--graph-zero);
-  border-block-start: 1px solid var(--graph-zero-line);
+  border-block-start: var(--hairline) solid var(--graph-zero-line);
 }
 
 .graph--vertical.graph--signed .graph-col {
@@ -395,12 +395,12 @@
 .graph--horizontal .graph-grid {
   background-image: linear-gradient(
     to right,
-    var(--graph-grid-line) 1px,
-    transparent 1px
+    var(--graph-grid-line) var(--hairline),
+    transparent var(--hairline)
   );
   background-size: calc(100% / var(--graph-ticks)) 100%;
   background-position: left top;
-  border-inline-end: 1px solid var(--graph-baseline);
+  border-inline-end: var(--hairline) solid var(--graph-baseline);
 }
 
 .graph--horizontal:not(.graph--bar-label-inside) .graph-grid {
@@ -495,7 +495,7 @@
   position: absolute;
   inset-block: 0;
   inset-inline-start: var(--graph-zero);
-  border-inline-start: 1px solid var(--graph-zero-line);
+  border-inline-start: var(--hairline) solid var(--graph-zero-line);
 }
 
 .graph--horizontal.graph--signed.graph--bar-label-inside .graph-zero {
@@ -574,12 +574,12 @@
 .graph--line .graph-grid {
   background-image: linear-gradient(
     to bottom,
-    var(--graph-grid-line) 1px,
-    transparent 1px
+    var(--graph-grid-line) var(--hairline),
+    transparent var(--hairline)
   );
   background-size: 100% calc(100% / var(--graph-ticks));
   background-position: left top;
-  border-block-end: 1px solid var(--graph-baseline);
+  border-block-end: var(--hairline) solid var(--graph-baseline);
 }
 
 .graph--line .graph-svg {
@@ -750,7 +750,7 @@
   position: absolute;
   inset-inline: 0;
   bottom: var(--graph-zero);
-  border-top: 1px solid var(--color-black);
+  border-top: var(--hairline) solid var(--color-black);
   z-index: 2;
   pointer-events: none;
 }
@@ -765,7 +765,7 @@ html.is-dark .graph .graph-zero--mask {
   position: absolute;
   inset-inline: 0;
   bottom: var(--graph-zero);
-  border-top: 1px solid var(--theme-bg);
+  border-top: var(--hairline) solid var(--theme-bg);
   z-index: 1;
   pointer-events: none;
 }

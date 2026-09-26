@@ -57,7 +57,7 @@
   width: 16.5rem;
   padding: var(--spacing-xs);
   background: var(--theme-bg);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
 }
 

@@ -13,7 +13,7 @@
   padding-inline-start: calc(var(--spacing-s) + var(--spacing-xs));
   padding-inline-end: var(--spacing-s);
   background: var(--theme-bg);
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
   container-type: inline-size;
   container-name: navbar;
 }

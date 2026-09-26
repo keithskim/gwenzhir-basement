@@ -45,7 +45,7 @@
 }
 
 .type-quote {
-  border-left: 2px solid var(--theme-border);
+  border-left: max(2px, var(--hairline)) solid var(--theme-border);
   padding-left: var(--spacing-s);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
@@ -105,5 +105,5 @@
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: var(--hairline);
 }

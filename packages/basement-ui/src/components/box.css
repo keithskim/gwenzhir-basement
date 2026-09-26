@@ -3,7 +3,7 @@
 .box {
   box-sizing: border-box;
   min-width: 0;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
   overflow: hidden;

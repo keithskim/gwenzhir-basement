@@ -301,12 +301,12 @@
   z-index: 1;
   width: auto;
   margin-block-start: var(--spacing-s);
-  margin-inline: -1px;
+  margin-inline: calc(-1 * var(--hairline));
   padding-block: 0.25rem;
   padding-inline: var(--sidebar-item-bleed);
   color: var(--theme-fg);
   background: var(--theme-surface);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
@@ -330,7 +330,7 @@ html.is-dark .sidebar-item--fixed[aria-expanded='true'] {
 }
 
 .sidebar--compact .sidebar-item--fixed {
-  margin-inline-start: -1px;
+  margin-inline-start: calc(-1 * var(--hairline));
   width: auto;
   padding-block: 0.25rem;
   padding-inline: calc(var(--sidebar-item-bleed) + var(--sidebar-item-indent, 0px));
@@ -365,7 +365,7 @@ html.is-dark .sidebar-item--fixed[aria-expanded='true'] {
 }
 
 .sidebar-profile .profile-item:not(.profile-item--s, .profile-item--m, .profile-item--l) {
-  padding-inline: calc(var(--sidebar-item-bleed) - 1px);
+  padding-inline: calc(var(--sidebar-item-bleed) - var(--hairline));
 }
 
 /* Sidebar nav fills a Panel when composed */

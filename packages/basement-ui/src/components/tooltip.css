@@ -81,7 +81,7 @@
   width: max-content;
   padding: var(--tooltip-pad-block, 0.25rem) var(--tooltip-pad-inline, 0.5rem);
   border-radius: var(--tooltip-radius, var(--border-radius-s));
-  border: 1px solid var(--color-light-gray);
+  border: var(--hairline) solid var(--color-light-gray);
   background: var(--color-white);
   box-shadow: var(--shadow-s);
   font-family: var(--font-base-family);
@@ -149,8 +149,8 @@
   position: absolute;
   width: var(--tooltip-arrow-size);
   height: var(--tooltip-arrow-size);
-  border-inline-start: 1px solid var(--color-light-gray);
-  border-block-start: 1px solid var(--color-light-gray);
+  border-inline-start: var(--hairline) solid var(--color-light-gray);
+  border-block-start: var(--hairline) solid var(--color-light-gray);
   background: var(--color-white);
 }
 

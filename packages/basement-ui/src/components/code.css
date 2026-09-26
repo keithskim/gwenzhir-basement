@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0.1em 0.35em;
   border-radius: var(--border-radius-s);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: transparent;
   color: var(--theme-fg-secondary);
   font-family: var(--font-mono-family);
@@ -35,7 +35,7 @@
   margin: 0;
   padding: var(--spacing-xs) var(--spacing-s);
   border-radius: var(--border-radius-s);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: transparent;
   color: var(--theme-fg-secondary);
   font-family: var(--font-mono-family);

@@ -33,7 +33,7 @@
 }
 
 .panel--left {
-  border-inline-end: 1px solid var(--theme-border);
+  border-inline-end: var(--hairline) solid var(--theme-border);
   padding: 0 var(--spacing-s) var(--spacing-s);
   --panel-drawer-at: var(--panel-drawer-at-left);
   --panel-drawer-width: min(20rem, 85cqw);
@@ -46,7 +46,7 @@
   --panel-drawer-at: var(--panel-drawer-at-right);
   --panel-drawer-width: min(26rem, 88cqw);
   background: var(--theme-bg);
-  border-inline-start: 1px solid var(--theme-border);
+  border-inline-start: var(--hairline) solid var(--theme-border);
 }
 
 /* Fullscreen drawer — covers the host instead of a defined slide-in width */

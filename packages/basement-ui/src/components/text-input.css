@@ -9,7 +9,7 @@
   line-height: var(--line-height-xs);
   color: var(--theme-fg);
   background: var(--theme-bg);
-  border: 0.0625rem solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   -webkit-font-smoothing: antialiased;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
@@ -73,6 +73,56 @@
   position: relative;
   z-index: 1;
   border-color: var(--color-gray);
+  caret-color: var(--theme-fg);
+}
+
+/* Empty focused field: a bar above the placeholder, blinking. Typed text uses the caret. */
+@supports (anchor-name: --input-blinker) {
+  .input:focus:placeholder-shown,
+  .textarea:focus:placeholder-shown {
+    anchor-name: --input-blinker;
+    caret-color: transparent;
+  }
+
+  :is(.box, .field, .text-input, .text-input-group, .invisible-input, .chat-composer, label):has(> :is(.input, .textarea):focus:placeholder-shown) {
+    position: relative;
+  }
+
+  :is(.box, .field, .text-input, .text-input-group, .invisible-input, .chat-composer, label):has(> :is(.input, .textarea):focus:placeholder-shown)::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    position-anchor: --input-blinker;
+    left: calc(anchor(left) + var(--spacing-xs));
+    top: anchor(center);
+    width: 0.125rem;
+    height: var(--font-size-xs);
+    background: var(--theme-fg);
+    transform: translateY(-50%);
+    pointer-events: none;
+    animation: input-blinker 1.1s linear infinite;
+  }
+
+  .text-input:has(> .input:focus:placeholder-shown)::after {
+    left: anchor(left);
+  }
+
+  :is(.box, .field, .chat-composer, label):has(> .textarea:focus:placeholder-shown)::after {
+    top: calc(anchor(top) + var(--spacing-xs));
+    transform: none;
+  }
+}
+
+@keyframes input-blinker {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .textarea {
@@ -85,6 +135,13 @@
 .textarea:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.box, .field, .text-input, .text-input-group, .invisible-input, .chat-composer, label):has(> :is(.input, .textarea):focus:placeholder-shown)::after {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .input::placeholder,
@@ -101,7 +158,7 @@
   min-width: 0;
   padding-inline: var(--spacing-xs);
   background: var(--theme-bg);
-  border: 0.0625rem solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }

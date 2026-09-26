@@ -4,7 +4,7 @@
   gap: 0.25rem;
   box-sizing: border-box;
   border-radius: 9999px;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   background: var(--theme-bg);
   color: var(--theme-fg);
   font-family: var(--font-base-family);

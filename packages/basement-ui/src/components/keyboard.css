@@ -20,7 +20,7 @@
   .chat-room-main,
   .activity-item
 ):focus-visible {
-  outline: 0.125rem solid var(--color-light-gray-a);
+  outline: max(0.125rem, var(--hairline)) solid var(--color-light-gray-a);
   outline-offset: -0.125rem;
 }
 
@@ -45,7 +45,7 @@
 .segmented-select-input:focus-visible + .segmented-select-label,
 .rating-star:has(:focus-visible),
 .rating-star:focus-visible {
-  outline: 0.125rem solid var(--color-light-gray-a);
+  outline: max(0.125rem, var(--hairline)) solid var(--color-light-gray-a);
   outline-offset: 0;
 }
 
@@ -56,7 +56,7 @@
 .tab:focus-visible {
   position: relative;
   z-index: 3;
-  outline: 0.125rem solid var(--color-light-gray-a);
+  outline: max(0.125rem, var(--hairline)) solid var(--color-light-gray-a);
   outline-offset: -0.125rem;
 }
 
@@ -74,7 +74,7 @@
 
 .box-resize-handle:focus-visible,
 .panel-resize-handle:focus-visible {
-  outline: 0.125rem solid var(--color-light-gray-a);
+  outline: max(0.125rem, var(--hairline)) solid var(--color-light-gray-a);
   outline-offset: -0.125rem;
 }
 
@@ -95,8 +95,8 @@
   margin-inline: calc(-1 * var(--table-ring-inline, var(--table-row-bleed, 0px)));
   margin-bottom: calc(-1 * var(--table-scrollport-height, 0px));
   background-image:
-    linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
-    linear-gradient(to bottom, var(--theme-bg) calc(100% - 1px), var(--theme-border) 1px),
+    linear-gradient(to bottom, var(--theme-bg) calc(100% - var(--hairline)), var(--theme-border) var(--hairline)),
+    linear-gradient(to bottom, var(--theme-bg) calc(100% - var(--hairline)), var(--theme-border) var(--hairline)),
     linear-gradient(var(--theme-bg), var(--theme-bg)),
     linear-gradient(var(--theme-bg), var(--theme-bg));
   background-repeat: no-repeat;

@@ -20,7 +20,7 @@
   align-items: stretch;
   max-width: 100%;
   background: var(--theme-surface);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   overflow: hidden;
 }
@@ -88,7 +88,7 @@
   padding: 0;
   color: var(--theme-fg-secondary);
   background: var(--theme-surface);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -164,7 +164,7 @@ html.is-dark .filter-rule--choices .filter-rule-chip:is(:hover, :focus-within) {
   color: var(--theme-fg);
   background: transparent;
   border: none;
-  border-inline-start: 1px solid var(--theme-border);
+  border-inline-start: var(--hairline) solid var(--theme-border);
   border-radius: 0;
   cursor: pointer;
   white-space: nowrap;

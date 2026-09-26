@@ -2762,7 +2762,7 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 
 #mockup .pattern-demo:has(.mockup--landscape) .mockup-stage {
   width: 100%;
-  height: calc(100cqw * (23.4375rem + 0.75rem + 2px) / (50.75rem + (var(--spacing-s) * 2) + 2px));
+  height: calc(100cqw * (21rem + 2px) / (45.5rem + (var(--spacing-s) * 2) + 2px));
 }
 
 .home-preview-sheet {
@@ -2813,7 +2813,6 @@ html.is-dark .swatch-face--gray-extra-dark-a { border-color: var(--theme-border)
 }
 
 .home-preview-mockup.mockup {
-  --mockup-bezel: 0.125rem;
   --mockup-portrait-w: 1.75rem;
   --mockup-portrait-h: 3rem;
   --mockup-chrome: 0rem;

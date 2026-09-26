@@ -47,9 +47,9 @@
   overflow: hidden;
   margin: 0;
   margin-inline: auto;
-  margin-bottom: -1px;
+  margin-bottom: calc(-1 * var(--hairline));
   padding: var(--spacing-s);
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
   background: var(--theme-bg);
   box-shadow: var(--shadow-l);
@@ -72,7 +72,7 @@
 .overlay-root > .sheet-host > .sheet {
   width: calc(100% + 2px);
   max-width: none;
-  margin-inline: -1px;
+  margin-inline: calc(-1 * var(--hairline));
   border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
   box-shadow: none;
 }
@@ -191,7 +191,7 @@
 
 .sheet-actions > .btn + .btn,
 .sheet .btn-group > .btn + .btn {
-  margin-inline-start: -1px;
+  margin-inline-start: calc(-1 * var(--hairline));
 }
 
 @media (prefers-reduced-motion: reduce) {

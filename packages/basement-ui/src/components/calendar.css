@@ -30,7 +30,7 @@
   gap: 0.125rem;
   margin-bottom: var(--spacing-xs);
   padding-bottom: var(--spacing-xs);
-  border-bottom: 0.0625rem solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
 }
 
 .calendar-weekday {

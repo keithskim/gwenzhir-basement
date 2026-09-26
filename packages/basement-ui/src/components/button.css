@@ -15,7 +15,7 @@
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   border-radius: var(--border-radius-s);
-  border: 1px solid transparent;
+  border: var(--hairline) solid transparent;
   background: transparent;
   color: var(--theme-fg);
   cursor: pointer;
@@ -276,7 +276,7 @@ html.is-dark .btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):
 }
 
 .btn-group > .btn + .btn {
-  margin-inline-start: -1px;
+  margin-inline-start: calc(-1 * var(--hairline));
 }
 
 .btn-group--column {
@@ -308,5 +308,5 @@ html.is-dark .btn--accent.btn--float:is(:hover, :active, [aria-pressed='true']):
 
 .btn-group--column > .btn + .btn {
   margin-inline-start: 0;
-  margin-block-start: -1px;
+  margin-block-start: calc(-1 * var(--hairline));
 }

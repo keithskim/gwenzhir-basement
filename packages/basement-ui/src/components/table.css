@@ -70,7 +70,7 @@
   color: var(--theme-fg);
   font-weight: var(--font-base-weight);
   background: transparent;
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
 }
 
 .table tfoot th,
@@ -78,11 +78,11 @@
   color: var(--theme-fg);
   font-weight: var(--font-base-weight);
   background: transparent;
-  border-top: 1px solid var(--theme-border);
+  border-top: var(--hairline) solid var(--theme-border);
 }
 .table tbody td {
   color: var(--theme-fg-body);
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
 }
 
 .table tbody tr:last-child td {
@@ -90,7 +90,7 @@
 }
 
 .table--sticky tbody tr:last-child td {
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: var(--hairline) solid var(--theme-border);
 }
 
 .table--sticky:has(tfoot) tbody tr:last-child td,

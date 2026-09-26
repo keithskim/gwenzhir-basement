@@ -11,7 +11,7 @@
   min-height: 20rem;
   height: 100%;
   overflow: hidden;
-  border: 1px solid var(--theme-border);
+  border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-bg);
   font-family: var(--font-base-family);
@@ -30,7 +30,7 @@
 .chat-frame .chat-rooms {
   min-width: 12rem;
   max-width: 16rem;
-  border-inline-end: 1px solid var(--theme-border);
+  border-inline-end: var(--hairline) solid var(--theme-border);
 }
 
 .chat-frame .chat[hidden] {
@@ -48,7 +48,7 @@
     min-width: 0;
     max-width: none;
     border-inline-end: 0;
-    border-block-end: 1px solid var(--theme-border);
+    border-block-end: var(--hairline) solid var(--theme-border);
   }
 }
 
@@ -59,7 +59,7 @@
   gap: var(--spacing-xs);
   flex-shrink: 0;
   padding: 0.5rem 0.75rem 0.75rem;
-  border-block-start: 1px solid var(--theme-border);
+  border-block-start: var(--hairline) solid var(--theme-border);
 }
 
 .chat-suggestions {
