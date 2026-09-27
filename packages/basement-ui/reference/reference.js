@@ -543,6 +543,28 @@ function initActivityDemo() {
 
 initActivityDemo();
 
+// ── Sheet fixed-height demo: details turn into a confirmation, then reset once closed ──
+function initSheetStepDemo() {
+  document.querySelectorAll('.sheet-host:has([data-sheet-demo-step])').forEach(host => {
+    const title = host.querySelector('[data-sheet-demo-title]');
+    const show = step => {
+      host.querySelectorAll('[data-sheet-demo-step]').forEach(part => {
+        part.hidden = part.getAttribute('data-sheet-demo-step') !== step;
+      });
+      if (title) title.textContent = step === 'done' ? 'Payment complete' : 'Confirm payment';
+    };
+    host.querySelector('[data-sheet-demo-pay]')?.addEventListener('click', () => {
+      show('done');
+      host.querySelector('[data-sheet-demo-step="done"] [data-sheet-close]')?.focus({ preventScroll: true });
+    });
+    host.addEventListener('basement-sheet', event => {
+      if (event.detail.state === 'closed') show('details');
+    });
+  });
+}
+
+initSheetStepDemo();
+
 // ── Pattern demos: edge fades ──
 function initPatternEdgeFades() {
   if (!window.BasementEdgeFade) return;

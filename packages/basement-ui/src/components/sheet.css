@@ -1,4 +1,6 @@
-/* Sheet — bottom panel. Content height by default; half height covers half the root. */
+/* Sheet — bottom panel. Content height by default; half height covers half the root;
+   fixed height keeps one footprint while the content changes.
+   Slides with --motion-slide, the same travel time as the mockup keyboard. */
 
 .sheet-host {
   position: fixed;
@@ -13,13 +15,16 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  /* Hidden only once the slide out ends. */
+  transition: opacity var(--motion-slide) var(--motion-slide-ease), visibility 0s linear var(--motion-slide);
 }
 
+/* Visible at once, so the panel can take focus as it starts to slide. */
 .sheet-host.is-sheet-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transition: opacity var(--motion-slide) var(--motion-slide-ease), visibility 0s;
 }
 
 .sheet-backdrop {
@@ -54,7 +59,7 @@
   background: var(--theme-bg);
   box-shadow: var(--shadow-l);
   transform: translateY(100%);
-  transition: transform 0.2s ease;
+  transition: transform var(--motion-slide) var(--motion-slide-ease);
   font-family: var(--font-base-family);
   font-weight: var(--font-base-weight);
   -webkit-font-smoothing: antialiased;
@@ -81,10 +86,30 @@
   transform: translateY(0);
 }
 
+/* A host that arrives already open still slides in. Reference samples stay put. */
+@starting-style {
+  .sheet-host.is-sheet-open:not([data-sheet-static]) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .sheet-host.is-sheet-open:not([data-sheet-static]) .sheet {
+    transform: translateY(100%);
+  }
+}
+
 .sheet--half {
   flex: 0 0 50%;
   height: 50%;
   max-height: 50%;
+}
+
+/* Fixed height: the heading and actions hold their places while the body changes,
+   as when payment details become a confirmation. Long bodies scroll. */
+.sheet--fixed {
+  --sheet-height: 13rem;
+  flex: 0 0 var(--sheet-height);
+  height: var(--sheet-height);
 }
 
 .sheet-heading {
@@ -134,6 +159,20 @@
   color: var(--theme-fg);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
+}
+
+/* Swap a step's body or actions with the hidden attribute. */
+.sheet-body[hidden],
+.sheet-actions[hidden] {
+  display: none;
+}
+
+/* A single status (done, empty, error) centered in the body. Safe centering keeps
+   the top reachable when it runs long. */
+.sheet-body--center {
+  align-items: center;
+  justify-content: safe center;
+  text-align: center;
 }
 
 /* Full-width button group: equal actions, shared corners, one shared edge. */

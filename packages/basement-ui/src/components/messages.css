@@ -4,6 +4,9 @@
   --chat-avatar-gap: 0.75rem;
   --chat-log-inline: 0.75rem;
   --chat-meta-gap: 0.375rem;
+  --chat-name-gap: 0.25rem;
+  --chat-text-wrap: balance;
+  --chat-rail-gap: var(--spacing-xs);
   --chat-bubble-max: 16rem;
   --chat-bubble-pad-block: 0.25rem;
   --chat-bubble-pad-inline: 0.625rem;
@@ -35,6 +38,41 @@
   flex-shrink: 0;
   padding: 0.5rem 0.75rem;
   border-block-end: var(--hairline) solid var(--theme-border);
+}
+
+/* Actions on the trailing side of the header. */
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-inline-start: auto;
+}
+
+/* Centered: back on the leading side, actions on the trailing side, the title between.
+   Both sides are --chat-header-side wide, so the title centers on the room. */
+.chat-header--center {
+  --chat-header-side: 4rem;
+  display: grid;
+  grid-template-columns: var(--chat-header-side) minmax(0, 1fr) var(--chat-header-side);
+  gap: 0.25rem;
+}
+
+.chat-header--center > * {
+  justify-self: start;
+}
+
+.chat-header--center > .chat-header-body {
+  grid-column: 2;
+  justify-self: stretch;
+  align-items: center;
+  text-align: center;
+}
+
+.chat-header--center > .chat-header-actions {
+  grid-column: 3;
+  justify-self: end;
+  margin-inline-start: 0;
 }
 
 .chat-header .avatar .ph {
@@ -164,6 +202,11 @@
   min-width: 0;
 }
 
+/* A card, rail, or choices under a name sit --chat-name-gap below it, like a note. */
+.chat-message-body:has(> .chat-card, > .chat-attachment-rail, > .chat-choices) > .chat-message-meta {
+  margin-block-end: calc(var(--chat-name-gap) - 0.125rem);
+}
+
 .chat-message-name {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -211,6 +254,16 @@
   max-width: 100%;
 }
 
+/* Break anywhere: Korean and other CJK notes fill each line, as messengers set them,
+   so a wrapped bubble fits its text. Pretty wrapping avoids the gaps balance leaves. */
+.chat--wrap-anywhere {
+  --chat-text-wrap: pretty;
+}
+
+.chat--wrap-anywhere .chat-message-text {
+  word-break: break-all;
+}
+
 /* Typing row uses the dots spinner, aligned like an incoming note. */
 .chat-typing .spinner--dots {
   width: fit-content;
@@ -224,6 +277,33 @@
   border: var(--hairline) solid var(--theme-border);
   border-radius: var(--border-radius-s);
   background: var(--theme-surface);
+}
+
+/* Composing: dots with an optional short label for who or what is answering. */
+.chat-composing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+.chat-composing-label {
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-2xs);
+  color: var(--color-gray);
+}
+
+.chat--bubble .chat-typing .chat-composing {
+  padding: 0.25rem 0.625rem;
+  border: var(--hairline) solid var(--theme-border);
+  border-radius: var(--border-radius-s);
+  background: var(--theme-surface);
+}
+
+.chat--bubble .chat-typing .chat-composing .spinner--dots {
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
 /* Bubble: every note sits in a surface, not only yours.
@@ -254,7 +334,7 @@
 
 .chat-message--meta-inline .chat-message-text {
   max-width: var(--chat-bubble-max);
-  text-wrap: balance;
+  text-wrap: var(--chat-text-wrap);
 }
 
 .chat-message--meta-inline .chat-message-time {
@@ -292,7 +372,7 @@
     /* The note is inline here, so the body's leading sets the line box. Match the note's compact leading. */
     font-size: var(--font-size-xs);
     line-height: calc(1em + 0.25rem);
-    text-wrap: balance;
+    text-wrap: var(--chat-text-wrap);
     anchor-scope: --chat-bubble;
   }
 
@@ -348,7 +428,7 @@
   }
 
   .chat--bubble .chat-message--meta-inline .chat-message-body:has(.chat-message-text) .chat-message-meta {
-    margin: 0 0 0.125rem;
+    margin: 0 0 calc(var(--chat-name-gap) - 0.125rem);
   }
 
   .chat--bubble .chat-message--meta-inline .chat-message-body:has(.chat-message-text)::before {
@@ -365,7 +445,7 @@
     background: var(--theme-surface);
     color: var(--theme-fg);
     anchor-name: none;
-    text-wrap: balance;
+    text-wrap: var(--chat-text-wrap);
   }
 
   /* A card, a rail, or choices sit beside the note, not inside its padding. */
@@ -393,7 +473,7 @@
   }
 
   .chat--bubble .chat-message-body:has(.chat-message-text):has(.chat-choices, .chat-card, .chat-attachment-rail) .chat-message-meta {
-    margin: 0;
+    margin: 0 0 calc(var(--chat-name-gap) - var(--spacing-xs));
   }
 
   .chat--bubble .chat-message-body:has(.chat-message-text):has(.chat-choices, .chat-card, .chat-attachment-rail)::before {
@@ -410,7 +490,7 @@
     background: var(--theme-surface);
     color: var(--theme-fg);
     anchor-name: none;
-    text-wrap: balance;
+    text-wrap: var(--chat-text-wrap);
   }
 }
 
@@ -532,13 +612,18 @@ html.is-dark .chat-log .btn--default:is(:hover, [data-presentation-state="hover"
 
 .chat-attachment-rail {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--chat-rail-gap);
   width: 100%;
   min-width: 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+}
+
+/* Tight: product picks sit closer, so more of the next card shows. */
+.chat-attachment-rail--tight {
+  --chat-rail-gap: 0.25rem;
 }
 
 .chat-attachment-rail::-webkit-scrollbar {
@@ -688,6 +773,22 @@ html.is-dark .chat-log .btn--default:is(:hover, [data-presentation-state="hover"
   display: none;
 }
 
+/* Icon: the index column holds an icon, even when it is the only choice. */
+.chat-choices:not(:has(> .chat-choice ~ .chat-choice)) .chat-choice--icon {
+  grid-template-columns: var(--chat-choice-index) minmax(0, 1fr) max-content;
+}
+
+.chat-choices:not(:has(> .chat-choice ~ .chat-choice)) .chat-choice--icon .chat-choice-index,
+.chat-choice--icon .chat-choice-index {
+  display: grid;
+  place-items: center;
+}
+
+.chat-choice--icon .chat-choice-index .ph {
+  font-size: var(--font-size-xs);
+  line-height: 1;
+}
+
 .chat-choice-index {
   color: var(--theme-fg-secondary);
   font-variant-numeric: lining-nums tabular-nums;
@@ -718,6 +819,37 @@ html.is-dark .chat-choice:is(:hover, [data-presentation-state="hover"], :active,
 .chat-choice:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Stack: one joined, compact list. Shared edges overlap; the choice under the
+   pointer or focus rises so its whole outline shows. */
+.chat-choices--stack {
+  gap: 0;
+}
+
+.chat-choices--stack .chat-choice {
+  position: relative;
+  column-gap: 0.25rem;
+  padding-inline: var(--spacing-xs);
+  border-radius: 0;
+}
+
+.chat-choices--stack .chat-choice + .chat-choice {
+  margin-block-start: calc(-1 * var(--hairline));
+}
+
+.chat-choices--stack .chat-choice:is(:hover, [data-presentation-state="hover"], :active, [data-presentation-state="active"], :focus-visible):not(:disabled) {
+  z-index: 1;
+}
+
+.chat-choices--stack .chat-choice:first-child {
+  border-start-start-radius: var(--border-radius-s);
+  border-start-end-radius: var(--border-radius-s);
+}
+
+.chat-choices--stack .chat-choice:last-child {
+  border-end-start-radius: var(--border-radius-s);
+  border-end-end-radius: var(--border-radius-s);
 }
 
 /* A toast in the room stays at the bottom center, above the field or menu. */

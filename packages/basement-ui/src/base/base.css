@@ -34,8 +34,10 @@ img.img-placeholder,
 /* Dithered placeholder — two inks on a 4×4 ordered (Bayer) grid, pure CSS.
    The tile holds each cell's threshold and the photo is added onto it. The filter
    pushes each cell to black or white, then lifts black to --img-dither-level.
-   Multiply lets white take the surface color. Wrapper form only. */
-.img-placeholder--dither {
+   Multiply lets white take the surface color. Wrapper form only.
+   The doubled class outranks component backgrounds such as chat card media. */
+.img-placeholder--dither,
+.img-placeholder.img-placeholder--dither {
   --img-dither-level: 0.54; /* Gray */
   --img-dither-cell: 1px;
   --img-dither-tone: 1.4;

@@ -176,6 +176,10 @@
   --size-l:  8rem;
   --size-xl: 16rem;
 
+  /* Slide — Sheet and the mockup keyboard share one travel time. */
+  --motion-slide: 0.28s;
+  --motion-slide-ease: ease;
+
   --chart-inset: var(--spacing-m);
 
   --page-padding-block: var(--spacing-s);

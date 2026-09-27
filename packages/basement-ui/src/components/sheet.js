@@ -21,6 +21,16 @@
  * Dismissal: data-overlay-dismiss="both" (default), "escape", "backdrop", or "none".
  * data-sheet-static keeps a reference sample from closing.
  * Place the host as a direct child of .overlay-root to cover that box instead of the page.
+ *
+ * Lifecycle: mount the host closed and call open(); it slides up from the bottom,
+ * takes focus, and makes the content behind it inert. close() restores focus and
+ * the content at once, then keeps the host in place until the slide out ends.
+ * Both return a Promise that resolves true when the motion finishes, or false when
+ * another open or close interrupts it; unmount only after close() resolves true.
+ * With reduced motion they resolve at once. data-sheet-state on the host reads
+ * opening, open, closing, or closed, and a basement-sheet event carries the same
+ * value in detail.state. A host mounted with is-sheet-open still slides in where
+ * @starting-style is supported, but only open() moves focus and sets inert.
  */
 (function () {
   function hostFor(el) {
@@ -54,6 +64,72 @@
   function allowsBackdrop(host) {
     var mode = dismissMode(host);
     return mode === 'both' || mode === 'backdrop';
+  }
+
+  var reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+  function toMs(value) {
+    var raw = String(value || '').trim();
+    var n = parseFloat(raw) || 0;
+    return /ms$/.test(raw) ? n : n * 1000;
+  }
+
+  /* Longest transition on the panel, delays included. */
+  function motionMs(sheet) {
+    if (!sheet || (reducedMotion && reducedMotion.matches)) return 0;
+    var style = getComputedStyle(sheet);
+    var durations = style.transitionDuration.split(',');
+    var delays = style.transitionDelay.split(',');
+    var max = 0;
+    durations.forEach(function (duration, i) {
+      var total = toMs(duration) + toMs(delays[i % delays.length]);
+      if (total > max) max = total;
+    });
+    return max;
+  }
+
+  function setState(host, state) {
+    host.setAttribute('data-sheet-state', state);
+    host.dispatchEvent(new CustomEvent('basement-sheet', { bubbles: true, detail: { state: state } }));
+  }
+
+  /* Resolves true when the panel's slide ends, false if a later open or close takes over. */
+  function afterMotion(host) {
+    var sheet = sheetFor(host);
+    var token = {};
+    host.__basementSheetMotion = token;
+    return new Promise(function (resolve) {
+      var ms = motionMs(sheet);
+      var timer = null;
+      function finish() {
+        if (sheet) sheet.removeEventListener('transitionend', onEnd);
+        if (timer) clearTimeout(timer);
+        var current = host.__basementSheetMotion === token;
+        if (current) host.__basementSheetMotion = null;
+        resolve(current);
+      }
+      function onEnd(event) {
+        if (event.target === sheet && event.propertyName === 'transform') finish();
+      }
+      if (!ms) {
+        Promise.resolve().then(finish);
+        return;
+      }
+      sheet.addEventListener('transitionend', onEnd);
+      timer = setTimeout(finish, ms + 50);
+    });
+  }
+
+  /* Closing: the panel is still on screen but can no longer take focus. */
+  function setExitInert(host, on) {
+    if (on) {
+      if (host.hasAttribute('inert')) return;
+      host.setAttribute('inert', '');
+      host.setAttribute('data-basement-sheet-exit', '');
+    } else if (host.hasAttribute('data-basement-sheet-exit')) {
+      host.removeAttribute('data-basement-sheet-exit');
+      host.removeAttribute('inert');
+    }
   }
 
   function releaseInert(el, attr) {
@@ -134,25 +210,51 @@
 
   function open(hostOrSheet) {
     var host = hostFor(hostOrSheet) || hostOrSheet;
-    if (!host || !host.classList.contains('sheet-host')) return;
+    if (!host || !host.classList.contains('sheet-host')) return Promise.resolve(false);
+    if (host.__basementSheetActive) {
+      return host.__basementSheetMotion ? host.__basementSheetOpening : Promise.resolve(true);
+    }
+    host.__basementSheetActive = true;
+    if (!host.__basementSheetWired && host.parentElement) wire(host.parentElement);
     if (host.hasAttribute('data-basement-dialog-inert')) releaseInert(host, 'data-basement-dialog-inert');
     if (host.hasAttribute('data-basement-sheet-inert')) releaseInert(host, 'data-basement-sheet-inert');
+    setExitInert(host, false);
     host.__basementSheetOpener = document.activeElement;
     park(host);
+    /* Commit the closed pose first, so a host just mounted or moved still slides up. */
+    void host.offsetHeight;
     host.classList.add('is-sheet-open');
+    setState(host, 'opening');
     syncAria(host);
     syncInert(host, true);
     focusSheet(host);
+    host.__basementSheetOpening = afterMotion(host).then(function (done) {
+      if (done) setState(host, 'open');
+      return done;
+    });
+    return host.__basementSheetOpening;
   }
 
   function close(hostOrSheet) {
     var host = hostFor(hostOrSheet) || hostOrSheet;
-    if (!host || !host.classList.contains('sheet-host')) return;
-    if (isStatic(host)) return;
+    if (!host || !host.classList.contains('sheet-host')) return Promise.resolve(false);
+    if (isStatic(host)) return Promise.resolve(false);
+    if (!host.__basementSheetActive && !host.classList.contains('is-sheet-open')) {
+      return host.__basementSheetMotion ? host.__basementSheetClosing : Promise.resolve(true);
+    }
+    host.__basementSheetActive = false;
     host.classList.remove('is-sheet-open');
+    setState(host, 'closing');
+    setExitInert(host, true);
     syncAria(host);
     syncInert(host, false);
-    unpark(host);
+    host.__basementSheetClosing = afterMotion(host).then(function (done) {
+      if (!done) return false;
+      setExitInert(host, false);
+      unpark(host);
+      setState(host, 'closed');
+      return true;
+    });
     var opener = host.__basementSheetOpener;
     host.__basementSheetOpener = null;
     if (opener && typeof opener.focus === 'function' && document.contains(opener)) {
@@ -162,13 +264,16 @@
         opener.focus();
       }
     }
+    /* No opener to return to: never leave focus inside the closing panel. */
+    var active = document.activeElement;
+    if (active && active !== document.body && host.contains(active) && typeof active.blur === 'function') active.blur();
+    return host.__basementSheetClosing;
   }
 
   function toggle(hostOrSheet) {
     var host = hostFor(hostOrSheet) || hostOrSheet;
-    if (!host || !host.classList.contains('sheet-host')) return;
-    if (host.classList.contains('is-sheet-open')) close(host);
-    else open(host);
+    if (!host || !host.classList.contains('sheet-host')) return Promise.resolve(false);
+    return host.__basementSheetActive || host.classList.contains('is-sheet-open') ? close(host) : open(host);
   }
 
   function topmostEscapeHost() {
@@ -224,6 +329,9 @@
     scope.querySelectorAll('.sheet-host').forEach(function (host) {
       if (host.__basementSheetWired) return;
       host.__basementSheetWired = true;
+      if (!host.hasAttribute('data-sheet-state')) {
+        host.setAttribute('data-sheet-state', host.classList.contains('is-sheet-open') ? 'open' : 'closed');
+      }
       syncAria(host);
       if (host.classList.contains('is-sheet-open')) syncInert(host, true);
 

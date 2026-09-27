@@ -191,7 +191,7 @@
   height: var(--mockup-keyboard-h);
   overflow: hidden;
   margin: 0;
-  transition: --mockup-keyboard-h 0.28s ease;
+  transition: --mockup-keyboard-h var(--motion-slide) var(--motion-slide-ease);
 }
 
 .mockup-keyboard.is-closed {
